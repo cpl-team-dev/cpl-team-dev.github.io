@@ -3,32 +3,17 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Community Playlink | Redirecting</title>
+    <title>Community Playlink | Page Not Found</title>
     <meta
       name="description"
-      content="Checking the address and sending you to the right Community Playlink page."
+      content="The page you are looking for could not be found on Community Playlink."
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
-      .page-404.page-loading {
-        margin: 0;
-        background: #fff;
-      }
-
-      .page-404.page-ready .boot-loading {
-        display: none;
-      }
-
-      .boot-loading {
-        color: #111;
-        font-family: "Segoe UI", Arial, sans-serif;
-        font-size: 16px;
-        font-weight: 600;
-        line-height: 1.2;
-      }
-
       .page-404 {
+        margin: 0;
         min-height: 100vh;
+        background: #fff;
       }
 
       .redirect-shell {
@@ -43,133 +28,30 @@
         padding: 28px 24px 32px;
       }
 
-      .step-list {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: grid;
-        gap: 16px;
-      }
-
-      .step-item {
-        display: grid;
-        grid-template-columns: auto minmax(0, 1fr);
-        gap: 16px;
-        align-items: start;
-        padding: 18px;
-        border: 2px solid #e7e1f4;
-        border-radius: 14px;
-        background: #faf8fe;
-      }
-
-      .step-item.is-active {
-        border-color: var(--orange);
-        background: #fff7ef;
-      }
-
-      .step-item.is-complete {
-        border-color: var(--sage-green);
-        background: #f4fbf0;
-      }
-
-      .step-badge {
-        width: 42px;
-        height: 42px;
-        border-radius: 999px;
-        display: grid;
-        place-items: center;
-        color: #fff;
-        font-weight: 800;
-        background: var(--nav-purple);
-        flex-shrink: 0;
-      }
-
-      .step-item.is-active .step-badge {
-        background: var(--orange);
-      }
-
-      .step-item.is-complete .step-badge {
-        background: var(--sage-green);
-      }
-
-      .step-copy h2 {
-        margin: 0 0 6px;
-        font-size: 20px;
-      }
-
-      .step-copy p {
-        margin: 0;
-        color: #4d4d4d;
-      }
-
-      .status-panel {
-        margin-top: 20px;
-        padding: 18px;
-        border-radius: 14px;
-        background: #f6f7fb;
-      }
-
-      .status-panel p {
-        margin: 0;
-      }
-
-      .status-panel p + p {
-        margin-top: 10px;
-      }
-
-      .status-link {
-        color: var(--navy);
-        font-weight: 700;
-        word-break: break-word;
-      }
-
-      .status-link[hidden] {
-        display: none;
-      }
-
       .redirect-main {
         display: grid;
         place-items: center;
         padding: 32px 16px 56px;
       }
 
-      .loading-state,
       .not-found-state {
         text-align: center;
       }
 
-      .loading-state h1,
       .not-found-state h1 {
         margin: 0 0 12px;
         font-size: clamp(28px, 4vw, 36px);
         color: var(--dark-purple);
       }
 
-      .loading-state p,
       .not-found-state p {
         margin: 0 auto;
         max-width: 34rem;
         font-size: 18px;
       }
 
-      .loading-spinner {
-        width: 56px;
-        height: 56px;
-        margin: 0 auto 20px;
-        border: 6px solid #e7e1f4;
-        border-top-color: var(--orange);
-        border-radius: 999px;
-        animation: redirect-spin 1s linear infinite;
-      }
-
       .not-found-state .btn {
         margin-top: 24px;
-      }
-
-      @keyframes redirect-spin {
-        to {
-          transform: rotate(360deg);
-        }
       }
 
       @media (max-width: 640px) {
@@ -177,16 +59,11 @@
           padding-left: 18px;
           padding-right: 18px;
         }
-
-        .step-item {
-          grid-template-columns: 1fr;
-        }
       }
     </style>
   </head>
-  <body class="page-404 page-loading">
-    <div class="boot-loading">Loading...</div>
-    <div id="site-shell" style="display: none;">
+  <body class="page-404">
+    <div id="site-shell">
       <div class="announce">
         <div class="container">
           <strong>Toy Library opening times are -</strong><br />
@@ -206,7 +83,6 @@
         <div class="container header-grid">
           <form
             class="search-wrap"
-            id="site-search-form"
             action="https://library.community-playlink.com/"
             method="get"
           >
@@ -383,18 +259,7 @@
 
       <main class="redirect-main">
         <div class="redirect-shell">
-          <section id="spinner" class="redirect-body">
-            <div class="loading-state" aria-live="polite">
-              <div class="loading-spinner" aria-hidden="true"></div>
-              <h1>One moment</h1>
-              <p>
-                We're checking this page and will either redirect you or show a
-                not found message here.
-              </p>
-            </div>
-          </section>
-
-          <section id="not-found" class="redirect-body" hidden>
+          <section class="redirect-body">
             <div class="not-found-state">
               <h1>Page not found</h1>
               <p>
@@ -407,61 +272,6 @@
         </div>
       </main>
     </div>
-
-    <script>
-      (function () {
-        const searchForm = document.getElementById("site-search-form");
-        if (!searchForm) return;
-
-        searchForm.addEventListener("submit", function (event) {
-          event.preventDefault();
-          const input = searchForm.querySelector('input[name="s"]');
-          const term = input ? input.value.trim() : "";
-          window.location.href =
-            "https://library.community-playlink.com/?s=" +
-            encodeURIComponent(term);
-        });
-      })();
-    </script>
-
-    <script>
-      (function () {
-        const currentUrl = new URL(window.location.href);
-        const requestedHtml = currentUrl.pathname.toLowerCase().includes(".html");
-        const isPrimaryHost = currentUrl.hostname === "www.community-playlink.com";
-        const isLocalDevHost =
-          currentUrl.hostname === "127.0.0.1" ||
-          currentUrl.hostname === "localhost" ||
-          currentUrl.hostname === "::1";
-        const shouldRedirect = !requestedHtml || (!isPrimaryHost && !isLocalDevHost);
-        const targetUrl = new URL(window.location.href);
-        targetUrl.protocol = "https:";
-        targetUrl.hostname = "library.community-playlink.com";
-
-        if (shouldRedirect && targetUrl.href !== currentUrl.href) {
-          window.setTimeout(function () {
-            window.location.replace(targetUrl.href);
-          }, 900);
-          return;
-        } else {
-          const siteShell = document.getElementById("site-shell");
-          siteShell.style.display = "block";
-          document.body.classList.remove("page-loading");
-          document.body.classList.add("page-ready");
-
-          const spinner = document.getElementById("spinner");
-          const notFound = document.getElementById("not-found");
-
-          if (spinner) {
-            spinner.hidden = true;
-          }
-
-          if (notFound) {
-            notFound.hidden = false;
-          }
-        }
-      })();
-    </script>
 
     <script src="assets/js/shared/navigation.js" defer></script>
   </body>
