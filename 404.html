@@ -10,6 +10,31 @@
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
     <style>
+      .page-404.page-loading {
+        margin: 0;
+        background: #fff;
+      }
+
+      .page-404.page-loading .site-shell {
+        display: none;
+      }
+
+      .page-404.page-ready .boot-loading {
+        display: none;
+      }
+
+      .boot-loading {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 9999;
+        color: #111;
+        font-family: "Segoe UI", Arial, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.2;
+      }
+
       .page-404 {
         min-height: 100vh;
       }
@@ -167,7 +192,8 @@
       }
     </style>
   </head>
-  <body class="page-404">
+  <body class="page-404 page-loading">
+    <div class="boot-loading">Loading...</div>
     <div class="site-shell">
       <div class="announce">
         <div class="container">
@@ -426,6 +452,9 @@
           }, 900);
           return;
         } else {
+          document.body.classList.remove("page-loading");
+          document.body.classList.add("page-ready");
+
           const spinner = document.getElementById("spinner");
           const notFound = document.getElementById("not-found");
 
