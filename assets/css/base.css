@@ -1,0 +1,282 @@
+:root {
+  --purple: #7a57be;
+  --dark-purple: #4a3371;
+  --nav-purple: #52397a;
+  --sky-blue: #87bce0;
+  --sage-green: #8db87c;
+  --navy: #1d3a56;
+  --red: #c03828;
+  --orange: #d06a20;
+  --salmon: #e8896a;
+  --ink: #2b2b2b;
+  --surface: #ffffff;
+  --shadow: 0 8px 24px rgba(45, 35, 84, 0.14);
+  --radius-lg: 20px;
+  --radius-md: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--purple);
+  color: var(--ink);
+  font-family: "Nunito", "Segoe UI", "Trebuchet MS", sans-serif;
+  line-height: 1.45;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.site-shell {
+  min-height: 100vh;
+  background: var(--purple);
+}
+
+.announce {
+  background: var(--navy);
+  color: #fff;
+  text-align: center;
+  padding: 10px 16px 12px;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.announce strong {
+  font-weight: 800;
+}
+
+.announce a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.header-band {
+  background: var(--purple);
+  padding: 18px 0 22px;
+}
+
+.header-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 32px;
+}
+
+.search-wrap {
+  justify-self: start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border-radius: 999px;
+  width: 176px;
+  height: 32px;
+  padding: 0 12px;
+}
+
+.search-wrap input {
+  border: 0;
+  outline: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 14px;
+  color: #555;
+  padding: 0;
+  background: transparent;
+}
+
+.search-icon {
+  order: -1;
+  width: 18px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  color: #b7b7b7;
+  font-size: 35px;
+}
+
+.brand {
+  justify-self: center;
+}
+
+.brand img {
+  height: 118px;
+  width: auto;
+}
+
+.social-list {
+  justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.social-list a,
+.social-row a,
+.social-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  background: transparent;
+  border: 0;
+}
+
+.social-list a svg {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+.social-list a:hover,
+.social-row a:hover,
+.social-circle:hover {
+  opacity: 0.82;
+}
+
+.main-nav {
+  background: var(--nav-purple);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 6px 0;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.nav-inner {
+  min-height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.nav-link,
+.nav-drop-toggle {
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 12px 14px;
+  text-transform: uppercase;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-link:hover,
+.nav-drop-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.is-active,
+.nav-drop-toggle.is-active {
+  background: transparent;
+}
+
+.nav-cta {
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 12px 20px;
+  background: var(--orange);
+}
+
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 280px;
+  background: #fff;
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--orange);
+  display: none;
+  z-index: 60;
+}
+
+.nav-dropdown:hover .nav-dropdown-content,
+.nav-dropdown.open .nav-dropdown-content {
+  display: block;
+}
+
+.nav-dropdown-content a {
+  display: block;
+  text-decoration: none;
+  color: #444;
+  padding: 14px 18px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+.nav-dropdown-content a:last-child {
+  border-bottom: 0;
+}
+
+.nav-dropdown-content a:hover {
+  background: #f8f8f8;
+}
+
+.page-title {
+  background: #fff;
+  padding: 34px 16px;
+  text-align: center;
+}
+
+.page-title h1 {
+  margin: 0;
+  color: #3f3f3f;
+  font-size: 52px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.page-title p {
+  margin: 10px auto 0;
+  color: #6b6b6b;
+  font-size: 26px;
+  max-width: 980px;
+}
+
+.breadcrumb {
+  margin-top: 8px;
+  color: #8b8b8b;
+  font-size: 20px;
+}
+
+.section-pad {
+  padding: 32px 0;
+}

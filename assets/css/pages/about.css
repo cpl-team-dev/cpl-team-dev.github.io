@@ -1,0 +1,518 @@
+.page-about {
+  --about-copy-size: clamp(20px, 0.7vw + 14px, 24px);
+  --about-heading-size: clamp(34px, 1.7vw + 18px, 56px);
+}
+
+.page-about .page-title {
+  background: #9a82c6;
+}
+
+.page-about .page-title h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+}
+
+.page-about .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-about .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-about .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.page-about .section-pad {
+  padding-top: 36px;
+  padding-bottom: 48px;
+}
+
+.page-about .content-stack {
+  gap: 28px;
+}
+
+.page-about .constitution-section {
+  background: #9a82c6;
+  padding-top: clamp(28px, 4vw, 56px);
+  padding-bottom: clamp(36px, 5vw, 64px);
+}
+
+.page-about .constitution-viewer-shell {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+}
+
+.page-about .constitution-viewer-frame {
+  background: #2f2f31;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 24px 48px rgba(34, 21, 66, 0.22);
+  overflow: hidden;
+}
+
+.page-about .constitution-viewer {
+  display: block;
+  width: 100%;
+  height: min(73vw, 900px);
+  min-height: 560px;
+  border: 0;
+  background: #2f2f31;
+}
+
+.page-about .constitution-download-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 22px;
+}
+
+.page-about .constitution-file-link {
+  color: #3d2459;
+  font-size: clamp(18px, 0.5vw + 15px, 25px);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.page-about .constitution-download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #c65f33;
+  color: #fff;
+  font-size: clamp(18px, 0.4vw + 15px, 24px);
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(97, 47, 25, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-about .constitution-download-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(97, 47, 25, 0.26);
+}
+
+.page-about .about-grid {
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.95fr);
+  gap: 36px;
+  align-items: start;
+}
+
+.page-about .about-copy {
+  padding: 36px 38px;
+}
+
+.page-about .about-copy h2,
+.page-about .block-title {
+  color: var(--purple);
+  font-size: var(--about-heading-size);
+}
+
+.page-about .about-copy p,
+.page-about .body-large {
+  font-size: var(--about-copy-size);
+  line-height: 1.65;
+  color: #3f4e66;
+}
+
+.page-about .mini-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.page-about .story-card {
+  padding: 34px 38px 40px;
+}
+
+.page-about .story-heading {
+  margin: 0 0 28px;
+  text-align: center;
+  color: #406fa7;
+  font-size: clamp(40px, 2.2vw + 20px, 70px);
+  font-weight: 900;
+}
+
+.page-about .story-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 44px;
+  align-items: center;
+}
+
+.page-about .story-media img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(45, 35, 84, 0.12);
+}
+
+.page-about .story-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+
+.page-about .story-copy p {
+  margin: 0;
+  color: #17181b;
+  font-size: 1.5rem;
+  line-height: 1.9;
+}
+
+.page-about .story-button {
+  min-width: 220px;
+  padding: 14px 26px;
+  font-size: clamp(20px, 0.6vw + 16px, 24px);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  border-radius: 0;
+}
+
+.page-about .mini-card {
+  padding: 30px 32px;
+}
+
+.page-about .stat-num {
+  color: var(--purple);
+  font-size: clamp(76px, 4.2vw, 96px);
+}
+
+.page-about .stat-label {
+  margin-top: 10px;
+  color: #59667c;
+  font-size: clamp(20px, 0.7vw + 14px, 24px);
+}
+
+.page-about .testimonial-mini {
+  min-height: 220px;
+}
+
+.page-about .mini-quote-mark {
+  margin: 0 0 8px;
+  color: #e6e4ee;
+  font-size: 68px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.page-about .mini-quote-text {
+  margin: 0;
+  color: #556176;
+  font-size: clamp(20px, 0.75vw + 14px, 27px);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.page-about .contact-mini h3 {
+  margin: 0 0 18px;
+  color: var(--dark-purple);
+  font-size: clamp(28px, 1.1vw + 18px, 40px);
+}
+
+.page-about .contact-mini .contact-item {
+  font-size: var(--about-copy-size);
+}
+
+.page-about .aim-row {
+  grid-template-columns: 72px 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.page-about .aim-number {
+  width: 72px;
+  height: 72px;
+  font-size: 34px;
+}
+
+.page-about .aim-text {
+  margin: 0;
+  color: #3f4e66;
+  font-size: var(--about-copy-size);
+  line-height: 1.65;
+}
+
+.page-about .people-grid {
+  gap: 24px;
+}
+
+.page-about .person-card {
+  padding: 28px 24px 30px;
+}
+
+.page-about .person-card img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 18px;
+}
+
+.page-about .person-card .name {
+  color: #223d6f;
+  font-size: clamp(24px, 0.9vw + 18px, 34px);
+}
+
+.page-about .person-card .role {
+  margin: 8px 0 14px;
+  color: #5d6779;
+  font-size: clamp(18px, 0.5vw + 14px, 24px);
+  line-height: 1.5;
+}
+
+.page-about .faq-q {
+  color: #31425f;
+  font-size: clamp(22px, 0.8vw + 16px, 30px);
+  padding: 20px 0;
+}
+
+.page-about .faq-a {
+  color: #4b5b72;
+  font-size: var(--about-copy-size);
+  line-height: 1.65;
+  padding-bottom: 20px;
+}
+
+.page-about .quote-card h2 {
+  font-size: clamp(32px, 1.4vw + 20px, 44px);
+}
+
+.page-about .quote-card p {
+  font-size: clamp(18px, 0.5vw + 14px, 20px);
+}
+
+.page-about .quote-slide p {
+  font-size: clamp(20px, 0.8vw + 14px, 26px);
+  line-height: 1.6;
+}
+
+.page-about .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+.page-about .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-about .footer-card {
+  min-height: 238px;
+  padding: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-about .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-about .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-about .footer-social {
+  width: 100%;
+  padding: 40px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.page-about .footer-social a {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: var(--purple);
+}
+
+.page-about .footer-social svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.page-about .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .page-about .about-grid,
+  .page-about .story-grid,
+  .page-about .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-about .footer-grid {
+    gap: 24px;
+  }
+
+  .page-about .footer-links {
+    gap: 24px 34px;
+    padding: 34px 30px;
+  }
+
+  .page-about .footer-links a {
+    font-size: 22px;
+  }
+
+  .page-about .footer-social {
+    gap: 24px;
+    padding: 34px 24px;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .page-about .page-title h1 {
+    font-size: 54px;
+  }
+
+  .page-about .breadcrumb {
+    gap: 8px;
+    font-size: 18px;
+  }
+
+  .page-about .about-copy {
+    padding: 28px 22px;
+  }
+
+  .page-about .story-card {
+    padding: 28px 22px 32px;
+  }
+
+  .page-about .about-copy h2,
+  .page-about .block-title {
+    font-size: 40px;
+  }
+
+  .page-about .story-heading {
+    margin-bottom: 22px;
+    font-size: 42px;
+  }
+
+  .page-about .about-copy p,
+  .page-about .body-large,
+  .page-about .aim-text,
+  .page-about .faq-a,
+  .page-about .contact-mini .contact-item,
+  .page-about .quote-slide p {
+    font-size: 21px;
+  }
+
+  .page-about .story-grid {
+    gap: 28px;
+  }
+
+  .page-about .story-copy {
+    gap: 22px;
+  }
+
+  .page-about .story-copy p {
+    font-size: 21px;
+    line-height: 1.8;
+  }
+
+  .page-about .constitution-viewer {
+    height: 72vw;
+    min-height: 420px;
+  }
+
+  .page-about .constitution-download-row {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .page-about .constitution-file-link {
+    width: 100%;
+  }
+
+  .page-about .constitution-download-btn {
+    min-height: 44px;
+    padding: 10px 18px;
+  }
+
+  .page-about .story-button {
+    min-width: 0;
+    width: 100%;
+    max-width: 260px;
+    font-size: 20px;
+  }
+
+  .page-about .stat-num {
+    font-size: 64px;
+  }
+
+  .page-about .stat-label {
+    font-size: 20px;
+  }
+
+  .page-about .contact-mini h3 {
+    font-size: 32px;
+  }
+
+  .page-about .faq-q {
+    font-size: 22px;
+  }
+
+  .page-about .person-card .name {
+    font-size: 28px;
+  }
+
+  .page-about .person-card .role {
+    font-size: 20px;
+  }
+
+  .page-about .footer {
+    padding: 30px 0 22px;
+  }
+
+  .page-about .footer-card {
+    min-height: 0;
+  }
+
+  .page-about .footer-links {
+    gap: 16px 24px;
+    padding: 28px 20px;
+  }
+
+  .page-about .footer-links a {
+    font-size: 20px;
+  }
+
+  .page-about .footer-social {
+    gap: 18px;
+    padding: 28px 20px;
+  }
+
+  .page-about .footer-social svg {
+    width: 30px;
+    height: 30px;
+  }
+}

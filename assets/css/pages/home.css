@@ -1,0 +1,81 @@
+.page-home {
+  --home-content-size: clamp(18px, 1vw + 15px, 22px);
+  --home-content-line-height: 1.6;
+}
+
+.page-home .hero-copy p,
+.page-home .service-card p,
+.page-home .service-card .cta-link,
+.page-home .split-copy h3,
+.page-home .split-copy p,
+.page-home .join-copy p,
+.page-home .join-location p,
+.page-home .hours-table td,
+.page-home .contact-item {
+  font-size: var(--home-content-size);
+  line-height: var(--home-content-line-height);
+}
+.page-home .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-home .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-home .footer-card {
+  min-height: 238px;
+  padding: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-home .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-home .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-home .footer-social {
+  width: 100%;
+  padding: 40px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.page-home .footer-social a {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: var(--purple);
+}
+
+.page-home .footer-social svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.page-home .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}

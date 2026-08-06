@@ -1,0 +1,590 @@
+.page-toy-libraries {
+  --toy-copy-size: clamp(18px, 0.45vw + 15px, 21px);
+  --toy-heading-size: clamp(34px, 1vw + 26px, 42px);
+}
+
+.page-toy-libraries .page-title {
+  background: #9a82c6;
+  padding: 42px 16px 44px;
+}
+
+.page-toy-libraries .page-title h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.page-toy-libraries .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-toy-libraries .breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-toy-libraries .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.page-toy-libraries .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-toy-libraries .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.page-toy-libraries .section-pad {
+  padding-top: 30px;
+  padding-bottom: 48px;
+}
+
+.page-toy-libraries .toy-libraries-intro {
+  background: #9a82c6;
+}
+
+.toy-libraries-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.toy-libraries-gallery-card {
+  padding: 22px 22px 18px;
+}
+
+.toy-libraries-gallery-stage {
+  height: clamp(440px, 58vw, 760px);
+  border-radius: 0;
+  background: #f4f1f7;
+}
+
+.toy-libraries-gallery .carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toy-libraries-gallery .carousel-arrow {
+  width: 44px;
+  height: 44px;
+  font-size: 36px;
+  line-height: 1;
+  color: #2f2f2f;
+  box-shadow: 0 8px 18px rgba(56, 41, 89, 0.18);
+}
+
+.toy-libraries-gallery .carousel-arrow.left {
+  left: 20px;
+}
+
+.toy-libraries-gallery .carousel-arrow.right {
+  right: 20px;
+}
+
+.toy-libraries-gallery .carousel-dots {
+  gap: 12px;
+  padding: 20px 0 6px;
+}
+
+.toy-libraries-gallery .carousel-dot {
+  width: 10px;
+  height: 10px;
+  background: #c3c3c8;
+}
+
+.toy-libraries-gallery .carousel-dot.active {
+  width: 28px;
+  background: #2e2e33;
+}
+
+.toy-libraries-copy-stack {
+  display: grid;
+  gap: 26px;
+}
+
+.toy-libraries-copy-card {
+  padding: 36px 34px 34px;
+}
+
+.toy-libraries-copy-card h2,
+.toy-libraries-stock-card h2,
+.toy-libraries-feedback-head h2 {
+  margin: 0 0 24px;
+  font-size: var(--toy-heading-size);
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.toy-libraries-copy-card-intro h2 {
+  color: #b34a39;
+}
+
+.toy-libraries-copy-card-process h2 {
+  color: #a13174;
+}
+
+.toy-libraries-copy-card p,
+.toy-libraries-stock-card p,
+.toy-libraries-stock-card li,
+.toy-libraries-feedback-head p,
+.page-toy-libraries .join-copy p,
+.page-toy-libraries .join-location p,
+.page-toy-libraries .hours-table td,
+.page-toy-libraries .contact-item {
+  font-size: var(--toy-copy-size);
+  line-height: 1.72;
+}
+
+.toy-libraries-copy-card p {
+  margin: 0 0 24px;
+  color: #1c1c1f;
+}
+
+.toy-libraries-copy-card p:last-child,
+.toy-libraries-stock-card p:last-child {
+  margin-bottom: 0;
+}
+
+.toy-libraries-stock-card {
+  margin-top: 28px;
+  padding: 34px 32px 38px;
+}
+
+.toy-libraries-stock-card h2 {
+  color: #594595;
+  margin-bottom: 18px;
+}
+
+.toy-libraries-stock-card p {
+  margin: 0 0 18px;
+  color: #202026;
+}
+
+.toy-libraries-stock-lists {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 34px;
+  margin-top: 8px;
+}
+
+.toy-libraries-stock-lists ul {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.toy-libraries-stock-lists li {
+  margin: 0 0 10px;
+  color: #202026;
+}
+
+.toy-libraries-stock-note {
+  margin-top: 18px;
+}
+
+.page-toy-libraries .toy-libraries-benefits {
+  background: #9a82c6;
+  padding-top: 6px;
+  padding-bottom: 40px;
+}
+
+.toy-libraries-benefits-shell {
+  padding: 34px 38px 42px;
+  border-radius: 18px;
+}
+
+.toy-libraries-benefits-shell h2 {
+  margin: 0;
+  color: #4b67aa;
+  font-size: var(--toy-heading-size);
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.toy-libraries-benefits-intro {
+  margin: 26px 0 0;
+  color: #25252b;
+  font-size: var(--toy-copy-size);
+  line-height: 1.72;
+}
+
+.toy-libraries-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 36px;
+  margin-top: 42px;
+}
+
+.toy-libraries-benefit-card {
+  min-height: 360px;
+  padding: 52px 42px;
+  border-radius: 36px;
+  color: #17171b;
+  text-align: center;
+  box-shadow: 0 18px 36px rgba(61, 45, 94, 0.08);
+}
+
+.toy-libraries-benefit-card h3 {
+  margin: 0;
+  font-size: clamp(20px, 0.45vw + 16px, 28px);
+  line-height: 1.28;
+  font-weight: 900;
+}
+
+.toy-libraries-benefit-card p {
+  margin: 28px 0 0;
+  font-size: var(--toy-copy-size);
+  line-height: 1.72;
+}
+
+.toy-libraries-benefit-card-peach {
+  background: #ffc98a;
+}
+
+.toy-libraries-benefit-card-green {
+  background: #a6e388;
+}
+
+.toy-libraries-benefit-card-yellow {
+  background: #fff07a;
+}
+
+.toy-libraries-benefit-card-blue {
+  background: #8cc4eb;
+}
+
+.toy-libraries-feedback {
+  background: #9a82c6;
+  padding: 34px 0 40px;
+}
+
+.toy-libraries-feedback-shell {
+  padding: 24px 24px 34px;
+  border-radius: 18px;
+}
+
+.toy-libraries-feedback-head {
+  margin: 0;
+  text-align: left;
+}
+
+.toy-libraries-feedback-head h2 {
+  color: #4b80af;
+  font-size: clamp(34px, 1.1vw + 24px, 52px);
+  margin-bottom: 18px;
+}
+
+.toy-libraries-feedback-head p {
+  margin: 0;
+  color: #1d1d22;
+  font-style: normal;
+}
+
+.toy-libraries-feedback-quote-box {
+  margin-top: 28px;
+}
+
+.toy-libraries-feedback-track-wrap {
+  overflow: hidden;
+}
+
+.toy-libraries-feedback-track {
+  display: flex;
+  transition: transform 0.55s ease;
+  will-change: transform;
+}
+
+.toy-libraries-feedback-slide {
+  flex: 0 0 100%;
+  padding: 8px 8px 14px;
+}
+
+.toy-libraries-feedback-slide-card {
+  background: #fff;
+  box-shadow: 0 12px 34px rgba(61, 45, 94, 0.08);
+  min-height: 240px;
+  padding: 46px 52px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+.toy-libraries-feedback-quote-mark {
+  color: #ff8f7e;
+  font-size: 90px;
+  line-height: 0.7;
+  font-weight: 900;
+  transform: translateY(8px);
+}
+
+.toy-libraries-feedback-slide p {
+  margin: 0;
+  color: #1d1d22;
+  font-size: clamp(24px, 0.75vw + 16px, 33px);
+  line-height: 1.7;
+  font-style: italic;
+}
+
+.toy-libraries-feedback-dots {
+  padding-top: 26px;
+}
+
+.page-toy-libraries .toy-libraries-visit {
+  background: #9a82c6;
+  padding-top: 34px;
+  padding-bottom: 18px;
+}
+
+.toy-libraries-visit-card {
+  padding: 34px 48px 38px;
+}
+
+.toy-libraries-visit-card h2 {
+  margin: 0;
+  color: #5a973b;
+  font-size: clamp(42px, 1.6vw + 26px, 60px);
+  line-height: 1.08;
+  font-weight: 900;
+}
+
+.toy-libraries-visit-card p {
+  margin: 28px 0 0;
+  color: #1f1f25;
+  font-size: clamp(20px, 0.55vw + 17px, 30px);
+  line-height: 1.7;
+}
+
+.toy-libraries-visit-card .link-red {
+  color: #4b4b4f;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.toy-libraries-panorama-shell {
+  margin-top: 28px;
+}
+
+.toy-libraries-panorama-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.toy-libraries-panorama-frame::before {
+  content: "";
+  display: block;
+  padding-top: 50%;
+}
+
+.toy-libraries-panorama-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.page-toy-libraries .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-toy-libraries .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-toy-libraries .footer-card {
+  min-height: 238px;
+  padding: 0;
+  border-radius: 16px;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-toy-libraries .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-toy-libraries .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-toy-libraries .footer-social {
+  width: 100%;
+  padding: 40px 30px;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+
+.page-toy-libraries .footer-social a {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: var(--purple);
+}
+
+.page-toy-libraries .footer-social svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.page-toy-libraries .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .toy-libraries-showcase,
+  .toy-libraries-benefits-grid,
+  .page-toy-libraries .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toy-libraries-gallery-stage {
+    height: min(78vw, 640px);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-toy-libraries .page-title {
+    padding: 34px 16px 36px;
+  }
+
+  .page-toy-libraries .page-title h1 {
+    font-size: 32px;
+  }
+
+  .page-toy-libraries .breadcrumb {
+    gap: 10px;
+  }
+
+  .page-toy-libraries .section-pad {
+    padding-top: 20px;
+    padding-bottom: 34px;
+  }
+
+  .toy-libraries-gallery-card,
+  .toy-libraries-copy-card,
+  .toy-libraries-stock-card,
+  .toy-libraries-benefits-shell,
+  .toy-libraries-visit-card,
+  .toy-libraries-feedback-shell {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .toy-libraries-benefits-grid {
+    gap: 24px;
+    margin-top: 28px;
+  }
+
+  .toy-libraries-benefit-card {
+    min-height: 0;
+    padding: 34px 24px;
+    border-radius: 28px;
+  }
+
+  .toy-libraries-benefit-card p {
+    margin-top: 18px;
+  }
+
+  .toy-libraries-feedback-slide-card {
+    min-height: 0;
+    padding: 30px 24px;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .toy-libraries-feedback-quote-mark {
+    font-size: 66px;
+    transform: none;
+  }
+
+  .toy-libraries-feedback-slide p {
+    font-size: var(--toy-copy-size);
+    line-height: 1.72;
+  }
+
+  .toy-libraries-visit-card {
+    padding-top: 28px;
+    padding-bottom: 30px;
+  }
+
+  .toy-libraries-visit-card p {
+    margin-top: 20px;
+  }
+
+  .toy-libraries-gallery-stage {
+    height: 56vw;
+    min-height: 320px;
+  }
+
+  .toy-libraries-gallery .carousel-arrow.left {
+    left: 12px;
+  }
+
+  .toy-libraries-gallery .carousel-arrow.right {
+    right: 12px;
+  }
+
+  .toy-libraries-stock-lists {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .page-toy-libraries .footer {
+    padding: 30px 0 22px;
+  }
+
+  .page-toy-libraries .footer-card {
+    min-height: 0;
+  }
+
+  .page-toy-libraries .footer-links {
+    gap: 16px 24px;
+    padding: 28px 20px;
+  }
+
+  .page-toy-libraries .footer-links a {
+    font-size: 20px;
+  }
+
+  .page-toy-libraries .footer-social {
+    gap: 18px;
+    padding: 28px 20px;
+  }
+
+  .page-toy-libraries .footer-social svg {
+    width: 30px;
+    height: 30px;
+  }
+}
