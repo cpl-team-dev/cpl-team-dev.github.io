@@ -1,43 +1,534 @@
 <!doctype html>
 <html lang="en-GB">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Community Playlink - Services</title>
-  <meta name="description" content="Explore Community Playlink services including toy libraries, playtime and party hire.">
-  <link rel="stylesheet" href="assets/css/base.css">
-  <link rel="stylesheet" href="assets/css/components.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
-</head>
-<body>
-  <div class="site-shell">
-    <div class="announce"><div class="container"><strong>Toy Library opening times are -</strong><br>Tuesday, Wednesday &amp; Saturday 10:00am - 1:00pm<br><strong>Playtime</strong> - Tuesday &amp; Wednesday 10:30 - 11:30am (including half term and summer holidays)<br><a href="support-us.html#donate">Donate here</a></div></div>
-    <header class="header-band"><div class="container header-grid"><form class="search-wrap" action="noticeboard.html" method="get"><input type="text" name="q" placeholder="Search..." aria-label="Search"><span class="search-icon">⌕</span></form><a class="brand" href="index.html"><img src="../legacy/src/imports/Screenshot_2026-07-17_at_16.41.15.png" alt="Community Playlink"></a><div class="social-list"><a href="#">f</a><a href="#">@</a><a href="#">◎</a><a href="#">▶</a><a href="#">✣</a><a href="#">♪</a></div></div></header>
-    <nav class="main-nav"><div class="container nav-inner"><button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-list">☰ Menu</button><div id="nav-list" class="nav-list"><a class="nav-link" href="index.html">Home</a><div class="nav-dropdown" data-dropdown><button class="nav-drop-toggle" type="button">About ▾</button><div class="nav-dropdown-content"><a href="about.html#meet-the-staff">Meet The Staff</a><a href="about.html#meet-the-trustee-board">Meet The Trustee Board</a><a href="about.html#partners">Partners</a><a href="about.html#policies">Policies</a></div></div><div class="nav-dropdown" data-dropdown><button class="nav-drop-toggle is-active" type="button">Services ▾</button><div class="nav-dropdown-content"><a href="#toy-libraries">Toy Libraries</a><a href="#playtime">Playtime Sessions</a><a href="#party-hire">Party Hire</a><a href="#toddler-groups">Toddler Groups</a><a href="#group-membership">Group Membership</a></div></div><a class="nav-link" href="noticeboard.html">Noticeboard</a><a class="nav-link" href="services/toy-libraries/toy-library.html">Toy Library</a><a class="nav-link" href="contact.html">Contact</a><a class="nav-link nav-cta" href="support-us.html">Support Us</a></div></div></nav>
-
-    <main>
-      <div class="page-title"><div class="container"><h1>Services</h1><div class="breadcrumb" aria-label="Breadcrumb"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"/></svg><span class="breadcrumb-sep" aria-hidden="true">›</span><span>Services</span></div></div></div>
-      <section class="section-pad" style="background:#7a57be">
-        <div class="container content-stack">
-          <article id="toy-libraries" class="card split-card"><div class="split-copy"><h2 style="color:#be4e39">Toy Libraries</h2><p>We operate a completely free toy library at our main base in Swaythling Neighbourhood Centre, and support a number of smaller toy libraries around Southampton.</p><a class="btn" style="background:#be4e39" href="services/toy-libraries.html">Find out more</a></div><img src="../legacy/src/imports/Screenshot_2026-07-21_at_14.14.47.png" alt="Toy Libraries"></article>
-          <article id="playtime" class="card split-card"><img src="../legacy/src/imports/Screenshot_2026-07-21_at_14.14.52.png" alt="Playtime"><div class="split-copy"><h2 style="color:#5a88db">Playtime</h2><p>Every Tuesday, we run free playtime sessions for children under five and their families. With toys, crafts, activities, songs, and stories, it'll be your child's favourite part of the week.</p><a class="btn" style="background:#5a88db" href="#">Find out more</a></div></article>
-          <article id="party-hire" class="card split-card"><div class="split-copy"><h2 style="color:#64c44f">Party Hire</h2><p>Having a party? Make it one to remember by hiring toys and soft play from our extensive toy library for a brilliant price.</p><a class="btn" style="background:#64c44f" href="#">Find out more</a></div><img src="../legacy/src/imports/Screenshot_2026-07-17_at_16.30.21.png" alt="Party Hire"></article>
-          <article id="toddler-groups" class="card split-card"><img src="../legacy/src/imports/Screenshot_2026-07-21_at_14.11.39.png" alt="Toddler Groups"><div class="split-copy"><h2 style="color:#7c5ac2">Toddler Groups</h2><p>For those with children under five, they offer somewhere to meet new people, make friendships, and have fun.</p><a class="btn" style="background:#7c5ac2" href="#">Find out more</a></div></article>
-          <article id="group-membership" class="card split-card"><div class="split-copy"><h2 style="color:#d73ea2">Group Membership Scheme</h2><p>Toddler Groups and Early Years Settings can receive an excellent set of benefits from Community Playlink for a small annual fee.</p><a class="btn" style="background:#d73ea2" href="#">Find out more</a></div><img src="../legacy/src/imports/Screenshot_2026-07-21_at_14.05.22.png" alt="Group Membership"></article>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community Playlink &#8211; Services</title>
+    <meta name="robots" content="max-image-preview:large" />
+    <meta
+      name="description"
+      content="Explore Community Playlink services including toy libraries, playtime, party hire, toddler groups and group membership support."
+    />
+    <link
+      rel="canonical"
+      href="https://www.community-playlink.com/services.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Community Playlink - Services" />
+    <meta
+      property="og:description"
+      content="Explore Community Playlink services including toy libraries, playtime, party hire, toddler groups and group membership support."
+    />
+    <meta
+      property="og:url"
+      content="https://www.community-playlink.com/services.html"
+    />
+    <meta property="og:site_name" content="Community Playlink" />
+    <meta
+      property="og:image"
+      content="https://ik.imagekit.io/communityplaylink/website/services/Toy-Library-1-2.jpg"
+    />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:text:title" content="Services" />
+    <meta
+      name="twitter:image"
+      content="https://ik.imagekit.io/communityplaylink/website/services/Toy-Library-1-2.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-192x192.webp"
+      sizes="192x192"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-180x180.webp"
+    />
+    <meta
+      name="msapplication-TileImage"
+      content="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-270x270.webp"
+    />
+    <link rel="stylesheet" href="./assets/css/base.css" />
+    <link rel="stylesheet" href="./assets/css/components.css" />
+    <link rel="stylesheet" href="./assets/css/responsive.css" />
+    <link rel="stylesheet" href="./assets/css/pages/services.css" />
+  </head>
+  <body class="page-services">
+    <div class="site-shell">
+      <div class="announce">
+        <div class="container">
+          <strong>Toy Library opening times are -</strong><br />
+          Tuesday, Wednesday &amp; Saturday 10:00am &ndash; 1:00pm<br />
+          <strong>Playtime</strong> - Tuesday &amp; Wednesday 10:30 - 11:30am
+          (including half term and summer holidays)<br />
+          <a
+            href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Donate here</a
+          >
         </div>
-      </section>
-    </main>
+      </div>
 
-    <div class="wave" style="background:#7a57be"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z" fill="#ff8d7f"></path></svg></div>
-    <section class="quote-section"><div class="container"><div class="card quote-card"><h2>Don't just take our word for it!</h2><div class="title-underline" style="background:#53903d"></div><p>These quotes are taken from our last community survey.</p><div class="quote-box" id="testimonial-text"></div><div class="quote-dots" id="testimonial-dots"></div></div></div></section>
-    <div class="wave" style="background:#ff8d7f"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z" fill="#27272b"></path></svg></div>
-    <footer class="footer"><div class="container"><div class="footer-grid"><div class="card footer-card"><nav class="footer-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="noticeboard.html">News</a><a href="contact.html">Contact</a><a href="support-us.html">Support Us</a></nav></div><div class="card footer-card"><div class="footer-social"><a href="#">◎</a><a href="#">f</a><a href="#">@</a><a href="#">✣</a><a href="#">♪</a><a href="#">▶</a><a href="#">◔</a></div></div></div><p class="footer-copy">© Community Playlink 2026 • <a href="./manage/login.html">Login</a></p></div></footer>
-  </div>
+      <header class="header-band">
+        <div class="container header-grid">
+          <div></div>
+          <a
+            class="brand"
+            href="./index.html"
+            aria-label="Community Playlink home"
+          >
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              style="width: 256px; height: 144px"
+              alt="Community Playlink"
+            />
+          </a>
+          <div class="social-list" aria-label="Social links">
+            <a
+              href="https://www.facebook.com/cplaylink/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/communityplaylink/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@communityplaylink"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://bsky.app/profile/community-playlink.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Bluesky"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse
+                  cx="8"
+                  cy="8"
+                  rx="3.2"
+                  ry="5.1"
+                  transform="rotate(-35 8 8)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="16"
+                  cy="8"
+                  rx="3.2"
+                  ry="5.1"
+                  transform="rotate(35 16 8)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="9"
+                  cy="16"
+                  rx="2.8"
+                  ry="4.5"
+                  transform="rotate(25 9 16)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="15"
+                  cy="16"
+                  rx="2.8"
+                  ry="4.5"
+                  transform="rotate(-25 15 16)"
+                  fill="currentColor"
+                ></ellipse>
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@communityplaylink"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </header>
 
-  <button id="back-top" class="back-top" type="button" title="Back to top">⌃</button>
-  <script src="assets/js/shared/navigation.js" defer></script>
-  <script src="assets/js/shared/testimonials.js" defer></script>
-  <script src="assets/js/shared/back-to-top.js" defer></script>
-  <script src="assets/js/services.js" defer></script>
-</body>
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="container nav-inner">
+          <button
+            class="mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-list"
+          >
+            ☰ Menu
+          </button>
+          <div id="nav-list" class="nav-list" role="menubar">
+            <a class="nav-link" href="./index.html">Home</a>
+            <div class="nav-dropdown" data-dropdown>
+              <a href="./about.html">
+                <button class="nav-drop-toggle" type="button">About ▾</button>
+              </a>
+              <div class="nav-dropdown-content">
+                <a href="./about.html#meet-the-staff">Meet the Staff</a>
+                <a href="./about.html#meet-the-trustee-board"
+                  >Meet The Trustee Board</a
+                >
+                <a href="./about/partners.html">Partners</a>
+                <a href="./about/policies.html">Policies</a>
+              </div>
+            </div>
+            <div class="nav-dropdown" data-dropdown>
+              <a href="./services.html">
+                <button class="nav-drop-toggle is-active" type="button">
+                  Services ▾
+                </button>
+              </a>
+              <div class="nav-dropdown-content">
+                <a href="./services/toy-libraries.html">Toy Libraries</a>
+                <a href="./services/playtime.html">Playtime</a>
+                <a href="./services/party-hire.html">Party Hire</a>
+                <a href="./services/toddler-groups.html">Toddler Groups</a>
+                <a href="./services/group-membership-scheme.html"
+                  >Group Membership</a
+                >
+              </div>
+            </div>
+            <a class="nav-link" href="./noticeboard.html">Noticeboard</a>
+            <a
+              class="nav-link"
+              href="./services/toy-libraries/toy-library.html"
+              >Toy Library</a
+            >
+            <a class="nav-link" href="./contact.html">Contact</a>
+            <a class="nav-link nav-cta" href="./support-us.html">Support Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        <section class="page-title">
+          <div class="container">
+            <h1>Services</h1>
+            <div class="breadcrumb" aria-label="Breadcrumb">
+              <a href="./index.html">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"
+                  />
+                </svg>
+              </a>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <span>Services</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-pad" style="background: #7a57be">
+          <div class="container content-stack">
+
+            <article class="card services-section-intro">
+              <h2>Explore our services</h2>
+              <p>
+                Each service has its own page with more details, useful
+                information and answers to common questions.
+              </p>
+            </article>
+
+            <article id="toy-libraries" class="card split-card service-feature reverse">
+              <img
+                src="https://ik.imagekit.io/communityplaylink/website/services/Toy-Library-1-2.jpg"
+                alt="Children and families using Community Playlink's toy library"
+              />
+              <div class="split-copy">
+                <p class="service-kicker" style="color: #be4e39">
+                  Free borrowing
+                </p>
+                <h2 style="color: #be4e39">Toy Libraries</h2>
+                <p>
+                  We operate a completely free toy library at our main base in
+                  Swaythling Neighbourhood Centre, and support a number of
+                  smaller toy libraries around Southampton.
+                </p>
+                <div>
+                  <a class="btn" style="background: #be4e39" href="./services/toy-libraries.html"
+                    >Find out more</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article id="playtime" class="card split-card service-feature">
+              <img
+                src="https://ik.imagekit.io/communityplaylink/website/services/playtime-2.jpg"
+                alt="Children enjoying a Community Playlink playtime session"
+              />
+              <div class="split-copy">
+                <p class="service-kicker" style="color: #5a88db">
+                  Weekly sessions
+                </p>
+                <h2 style="color: #5a88db">Playtime</h2>
+                <p>
+                  Every Tuesday, we run free playtime sessions for children
+                  under five and their families.
+                </p>
+                <p>
+                  With toys, crafts, activities, songs and stories, Playtime
+                  gives children a fun place to explore while parents and carers
+                  connect with others.
+                </p>
+                <div>
+                  <a class="btn" style="background: #5a88db" href="./services/playtime.html"
+                    >Find out more</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article id="party-hire" class="card split-card service-feature reverse">
+              <img
+                src="https://ik.imagekit.io/communityplaylink/website/services/CPL-2597.jpg"
+                alt="Soft play equipment available for party hire"
+              />
+              <div class="split-copy">
+                <p class="service-kicker" style="color: #64c44f">
+                  Special occasions
+                </p>
+                <h2 style="color: #64c44f">Party Hire</h2>
+                <p>
+                  Having a party? Make it one to remember by hiring toys and
+                  soft play from our extensive toy library for a brilliant
+                  price.
+                </p>
+                <div>
+                  <a class="btn" style="background: #64c44f" href="./services/party-hire.html"
+                    >Find out more</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article id="toddler-groups" class="card split-card service-feature">
+              <img
+                src="https://ik.imagekit.io/communityplaylink/website/toddler-groups-2.jpg"
+                alt="Families spending time together at a toddler group"
+              />
+              <div class="split-copy">
+                <p class="service-kicker" style="color: #7c5ac2">
+                  Community connections
+                </p>
+                <h2 style="color: #7c5ac2">Toddler Groups</h2>
+                <p>
+                  For those with children under five, they offer somewhere 
+                  to meet new people, make friendships, and have fun.
+                </p>
+                <div>
+                  <a class="btn" style="background: #7c5ac2" href="./services/toddler-groups.html"
+                    >Find out more</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article id="group-membership" class="card split-card service-feature reverse">
+              <img
+                src="https://ik.imagekit.io/communityplaylink/website/services/toddler-groups-2.jpg"
+                alt="Children and play resources available through the group membership scheme"
+              />
+              <div class="split-copy">
+                <p class="service-kicker" style="color: #d73ea2">
+                  Support for settings
+                </p>
+                <h2 style="color: #d73ea2">Group Membership Scheme</h2>
+                <p>
+                  Toddler Groups and Early Years Settings can receive an
+                  excellent set of benefits from Community Playlink for a small
+                  annual fee.
+                </p>
+                <div>
+                  <a
+                    class="btn"
+                    style="background: #d73ea2"
+                    href="./services/group-membership-scheme.html"
+                    >Find out more</a
+                  >
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div class="card footer-card">
+              <nav class="footer-links" aria-label="Footer navigation">
+                <a href="./index.html">Home</a>
+                <a href="./about.html">About</a>
+                <a href="./services.html">Services</a>
+                <a href="./noticeboard.html">News</a>
+                <a href="./contact.html">Contact</a>
+                <a href="./support-us.html">Support Us</a>
+              </nav>
+            </div>
+            <div class="card footer-card">
+              <div class="footer-social" aria-label="Footer social links">
+                <a
+                  href="https://www.instagram.com/communityplaylink/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.facebook.com/cplaylink/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://bsky.app/profile/community-playlink.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Bluesky"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <ellipse
+                      cx="8"
+                      cy="8"
+                      rx="3.2"
+                      ry="5.1"
+                      transform="rotate(-35 8 8)"
+                      fill="currentColor"
+                    ></ellipse>
+                    <ellipse
+                      cx="16"
+                      cy="8"
+                      rx="3.2"
+                      ry="5.1"
+                      transform="rotate(35 16 8)"
+                      fill="currentColor"
+                    ></ellipse>
+                    <ellipse
+                      cx="9"
+                      cy="16"
+                      rx="2.8"
+                      ry="4.5"
+                      transform="rotate(25 9 16)"
+                      fill="currentColor"
+                    ></ellipse>
+                    <ellipse
+                      cx="15"
+                      cy="16"
+                      rx="2.8"
+                      ry="4.5"
+                      transform="rotate(-25 15 16)"
+                      fill="currentColor"
+                    ></ellipse>
+                  </svg>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.youtube.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+          <p class="footer-copy">
+            © Community Playlink 2026 • <a href="./manage/login.html">Login</a>
+          </p>
+          <br />
+          <p class="footer-copy">
+            <a
+              href="https://marcel-dev-acc.github.io/developer-profile/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Created by Marcel Mulders</a
+            >
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <button id="back-top" class="back-top" type="button" title="Back to top">
+      ⌃
+    </button>
+
+    <script src="assets/js/shared/navigation.js" defer></script>
+    <script src="assets/js/shared/testimonials.js" defer></script>
+    <script src="assets/js/shared/back-to-top.js" defer></script>
+    <script src="assets/js/services.js" defer></script>
+  </body>
 </html>

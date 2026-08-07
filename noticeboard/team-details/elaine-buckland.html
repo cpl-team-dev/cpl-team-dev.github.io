@@ -72,20 +72,7 @@
 
       <header class="header-band">
         <div class="container header-grid">
-          <form
-            class="search-wrap"
-            id="site-search-form"
-            action="https://library.community-playlink.com/"
-            method="get"
-          >
-            <input
-              type="text"
-              name="s"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-            <span class="search-icon">⌕</span>
-          </form>
+          <div></div>
           <a
             class="brand"
             href="../../index.html"
@@ -495,21 +482,7 @@
       ⌃
     </button>
 
-    <script>
-      (function () {
-        const searchForm = document.getElementById("site-search-form");
-        if (!searchForm) return;
-
-        searchForm.addEventListener("submit", function (event) {
-          event.preventDefault();
-          const input = searchForm.querySelector('input[name="s"]');
-          const term = input ? input.value.trim() : "";
-          window.location.href =
-            "https://library.community-playlink.com/?s=" +
-            encodeURIComponent(term);
-        });
-      })();
-    </script>
+    
 
     <script src="../../assets/js/shared/navigation.js" defer></script>
     <script src="../../assets/js/shared/back-to-top.js" defer></script>

@@ -208,6 +208,10 @@
   overflow: hidden;
 }
 
+.page-services .split-card {
+  height: 465px;
+}
+
 .split-card img {
   width: 100%;
   height: 100%;
