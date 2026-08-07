@@ -1,0 +1,356 @@
+.page-party-hire {
+  --ph-copy-size: clamp(18px, 0.45vw + 15px, 21px);
+  --ph-heading-size: clamp(30px, 1vw + 22px, 42px);
+}
+
+.page-party-hire .page-title {
+  background: #9a82c6;
+  padding: 42px 16px 44px;
+}
+
+.page-party-hire .page-title h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.page-party-hire .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-party-hire .breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-party-hire .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.page-party-hire .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-party-hire .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.page-party-hire .section-pad {
+  padding-top: 30px;
+  padding-bottom: 48px;
+}
+
+.party-hire-heading {
+  margin: 0 0 26px;
+  text-align: center;
+  color: var(--dark-purple);
+  font-size: var(--ph-heading-size);
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.page-party-hire .party-hire-intro {
+  background: #9a82c6;
+}
+
+.party-hire-intro-card {
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.party-hire-intro-card img {
+  min-height: 260px;
+}
+
+.party-hire-intro-copy {
+  padding: 34px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  justify-content: center;
+}
+
+.party-hire-intro-copy p {
+  margin: 0;
+  color: #1c1c1f;
+  font-size: var(--ph-copy-size);
+  line-height: 1.72;
+}
+
+.party-hire-intro-copy .btn {
+  align-self: flex-start;
+}
+
+.page-party-hire .party-hire-pricing {
+  background: #f4f1f7;
+}
+
+.party-hire-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.party-hire-pricing-card {
+  overflow: hidden;
+}
+
+.party-hire-pricing-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.party-hire-pricing-body {
+  padding: 22px 24px 26px;
+}
+
+.party-hire-pricing-body h3 {
+  margin: 0 0 8px;
+  color: #b34a39;
+  font-size: clamp(22px, 0.6vw + 18px, 28px);
+  font-weight: 900;
+}
+
+.party-hire-pricing-body p {
+  margin: 0;
+  color: #4b4b52;
+  font-size: var(--ph-copy-size);
+}
+
+.party-hire-faq-card {
+  padding: 34px 38px 38px;
+}
+
+.page-party-hire .faq-q {
+  color: #31425f;
+  font-size: clamp(20px, 0.6vw + 16px, 26px);
+  padding: 18px 0;
+}
+
+.page-party-hire .faq-a {
+  color: #4b5b72;
+  font-size: var(--ph-copy-size);
+  line-height: 1.65;
+  padding-bottom: 18px;
+}
+
+.party-hire-faq-more {
+  margin: 22px 0 0;
+  text-align: center;
+  color: #1c1c1f;
+  font-size: var(--ph-copy-size);
+}
+
+.party-hire-form-card {
+  padding: 34px 38px 38px;
+}
+
+.party-hire-form {
+  display: grid;
+  gap: 22px;
+}
+
+.party-hire-field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.party-hire-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.party-hire-label {
+  color: #1c1c1f;
+  font-size: clamp(16px, 0.35vw + 14px, 18px);
+  font-weight: 700;
+}
+
+.party-hire-required {
+  color: var(--red);
+}
+
+.party-hire-hint {
+  margin: 0;
+  color: #6a6a72;
+  font-size: clamp(14px, 0.3vw + 12px, 15px);
+  line-height: 1.5;
+}
+
+.party-hire-input,
+.party-hire-textarea {
+  width: 100%;
+  border: 1px solid #cfcfd6;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 16px;
+  color: #1c1c1f;
+}
+
+.party-hire-input {
+  height: 46px;
+}
+
+.party-hire-input-narrow {
+  max-width: 140px;
+}
+
+.party-hire-textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+fieldset.party-hire-field {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.party-hire-radio-group {
+  display: flex;
+  gap: 22px;
+}
+
+.party-hire-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #1c1c1f;
+  font-size: var(--ph-copy-size);
+  cursor: pointer;
+}
+
+.party-hire-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #1c1c1f;
+  font-size: clamp(15px, 0.3vw + 13px, 16px);
+  cursor: pointer;
+}
+
+.party-hire-consent input {
+  margin-top: 4px;
+}
+
+.party-hire-submit {
+  justify-self: start;
+  padding: 12px 30px;
+  font-size: 16px;
+}
+
+.party-hire-success {
+  margin-top: 20px;
+  padding: 18px 20px;
+  border-radius: 8px;
+  background: #edf8ed;
+  border: 1px solid #d2ecd2;
+  color: #2f6b2f;
+  font-size: var(--ph-copy-size);
+}
+
+.page-party-hire .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-party-hire .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-party-hire .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-party-hire .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-party-hire .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .party-hire-intro-card,
+  .party-hire-pricing-grid,
+  .page-party-hire .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .party-hire-intro-card img {
+    min-height: 220px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-party-hire .page-title {
+    padding: 34px 16px 36px;
+  }
+
+  .page-party-hire .page-title h1 {
+    font-size: 32px;
+  }
+
+  .page-party-hire .breadcrumb {
+    gap: 10px;
+  }
+
+  .page-party-hire .section-pad {
+    padding-top: 20px;
+    padding-bottom: 34px;
+  }
+
+  .party-hire-intro-copy,
+  .party-hire-faq-card,
+  .party-hire-form-card {
+    padding: 26px 22px;
+  }
+
+  .party-hire-field-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .party-hire-submit {
+    width: 100%;
+    justify-self: stretch;
+    text-align: center;
+  }
+
+  .page-party-hire .footer {
+    padding: 30px 0 22px;
+  }
+
+  .page-party-hire .footer-links {
+    gap: 16px 24px;
+    padding: 28px 20px;
+  }
+
+  .page-party-hire .footer-links a {
+    font-size: 20px;
+  }
+
+}

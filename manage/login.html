@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Community Playlink Staff Login</title>
+    <meta
+      name="description"
+      content="Staff login for Community Playlink management."
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/pages/login.css" />
+  </head>
+  <body
+    class="login-page"
+    data-request-code-endpoint="/api/auth/request-code"
+    data-verify-code-endpoint="/api/auth/verify-code"
+    data-code-field-name="authCode"
+    data-token-field="token"
+    data-session-token-key="authToken"
+    data-success-redirect=""
+  >
+    <div class="site-shell">
+      <div class="announce">
+        <div class="container">
+          <strong>Toy Library opening times are -</strong><br />
+          Tuesday, Wednesday &amp; Saturday 10:00am &ndash; 1:00pm<br />
+          <strong>Playtime</strong> - Tuesday &amp; Wednesday 10:30 - 11:30am
+          (including half term and summer holidays)<br />
+          <a
+            href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Donate here</a
+          >
+        </div>
+      </div>
+
+      <header class="header-band">
+        <div class="container header-grid">
+          <div></div>
+          <a
+            class="brand"
+            href="../index.html"
+            aria-label="Community Playlink home"
+          >
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              style="width: 256px; height: 144px"
+              alt="Community Playlink"
+            />
+          </a>
+          <div class="social-list" aria-label="Social links">
+            <a
+              href="https://www.facebook.com/cplaylink/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/communityplaylink/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.youtube.com/@communityplaylink"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://bsky.app/profile/community-playlink.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Bluesky"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <ellipse
+                  cx="8"
+                  cy="8"
+                  rx="3.2"
+                  ry="5.1"
+                  transform="rotate(-35 8 8)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="16"
+                  cy="8"
+                  rx="3.2"
+                  ry="5.1"
+                  transform="rotate(35 16 8)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="9"
+                  cy="16"
+                  rx="2.8"
+                  ry="4.5"
+                  transform="rotate(25 9 16)"
+                  fill="currentColor"
+                ></ellipse>
+                <ellipse
+                  cx="15"
+                  cy="16"
+                  rx="2.8"
+                  ry="4.5"
+                  transform="rotate(-25 15 16)"
+                  fill="currentColor"
+                ></ellipse>
+              </svg>
+            </a>
+            <a
+              href="https://www.tiktok.com/@communityplaylink"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <div class="container nav-inner">
+          <button
+            class="mobile-nav-toggle"
+            id="mobile-nav-toggle"
+            aria-expanded="false"
+            aria-controls="nav-list"
+          >
+            ☰ Menu
+          </button>
+          <div id="nav-list" class="nav-list" role="menubar">
+            <a class="nav-link" href="../index.html">Home</a>
+            <div class="nav-dropdown" data-dropdown>
+              <a href="../about.html">
+                <button class="nav-drop-toggle" type="button">About ▾</button>
+              </a>
+              <div class="nav-dropdown-content">
+                <a href="../about.html#meet-the-staff">Meet the Staff</a>
+                <a href="../about.html#meet-the-trustee-board">Meet The Trustee Board</a>
+                <a href="../about/partners.html">Partners</a>
+                <a href="../about/policies.html">Policies</a>
+              </div>
+            </div>
+            <div class="nav-dropdown" data-dropdown>
+              <a href="../services.html">
+                <button class="nav-drop-toggle" type="button">
+                  Services ▾
+                </button>
+              </a>
+              <div class="nav-dropdown-content">
+                <a href="../services/toy-libraries.html">Toy Libraries</a>
+                <a href="../services/playtime.html">Playtime</a>
+                <a href="../services/party-hire.html">Party Hire</a>
+                <a href="../services/toddler-groups.html">Toddler Groups</a>
+                <a href="../services/group-membership-scheme.html">Group Membership</a>
+              </div>
+            </div>
+            <a class="nav-link" href="../noticeboard.html">Noticeboard</a>
+            <a class="nav-link" href="../services/toy-libraries/toy-library.html">Toy Library</a>
+            <a class="nav-link" href="../contact.html">Contact</a>
+            <a class="nav-link nav-cta" href="../support-us.html">Support Us</a>
+          </div>
+        </div>
+      </nav>
+
+      <main>
+        <section class="section-pad login-section">
+          <div class="container login-shell">
+            <article class="login-title-card">
+              <h1>Staff login</h1>
+              <p>
+                Sign in with your email address to receive a one-time access
+                code.
+              </p>
+            </article>
+
+            <article class="login-card" aria-label="Login form">
+              <h2>Login</h2>
+              <p class="login-card-intro">
+                Enter your staff email to continue.
+              </p>
+
+              <div
+                id="status-banner"
+                class="status-banner"
+                data-state="info"
+                aria-live="polite"
+                hidden
+              ></div>
+
+              <form id="request-code-form" novalidate>
+                <div class="field">
+                  <label for="email-input">Email address</label>
+                  <input
+                    id="email-input"
+                    name="email"
+                    type="email"
+                    autocomplete="email"
+                    inputmode="email"
+                    placeholder="name@example.com"
+                    required
+                  />
+                  <p class="field-hint">We’ll email you a login code.</p>
+                </div>
+
+                <div class="action-row">
+                  <button
+                    id="request-code-button"
+                    class="primary-button"
+                    type="submit"
+                  >
+                    Send code
+                  </button>
+                </div>
+              </form>
+
+              <section
+                id="verification-panel"
+                class="verification-panel"
+                aria-labelledby="verification-title"
+                hidden
+              >
+                <div class="verification-header">
+                  <div>
+                    <h3 id="verification-title">Enter code</h3>
+                    <p>We’ve sent a code to <strong id="sent-email"></strong>.</p>
+                  </div>
+                  <button
+                    id="change-email-button"
+                    class="text-button"
+                    type="button"
+                  >
+                    Change email
+                  </button>
+                </div>
+
+                <form id="verify-code-form" novalidate>
+                  <label class="code-label" for="code-digit-1">Code</label>
+                  <div class="code-grid" role="group" aria-label="Six-digit auth code">
+                    <input
+                      id="code-digit-1"
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      autocomplete="one-time-code"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 1"
+                    />
+                    <input
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 2"
+                    />
+                    <input
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 3"
+                    />
+                    <input
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 4"
+                    />
+                    <input
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 5"
+                    />
+                    <input
+                      class="code-digit"
+                      type="text"
+                      inputmode="numeric"
+                      pattern="[0-9]*"
+                      maxlength="1"
+                      aria-label="Digit 6"
+                    />
+                  </div>
+
+                  <p class="microcopy">Paste works if you already copied the code.</p>
+
+                  <div class="action-row">
+                    <button
+                      id="verify-code-button"
+                      class="primary-button"
+                      type="submit"
+                    >
+                      Verify code
+                    </button>
+                    <button
+                      id="resend-code-button"
+                      class="secondary-button"
+                      type="button"
+                    >
+                      Resend code
+                    </button>
+                  </div>
+                </form>
+              </section>
+
+              <p class="login-footer-copy">
+                Need help?
+                <a href="../contact.html">Contact Community Playlink</a>.
+              </p>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/shared/navigation.js"></script>
+    <script>
+      (function () {
+        const body = document.body;
+        const requestCodeForm = document.getElementById("request-code-form");
+        const verifyCodeForm = document.getElementById("verify-code-form");
+        const emailInput = document.getElementById("email-input");
+        const requestCodeButton = document.getElementById("request-code-button");
+        const verificationPanel = document.getElementById("verification-panel");
+        const verifyCodeButton = document.getElementById("verify-code-button");
+        const resendCodeButton = document.getElementById("resend-code-button");
+        const changeEmailButton = document.getElementById("change-email-button");
+        const sentEmail = document.getElementById("sent-email");
+        const statusBanner = document.getElementById("status-banner");
+        const codeInputs = Array.from(document.querySelectorAll(".code-digit"));
+
+        const config = {
+          requestCodeEndpoint: body.dataset.requestCodeEndpoint || "/api/auth/request-code",
+          verifyCodeEndpoint: body.dataset.verifyCodeEndpoint || "/api/auth/verify-code",
+          codeFieldName: body.dataset.codeFieldName || "authCode",
+          tokenField: body.dataset.tokenField || "token",
+          sessionTokenKey: body.dataset.sessionTokenKey || "authToken",
+          successRedirect: body.dataset.successRedirect || ""
+        };
+
+        let requestedEmail = "";
+
+        function setStatus(message, state) {
+          if (!message) {
+            statusBanner.hidden = true;
+            statusBanner.textContent = "";
+            statusBanner.dataset.state = "info";
+            return;
+          }
+
+          statusBanner.hidden = false;
+          statusBanner.textContent = message;
+          statusBanner.dataset.state = state || "info";
+        }
+
+        function setBusy(button, isBusy, idleLabel, busyLabel) {
+          button.disabled = isBusy;
+          button.textContent = isBusy ? busyLabel : idleLabel;
+        }
+
+        function showVerification(email) {
+          requestedEmail = email;
+          sentEmail.textContent = email;
+          verificationPanel.hidden = false;
+          emailInput.disabled = true;
+          requestCodeButton.disabled = true;
+          codeInputs.forEach(function (input) {
+            input.value = "";
+          });
+          codeInputs[0].focus();
+        }
+
+        function resetVerification() {
+          requestedEmail = "";
+          verificationPanel.hidden = true;
+          emailInput.disabled = false;
+          requestCodeButton.disabled = false;
+          codeInputs.forEach(function (input) {
+            input.value = "";
+          });
+          setStatus("", "info");
+          emailInput.focus();
+        }
+
+        function getCodeValue() {
+          return codeInputs.map(function (input) {
+            return input.value.trim();
+          }).join("");
+        }
+
+        function applyCodeString(code) {
+          const digits = code.replace(/\D/g, "").slice(0, codeInputs.length).split("");
+          codeInputs.forEach(function (input, index) {
+            input.value = digits[index] || "";
+          });
+
+          const nextEmptyInput = codeInputs.find(function (input) {
+            return !input.value;
+          });
+
+          (nextEmptyInput || codeInputs[codeInputs.length - 1]).focus();
+        }
+
+        async function readResponseData(response) {
+          const responseType = response.headers.get("content-type") || "";
+
+          if (!responseType.includes("application/json")) {
+            return null;
+          }
+
+          try {
+            return await response.json();
+          } catch (error) {
+            return null;
+          }
+        }
+
+        function getErrorMessage(response, payload, fallbackMessage) {
+          if (payload && typeof payload === "object") {
+            if (typeof payload.message === "string" && payload.message.trim()) {
+              return payload.message;
+            }
+
+            if (typeof payload.error === "string" && payload.error.trim()) {
+              return payload.error;
+            }
+          }
+
+          if (response && response.status === 404) {
+            return "The login service could not be reached. Check the configured API endpoint.";
+          }
+
+          return fallbackMessage;
+        }
+
+        codeInputs.forEach(function (input, index) {
+          input.addEventListener("input", function (event) {
+            const value = event.target.value.replace(/\D/g, "");
+
+            if (!value) {
+              event.target.value = "";
+              return;
+            }
+
+            event.target.value = value.charAt(value.length - 1);
+
+            if (index < codeInputs.length - 1) {
+              codeInputs[index + 1].focus();
+            }
+          });
+
+          input.addEventListener("keydown", function (event) {
+            if (event.key === "Backspace" && !event.currentTarget.value && index > 0) {
+              codeInputs[index - 1].focus();
+            }
+
+            if (event.key === "ArrowLeft" && index > 0) {
+              event.preventDefault();
+              codeInputs[index - 1].focus();
+            }
+
+            if (event.key === "ArrowRight" && index < codeInputs.length - 1) {
+              event.preventDefault();
+              codeInputs[index + 1].focus();
+            }
+          });
+
+          input.addEventListener("paste", function (event) {
+            event.preventDefault();
+            applyCodeString((event.clipboardData || window.clipboardData).getData("text"));
+          });
+        });
+
+        requestCodeForm.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          setStatus("", "info");
+
+          const email = emailInput.value.trim();
+
+          if (!email || !emailInput.checkValidity()) {
+            setStatus("Enter a valid email address before requesting a code.", "error");
+            emailInput.focus();
+            return;
+          }
+
+          setBusy(requestCodeButton, true, "Send code", "Sending...");
+
+          try {
+            const response = await fetch(config.requestCodeEndpoint, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify({ email: email })
+            });
+
+            const payload = await readResponseData(response);
+
+            if (!response.ok) {
+              throw new Error(
+                getErrorMessage(
+                  response,
+                  payload,
+                  "We could not send a code right now. Please try again."
+                )
+              );
+            }
+
+            showVerification(email);
+            setStatus("Code sent. Check your inbox and enter the six-digit number.", "success");
+          } catch (error) {
+            setStatus(
+              error instanceof Error
+                ? error.message
+                : "Something went wrong while requesting your code.",
+              "error"
+            );
+          } finally {
+            setBusy(requestCodeButton, false, "Send code", "Sending...");
+          }
+        });
+
+        verifyCodeForm.addEventListener("submit", async function (event) {
+          event.preventDefault();
+          setStatus("", "info");
+
+          const code = getCodeValue();
+
+          if (!requestedEmail) {
+            setStatus("Request a code first.", "error");
+            emailInput.focus();
+            return;
+          }
+
+          if (!/^\d{6}$/.test(code)) {
+            setStatus("Enter the full six-digit code.", "error");
+            const firstEmptyInput = codeInputs.find(function (input) {
+              return !input.value;
+            });
+            (firstEmptyInput || codeInputs[0]).focus();
+            return;
+          }
+
+          setBusy(verifyCodeButton, true, "Verify code", "Verifying...");
+
+          try {
+            const payload = {
+              email: requestedEmail
+            };
+
+            payload[config.codeFieldName] = code;
+
+            const response = await fetch(config.verifyCodeEndpoint, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+              },
+              body: JSON.stringify(payload)
+            });
+
+            const responseData = await readResponseData(response);
+
+            if (!response.ok) {
+              throw new Error(
+                getErrorMessage(
+                  response,
+                  responseData,
+                  "The code could not be verified. Please try again."
+                )
+              );
+            }
+
+            const token =
+              responseData &&
+              (responseData[config.tokenField] || responseData.authToken || responseData.token);
+
+            if (!token || typeof token !== "string") {
+              throw new Error(
+                "The login response did not include an auth token. Check the configured token field."
+              );
+            }
+
+            sessionStorage.setItem(config.sessionTokenKey, token);
+            setStatus("Login successful.", "success");
+
+            if (config.successRedirect) {
+              window.setTimeout(function () {
+                window.location.assign(config.successRedirect);
+              }, 700);
+            }
+          } catch (error) {
+            setStatus(
+              error instanceof Error
+                ? error.message
+                : "Something went wrong while verifying your code.",
+              "error"
+            );
+          } finally {
+            setBusy(verifyCodeButton, false, "Verify code", "Verifying...");
+          }
+        });
+
+        resendCodeButton.addEventListener("click", function () {
+          if (!emailInput.value.trim()) {
+            setStatus("Enter an email address before requesting a code.", "error");
+            emailInput.focus();
+            return;
+          }
+
+          requestCodeForm.requestSubmit();
+        });
+
+        changeEmailButton.addEventListener("click", function () {
+          resetVerification();
+        });
+      })();
+    </script>
+  </body>
+</html>

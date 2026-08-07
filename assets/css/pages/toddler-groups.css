@@ -1,0 +1,264 @@
+.page-toddler-groups {
+  --toddler-copy-size: clamp(18px, 0.45vw + 15px, 21px);
+  --toddler-heading-size: clamp(30px, 0.9vw + 22px, 38px);
+}
+
+.page-toddler-groups .page-title {
+  background: #9a82c6;
+  padding: 42px 16px 44px;
+}
+
+.page-toddler-groups .page-title h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.page-toddler-groups .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-toddler-groups .breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-toddler-groups .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.page-toddler-groups .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-toddler-groups .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.page-toddler-groups .section-pad {
+  padding-top: 30px;
+  padding-bottom: 48px;
+}
+
+.page-toddler-groups .toddler-groups-intro {
+  background: #9a82c6;
+}
+
+.toddler-groups-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 22px;
+  align-items: stretch;
+}
+
+.toddler-groups-photo-card {
+  padding: 0;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.toddler-groups-photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.toddler-groups-copy-stack {
+  display: grid;
+  gap: 22px;
+}
+
+.toddler-groups-copy-card {
+  padding: 30px 32px;
+}
+
+.toddler-groups-copy-card h2,
+.toddler-groups-find-card h2,
+.toddler-groups-guidance-card h2 {
+  margin: 0 0 16px;
+  color: #b34a39;
+  font-size: var(--toddler-heading-size);
+  line-height: 1.15;
+  font-weight: 900;
+}
+
+.toddler-groups-copy-card p,
+.toddler-groups-find-card p {
+  margin: 0;
+  color: #1c1c1f;
+  font-size: var(--toddler-copy-size);
+  line-height: 1.72;
+}
+
+.toddler-groups-find-card {
+  margin-top: 22px;
+  padding: 32px 34px;
+}
+
+.page-toddler-groups .toddler-groups-guidance {
+  background: #f4f1f7;
+}
+
+.toddler-groups-guidance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.toddler-groups-guidance-card {
+  padding: 32px 34px;
+}
+
+.toddler-groups-guidance-card h2 {
+  color: #5a973b;
+}
+
+.toddler-groups-check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+}
+
+.toddler-groups-check-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.toddler-groups-check-list svg {
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  color: #5a973b;
+}
+
+.toddler-groups-check-list span {
+  color: #1c1c1f;
+  font-size: var(--toddler-copy-size);
+  line-height: 1.6;
+}
+
+.page-toddler-groups .toddler-groups-cta {
+  background: #9de389;
+  padding: 40px 0 48px;
+}
+
+.toddler-groups-cta-card {
+  padding: 40px 44px;
+  text-align: center;
+}
+
+.toddler-groups-cta-card h2 {
+  margin: 0;
+  color: var(--dark-purple);
+  font-size: clamp(28px, 1.1vw + 20px, 40px);
+  font-weight: 900;
+}
+
+.toddler-groups-cta-card p {
+  margin: 18px 0 26px;
+  color: #1c1c1f;
+  font-size: var(--toddler-copy-size);
+  line-height: 1.6;
+}
+
+.page-toddler-groups .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-toddler-groups .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-toddler-groups .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-toddler-groups .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-toddler-groups .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .toddler-groups-showcase,
+  .toddler-groups-guidance-grid,
+  .page-toddler-groups .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toddler-groups-photo-card {
+    min-height: 260px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page-toddler-groups .page-title {
+    padding: 34px 16px 36px;
+  }
+
+  .page-toddler-groups .page-title h1 {
+    font-size: 32px;
+  }
+
+  .page-toddler-groups .breadcrumb {
+    gap: 10px;
+  }
+
+  .page-toddler-groups .section-pad {
+    padding-top: 20px;
+    padding-bottom: 34px;
+  }
+
+  .toddler-groups-copy-card,
+  .toddler-groups-find-card,
+  .toddler-groups-guidance-card,
+  .toddler-groups-cta-card {
+    padding: 26px 22px;
+  }
+
+  .toddler-groups-cta-card {
+    padding: 30px 22px;
+  }
+
+  .page-toddler-groups .footer {
+    padding: 30px 0 22px;
+  }
+
+  .page-toddler-groups .footer-links {
+    gap: 16px 24px;
+    padding: 28px 20px;
+  }
+
+  .page-toddler-groups .footer-links a {
+    font-size: 20px;
+  }
+
+}

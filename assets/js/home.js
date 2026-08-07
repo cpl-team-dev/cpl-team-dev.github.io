@@ -8,19 +8,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const slides = [
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/Bitterne-2019.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/Bitterne-2019.jpg",
       alt: "Children and families at a Community Playlink event"
     },
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/Toy-Library-2.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/Toy-Library-2.jpg",
       alt: "Families exploring toys at the toy library"
     },
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/20230614_101210.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/20230614_101210.jpg",
       alt: "Play session at Community Playlink"
     },
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/toy-library-1.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/toy-library-1.jpg",
       alt: "Toy library shelves and play equipment"
     },
     {
@@ -28,11 +28,11 @@ document.addEventListener("DOMContentLoaded", () => {
       alt: "Families enjoying a play day at Hoglands Park"
     },
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/playtime-fireworks.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/playtime-fireworks.jpg",
       alt: "Fireworks board at a Community Playlink"
     },
     {
-      src: "https://ik.imagekit.io/communityplaylink/website/playtime-1.jpg",
+      src: "https://ik.imagekit.io/communityplaylink/website/index/playtime-1.jpg",
       alt: "Children playtime at a Community Playlink"
     }
   ];

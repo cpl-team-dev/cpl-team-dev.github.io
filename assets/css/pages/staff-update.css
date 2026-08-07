@@ -1,0 +1,65 @@
+.page-staff-update .section-pad {
+  padding-top: 36px;
+  padding-bottom: 52px;
+}
+
+.page-staff-update .breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.staff-update-card {
+  padding: 36px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.staff-update-meta {
+  margin: 0 0 22px;
+  color: #67748a;
+  font-size: clamp(14px, 0.35vw + 12px, 17px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.staff-update-photo {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 26px;
+  box-shadow: 0 16px 32px rgba(45, 35, 84, 0.16);
+}
+
+.staff-update-body h2 {
+  margin: 30px 0 14px;
+  color: var(--purple);
+  font-size: clamp(26px, 0.8vw + 20px, 34px);
+  line-height: 1.15;
+}
+
+.staff-update-body p {
+  margin: 0 0 18px;
+  color: #3f4e66;
+  font-size: clamp(18px, 0.35vw + 15px, 22px);
+  line-height: 1.72;
+}
+
+.staff-update-body p:last-child {
+  margin-bottom: 0;
+}
+
+.staff-update-actions {
+  margin-top: 30px;
+}
+
+@media (max-width: 860px) {
+  .staff-update-card {
+    padding: 28px 24px;
+  }
+
+  .staff-update-photo {
+    max-height: 260px;
+  }
+}

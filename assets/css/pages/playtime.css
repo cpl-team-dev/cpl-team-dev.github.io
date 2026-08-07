@@ -1,0 +1,275 @@
+.page-playtime {
+  --playtime-copy-size: clamp(18px, 0.45vw + 15px, 21px);
+  --playtime-heading-size: clamp(34px, 1vw + 26px, 42px);
+}
+
+.page-playtime .page-title {
+  background: #9a82c6;
+  padding: 42px 16px 44px;
+}
+
+.page-playtime .page-title h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+
+.page-playtime .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-playtime .breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-playtime .breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.page-playtime .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-playtime .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+.page-playtime .section-pad {
+  padding-top: 30px;
+  padding-bottom: 48px;
+}
+
+.page-playtime .playtime-intro {
+  background: #9a82c6;
+}
+
+.playtime-showcase,
+.playtime-details-grid,
+.page-playtime .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.playtime-copy-card,
+.playtime-gallery-card,
+.playtime-detail-card {
+  padding: 32px;
+}
+
+.playtime-copy-card h2,
+.playtime-detail-card h2 {
+  margin: 0 0 22px;
+  font-size: var(--playtime-heading-size);
+  line-height: 1.12;
+  font-weight: 900;
+}
+
+.playtime-copy-card h2 {
+  color: #b34a39;
+}
+
+.playtime-detail-card-hours h2 {
+  color: #a13174;
+}
+
+.playtime-detail-card-importance h2 {
+  color: #4b67aa;
+}
+
+.playtime-copy-card p,
+.playtime-detail-card p,
+.playtime-feature-list li {
+  font-size: var(--playtime-copy-size);
+  line-height: 1.72;
+  color: #1d1d22;
+}
+
+.playtime-copy-card p,
+.playtime-detail-card p {
+  margin: 0 0 18px;
+}
+
+.playtime-copy-card p:last-of-type,
+.playtime-detail-card p:last-of-type {
+  margin-bottom: 0;
+}
+
+.playtime-feature-list {
+  margin: 0;
+  padding-left: 24px;
+}
+
+.playtime-feature-list li {
+  margin: 0 0 10px;
+}
+
+.playtime-feature-list li:last-child {
+  margin-bottom: 0;
+}
+
+.playtime-gallery-card {
+  padding-bottom: 18px;
+}
+
+.playtime-gallery-stage {
+  height: clamp(420px, 52vw, 640px);
+  background: #f4f1f7;
+}
+
+.playtime-gallery .carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.playtime-gallery .carousel-arrow {
+  width: 44px;
+  height: 44px;
+  font-size: 36px;
+  line-height: 1;
+  color: #2f2f2f;
+  box-shadow: 0 8px 18px rgba(56, 41, 89, 0.18);
+}
+
+.playtime-gallery .carousel-arrow.left {
+  left: 20px;
+}
+
+.playtime-gallery .carousel-arrow.right {
+  right: 20px;
+}
+
+.playtime-gallery .carousel-dots {
+  gap: 12px;
+  padding: 20px 0 6px;
+}
+
+.playtime-gallery .carousel-dot {
+  width: 10px;
+  height: 10px;
+  background: #c3c3c8;
+}
+
+.playtime-gallery .carousel-dot.active {
+  width: 28px;
+  background: #2e2e33;
+}
+
+.playtime-details-grid {
+  margin-top: 28px;
+}
+
+.playtime-detail-card {
+  min-height: 100%;
+}
+
+.playtime-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.page-playtime .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-playtime .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-playtime .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-playtime .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-playtime .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .playtime-showcase,
+  .playtime-details-grid,
+  .page-playtime .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .playtime-gallery-stage {
+    height: min(78vw, 620px);
+  }
+}
+
+@media (max-width: 760px) {
+  .page-playtime .page-title {
+    padding: 34px 16px 36px;
+  }
+
+  .page-playtime .page-title h1 {
+    font-size: 32px;
+  }
+
+  .page-playtime .breadcrumb {
+    gap: 10px;
+  }
+
+  .page-playtime .section-pad {
+    padding-top: 20px;
+    padding-bottom: 34px;
+  }
+
+  .playtime-copy-card,
+  .playtime-gallery-card,
+  .playtime-detail-card {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+
+  .playtime-gallery .carousel-arrow.left {
+    left: 12px;
+  }
+
+  .playtime-gallery .carousel-arrow.right {
+    right: 12px;
+  }
+
+  .playtime-actions {
+    flex-direction: column;
+  }
+
+  .playtime-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .page-playtime .footer-links {
+    padding: 28px 24px;
+  }
+}

@@ -1,11 +1,40 @@
-.page-team-detail .section-pad {
-  padding-top: 36px;
-  padding-bottom: 52px;
+.page-team-detail .page-title {
+  background: #9a82c6;
+}
+
+.page-team-detail .page-title h1 {
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
+}
+
+.page-team-detail .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
+}
+
+.page-team-detail .breadcrumb svg {
+  width: 22px;
+  height: 22px;
+}
+
+.page-team-detail .breadcrumb-sep {
+  font-size: 1.15em;
+  line-height: 1;
 }
 
 .page-team-detail .breadcrumb a {
   color: inherit;
   text-decoration: none;
+}
+
+.page-team-detail .section-pad {
+  padding-top: 36px;
+  padding-bottom: 52px;
 }
 
 .team-detail-card {
@@ -78,6 +107,55 @@
   margin-bottom: 0;
 }
 
+.page-team-detail .footer {
+  background: #252525;
+  padding: 66px 0 28px;
+}
+
+.page-team-detail .footer-grid {
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
+}
+
+.page-team-detail .footer-links {
+  width: 100%;
+  padding: 35px 48px;
+  justify-content: center;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-team-detail .footer-links a {
+  color: #222329;
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.page-team-detail .footer-copy {
+  margin: 0;
+  color: #ceced4;
+  font-size: 14px;
+}
+
+@media (max-width: 1100px) {
+  .page-team-detail .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .page-team-detail .footer-links {
+    gap: 24px 34px;
+    padding: 34px 30px;
+  }
+
+  .page-team-detail .footer-links a {
+    font-size: 22px;
+  }
+
+}
+
 @media (max-width: 860px) {
   .team-detail-card {
     padding: 28px 24px;
@@ -91,4 +169,20 @@
   .team-detail-copy h2 {
     text-align: center;
   }
+}
+
+@media (max-width: 760px) {
+  .page-team-detail .footer {
+    padding: 30px 0 22px;
+  }
+
+  .page-team-detail .footer-links {
+    gap: 16px 24px;
+    padding: 28px 20px;
+  }
+
+  .page-team-detail .footer-links a {
+    font-size: 20px;
+  }
+
 }

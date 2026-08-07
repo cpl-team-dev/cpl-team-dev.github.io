@@ -1,0 +1,253 @@
+body.login-page {
+  background: var(--purple);
+  color: var(--ink);
+}
+
+.login-section {
+  background: var(--purple);
+}
+
+.login-shell {
+  display: grid;
+  gap: 22px;
+}
+
+.login-title-card,
+.login-card {
+  background: #fff;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.login-title-card {
+  width: min(100%, 660px);
+  margin: 0 auto;
+  padding: 28px 28px 24px;
+}
+
+.login-title-card h1 {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  color: var(--navy);
+}
+
+.login-title-card p {
+  margin: 0;
+  max-width: 40rem;
+}
+
+.login-card {
+  width: min(100%, 660px);
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.login-card h2 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 2rem;
+}
+
+.login-card-intro {
+  margin: 0 0 24px;
+  color: #5e596a;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.field label,
+.code-label {
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.field input {
+  width: 100%;
+  min-height: 56px;
+  border: 1px solid #d9cdea;
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  padding: 0 16px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.field input:focus,
+.code-digit:focus {
+  outline: none;
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px rgba(122, 87, 190, 0.16);
+}
+
+.field-hint,
+.microcopy {
+  margin: 0;
+  color: #6b617e;
+  font-size: 0.95rem;
+}
+
+.status-banner {
+  min-height: 56px;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: #f6f2ff;
+  color: #36275b;
+}
+
+.status-banner[hidden] {
+  display: none;
+}
+
+.status-banner[data-state="error"] {
+  background: #fff2f0;
+  border-color: #f0beb7;
+  color: #8a2e21;
+}
+
+.status-banner[data-state="success"] {
+  background: #eef9f1;
+  border-color: #b9e0c0;
+  color: #205d2e;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.primary-button,
+.secondary-button,
+.text-button {
+  border: 0;
+  border-radius: 16px;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.primary-button:hover,
+.secondary-button:hover,
+.text-button:hover {
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled,
+.secondary-button:disabled,
+.text-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+  transform: none;
+}
+
+.primary-button {
+  min-height: 56px;
+  padding: 0 20px;
+  color: #fff;
+  background: var(--red);
+}
+
+.secondary-button {
+  min-height: 56px;
+  padding: 0 18px;
+  color: var(--navy);
+  background: #e9edf5;
+}
+
+.text-button {
+  min-height: 42px;
+  padding: 0;
+  color: var(--purple);
+  background: transparent;
+}
+
+.verification-panel {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid #e4daf3;
+}
+
+.verification-panel[hidden] {
+  display: none;
+}
+
+.verification-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.verification-header h3 {
+  margin: 0 0 6px;
+  font-size: 1.3rem;
+  color: var(--navy);
+}
+
+.verification-header p {
+  margin: 0;
+  color: #645a78;
+}
+
+.code-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0 20px;
+}
+
+.code-digit {
+  width: 100%;
+  min-height: 62px;
+  border: 1px solid #d9cdea;
+  border-radius: 16px;
+  background: #fff;
+  color: #221736;
+  font-size: 1.5rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  padding: 0;
+}
+
+.login-footer-copy {
+  margin: 22px 0 0;
+  color: #6a607e;
+  font-size: 0.95rem;
+}
+
+.login-footer-copy a {
+  color: var(--purple);
+  font-weight: 800;
+}
+
+@media (max-width: 640px) {
+  .login-title-card,
+  .login-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .verification-header {
+    flex-direction: column;
+  }
+
+  .code-grid {
+    gap: 8px;
+  }
+
+  .code-digit {
+    min-height: 54px;
+    font-size: 1.3rem;
+  }
+}
