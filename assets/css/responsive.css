@@ -76,6 +76,16 @@
     display: flex;
   }
 
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .nav-dropdown > a {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+  }
+
   .nav-link,
   .nav-drop-toggle,
   .nav-cta {
@@ -85,12 +95,22 @@
     border-radius: 0;
   }
 
+  .nav-drop-toggle {
+    display: block;
+    pointer-events: none;
+  }
+
   .nav-dropdown-content {
+    display: block;
     position: static;
     min-width: 100%;
     box-shadow: none;
     border-top: 0;
     border-left: 3px solid var(--orange);
+  }
+
+  .nav-cta {
+    margin-left: 0;
   }
 }
 

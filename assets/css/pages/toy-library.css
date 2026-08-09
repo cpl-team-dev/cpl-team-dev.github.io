@@ -466,6 +466,10 @@
   font-weight: 800;
 }
 
+.toy-library-image-preview {
+  display: none;
+}
+
 .toy-library-actions-row {
   display: flex;
   justify-content: center;
@@ -541,6 +545,98 @@
   margin: 0;
   color: #ceced4;
   font-size: 14px;
+}
+
+@media (min-width: 1101px) {
+  .toy-library-card {
+    cursor: zoom-in;
+    transition:
+      transform 0.22s ease,
+      box-shadow 0.22s ease;
+  }
+
+  .toy-library-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 38px rgba(45, 35, 84, 0.14);
+  }
+
+  .toy-library-card:focus-visible {
+    outline: 3px solid rgba(122, 87, 190, 0.35);
+    outline-offset: 3px;
+  }
+
+  .toy-library-card-link {
+    position: relative;
+    z-index: 1;
+  }
+
+  .toy-library-image-preview[hidden] {
+    display: none;
+  }
+
+  .toy-library-image-preview {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 32px;
+  }
+
+  .toy-library-image-preview-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(24, 18, 41, 0.78);
+    backdrop-filter: blur(6px);
+  }
+
+  .toy-library-image-preview-dialog {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 18px;
+    width: min(92vw, 980px);
+    max-height: calc(100vh - 64px);
+    padding: 22px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 26px 70px rgba(17, 12, 31, 0.32);
+  }
+
+  .toy-library-image-preview-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(74, 51, 113, 0.08);
+    color: var(--dark-purple);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .toy-library-image-preview-title {
+    margin: 0;
+    padding-right: 56px;
+    color: var(--dark-purple);
+    font-size: clamp(22px, 0.8vw + 18px, 30px);
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .toy-library-image-preview-image {
+    width: 100%;
+    max-height: calc(100vh - 180px);
+    border-radius: 18px;
+    background: #f6f3fb;
+    object-fit: contain;
+  }
 }
 
 @media (max-width: 1100px) {

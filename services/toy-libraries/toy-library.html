@@ -242,8 +242,7 @@
           <div class="container">
             <h1>Toy Library</h1>
             <p>
-              Free toy loans, friendly advice, and a growing catalogue for
-              families and groups across Southampton.
+              Free toy loans, friendly advice, and a growing catalogue.
             </p>
             <div class="breadcrumb">
               <a href="../../index.html">
@@ -491,6 +490,43 @@
     <button id="back-top" class="back-top" type="button" title="Back to top">
       ⌃
     </button>
+
+    <div
+      id="toy-library-image-preview"
+      class="toy-library-image-preview"
+      hidden
+      aria-hidden="true"
+    >
+      <div
+        class="toy-library-image-preview-backdrop"
+        data-toy-library-preview-close
+      ></div>
+      <div
+        class="toy-library-image-preview-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="toy-library-image-preview-title"
+      >
+        <button
+          id="toy-library-image-preview-close"
+          class="toy-library-image-preview-close"
+          type="button"
+          aria-label="Close enlarged toy image"
+        >
+          ×
+        </button>
+        <p
+          id="toy-library-image-preview-title"
+          class="toy-library-image-preview-title"
+        ></p>
+        <img
+          id="toy-library-image-preview-image"
+          class="toy-library-image-preview-image"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
 
       <script src="../../assets/js/shared/navigation.js" defer></script>
       <script src="../../assets/js/shared/back-to-top.js" defer></script>

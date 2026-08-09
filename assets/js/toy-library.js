@@ -3,6 +3,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const summary = document.getElementById("toy-library-results-summary");
   const grid = document.getElementById("toy-library-grid");
   const showMoreButton = document.getElementById("toy-library-show-more");
+  const imagePreview = document.getElementById("toy-library-image-preview");
+  const imagePreviewTitle = document.getElementById(
+    "toy-library-image-preview-title",
+  );
+  const imagePreviewImage = document.getElementById(
+    "toy-library-image-preview-image",
+  );
+  const imagePreviewCloseButton = document.getElementById(
+    "toy-library-image-preview-close",
+  );
+  const desktopPreviewQuery = window.matchMedia(
+    "(min-width: 1101px) and (hover: hover) and (pointer: fine)",
+  );
 
   if (!chipRow || !summary || !grid || !showMoreButton) {
     return;
@@ -18,8 +31,72 @@ document.addEventListener("DOMContentLoaded", () => {
   let allProducts = [];
   let activeCategory = "All";
   let visibleCount = pageSize;
+  let lastActiveCard = null;
+
   function clearElement(element) {
     element.replaceChildren();
+  }
+
+  function canOpenDesktopPreview() {
+    return (
+      desktopPreviewQuery.matches &&
+      imagePreview &&
+      imagePreviewTitle &&
+      imagePreviewImage &&
+      imagePreviewCloseButton
+    );
+  }
+
+  function closeImagePreview() {
+    if (!imagePreview || !imagePreviewTitle || !imagePreviewImage) {
+      return;
+    }
+
+    imagePreview.hidden = true;
+    imagePreview.setAttribute("aria-hidden", "true");
+    imagePreviewTitle.textContent = "";
+    imagePreviewImage.src = "";
+    imagePreviewImage.alt = "";
+    document.body.style.overflow = "";
+
+    if (lastActiveCard) {
+      lastActiveCard.focus();
+      lastActiveCard = null;
+    }
+  }
+
+  function openImagePreview(product, sourceCard) {
+    if (!canOpenDesktopPreview()) {
+      return;
+    }
+
+    lastActiveCard = sourceCard;
+    imagePreview.hidden = false;
+    imagePreview.setAttribute("aria-hidden", "false");
+    imagePreviewTitle.textContent = product.name;
+    imagePreviewImage.src = product.imageUrl || placeholderImage;
+    imagePreviewImage.alt = product.name;
+    document.body.style.overflow = "hidden";
+    imagePreviewCloseButton.focus();
+  }
+
+  function syncPreviewableCards() {
+    const cards = grid.querySelectorAll(".toy-library-card");
+
+    cards.forEach((card) => {
+      if (canOpenDesktopPreview()) {
+        card.tabIndex = 0;
+        card.setAttribute(
+          "aria-label",
+          card.getAttribute("data-preview-label") || "Open a larger image",
+        );
+        card.setAttribute("aria-haspopup", "dialog");
+      } else {
+        card.removeAttribute("tabindex");
+        card.removeAttribute("aria-label");
+        card.removeAttribute("aria-haspopup");
+      }
+    });
   }
 
   function createSkeletonCard() {
@@ -133,6 +210,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function createProductCard(product) {
     const article = document.createElement("article");
     article.className = "toy-library-card";
+    article.setAttribute(
+      "data-preview-label",
+      `Open a larger image of ${product.name}`,
+    );
 
     const media = document.createElement("div");
     media.className = "toy-library-card-media";
@@ -159,6 +240,25 @@ document.addEventListener("DOMContentLoaded", () => {
       `Toy Library enquiry - ${product.name}`,
     )}`;
     link.textContent = "Ask about this toy";
+
+    article.addEventListener("click", (event) => {
+      if (event.target.closest(".toy-library-card-link")) {
+        return;
+      }
+
+      openImagePreview(product, article);
+    });
+
+    article.addEventListener("keydown", (event) => {
+      if (event.target.closest(".toy-library-card-link")) {
+        return;
+      }
+
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openImagePreview(product, article);
+      }
+    });
 
     copy.append(category, name, link);
     article.append(media, copy);
@@ -196,6 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
       grid.appendChild(createProductCard(product));
     });
 
+    syncPreviewableCards();
     renderShowMore(filteredProducts);
   }
 
@@ -289,6 +390,32 @@ document.addEventListener("DOMContentLoaded", () => {
     visibleCount += pageSize;
     renderProducts();
   });
+
+  if (imagePreview && imagePreviewCloseButton) {
+    imagePreview.addEventListener("click", (event) => {
+      if (event.target.hasAttribute("data-toy-library-preview-close")) {
+        closeImagePreview();
+      }
+    });
+
+    imagePreviewCloseButton.addEventListener("click", () => {
+      closeImagePreview();
+    });
+
+    desktopPreviewQuery.addEventListener("change", (event) => {
+      syncPreviewableCards();
+
+      if (!event.matches) {
+        closeImagePreview();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && imagePreview.hidden === false) {
+        closeImagePreview();
+      }
+    });
+  }
 
   loadProducts();
 });
