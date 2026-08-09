@@ -3,37 +3,38 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Community Playlink &#8211; Toy Library</title>
+    <title>Community Playlink &#8211; Data Protection</title>
+    <meta name="robots" content="max-image-preview:large" />
     <meta
       name="description"
-      content="Browse a sample of the Community Playlink toy library and find out how to enquire about free toy loans in Southampton."
+      content="Community Playlink's GDPR data protection policy and procedures."
     />
-    <link
-      rel="canonical"
-      href="https://www.community-playlink.com/services/toy-libraries/toy-library.html"
-    />
+    <link rel="canonical" href="https://www.community-playlink.com/about/policies/data-protection/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Toy Library | Community Playlink" />
+    <meta property="og:title" content="Community Playlink - Data Protection" />
     <meta
       property="og:description"
-      content="Browse a sample of the Community Playlink toy library and find out how to enquire about free toy loans in Southampton."
+      content="Community Playlink's GDPR data protection policy and procedures."
     />
     <meta
       property="og:url"
-      content="https://www.community-playlink.com/services/toy-libraries/toy-library.html"
+      content="https://www.community-playlink.com/about/"
     />
     <meta property="og:site_name" content="Community Playlink" />
     <meta
       property="og:image"
-      content="https://www.community-playlink.com/wp-content/toy-index-pictures/03008.webp"
+      content="https://ik.imagekit.io/communityplaylink/website/head/Hoglands-Park-Playday-26-07-2.jpg"
     />
+    <meta property="og:image:width" content="1600" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:alt" content="" />
     <meta property="og:locale" content="en_GB" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Toy Library" />
+    <meta name="twitter:text:title" content="Data Protection" />
     <meta
       name="twitter:image"
-      content="https://www.community-playlink.com/wp-content/toy-index-pictures/03008.webp"
+      content="https://ik.imagekit.io/communityplaylink/website/head/Hoglands-Park-Playday-26-07-2.jpg?tr=w-640"
     />
+    <meta name="twitter:card" content="summary_large_image" />
     <link
       rel="icon"
       href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
@@ -48,12 +49,16 @@
       rel="apple-touch-icon"
       href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-180x180.webp"
     />
+    <meta
+      name="msapplication-TileImage"
+      content="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-270x270.webp"
+    />
     <link rel="stylesheet" href="../../assets/css/base.css" />
     <link rel="stylesheet" href="../../assets/css/components.css" />
     <link rel="stylesheet" href="../../assets/css/responsive.css" />
-    <link rel="stylesheet" href="../../assets/css/pages/toy-library.css" />
+    <link rel="stylesheet" href="../../assets/css/pages/about.css" />
   </head>
-  <body class="page-toy-library">
+  <body class="page-about">
     <div class="site-shell">
       <div class="announce">
         <div class="container">
@@ -61,33 +66,16 @@
           Tuesday, Wednesday &amp; Saturday 10:00am &ndash; 1:00pm<br />
           <strong>Playtime</strong> - Tuesday &amp; Wednesday 10:30 - 11:30am
           (including half term and summer holidays)<br />
-          <a
-            href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Donate here</a
-          >
+          <a href="support-us.html#donate">Donate here</a>
         </div>
       </div>
 
       <header class="header-band">
         <div class="container header-grid">
-          <form
-            class="search-wrap"
-            action="https://library.community-playlink.com/"
-            method="get"
-          >
-            <input
-              type="text"
-              name="s"
-              placeholder="Search..."
-              aria-label="Search"
-            />
-            <span class="search-icon">⌕</span>
-          </form>
+          <div></div>
           <a
             class="brand"
-            href="../../index.html"
+            href="index.html"
             aria-label="Community Playlink home"
           >
             <img
@@ -205,23 +193,23 @@
             ☰ Menu
           </button>
           <div id="nav-list" class="nav-list" role="menubar">
-            <a class="nav-link" href="../../index.html">Home</a>
+            <a class="nav-link" href="index.html">Home</a>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../../about.html">
-                <button class="nav-drop-toggle" type="button">About ▾</button>
+              <a href="about.html">
+                <button class="nav-drop-toggle" type="button">
+                  About ▾
+                </button>
               </a>
               <div class="nav-dropdown-content">
-                <a href="../../about.html#meet-the-staff">Meet the Staff</a>
-                <a href="../../about.html#meet-the-trustee-board"
-                  >Meet The Trustee Board</a
-                >
-                <a href="../../about/partners.html">Partners</a>
-                <a href="../../about/policies.html">Policies</a>
+                <a href="#meet-the-staff">Meet the Staff</a>
+                <a href="#meet-the-trustee-board">Meet The Trustee Board</a>
+                <a href="#partners">Partners</a>
+                <a href="#policies">Policies</a>
               </div>
             </div>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../../services.html">
-                <button class="nav-drop-toggle is-active" type="button">
+              <a href="about.html">
+                <button class="nav-drop-toggle" type="button">
                   Services ▾
                 </button>
               </a>
@@ -231,20 +219,19 @@
                 <a href="../../services/party-hire.html">Party Hire</a>
                 <a href="../../services/toddler-groups.html">Toddler Groups</a>
                 <a href="../../services/group-membership-scheme.html"
-                  >Group Membership</a
+                  >Group Membership Scheme</a
                 >
               </div>
             </div>
-            <a class="nav-link" href="../../noticeboard.html">Noticeboard</a>
+            <a class="nav-link" href="noticeboard.html">Noticeboard</a>
             <a
-              class="nav-link is-active"
-              href="../../services/toy-libraries/toy-library.html"
+              class="nav-link"
+              href="https://library.community-playlink.com/"
+              target="_parent"
               >Toy Library</a
             >
-            <a class="nav-link" href="../../contact.html">Contact</a>
-            <a class="nav-link nav-cta" href="../../support-us.html"
-              >Support Us</a
-            >
+            <a class="nav-link" href="contact.html">Contact</a>
+            <a class="nav-link nav-cta" href="support-us.html">Support Us</a>
           </div>
         </div>
       </nav>
@@ -252,130 +239,81 @@
       <main>
         <section class="page-title">
           <div class="container">
-            <h1>Toy Library</h1>
-            <p>
-              Free toy loans, friendly advice, and a growing catalogue for
-              families and groups across Southampton.
-            </p>
-            <div class="breadcrumb">
-              <a href="../../index.html">Home</a> &gt;
-              <a href="../../services.html">Services</a> &gt; Toy Library
+            <h1>About</h1>
+            <div class="breadcrumb" aria-label="Breadcrumb">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill="currentColor"
+                  d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"
+                />
+              </svg>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <span>About</span>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <span>Policies</span>
+              <span class="breadcrumb-sep" aria-hidden="true">›</span>
+              <span>Data Protection</span>
             </div>
           </div>
         </section>
 
-        <section class="toy-library-catalogue">
-          <div class="container">
-            <div class="toy-library-catalogue-head">
-              <h2>Catalogue</h2>
-              <p>
-                Availability changes as toys are borrowed and returned, so use
-                this page as a helpful guide.
-              </p>
-            </div>
-
-            <div
-              id="toy-library-chip-row"
-              class="toy-library-chip-row"
-              aria-label="Categories in this catalogue"
-            ></div>
-
-            <p
-              id="toy-library-results-summary"
-              class="toy-library-results-summary"
-              aria-live="polite"
-            ></p>
-
-            <div
-              id="toy-library-grid"
-              class="toy-library-grid"
-              aria-live="polite"
-            >
-              <article class="toy-library-card toy-library-skeleton-card" aria-hidden="true">
-                <div class="toy-library-card-media toy-library-skeleton-block"></div>
-                <div class="toy-library-card-copy">
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-short"></div>
-                  <div class="toy-library-skeleton-line"></div>
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-medium"></div>
-                </div>
-              </article>
-              <article class="toy-library-card toy-library-skeleton-card" aria-hidden="true">
-                <div class="toy-library-card-media toy-library-skeleton-block"></div>
-                <div class="toy-library-card-copy">
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-short"></div>
-                  <div class="toy-library-skeleton-line"></div>
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-medium"></div>
-                </div>
-              </article>
-              <article class="toy-library-card toy-library-skeleton-card" aria-hidden="true">
-                <div class="toy-library-card-media toy-library-skeleton-block"></div>
-                <div class="toy-library-card-copy">
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-short"></div>
-                  <div class="toy-library-skeleton-line"></div>
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-medium"></div>
-                </div>
-              </article>
-              <article class="toy-library-card toy-library-skeleton-card" aria-hidden="true">
-                <div class="toy-library-card-media toy-library-skeleton-block"></div>
-                <div class="toy-library-card-copy">
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-short"></div>
-                  <div class="toy-library-skeleton-line"></div>
-                  <div class="toy-library-skeleton-line toy-library-skeleton-line-medium"></div>
-                </div>
-              </article>
-            </div>
-
-            <div class="toy-library-actions-row">
-              <button
-                id="toy-library-show-more"
-                class="toy-library-button alt toy-library-show-more"
-                type="button"
-                hidden
-              >
-                Show more products
-              </button>
-            </div>
-          </div>
-        </section>
-
-        <section class="toy-library-cta">
-          <div class="container">
-            <article class="card toy-library-cta-card">
-              <h2>Want us to set something aside?</h2>
-              <p>
-                Send us the toy name or stock code and we can point you in the
-                right direction before you visit.
-              </p>
-              <div class="toy-library-cta-actions">
-                <a
-                  class="toy-library-button"
-                  href="mailto:CPLTeam@community-playlink.com?subject=Toy%20Library%20reservation%20request"
-                  >Email a reservation request</a
-                >
-                <a class="toy-library-button alt" href="../../contact.html"
-                  >See all contact options</a
-                >
+        <section class="section-pad constitution-section">
+          <div class="container content-stack">
+            <div class="constitution-viewer-shell">
+              <div class="constitution-viewer-frame" role="region" aria-label="Community Playlink data protection policy PDF viewer">
+                <iframe
+                  class="constitution-viewer"
+                  title="Community Playlink Data Protection Policy PDF"
+                  src="../../assets/documents/CPL-GDPR-policy-and-procedures-2025.pdf#toolbar=1&navpanes=1&scrollbar=1&view=FitH"
+                ></iframe>
               </div>
-            </article>
+              <div class="constitution-download-row">
+                <a
+                  class="constitution-file-link"
+                  href="../../assets/documents/CPL-GDPR-policy-and-procedures-2025.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  CPL GDPR Policy and Procedures 2025
+                </a>
+                <a
+                  class="constitution-download-btn"
+                  href="../../assets/documents/CPL-GDPR-policy-and-procedures-2025.pdf"
+                  download="CPL-GDPR-policy-and-procedures-2025.pdf"
+                >
+                  Download
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </main>
+
+      <div class="wave" style="background: #9a82c6">
+        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <path
+            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
+            fill="#252525"
+          ></path>
+        </svg>
+      </div>
+      
 
       <footer class="footer">
         <div class="container">
           <div class="footer-grid">
             <div class="card footer-card">
-              <nav class="footer-links">
-                <a href="../../index.html">Home</a>
-                <a href="../../about.html">About</a>
-                <a href="../../services.html">Services</a>
-                <a href="../../noticeboard.html">News</a>
-                <a href="../../contact.html">Contact</a>
-                <a href="../../support-us.html">Support Us</a>
+              <nav class="footer-links" aria-label="Footer navigation">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="noticeboard.html">News</a>
+                <a href="contact.html">Contact</a>
+                <a href="support-us.html">Support Us</a>
               </nav>
             </div>
             <div class="card footer-card">
-              <div class="footer-social">
+              <div class="footer-social" aria-label="Footer social links">
                 <a
                   href="https://www.instagram.com/communityplaylink/"
                   target="_blank"
@@ -473,21 +411,11 @@
             </div>
           </div>
           <p class="footer-copy">
-            © Community Playlink 2026 •
-            <a
-              href="../../manage/login.html"
-              target="_parent"
-              >Login</a
-            >
+            © Community Playlink 2026 • <a href="../../manage/login.html" target="_parent">Login</a>
           </p>
           <br />
           <p class="footer-copy">
-            <a
-              href="https://marcel-dev-acc.github.io/developer-profile/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Created by Marcel Mulders</a
-            >
+            <a href="https://marcel-dev-acc.github.io/developer-profile/" target="_blank" rel="noopener noreferrer">Created by Marcel Mulders</a>
           </p>
         </div>
       </footer>
@@ -497,9 +425,9 @@
       ⌃
     </button>
 
-      <script src="../../assets/js/shared/navigation.js" defer></script>
-      <script src="../../assets/js/shared/back-to-top.js" defer></script>
-      <script src="../../assets/js/config.js" defer></script>
-      <script src="../../assets/js/toy-library.js" defer></script>
-	  </body>
-	</html>
+    <script src="../../assets/js/shared/navigation.js" defer></script>
+    <script src="../../assets/js/shared/testimonials.js" defer></script>
+    <script src="../../assets/js/shared/back-to-top.js" defer></script>
+    <script src="../../assets/js/about.js" defer></script>
+  </body>
+</html>

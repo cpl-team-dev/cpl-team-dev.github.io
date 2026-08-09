@@ -258,6 +258,12 @@
   gap: 24px;
 }
 
+.page-about .policies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
 .page-about .partner-feature {
   display: grid;
   grid-template-columns: minmax(160px, 240px) minmax(0, 1fr);
@@ -400,6 +406,10 @@
 }
 
 @media (max-width: 760px) {
+
+  .page-about .policies-grid {
+    grid-template-columns: 1fr;
+  }
 
   .page-about .page-title h1 {
     font-size: 54px;

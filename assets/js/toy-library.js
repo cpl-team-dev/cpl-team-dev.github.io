@@ -1,124 +1,294 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const listViewBtn = document.getElementById("toy-view-list");
-  const gridViewBtn = document.getElementById("toy-view-grid");
-  const sortSelect = document.getElementById("toy-sort");
-  const searchInput = document.getElementById("toy-search");
-  const chips = document.getElementById("toy-category-chips");
-  const filterToggle = document.getElementById("toy-filter-toggle");
-  const results = document.getElementById("toy-results");
-  const count = document.getElementById("toy-count");
+  const chipRow = document.getElementById("toy-library-chip-row");
+  const summary = document.getElementById("toy-library-results-summary");
+  const grid = document.getElementById("toy-library-grid");
+  const showMoreButton = document.getElementById("toy-library-show-more");
 
-  if (!listViewBtn || !gridViewBtn || !sortSelect || !searchInput || !chips || !filterToggle || !results || !count) {
+  if (!chipRow || !summary || !grid || !showMoreButton) {
     return;
   }
 
-  const allItems = [
-    { name: "1 2 3 Jigsaw + Book", category: "Puzzles", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.28.56.png" },
-    { name: "100 Words Book", category: "Toddler", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.13.png" },
-    { name: "100 Words Electronic Book", category: "Toddler", img: null },
-    { name: "Alphabet Puzzle", category: "Puzzles", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.23.png" },
-    { name: "Baby Bouncer", category: "Baby", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.32.png" },
-    { name: "Baby Gym", category: "Baby", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.41.png" },
-    { name: "Ball Pool", category: "Outdoor", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.49.png" },
-    { name: "Bead Maze", category: "Toddler", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.29.57.png" },
-    { name: "Building Blocks (Large)", category: "Construction", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.30.05.png" },
-    { name: "Connect Four", category: "Games", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.30.13.png" },
-    { name: "Doctor's Kit", category: "Role Play", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.30.21.png" },
-    { name: "Drawing Board (Magnetic)", category: "Creative Play", img: "../legacy/src/imports/Screenshot_2026-07-17_at_16.30.29.png" }
-  ];
+  const endpoint = `${API_BASE_URL.replace(/\/$/, "")}/product?${new URLSearchParams({
+    organisation_id: ORGANISATION_ID,
+  }).toString()}`;
+  const placeholderImage =
+    "../../assets/images/no-image-available-icon.jpg";
+  const pageSize = 48;
 
-  const categories = ["All", ...new Set(allItems.map((item) => item.category))];
-  let currentView = "list";
+  let allProducts = [];
   let activeCategory = "All";
-
-  chips.innerHTML = categories
-    .map((category) => `<button class="chip ${category === "All" ? "active" : ""}" data-category="${category}">${category}</button>`)
-    .join("");
-
-  function itemMarkup(item) {
-    const image = item.img
-      ? `<img src="${item.img}" alt="${item.name}">`
-      : `<div class="placeholder">🖼</div>`;
-
-    if (currentView === "grid") {
-      return `
-        <article class="toy-grid-card">
-          <div class="img-wrap">${image}</div>
-          <div class="copy">
-            <p class="category">${item.category}</p>
-            <h3>${item.name}</h3>
-            <a class="btn" href="#" style="font-size:18px;padding:6px 14px">Read more</a>
-          </div>
-        </article>
-      `;
-    }
-
-    return `
-      <article class="toy-item">
-        <div class="img-wrap">${image}</div>
-        <div class="copy">
-          <p class="category">${item.category}</p>
-          <h3>${item.name}</h3>
-          <a class="btn" href="#" style="font-size:20px;padding:8px 16px">Read more</a>
-        </div>
-      </article>
-    `;
+  let visibleCount = pageSize;
+  function clearElement(element) {
+    element.replaceChildren();
   }
 
-  function render() {
-    const query = searchInput.value.trim().toLowerCase();
-    const sort = sortSelect.value;
+  function createSkeletonCard() {
+    const article = document.createElement("article");
+    article.className = "toy-library-card toy-library-skeleton-card";
+    article.setAttribute("aria-hidden", "true");
 
-    let filtered = allItems.filter((item) => {
-      const categoryOk = activeCategory === "All" || item.category === activeCategory;
-      const queryOk = !query || item.name.toLowerCase().includes(query);
-      return categoryOk && queryOk;
-    });
+    const media = document.createElement("div");
+    media.className = "toy-library-card-media toy-library-skeleton-block";
 
-    if (sort === "az") filtered = [...filtered].sort((a, b) => a.name.localeCompare(b.name));
-    if (sort === "za") filtered = [...filtered].sort((a, b) => b.name.localeCompare(a.name));
-    if (sort === "cat") filtered = [...filtered].sort((a, b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name));
+    const copy = document.createElement("div");
+    copy.className = "toy-library-card-copy";
 
-    count.textContent = `${filtered.length} item${filtered.length === 1 ? "" : "s"}`;
+    const eyebrow = document.createElement("div");
+    eyebrow.className =
+      "toy-library-skeleton-line toy-library-skeleton-line-short";
 
-    if (filtered.length === 0) {
-      results.innerHTML = `<article class="card split-copy"><p>No toys found.</p></article>`;
+    const title = document.createElement("div");
+    title.className = "toy-library-skeleton-line";
+
+    const action = document.createElement("div");
+    action.className =
+      "toy-library-skeleton-line toy-library-skeleton-line-medium";
+
+    copy.append(eyebrow, title, action);
+    article.append(media, copy);
+
+    return article;
+  }
+
+  function renderSkeletons(count = 8) {
+    grid.innerHTML = "";
+
+    for (let index = 0; index < count; index += 1) {
+      grid.appendChild(createSkeletonCard());
+    }
+  }
+
+  function renderStatus(message) {
+    grid.innerHTML = "";
+
+    const card = document.createElement("article");
+    card.className = "toy-library-status-card";
+
+    const text = document.createElement("p");
+    text.textContent = message;
+
+    card.appendChild(text);
+    grid.appendChild(card);
+  }
+
+  function formatNumber(value) {
+    return new Intl.NumberFormat("en-GB").format(value);
+  }
+
+  function pinActiveChipToLeft(activeChip, smooth = true) {
+    if (!activeChip) {
       return;
     }
 
-    const wrapperClass = currentView === "grid" ? "toy-grid" : "toy-list";
-    results.innerHTML = `<div class="${wrapperClass}">${filtered.map(itemMarkup).join("")}</div>`;
+    const targetLeft = activeChip.offsetLeft - chipRow.offsetLeft;
+    chipRow.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: smooth ? "smooth" : "auto",
+    });
   }
 
-  chips.querySelectorAll(".chip").forEach((chip) => {
-    chip.addEventListener("click", () => {
-      activeCategory = chip.getAttribute("data-category") || "All";
-      chips.querySelectorAll(".chip").forEach((button) => button.classList.remove("active"));
-      chip.classList.add("active");
-      render();
+  function getCategories() {
+    return [
+      "All",
+      ...new Set(allProducts.map((product) => product.category).filter(Boolean)),
+    ].sort((a, b) => {
+      if (a === "All") return -1;
+      if (b === "All") return 1;
+      return a.localeCompare(b);
     });
+  }
+
+  function renderCategories() {
+    clearElement(chipRow);
+
+    getCategories().forEach((category) => {
+      const chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = `toy-library-chip${category === activeCategory ? " is-active" : ""}`;
+      chip.textContent = category;
+      chip.addEventListener("click", () => {
+        activeCategory = category;
+        visibleCount = pageSize;
+        renderCategories();
+        renderProducts();
+      });
+      chipRow.appendChild(chip);
+
+      if (category === activeCategory) {
+        requestAnimationFrame(() => {
+          pinActiveChipToLeft(chip);
+        });
+      }
+    });
+  }
+
+  function getFilteredProducts() {
+    if (activeCategory === "All") {
+      return allProducts;
+    }
+
+    return allProducts.filter((product) => product.category === activeCategory);
+  }
+
+  function createProductCard(product) {
+    const article = document.createElement("article");
+    article.className = "toy-library-card";
+
+    const media = document.createElement("div");
+    media.className = "toy-library-card-media";
+
+    const image = document.createElement("img");
+    image.src = product.imageUrl || placeholderImage;
+    image.alt = product.name;
+    image.loading = "lazy";
+    media.appendChild(image);
+
+    const copy = document.createElement("div");
+    copy.className = "toy-library-card-copy";
+
+    const category = document.createElement("p");
+    category.className = "toy-library-card-category";
+    category.textContent = product.category;
+
+    const name = document.createElement("h3");
+    name.textContent = product.name;
+
+    const link = document.createElement("a");
+    link.className = "toy-library-card-link";
+    link.href = `mailto:CPLTeam@community-playlink.com?subject=${encodeURIComponent(
+      `Toy Library enquiry - ${product.name}`,
+    )}`;
+    link.textContent = "Ask about this toy";
+
+    copy.append(category, name, link);
+    article.append(media, copy);
+
+    return article;
+  }
+
+  function renderSummary(filteredProducts) {
+    const showing = Math.min(filteredProducts.length, visibleCount);
+    const categoryLabel =
+      activeCategory === "All" ? "all categories" : activeCategory;
+
+    summary.textContent = `Showing ${formatNumber(showing)} of ${formatNumber(
+      filteredProducts.length,
+    )} products in ${categoryLabel}.`;
+  }
+
+  function renderShowMore(filteredProducts) {
+    const hasMore = filteredProducts.length > visibleCount;
+    showMoreButton.hidden = !hasMore;
+  }
+
+  function renderProducts() {
+    const filteredProducts = getFilteredProducts();
+    renderSummary(filteredProducts);
+    clearElement(grid);
+
+    if (filteredProducts.length === 0) {
+      renderStatus("No products are available in this category right now.");
+      renderShowMore(filteredProducts);
+      return;
+    }
+
+    filteredProducts.slice(0, visibleCount).forEach((product) => {
+      grid.appendChild(createProductCard(product));
+    });
+
+    renderShowMore(filteredProducts);
+  }
+
+  function normalisePayload(payload) {
+    const records = Array.isArray(payload.products)
+      ? payload.products
+      : Array.isArray(payload.records)
+        ? payload.records
+        : [];
+
+    return {
+      organisationId:
+        typeof payload.organisation_id === "string" ? payload.organisation_id : "",
+      count:
+        typeof payload.count === "number" && Number.isFinite(payload.count)
+          ? payload.count
+          : records.length,
+      products: records
+        .map((record) => ({
+          category:
+            typeof record.category === "string" && record.category.trim()
+              ? record.category.trim()
+              : "Uncategorised",
+          name:
+            typeof record.name === "string" && record.name.trim()
+              ? record.name.trim()
+              : "",
+          imageUrl:
+            typeof record.image_url === "string" && record.image_url.trim()
+              ? record.image_url.trim()
+              : "",
+        }))
+        .filter((product) => product.name)
+        .sort(
+          (a, b) =>
+            a.category.localeCompare(b.category) || a.name.localeCompare(b.name),
+        ),
+    };
+  }
+
+  async function fetchPayload(url) {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+      },
+      cache: "no-store",
+    });
+
+    if (!response.ok) {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+
+    const payload = await response.json();
+
+    if (!payload.ok) {
+      throw new Error("API returned an unsuccessful response.");
+    }
+
+    return payload;
+  }
+
+  async function loadProducts() {
+    renderSkeletons();
+
+    try {
+      const payload = await fetchPayload(endpoint);
+      const normalised = normalisePayload(payload);
+      allProducts = normalised.products;
+      visibleCount = pageSize;
+
+      if (allProducts.length === 0) {
+        clearElement(chipRow);
+        summary.textContent = "";
+        renderStatus("No products are available right now.");
+        showMoreButton.hidden = true;
+        return;
+      }
+
+      renderCategories();
+      renderProducts();
+    } catch (error) {
+      clearElement(chipRow);
+      summary.textContent = "";
+      showMoreButton.hidden = true;
+      renderStatus("We couldn't load the catalogue right now.");
+      console.error("Failed to load toy library products:", error);
+    }
+  }
+
+  showMoreButton.addEventListener("click", () => {
+    visibleCount += pageSize;
+    renderProducts();
   });
 
-  listViewBtn.addEventListener("click", () => {
-    currentView = "list";
-    listViewBtn.classList.add("active");
-    gridViewBtn.classList.remove("active");
-    render();
-  });
-
-  gridViewBtn.addEventListener("click", () => {
-    currentView = "grid";
-    gridViewBtn.classList.add("active");
-    listViewBtn.classList.remove("active");
-    render();
-  });
-
-  filterToggle.addEventListener("click", () => {
-    chips.style.display = chips.style.display === "none" ? "flex" : "none";
-  });
-
-  sortSelect.addEventListener("change", render);
-  searchInput.addEventListener("input", render);
-
-  render();
+  loadProducts();
 });

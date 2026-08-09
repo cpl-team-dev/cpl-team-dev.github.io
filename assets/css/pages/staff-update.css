@@ -50,6 +50,19 @@
   margin-bottom: 0;
 }
 
+.staff-update-sources {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+.staff-update-sources li {
+  color: #3f4e66;
+  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  line-height: 1.6;
+}
+
 .staff-update-actions {
   margin-top: 30px;
 }
