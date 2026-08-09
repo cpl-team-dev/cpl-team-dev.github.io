@@ -459,15 +459,39 @@
                     <span class="required">*</span>
                   </p>
                   <div class="radio-list">
-                    <label><input type="radio" name="for" required /> No</label>
                     <label
-                      ><input type="radio" name="for" /> Duke of Edinburgh
-                      Award</label
+                      ><input
+                        type="radio"
+                        name="volunteering-for"
+                        value="No"
+                        required
+                      />
+                      No</label
                     >
                     <label
-                      ><input type="radio" name="for" /> Work Experience</label
+                      ><input
+                        type="radio"
+                        name="volunteering-for"
+                        value="Duke of Edinburgh Award"
+                      />
+                      Duke of Edinburgh Award</label
                     >
-                    <label><input type="radio" name="for" /> Other</label>
+                    <label
+                      ><input
+                        type="radio"
+                        name="volunteering-for"
+                        value="Work Experience"
+                      />
+                      Work Experience</label
+                    >
+                    <label
+                      ><input
+                        type="radio"
+                        name="volunteering-for"
+                        value="Other"
+                      />
+                      Other</label
+                    >
                   </div>
                 </div>
                 <div>
@@ -477,39 +501,90 @@
                   </p>
                   <div class="checkbox-list">
                     <label
-                      ><input type="checkbox" /> Toy Library Helper</label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Toy Library Helper"
+                      />
+                      Toy Library Helper</label
                     >
                     <label
-                      ><input type="checkbox" /> Toy Checker/Cleaner</label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Toy Checker/Cleaner"
+                      />
+                      Toy Checker/Cleaner</label
                     >
-                    <label><input type="checkbox" /> Toy Cataloguer</label>
                     <label
-                      ><input type="checkbox" /> General Office Helper</label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Toy Cataloguer"
+                      />
+                      Toy Cataloguer</label
                     >
                     <label
-                      ><input type="checkbox" /> DIY: mending wooden
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="General Office Helper"
+                      />
+                      General Office Helper</label
+                    >
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="DIY: mending wooden toys"
+                      />
+                      DIY: mending wooden
                       toys</label
                     >
                     <label
-                      ><input type="checkbox" /> Social Media Helper</label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Social Media Helper"
+                      />
+                      Social Media Helper</label
                     >
-                    <label><input type="checkbox" /> Other</label>
+                    <label
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Other"
+                      />
+                      Other</label
+                    >
                   </div>
                 </div>
                 <div>
+                  <label class="label" for="vol-motivation"
+                    >Why do you want to get involved with Community Playlink?
+                    <span class="required">*</span></label
+                  >
                   <textarea
                     class="textarea"
+                    id="vol-motivation"
+                    name="motivation"
                     rows="5"
                     required
-                    placeholder="Why do you want to get involved with Community Playlink? *"
+                    placeholder="Tell us why you want to get involved."
                   ></textarea>
                 </div>
                 <div>
+                  <label class="label" for="vol-availability"
+                    >What&rsquo;s your availability?
+                    <span class="required">*</span></label
+                  >
                   <textarea
                     class="textarea"
+                    id="vol-availability"
+                    name="availability"
                     rows="5"
                     required
-                    placeholder="What's your availability? *"
+                    placeholder="Tell us when you are usually available."
                   ></textarea>
                 </div>
 
@@ -531,6 +606,11 @@
               >
                 Application submitted. Thank you for volunteering.
               </div>
+              <div
+                id="volunteer-error"
+                class="notice"
+                style="display: none; margin-top: 14px"
+              ></div>
             </article>
           </div>
         </section>
@@ -703,6 +783,8 @@
       ⌃
     </button>
 
+    <script src="assets/js/config.js" defer></script>
+    <script src="assets/js/shared/contact-form.js" defer></script>
     <script src="assets/js/shared/navigation.js" defer></script>
     <script src="assets/js/shared/testimonials.js" defer></script>
     <script src="assets/js/shared/back-to-top.js" defer></script>
