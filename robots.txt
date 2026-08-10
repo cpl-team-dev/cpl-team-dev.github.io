@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /manage/
+Disallow: /noticeboard.html
+Disallow: /services/toy-libraries/toy-library.html
+
+Sitemap: https://www.community-playlink.com/sitemap.xml

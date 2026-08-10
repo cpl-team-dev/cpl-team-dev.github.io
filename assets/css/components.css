@@ -1113,3 +1113,76 @@
   font-size: 28px;
   padding: 10px;
 }
+
+.lightbox-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  text-align: inherit;
+}
+
+.lightbox-trigger:focus-visible {
+  outline: 3px solid rgba(122, 87, 190, 0.45);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(24, 18, 41, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(92vw, 1100px);
+  max-height: calc(100vh - 40px);
+  padding: 20px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 26px 70px rgba(17, 12, 31, 0.32);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(74, 51, 113, 0.08);
+  color: var(--dark-purple);
+  font-size: 28px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-image {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 80px);
+  border-radius: 12px;
+  object-fit: contain;
+}

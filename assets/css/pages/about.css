@@ -446,9 +446,18 @@
 }
 
 .page-about .history-entry-figure img {
-  max-width: 320px;
   width: 100%;
   border-radius: 8px;
+}
+
+.page-about .oversized img {
+  max-width: 800px;
+  max-height: 570px;
+}
+
+.page-about .history-entry-figure .lightbox-trigger {
+  display: inline-block;
+  width: auto;
 }
 
 .page-about .history-entry-figure figcaption {
@@ -485,6 +494,9 @@
 }
 
 @media (max-width: 760px) {
+  .page-about .oversized img {
+    max-height: 200px;
+  }
 
   .page-about .policies-grid {
     grid-template-columns: 1fr;

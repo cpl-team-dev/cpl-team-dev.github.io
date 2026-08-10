@@ -40,8 +40,6 @@ Using a local server is recommended instead of opening files directly, because r
 
 - Many images, icons, and social/share assets are loaded from external `community-playlink.com` and `ik.imagekit.io` URLs.
 - `manage/login.html` is the only page with a real application flow: it requests and verifies login codes against configured API endpoints and stores the returned token in `sessionStorage`.
-- Some pages appear to be hand-built static pages, while others are exported or preserved from an older WordPress-based site, especially `toy-index.html`, `about/partners.html`, and `about/policies.html`.
-- There are also a few references to legacy image paths such as `../legacy/...`, so visual checks in the browser are worth doing after content changes.
 
 ## Suggested edit workflow
 
