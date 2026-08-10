@@ -247,14 +247,24 @@ fieldset.party-hire-field {
   font-size: 16px;
 }
 
+.party-hire-notice,
 .party-hire-success {
   margin-top: 20px;
   padding: 18px 20px;
   border-radius: 8px;
+  font-size: var(--ph-copy-size);
+}
+
+.party-hire-success {
   background: #edf8ed;
   border: 1px solid #d2ecd2;
   color: #2f6b2f;
-  font-size: var(--ph-copy-size);
+}
+
+.party-hire-notice-error {
+  background: #fff1ef;
+  border: 1px solid #f0c7c0;
+  color: #a13a2a;
 }
 
 .page-party-hire .footer {

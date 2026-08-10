@@ -25,15 +25,70 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (requestToysYes) requestToysYes.addEventListener("change", toggleToyList);
   if (requestToysNo) requestToysNo.addEventListener("change", toggleToyList);
+  toggleToyList();
 
-  const form = document.getElementById("party-hire-form");
-  const success = document.getElementById("party-hire-success");
+  setupContactForm({
+    formId: "party-hire-form",
+    successId: "party-hire-success",
+    errorId: "party-hire-error",
+    submitButtonText: "Submit request",
+    successMessage:
+      "Thank you-your party hire request has been noted! We'll be in touch to confirm details and availability.",
+    buildPayload(form) {
+      const formData = new FormData(form);
+      const { firstName, lastName } = splitFullName(
+        formData.get("name")?.toString() || "",
+      );
+      const messageSections = [
+        "Subject - Party hire enquiry",
+        formatExtraMessageSections([
+          {
+            title: "Address",
+            value: [
+              formData.get("address")?.toString().trim() || "",
+              formData.get("city")?.toString().trim() || "",
+              formData.get("postcode")?.toString().trim() || "",
+            ]
+              .filter(Boolean)
+              .join(", "),
+          },
+          {
+            title: "Date of collection",
+            value: formData.get("date-collect")?.toString() || "",
+          },
+          {
+            title: "Date of return",
+            value: formData.get("date-return")?.toString() || "",
+          },
+          {
+            title: "Small bags of soft play",
+            value: formData.get("soft-play-bags")?.toString() || "0",
+          },
+          {
+            title: "Large bag of soft play",
+            value: formData.get("large-bag")?.toString() || "",
+          },
+          {
+            title: "Request toys",
+            value: formData.get("request-toys")?.toString() || "",
+          },
+          {
+            title: "Toy list",
+            value: formData.get("toy-list")?.toString() || "",
+          },
+        ]),
+      ].filter(Boolean);
 
-  if (!form || !success) return;
-
-  form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    form.style.display = "none";
-    success.style.display = "block";
+      return {
+        first_name: firstName,
+        last_name: lastName,
+        organisation_id:
+          typeof ORGANISATION_ID === "string" ? ORGANISATION_ID : "",
+        email: formData.get("email")?.toString().trim() || "",
+        phone: formData.get("phone")?.toString().trim() || "",
+        enquiry_type: "Party hire enquiry",
+        message: messageSections.join("\n\n"),
+      };
+    },
   });
 });
