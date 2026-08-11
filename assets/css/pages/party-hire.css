@@ -3,43 +3,6 @@
   --ph-heading-size: clamp(30px, 1vw + 22px, 42px);
 }
 
-.page-party-hire .page-title {
-  background: #9a82c6;
-  padding: 42px 16px 44px;
-}
-
-.page-party-hire .page-title h1 {
-  color: #fff;
-  font-size: 35px;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.page-party-hire .breadcrumb {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: clamp(18px, 0.7vw + 14px, 28px);
-}
-
-.page-party-hire .breadcrumb a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.page-party-hire .breadcrumb svg {
-  width: 22px;
-  height: 22px;
-}
-
-.page-party-hire .breadcrumb-sep {
-  font-size: 1.15em;
-  line-height: 1;
-}
-
 .page-party-hire .section-pad {
   padding-top: 30px;
   padding-bottom: 48px;
@@ -267,42 +230,9 @@ fieldset.party-hire-field {
   color: #a13a2a;
 }
 
-.page-party-hire .footer {
-  background: #252525;
-  padding: 66px 0 28px;
-}
-
-.page-party-hire .footer-grid {
-  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
-  gap: 36px;
-  margin-bottom: 16px;
-}
-
-.page-party-hire .footer-links {
-  width: 100%;
-  padding: 35px 48px;
-  justify-content: center;
-  align-items: center;
-  gap: 14px 34px;
-}
-
-.page-party-hire .footer-links a {
-  color: #222329;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-}
-
-.page-party-hire .footer-copy {
-  margin: 0;
-  color: #ceced4;
-  font-size: 14px;
-}
-
 @media (max-width: 1100px) {
   .party-hire-intro-card,
-  .party-hire-pricing-grid,
-  .page-party-hire .footer-grid {
+  .party-hire-pricing-grid {
     grid-template-columns: 1fr;
   }
 
@@ -312,18 +242,6 @@ fieldset.party-hire-field {
 }
 
 @media (max-width: 760px) {
-  .page-party-hire .page-title {
-    padding: 34px 16px 36px;
-  }
-
-  .page-party-hire .page-title h1 {
-    font-size: 32px;
-  }
-
-  .page-party-hire .breadcrumb {
-    gap: 10px;
-  }
-
   .page-party-hire .section-pad {
     padding-top: 20px;
     padding-bottom: 34px;
@@ -344,19 +262,6 @@ fieldset.party-hire-field {
     width: 100%;
     justify-self: stretch;
     text-align: center;
-  }
-
-  .page-party-hire .footer {
-    padding: 30px 0 22px;
-  }
-
-  .page-party-hire .footer-links {
-    gap: 16px 24px;
-    padding: 28px 20px;
-  }
-
-  .page-party-hire .footer-links a {
-    font-size: 20px;
   }
 
 }

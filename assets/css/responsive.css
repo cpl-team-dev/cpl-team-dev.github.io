@@ -33,16 +33,16 @@
     width: calc(100% - 16px);
   }
 
-  .page-home .footer-grid {
+  .footer-grid {
     gap: 24px;
   }
 
-  .page-home .footer-links {
+  .footer-links {
     gap: 24px 34px;
     padding: 34px 30px;
   }
 
-  .page-home .footer-links a {
+  .footer-links a {
     font-size: 22px;
   }
 
@@ -119,8 +119,7 @@
     width: calc(100% - 16px);
   }
 
-  .page-home .footer {
-    border-top-width: 18px;
+  .footer {
     padding: 30px 0 22px;
   }
 
@@ -128,12 +127,12 @@
     min-height: 0;
   }
 
-  .page-home .footer-links {
+  .footer-links {
     gap: 16px 24px;
     padding: 28px 20px;
   }
 
-  .page-home .footer-links a {
+  .footer-links a {
     font-size: 20px;
   }
 
@@ -281,18 +280,19 @@
   }
 
   .page-title h1 {
-    font-size: 44px;
+    font-size: 54px;
   }
 
-  .page-title p,
-  .breadcrumb,
+  .breadcrumb {
+    gap: 8px;
+    font-size: 18px;
+  }
+
   .label,
   .input,
   .textarea,
   .form-inline,
   .hours-table td,
-  .footer-copy,
-  .footer-links a,
   .post-meta,
   .post-cats,
   .news-card p,

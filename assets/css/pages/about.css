@@ -3,43 +3,6 @@
   --about-heading-size: clamp(34px, 1.7vw + 18px, 56px);
 }
 
-.page-about .page-title {
-  background: #9a82c6;
-}
-
-.page-about .page-title h1 {
-  color: #fff;
-  font-size: 35px;
-  font-weight: 900;
-}
-
-.page-about .breadcrumb {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: clamp(18px, 0.7vw + 14px, 28px);
-}
-
-.page-about .breadcrumb a,
-.page-about .breadcrumb a:visited,
-.page-about .breadcrumb a:hover,
-.page-about .breadcrumb a:focus {
-  color: inherit;
-  text-decoration: none;
-}
-
-.page-about .breadcrumb svg {
-  width: 22px;
-  height: 22px;
-}
-
-.page-about .breadcrumb-sep {
-  font-size: 1.15em;
-  line-height: 1;
-}
-
 .page-about .section-pad {
   padding-top: 36px;
   padding-bottom: 48px;
@@ -347,37 +310,6 @@
   line-height: 1.6;
 }
 
-.page-about .footer {
-  background: #252525;
-  padding: 66px 0 28px;
-}
-.page-about .footer-grid {
-  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
-  gap: 36px;
-  margin-bottom: 16px;
-}
-
-.page-about .footer-links {
-  width: 100%;
-  padding: 35px 48px;
-  justify-content: center;
-  align-items: center;
-  gap: 14px 34px;
-}
-
-.page-about .footer-links a {
-  color: #222329;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-}
-
-.page-about .footer-copy {
-  margin: 0;
-  color: #ceced4;
-  font-size: 14px;
-}
-
 .page-about .history-timeline {
   display: flex;
   flex-direction: column;
@@ -469,26 +401,12 @@
 @media (max-width: 1100px) {
   .page-about .about-grid,
   .page-about .story-grid,
-  .page-about .partner-feature,
-  .page-about .footer-grid {
+  .page-about .partner-feature {
     grid-template-columns: 1fr;
   }
 
   .page-about .partner-feature-logo {
     min-height: 160px;
-  }
-
-  .page-about .footer-grid {
-    gap: 24px;
-  }
-
-  .page-about .footer-links {
-    gap: 24px 34px;
-    padding: 34px 30px;
-  }
-
-  .page-about .footer-links a {
-    font-size: 22px;
   }
 
 }
@@ -500,15 +418,6 @@
 
   .page-about .policies-grid {
     grid-template-columns: 1fr;
-  }
-
-  .page-about .page-title h1 {
-    font-size: 54px;
-  }
-
-  .page-about .breadcrumb {
-    gap: 8px;
-    font-size: 18px;
   }
 
   .page-about .about-copy {
@@ -611,19 +520,6 @@
   }
 
   .page-about .person-card .role {
-    font-size: 20px;
-  }
-
-  .page-about .footer {
-    padding: 30px 0 22px;
-  }
-
-  .page-about .footer-links {
-    gap: 16px 24px;
-    padding: 28px 20px;
-  }
-
-  .page-about .footer-links a {
     font-size: 20px;
   }
 

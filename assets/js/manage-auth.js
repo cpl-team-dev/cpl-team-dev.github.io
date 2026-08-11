@@ -70,6 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     statusBanner.dataset.state = state || "info";
   }
 
+  const loginWarning =
+    typeof consumeManageLoginWarning === "function" ? consumeManageLoginWarning() : "";
+  if (loginWarning) {
+    setStatus(loginWarning, "error");
+  }
+
   function setBusy(button, isBusy, idleLabel, busyLabel) {
     button.disabled = isBusy;
     button.textContent = isBusy ? busyLabel : idleLabel;

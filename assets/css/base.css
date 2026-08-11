@@ -251,23 +251,23 @@ img {
 }
 
 .page-title {
-  background: #fff;
+  background: #9a82c6;
   padding: 34px 16px;
   text-align: center;
 }
 
 .page-title h1 {
   margin: 0;
-  color: #3f3f3f;
-  font-size: 52px;
-  font-weight: 600;
+  color: #fff;
+  font-size: 35px;
+  font-weight: 900;
   letter-spacing: 0.01em;
 }
 
 .page-title p {
   margin: 10px auto 0;
-  color: #6b6b6b;
-  font-size: 26px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: clamp(17px, 0.5vw + 14px, 20px);
   max-width: 980px;
 }
 
@@ -276,9 +276,9 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  color: #8b8b8b;
-  font-size: 20px;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(18px, 0.7vw + 14px, 28px);
 }
 
 .breadcrumb a,
@@ -290,8 +290,8 @@ img {
 }
 
 .breadcrumb svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
 }
 
 .breadcrumb-sep {

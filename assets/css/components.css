@@ -513,15 +513,15 @@
 }
 
 .footer {
-  background: #27272b;
-  padding: 40px 0 20px;
+  background: #252525;
+  padding: 66px 0 28px;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.8fr 1fr;
-  gap: 22px;
-  margin-bottom: 18px;
+  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
+  gap: 36px;
+  margin-bottom: 16px;
 }
 
 .footer-card {
@@ -535,16 +535,20 @@
 
 .footer-links {
   display: flex;
+  width: 100%;
+  padding: 35px 48px;
   justify-content: center;
-  gap: 18px;
+  align-items: center;
+  gap: 14px 34px;
   flex-wrap: wrap;
 }
 
 .footer-links a {
   text-decoration: none;
-  color: #3d3d3d;
-  font-weight: 700;
-  font-size: 14px;
+  color: #222329;
+  font-weight: 500;
+  font-size: 24px;
+  letter-spacing: -0.03em;
 }
 
 .footer-links a:hover {
@@ -576,9 +580,10 @@
 }
 
 .footer-copy {
+  margin: 0;
   text-align: center;
-  color: #c8c8cf;
-  font-size: 12px;
+  color: #ceced4;
+  font-size: 14px;
 }
 
 .footer-copy a {

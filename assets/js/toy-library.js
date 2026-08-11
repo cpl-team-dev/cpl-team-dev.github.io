@@ -26,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
     startRow: 1,
     endRow: 5000,
   }).toString()}`;
+  const initialCategoryParam =
+    new URLSearchParams(window.location.search).get("category")?.trim() || "";
   const placeholderImage =
     "../../assets/images/no-image-available-icon.jpg";
   const pageSize = 48;
@@ -154,6 +156,30 @@ document.addEventListener("DOMContentLoaded", () => {
     return new Intl.NumberFormat("en-GB").format(value);
   }
 
+  function updateCategoryQueryParam(category) {
+    const url = new URL(window.location.href);
+
+    if (category && category !== "All") {
+      url.searchParams.set("category", category);
+    } else {
+      url.searchParams.delete("category");
+    }
+
+    window.history.replaceState({}, "", url);
+  }
+
+  function resolveInitialCategory() {
+    if (!initialCategoryParam) {
+      return "All";
+    }
+
+    const matchedCategory = getCategories().find(
+      (category) => category.toLowerCase() === initialCategoryParam.toLowerCase(),
+    );
+
+    return matchedCategory || "All";
+  }
+
   function pinActiveChipToLeft(activeChip, smooth = true) {
     if (!activeChip) {
       return;
@@ -188,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
       chip.addEventListener("click", () => {
         activeCategory = category;
         visibleCount = pageSize;
+        updateCategoryQueryParam(activeCategory);
         renderCategories();
         renderProducts();
       });
@@ -367,6 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const payload = await fetchPayload(endpoint);
       const normalised = normalisePayload(payload);
       allProducts = normalised.products;
+      activeCategory = resolveInitialCategory();
       visibleCount = pageSize;
 
       if (allProducts.length === 0) {
@@ -377,6 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      updateCategoryQueryParam(activeCategory);
       renderCategories();
       renderProducts();
     } catch (error) {

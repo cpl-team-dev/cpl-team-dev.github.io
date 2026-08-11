@@ -15,34 +15,3 @@
   font-size: var(--home-content-size);
   line-height: var(--home-content-line-height);
 }
-.page-home .footer {
-  background: #252525;
-  padding: 66px 0 28px;
-}
-
-.page-home .footer-grid {
-  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
-  gap: 36px;
-  margin-bottom: 16px;
-}
-
-.page-home .footer-links {
-  width: 100%;
-  padding: 35px 48px;
-  justify-content: center;
-  align-items: center;
-  gap: 14px 34px;
-}
-
-.page-home .footer-links a {
-  color: #222329;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-}
-
-.page-home .footer-copy {
-  margin: 0;
-  color: #ceced4;
-  font-size: 14px;
-}

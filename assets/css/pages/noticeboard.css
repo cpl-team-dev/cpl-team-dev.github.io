@@ -2,53 +2,6 @@
   --notice-copy-size: clamp(17px, 0.4vw + 14px, 19px);
 }
 
-.page-noticeboard .page-title {
-  background: #9a82c6;
-  padding: 42px 16px 44px;
-}
-
-.page-noticeboard .page-title h1 {
-  color: #fff;
-  font-size: 35px;
-  font-weight: 900;
-  letter-spacing: 0;
-}
-
-.page-noticeboard .page-title p {
-  margin: 10px auto 0;
-  color: rgba(255, 255, 255, 0.88);
-  font-size: clamp(17px, 0.5vw + 14px, 20px);
-}
-
-.page-noticeboard .breadcrumb {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-  margin-top: 10px;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: clamp(18px, 0.7vw + 14px, 28px);
-}
-
-.page-noticeboard .breadcrumb a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.page-noticeboard .breadcrumb a:hover {
-  text-decoration: underline;
-}
-
-.page-noticeboard .breadcrumb svg {
-  width: 22px;
-  height: 22px;
-}
-
-.page-noticeboard .breadcrumb-sep {
-  font-size: 1.15em;
-  line-height: 1;
-}
-
 .page-noticeboard .section-pad {
   padding-top: 30px;
   padding-bottom: 48px;
@@ -178,67 +131,7 @@
   margin-bottom: 0;
 }
 
-.page-noticeboard .footer {
-  background: #252525;
-  padding: 66px 0 28px;
-}
-
-.page-noticeboard .footer-grid {
-  grid-template-columns: minmax(0, 1.75fr) minmax(0, 0.92fr);
-  gap: 36px;
-  margin-bottom: 16px;
-}
-
-.page-noticeboard .footer-links {
-  width: 100%;
-  padding: 35px 48px;
-  justify-content: center;
-  align-items: center;
-  gap: 14px 34px;
-}
-
-.page-noticeboard .footer-links a {
-  color: #222329;
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.03em;
-}
-
-.page-noticeboard .footer-copy {
-  margin: 0;
-  color: #ceced4;
-  font-size: 14px;
-}
-
-@media (max-width: 1100px) {
-  .page-noticeboard .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
-  .page-noticeboard .footer-links {
-    gap: 24px 34px;
-    padding: 34px 30px;
-  }
-
-  .page-noticeboard .footer-links a {
-    font-size: 22px;
-  }
-}
-
 @media (max-width: 760px) {
-  .page-noticeboard .page-title {
-    padding: 34px 16px 36px;
-  }
-
-  .page-noticeboard .page-title h1 {
-    font-size: 32px;
-  }
-
-  .page-noticeboard .breadcrumb {
-    gap: 10px;
-  }
-
   .page-noticeboard .section-pad {
     padding-top: 20px;
     padding-bottom: 34px;
@@ -250,19 +143,6 @@
 
   .page-noticeboard .noticeboard-skeleton-image {
     height: 180px;
-  }
-
-  .page-noticeboard .footer {
-    padding: 30px 0 22px;
-  }
-
-  .page-noticeboard .footer-links {
-    gap: 16px 24px;
-    padding: 28px 20px;
-  }
-
-  .page-noticeboard .footer-links a {
-    font-size: 20px;
   }
 }
 
