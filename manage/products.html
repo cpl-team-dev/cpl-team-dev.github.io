@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage Products | Community Playlink</title>
+    <meta
+      name="description"
+      content="Create, edit and remove Community Playlink products."
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+  </head>
+  <body class="manage-page">
+    <div class="site-shell">
+      <header class="header-band">
+        <div class="container header-grid">
+          <div></div>
+          <a
+            class="brand"
+            href="../index.html"
+            aria-label="Community Playlink home"
+          >
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              style="width: 256px; height: 144px"
+              alt="Community Playlink"
+            />
+          </a>
+          <div></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section-pad manage-shell">
+          <div class="container">
+            <div class="manage-header">
+              <div>
+                <h1>Products</h1>
+                <p class="manage-account">
+                  Signed in as <strong id="account-email">…</strong>
+                </p>
+              </div>
+              <button id="logout-button" class="secondary-button" type="button">
+                Log out
+              </button>
+            </div>
+
+            <nav class="manage-subnav" aria-label="Management sections">
+              <a href="./dashboard.html">Dashboard</a>
+              <a href="./blog.html">Blog posts</a>
+              <a href="./products.html" class="is-active">Products</a>
+            </nav>
+
+            <div
+              id="status-banner"
+              class="status-banner"
+              data-state="info"
+              aria-live="polite"
+              hidden
+            ></div>
+
+            <div class="manage-card">
+              <div class="manage-toolbar">
+                <h2>All products</h2>
+                <button id="add-product-button" class="primary-button" type="button">
+                  Add product
+                </button>
+              </div>
+
+              <div class="manage-table-wrap">
+                <div
+                  id="products-loading"
+                  class="manage-loading"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  <span class="manage-spinner" aria-hidden="true"></span>
+                  <span>Loading products…</span>
+                </div>
+                <table class="manage-table manage-products-table">
+                  <thead id="products-table-head"></thead>
+                  <tbody id="products-table-body"></tbody>
+                </table>
+              </div>
+
+              <div class="action-row manage-pagination manage-table-actions">
+                <button
+                  id="previous-page-button"
+                  class="secondary-button"
+                  type="button"
+                >
+                  Previous
+                </button>
+                <p id="pagination-status" class="manage-pagination-status" aria-live="polite"></p>
+                <button id="next-page-button" class="secondary-button" type="button">
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="product-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div
+        class="manage-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-modal-title"
+      >
+        <div class="manage-modal-header">
+          <h2 id="product-modal-title">Add product</h2>
+          <button
+            class="manage-modal-close"
+            type="button"
+            data-close-modal
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div
+          id="form-status-banner"
+          class="status-banner"
+          data-state="info"
+          aria-live="polite"
+          hidden
+        ></div>
+
+        <form id="product-form" novalidate>
+          <div id="product-form-fields" class="form-grid"></div>
+          <div class="action-row">
+            <button id="product-submit-button" class="primary-button" type="submit">
+              Save product
+            </button>
+            <button class="secondary-button" type="button" data-close-modal>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="product-image-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div
+        class="manage-modal-dialog manage-image-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-image-modal-title"
+      >
+        <div class="manage-modal-header">
+          <h2 id="product-image-modal-title">Product image</h2>
+          <button
+            class="manage-modal-close"
+            type="button"
+            data-close-modal
+            aria-label="Close image preview"
+          >
+            &times;
+          </button>
+        </div>
+        <img
+          id="product-image-modal-image"
+          class="manage-product-preview-image"
+          src=""
+          alt=""
+        />
+      </div>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/manage-api.js"></script>
+    <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-products.js"></script>
+  </body>
+</html>

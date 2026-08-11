@@ -18,15 +18,7 @@
     <link rel="stylesheet" href="../assets/css/responsive.css" />
     <link rel="stylesheet" href="../assets/css/pages/login.css" />
   </head>
-  <body
-    class="login-page"
-    data-request-code-endpoint="/api/auth/request-code"
-    data-verify-code-endpoint="/api/auth/verify-code"
-    data-code-field-name="authCode"
-    data-token-field="token"
-    data-session-token-key="authToken"
-    data-success-redirect=""
-  >
+  <body class="login-page">
     <div class="site-shell">
       <div class="announce">
         <div class="container">
@@ -206,15 +198,16 @@
             <article class="login-title-card">
               <h1>Staff login</h1>
               <p>
-                Sign in with your email address to receive a one-time access
-                code.
+                Sign in with your email and password to receive a one-time
+                access code. New here? Enter the email and password you'd
+                like to use and an account will be created automatically.
               </p>
             </article>
 
             <article class="login-card" aria-label="Login form">
               <h2>Login</h2>
               <p class="login-card-intro">
-                Enter your staff email to continue.
+                Enter your staff email and password to continue.
               </p>
 
               <div
@@ -238,6 +231,22 @@
                     required
                   />
                   <p class="field-hint">We’ll email you a login code.</p>
+                </div>
+
+                <div class="field">
+                  <label for="password-input">Password</label>
+                  <input
+                    id="password-input"
+                    name="password"
+                    type="password"
+                    autocomplete="current-password"
+                    minlength="8"
+                    placeholder="At least 8 characters"
+                    required
+                  />
+                  <p class="field-hint">
+                    New here? Choose a password now to create your account.
+                  </p>
                 </div>
 
                 <div class="action-row">
@@ -358,308 +367,9 @@
     </div>
 
     <script src="../assets/js/shared/navigation.js"></script>
-    <script>
-      (function () {
-        const body = document.body;
-        const requestCodeForm = document.getElementById("request-code-form");
-        const verifyCodeForm = document.getElementById("verify-code-form");
-        const emailInput = document.getElementById("email-input");
-        const requestCodeButton = document.getElementById("request-code-button");
-        const verificationPanel = document.getElementById("verification-panel");
-        const verifyCodeButton = document.getElementById("verify-code-button");
-        const resendCodeButton = document.getElementById("resend-code-button");
-        const changeEmailButton = document.getElementById("change-email-button");
-        const sentEmail = document.getElementById("sent-email");
-        const statusBanner = document.getElementById("status-banner");
-        const codeInputs = Array.from(document.querySelectorAll(".code-digit"));
-
-        const config = {
-          requestCodeEndpoint: body.dataset.requestCodeEndpoint || "/api/auth/request-code",
-          verifyCodeEndpoint: body.dataset.verifyCodeEndpoint || "/api/auth/verify-code",
-          codeFieldName: body.dataset.codeFieldName || "authCode",
-          tokenField: body.dataset.tokenField || "token",
-          sessionTokenKey: body.dataset.sessionTokenKey || "authToken",
-          successRedirect: body.dataset.successRedirect || ""
-        };
-
-        let requestedEmail = "";
-
-        function setStatus(message, state) {
-          if (!message) {
-            statusBanner.hidden = true;
-            statusBanner.textContent = "";
-            statusBanner.dataset.state = "info";
-            return;
-          }
-
-          statusBanner.hidden = false;
-          statusBanner.textContent = message;
-          statusBanner.dataset.state = state || "info";
-        }
-
-        function setBusy(button, isBusy, idleLabel, busyLabel) {
-          button.disabled = isBusy;
-          button.textContent = isBusy ? busyLabel : idleLabel;
-        }
-
-        function showVerification(email) {
-          requestedEmail = email;
-          sentEmail.textContent = email;
-          verificationPanel.hidden = false;
-          emailInput.disabled = true;
-          requestCodeButton.disabled = true;
-          codeInputs.forEach(function (input) {
-            input.value = "";
-          });
-          codeInputs[0].focus();
-        }
-
-        function resetVerification() {
-          requestedEmail = "";
-          verificationPanel.hidden = true;
-          emailInput.disabled = false;
-          requestCodeButton.disabled = false;
-          codeInputs.forEach(function (input) {
-            input.value = "";
-          });
-          setStatus("", "info");
-          emailInput.focus();
-        }
-
-        function getCodeValue() {
-          return codeInputs.map(function (input) {
-            return input.value.trim();
-          }).join("");
-        }
-
-        function applyCodeString(code) {
-          const digits = code.replace(/\D/g, "").slice(0, codeInputs.length).split("");
-          codeInputs.forEach(function (input, index) {
-            input.value = digits[index] || "";
-          });
-
-          const nextEmptyInput = codeInputs.find(function (input) {
-            return !input.value;
-          });
-
-          (nextEmptyInput || codeInputs[codeInputs.length - 1]).focus();
-        }
-
-        async function readResponseData(response) {
-          const responseType = response.headers.get("content-type") || "";
-
-          if (!responseType.includes("application/json")) {
-            return null;
-          }
-
-          try {
-            return await response.json();
-          } catch (error) {
-            return null;
-          }
-        }
-
-        function getErrorMessage(response, payload, fallbackMessage) {
-          if (payload && typeof payload === "object") {
-            if (typeof payload.message === "string" && payload.message.trim()) {
-              return payload.message;
-            }
-
-            if (typeof payload.error === "string" && payload.error.trim()) {
-              return payload.error;
-            }
-          }
-
-          if (response && response.status === 404) {
-            return "The login service could not be reached. Check the configured API endpoint.";
-          }
-
-          return fallbackMessage;
-        }
-
-        codeInputs.forEach(function (input, index) {
-          input.addEventListener("input", function (event) {
-            const value = event.target.value.replace(/\D/g, "");
-
-            if (!value) {
-              event.target.value = "";
-              return;
-            }
-
-            event.target.value = value.charAt(value.length - 1);
-
-            if (index < codeInputs.length - 1) {
-              codeInputs[index + 1].focus();
-            }
-          });
-
-          input.addEventListener("keydown", function (event) {
-            if (event.key === "Backspace" && !event.currentTarget.value && index > 0) {
-              codeInputs[index - 1].focus();
-            }
-
-            if (event.key === "ArrowLeft" && index > 0) {
-              event.preventDefault();
-              codeInputs[index - 1].focus();
-            }
-
-            if (event.key === "ArrowRight" && index < codeInputs.length - 1) {
-              event.preventDefault();
-              codeInputs[index + 1].focus();
-            }
-          });
-
-          input.addEventListener("paste", function (event) {
-            event.preventDefault();
-            applyCodeString((event.clipboardData || window.clipboardData).getData("text"));
-          });
-        });
-
-        requestCodeForm.addEventListener("submit", async function (event) {
-          event.preventDefault();
-          setStatus("", "info");
-
-          const email = emailInput.value.trim();
-
-          if (!email || !emailInput.checkValidity()) {
-            setStatus("Enter a valid email address before requesting a code.", "error");
-            emailInput.focus();
-            return;
-          }
-
-          setBusy(requestCodeButton, true, "Send code", "Sending...");
-
-          try {
-            const response = await fetch(config.requestCodeEndpoint, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              body: JSON.stringify({ email: email })
-            });
-
-            const payload = await readResponseData(response);
-
-            if (!response.ok) {
-              throw new Error(
-                getErrorMessage(
-                  response,
-                  payload,
-                  "We could not send a code right now. Please try again."
-                )
-              );
-            }
-
-            showVerification(email);
-            setStatus("Code sent. Check your inbox and enter the six-digit number.", "success");
-          } catch (error) {
-            setStatus(
-              error instanceof Error
-                ? error.message
-                : "Something went wrong while requesting your code.",
-              "error"
-            );
-          } finally {
-            setBusy(requestCodeButton, false, "Send code", "Sending...");
-          }
-        });
-
-        verifyCodeForm.addEventListener("submit", async function (event) {
-          event.preventDefault();
-          setStatus("", "info");
-
-          const code = getCodeValue();
-
-          if (!requestedEmail) {
-            setStatus("Request a code first.", "error");
-            emailInput.focus();
-            return;
-          }
-
-          if (!/^\d{6}$/.test(code)) {
-            setStatus("Enter the full six-digit code.", "error");
-            const firstEmptyInput = codeInputs.find(function (input) {
-              return !input.value;
-            });
-            (firstEmptyInput || codeInputs[0]).focus();
-            return;
-          }
-
-          setBusy(verifyCodeButton, true, "Verify code", "Verifying...");
-
-          try {
-            const payload = {
-              email: requestedEmail
-            };
-
-            payload[config.codeFieldName] = code;
-
-            const response = await fetch(config.verifyCodeEndpoint, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-              },
-              body: JSON.stringify(payload)
-            });
-
-            const responseData = await readResponseData(response);
-
-            if (!response.ok) {
-              throw new Error(
-                getErrorMessage(
-                  response,
-                  responseData,
-                  "The code could not be verified. Please try again."
-                )
-              );
-            }
-
-            const token =
-              responseData &&
-              (responseData[config.tokenField] || responseData.authToken || responseData.token);
-
-            if (!token || typeof token !== "string") {
-              throw new Error(
-                "The login response did not include an auth token. Check the configured token field."
-              );
-            }
-
-            sessionStorage.setItem(config.sessionTokenKey, token);
-            setStatus("Login successful.", "success");
-
-            if (config.successRedirect) {
-              window.setTimeout(function () {
-                window.location.assign(config.successRedirect);
-              }, 700);
-            }
-          } catch (error) {
-            setStatus(
-              error instanceof Error
-                ? error.message
-                : "Something went wrong while verifying your code.",
-              "error"
-            );
-          } finally {
-            setBusy(verifyCodeButton, false, "Verify code", "Verifying...");
-          }
-        });
-
-        resendCodeButton.addEventListener("click", function () {
-          if (!emailInput.value.trim()) {
-            setStatus("Enter an email address before requesting a code.", "error");
-            emailInput.focus();
-            return;
-          }
-
-          requestCodeForm.requestSubmit();
-        });
-
-        changeEmailButton.addEventListener("click", function () {
-          resetVerification();
-        });
-      })();
-    </script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/manage-api.js"></script>
+    <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-auth.js"></script>
   </body>
 </html>

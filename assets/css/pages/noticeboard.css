@@ -89,6 +89,95 @@
   margin-bottom: 14px;
 }
 
+.page-noticeboard .noticeboard-skeleton-card {
+  pointer-events: none;
+}
+
+.page-noticeboard .noticeboard-skeleton-block,
+.page-noticeboard .noticeboard-skeleton-line {
+  position: relative;
+  overflow: hidden;
+  background: #ede7f7;
+}
+
+.page-noticeboard .noticeboard-skeleton-block::after,
+.page-noticeboard .noticeboard-skeleton-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.72) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: noticeboard-skeleton-shimmer 1.5s infinite;
+}
+
+.page-noticeboard .noticeboard-skeleton-image {
+  width: 100%;
+  height: 220px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.page-noticeboard .noticeboard-skeleton-line {
+  height: 14px;
+  border-radius: 999px;
+}
+
+.page-noticeboard .noticeboard-skeleton-line + .noticeboard-skeleton-line {
+  margin-top: 12px;
+}
+
+.page-noticeboard .noticeboard-skeleton-line-short {
+  width: 38%;
+}
+
+.page-noticeboard .noticeboard-skeleton-line-shorter {
+  width: 48%;
+}
+
+.page-noticeboard .noticeboard-skeleton-line-medium {
+  width: 62%;
+}
+
+.page-noticeboard .noticeboard-status {
+  padding: 24px;
+  color: #3f4e66;
+  font-size: var(--notice-copy-size);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.page-noticeboard .noticeboard-status-error {
+  color: #8b1e14;
+}
+
+.page-noticeboard .post-toggle {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.page-noticeboard .post-content {
+  margin-top: 18px;
+  color: #2c3443;
+  font-size: var(--notice-copy-size);
+  line-height: 1.7;
+}
+
+.page-noticeboard .post-content p {
+  margin: 0 0 14px;
+}
+
+.page-noticeboard .post-content p:last-child {
+  margin-bottom: 0;
+}
+
 .page-noticeboard .footer {
   background: #252525;
   padding: 66px 0 28px;
@@ -159,6 +248,10 @@
     height: 180px;
   }
 
+  .page-noticeboard .noticeboard-skeleton-image {
+    height: 180px;
+  }
+
   .page-noticeboard .footer {
     padding: 30px 0 22px;
   }
@@ -170,5 +263,11 @@
 
   .page-noticeboard .footer-links a {
     font-size: 20px;
+  }
+}
+
+@keyframes noticeboard-skeleton-shimmer {
+  100% {
+    transform: translateX(100%);
   }
 }

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage Blog Posts | Community Playlink</title>
+    <meta
+      name="description"
+      content="Create, edit and remove Community Playlink noticeboard posts."
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+  </head>
+  <body class="manage-page">
+    <div class="site-shell">
+      <header class="header-band">
+        <div class="container header-grid">
+          <div></div>
+          <a
+            class="brand"
+            href="../index.html"
+            aria-label="Community Playlink home"
+          >
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              style="width: 256px; height: 144px"
+              alt="Community Playlink"
+            />
+          </a>
+          <div></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section-pad manage-shell">
+          <div class="container">
+            <div class="manage-header">
+              <div>
+                <h1>Blog posts</h1>
+                <p class="manage-account">
+                  Signed in as <strong id="account-email">…</strong>
+                </p>
+              </div>
+              <button id="logout-button" class="secondary-button" type="button">
+                Log out
+              </button>
+            </div>
+
+            <nav class="manage-subnav" aria-label="Management sections">
+              <a href="./dashboard.html">Dashboard</a>
+              <a href="./blog.html" class="is-active">Blog posts</a>
+              <a href="./products.html">Products</a>
+            </nav>
+
+            <div
+              id="status-banner"
+              class="status-banner"
+              data-state="info"
+              aria-live="polite"
+              hidden
+            ></div>
+
+            <div class="manage-card">
+              <div class="manage-toolbar">
+                <h2>All posts</h2>
+                <button id="add-post-button" class="primary-button" type="button">
+                  Add blog post
+                </button>
+              </div>
+
+              <div class="manage-table-wrap">
+                <div
+                  id="posts-loading"
+                  class="manage-loading"
+                  role="status"
+                  aria-live="polite"
+                  hidden
+                >
+                  <span class="manage-spinner" aria-hidden="true"></span>
+                  <span>Loading blog posts…</span>
+                </div>
+                <table class="manage-table">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Status</th>
+                      <th>Tags</th>
+                      <th>Created</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="posts-table-body"></tbody>
+                </table>
+              </div>
+
+              <div class="action-row manage-table-actions">
+                <button
+                  id="load-more-button"
+                  class="secondary-button"
+                  type="button"
+                  hidden
+                >
+                  Load more
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div id="post-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div
+        class="manage-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="post-modal-title"
+      >
+        <div class="manage-modal-header">
+          <h2 id="post-modal-title">Add blog post</h2>
+          <button
+            class="manage-modal-close"
+            type="button"
+            data-close-modal
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div
+          id="form-status-banner"
+          class="status-banner"
+          data-state="info"
+          aria-live="polite"
+          hidden
+        ></div>
+
+        <form id="post-form" novalidate>
+          <div id="post-form-fields" class="form-grid"></div>
+          <div class="action-row">
+            <button id="post-submit-button" class="primary-button" type="submit">
+              Save post
+            </button>
+            <button class="secondary-button" type="button" data-close-modal>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/manage-api.js"></script>
+    <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-blog.js"></script>
+  </body>
+</html>

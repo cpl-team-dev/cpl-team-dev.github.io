@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const endpoint = `${API_BASE_URL.replace(/\/$/, "")}/product?${new URLSearchParams({
     organisation_id: ORGANISATION_ID,
+    startRow: 1,
+    endRow: 5000,
   }).toString()}`;
   const placeholderImage =
     "../../assets/images/no-image-available-icon.jpg";

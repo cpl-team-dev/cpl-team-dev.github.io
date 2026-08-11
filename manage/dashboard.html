@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Staff Dashboard | Community Playlink</title>
+    <meta
+      name="description"
+      content="Staff management dashboard for Community Playlink."
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+  </head>
+  <body class="manage-page">
+    <div class="site-shell">
+      <header class="header-band">
+        <div class="container header-grid">
+          <div></div>
+          <a
+            class="brand"
+            href="../index.html"
+            aria-label="Community Playlink home"
+          >
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              style="width: 256px; height: 144px"
+              alt="Community Playlink"
+            />
+          </a>
+          <div></div>
+        </div>
+      </header>
+
+      <main>
+        <section class="section-pad manage-shell">
+          <div class="container">
+            <div class="manage-header">
+              <div>
+                <h1>Staff dashboard</h1>
+                <p class="manage-account">
+                  Signed in as <strong id="account-email">…</strong>
+                </p>
+              </div>
+              <button id="logout-button" class="secondary-button" type="button">
+                Log out
+              </button>
+            </div>
+
+            <nav class="manage-subnav" aria-label="Management sections">
+              <a href="./dashboard.html" class="is-active">Dashboard</a>
+              <a href="./blog.html">Blog posts</a>
+              <a href="./products.html">Products</a>
+            </nav>
+
+            <div class="manage-overview">
+              <h2>What would you like to manage?</h2>
+              <p class="field-hint" style="margin-bottom: 18px">
+                Choose a section below to create, edit or remove content.
+              </p>
+              <div class="manage-link-grid">
+                <a class="card manage-link-card" href="./blog.html">
+                  <h3>Blog posts</h3>
+                  <p>Create, edit and remove noticeboard posts.</p>
+                </a>
+                <a class="card manage-link-card" href="./products.html">
+                  <h3>Products</h3>
+                  <p>Manage the toy library product catalogue.</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/manage-api.js"></script>
+    <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-dashboard.js"></script>
+  </body>
+</html>
