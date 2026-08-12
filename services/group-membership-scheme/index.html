@@ -59,32 +59,46 @@
       href="../../assets/css/pages/group-membership-scheme.css"
     />
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.community-playlink.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "Services",
-      "item": "https://www.community-playlink.com/services/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Group Membership Scheme",
-      "item": "https://www.community-playlink.com/services/group-membership-scheme/"
-    }
-  ]
-}
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.community-playlink.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://www.community-playlink.com/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Group Membership Scheme",
+            "item": "https://www.community-playlink.com/services/group-membership-scheme/"
+          }
+        ]
+      }
     </script>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-K1XNTLP2X2"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-K1XNTLP2X2");
+  </script>
   <body class="page-group-membership">
     <div class="site-shell">
       <div class="announce">
@@ -105,11 +119,7 @@
       <header class="header-band">
         <div class="container header-grid">
           <div></div>
-          <a
-            class="brand"
-            href="/"
-            aria-label="Community Playlink home"
-          >
+          <a class="brand" href="/" aria-label="Community Playlink home">
             <img
               src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
               width="2560"
@@ -262,9 +272,7 @@
               >Toy Library</a
             >
             <a class="nav-link" href="../../contact/">Contact</a>
-            <a class="nav-link nav-cta" href="../../support-us/"
-              >Support Us</a
-            >
+            <a class="nav-link nav-cta" href="../../support-us/">Support Us</a>
           </div>
         </div>
       </nav>
@@ -316,7 +324,10 @@
                 </p>
               </article>
 
-              <article class="card group-membership-price-card" id="group-membership">
+              <article
+                class="card group-membership-price-card"
+                id="group-membership"
+              >
                 <img
                   class="group-membership-price-image"
                   src="https://ik.imagekit.io/communityplaylink/website/services/toddler-groups-2.jpg"
@@ -355,8 +366,8 @@
               <h2>Full benefit details</h2>
               <p class="group-membership-benefits-intro">
                 Our Group Membership Scheme is designed to give toddler groups
-                and early years settings practical support, fresh resources,
-                and new ways to encourage play with families.
+                and early years settings practical support, fresh resources, and
+                new ways to encourage play with families.
               </p>
               <p class="group-membership-benefits-intro">
                 Across Southampton, we help groups borrow toys, plan playful
@@ -379,7 +390,9 @@
                 <article
                   class="group-membership-benefit-card group-membership-benefit-card-green"
                 >
-                  <h3>Borrow equipment and toys for use during your sessions</h3>
+                  <h3>
+                    Borrow equipment and toys for use during your sessions
+                  </h3>
                   <p>
                     It&rsquo;s a great way to refresh the toys that you have and
                     is a brilliant way to offer your families more variety. We
@@ -407,14 +420,14 @@
                   <p>
                     Here at Community Playlink we love play and want to
                     encourage as much play as possible for children. Play has
-                    proven benefits for a child including physical,
-                    educational, emotional and social development but it also
-                    has proven benefits between children and the adults around
-                    them. It builds strong, happy relationships and also makes
-                    lots of fun, lasting memories too. To help with this, we
-                    are developing a rolling programme of workshops that our
-                    members can access and offer to families during their
-                    sessions. Workshops will be highly practical and encourage
+                    proven benefits for a child including physical, educational,
+                    emotional and social development but it also has proven
+                    benefits between children and the adults around them. It
+                    builds strong, happy relationships and also makes lots of
+                    fun, lasting memories too. To help with this, we are
+                    developing a rolling programme of workshops that our members
+                    can access and offer to families during their sessions.
+                    Workshops will be highly practical and encourage
                     &lsquo;playful learning&rsquo; between children and their
                     adults.
                   </p>
@@ -465,8 +478,8 @@
                     >?</span
                   >
                   <p>
-                    If you have any concerns, anything gets broken, or pieces
-                    go missing, please
+                    If you have any concerns, anything gets broken, or pieces go
+                    missing, please
                     <a class="link-red" href="../../contact/">contact us</a>.
                   </p>
                 </div>
@@ -488,7 +501,8 @@
               <form id="group-form" class="group-form">
                 <div class="group-form-field">
                   <label class="group-form-label" for="gm-group-name"
-                    >Group Name <span class="group-form-required">*</span></label
+                    >Group Name
+                    <span class="group-form-required">*</span></label
                   >
                   <input
                     class="group-form-input"
@@ -572,8 +586,7 @@
                   </div>
                   <div class="group-form-field">
                     <label class="group-form-label" for="gm-group-country"
-                      >Country
-                      <span class="group-form-required">*</span></label
+                      >Country <span class="group-form-required">*</span></label
                     >
                     <select
                       class="group-form-input"
@@ -582,7 +595,9 @@
                       autocomplete="country-name"
                       required
                     >
-                      <option value="United Kingdom" selected>United Kingdom</option>
+                      <option value="United Kingdom" selected>
+                        United Kingdom
+                      </option>
                       <option value="Ireland">Ireland</option>
                       <option value="Australia">Australia</option>
                       <option value="Canada">Canada</option>
@@ -605,8 +620,8 @@
                     Number of children attending
                   </legend>
                   <p class="group-form-hint">
-                    Please provide us with the number of children attending
-                    your group in each age group.
+                    Please provide us with the number of children attending your
+                    group in each age group.
                   </p>
 
                   <div class="group-form-field">
@@ -667,8 +682,7 @@
                   <div class="group-form-contact" data-contact-index="1">
                     <div class="group-form-field">
                       <label class="group-form-label" for="gm-contact-name-1"
-                        >Name
-                        <span class="group-form-required">*</span></label
+                        >Name <span class="group-form-required">*</span></label
                       >
                       <input
                         class="group-form-input"
@@ -681,7 +695,9 @@
                     </div>
 
                     <div class="group-form-field">
-                      <label class="group-form-label" for="gm-contact-position-1"
+                      <label
+                        class="group-form-label"
+                        for="gm-contact-position-1"
                         >Position in Group
                         <span class="group-form-required">*</span></label
                       >
@@ -725,7 +741,9 @@
                         />
                       </div>
                       <div class="group-form-field">
-                        <label class="group-form-label" for="gm-contact-county-1"
+                        <label
+                          class="group-form-label"
+                          for="gm-contact-county-1"
                           >County</label
                         >
                         <input
@@ -756,7 +774,9 @@
                         />
                       </div>
                       <div class="group-form-field">
-                        <label class="group-form-label" for="gm-contact-country-1"
+                        <label
+                          class="group-form-label"
+                          for="gm-contact-country-1"
                           >Country
                           <span class="group-form-required">*</span></label
                         >
@@ -767,7 +787,9 @@
                           autocomplete="country-name"
                           required
                         >
-                          <option value="United Kingdom" selected>United Kingdom</option>
+                          <option value="United Kingdom" selected>
+                            United Kingdom
+                          </option>
                           <option value="Ireland">Ireland</option>
                           <option value="Australia">Australia</option>
                           <option value="Canada">Canada</option>
@@ -815,7 +837,10 @@
                       />
                     </div>
 
-                    <label class="group-form-consent" for="gm-contact-agreement-1">
+                    <label
+                      class="group-form-consent"
+                      for="gm-contact-agreement-1"
+                    >
                       <input
                         type="checkbox"
                         id="gm-contact-agreement-1"
@@ -826,20 +851,25 @@
                         <strong>Agreement</strong>
                         <span class="group-form-required">*</span><br />
                         I agree to act as guarantor and to see that reasonable
-                        care is taken care of any equipment borrowed. I agree
-                        to ensure that any items borrowed are returned within
-                        the time stated by the Toy Librarian in good and clean
-                        condition. I understand that failure to return
-                        borrowed items or damage to items may incur a charge
-                        for replacement.
+                        care is taken care of any equipment borrowed. I agree to
+                        ensure that any items borrowed are returned within the
+                        time stated by the Toy Librarian in good and clean
+                        condition. I understand that failure to return borrowed
+                        items or damage to items may incur a charge for
+                        replacement.
                         <br /><br />
                         I am aware of the basic rules of the Toy Library and
                         understand that Community Playlink cannot accept
                         responsibility for accidents that may occur during the
-                        use of equipment borrowed. I agree to follow the Toy Library
+                        use of equipment borrowed. I agree to follow the Toy
+                        Library
                         <a class="link-red" href="../../about/policies/"
                           >Policies</a
-                        > &amp; <a class="link-red" href="../../services/toy-libraries/guidelines/"
+                        >
+                        &amp;
+                        <a
+                          class="link-red"
+                          href="../../services/toy-libraries/guidelines/"
                           >Guidelines</a
                         >.
                       </span>
@@ -855,7 +885,11 @@
                   </div>
                 </div>
 
-                <button type="button" class="btn group-form-add-contact" id="group-form-add-contact">
+                <button
+                  type="button"
+                  class="btn group-form-add-contact"
+                  id="group-form-add-contact"
+                >
                   Add another contact person
                 </button>
 
@@ -870,8 +904,8 @@
                 class="group-form-success"
                 style="display: none"
               >
-                Thank you&mdash;your group membership application has been
-                sent! We&rsquo;ll be in touch to confirm the next steps.
+                Thank you&mdash;your group membership application has been sent!
+                We&rsquo;ll be in touch to confirm the next steps.
               </div>
               <div
                 id="group-form-error"
@@ -996,11 +1030,7 @@
           </div>
           <p class="footer-copy">
             © Community Playlink 2026 •
-            <a
-              href="../../manage/login.html"
-              target="_parent"
-              >Login</a
-            >
+            <a href="../../manage/login.html" target="_parent">Login</a>
           </p>
           <br />
           <p class="footer-copy">
