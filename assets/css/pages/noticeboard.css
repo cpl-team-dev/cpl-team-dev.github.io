@@ -9,7 +9,7 @@
 
 .page-noticeboard .post-card img {
   width: 100%;
-  height: 220px;
+  max-height: 500px;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 14px;
@@ -21,6 +21,13 @@
   color: var(--dark-purple);
   font-size: clamp(24px, 0.8vw + 18px, 30px);
   line-height: 1.2;
+}
+
+.page-noticeboard .post-card-targeted {
+  border: 2px solid #53903d;
+  box-shadow: 0 0 0 4px rgba(83, 144, 61, 0.18);
+  scroll-margin-top: 24px;
+  animation: noticeboard-targeted-glow 1.1s ease-out;
 }
 
 .page-noticeboard .post-meta {
@@ -149,5 +156,15 @@
 @keyframes noticeboard-skeleton-shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@keyframes noticeboard-targeted-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(83, 144, 61, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 0 4px rgba(83, 144, 61, 0.18);
   }
 }

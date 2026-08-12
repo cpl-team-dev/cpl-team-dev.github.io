@@ -21,33 +21,7 @@ function getManageSessionExpiry(session) {
 
 function getManageAccountType(session) {
   if (!session || typeof session !== "object") return "";
-
-  const directKeys = [
-    "type",
-    "account_type",
-    "accountType",
-    "user_type",
-    "userType",
-    "role",
-  ];
-
-  for (const key of directKeys) {
-    const value = session[key];
-    if (typeof value === "string" && value.trim()) {
-      return value.trim().toLowerCase();
-    }
-  }
-
-  const nestedKeys = ["user", "account", "profile", "member"];
-  for (const key of nestedKeys) {
-    const value = session[key];
-    if (!value || typeof value !== "object") continue;
-
-    const nestedType = getManageAccountType(value);
-    if (nestedType) return nestedType;
-  }
-
-  return "";
+  return typeof session.user_type === "string" ? session.user_type.trim().toLowerCase() : "";
 }
 
 function getManageSession() {

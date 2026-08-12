@@ -32,12 +32,13 @@ const PRODUCT_IMAGE_CANDIDATE_KEYS = [
 // a frontend change.
 const DEFAULT_PRODUCT_FIELDS = [
   { key: "name", label: "Name", type: "text", required: true },
-  { key: "price", label: "Price", type: "number" },
-  { key: "currency", label: "Currency", type: "text" },
 ];
 
 const IGNORED_PRODUCT_KEYS = new Set(["id", "organisation_id"]);
 const HIDDEN_PRODUCT_FORM_KEYS = new Set([
+  "price",
+  "currency",
+  "currency_symbol",
   "stock",
   "weight",
   "dimensions",
@@ -47,7 +48,9 @@ const HIDDEN_PRODUCT_FORM_KEYS = new Set([
 let session = null;
 let products = [];
 let totalProducts = 0;
+let totalProductsKnown = false;
 let currentPage = 1;
+let hasMoreProducts = false;
 let editingId = null;
 let productFields = DEFAULT_PRODUCT_FIELDS.slice();
 
@@ -146,13 +149,20 @@ async function loadProducts(pageNumber) {
     });
 
     const page = extractApiList(result);
+    const pagination = extractApiPagination(result, startRow, PRODUCT_PAGE_SIZE, page.length);
     extendFieldsFromRecords(page);
     products = page;
     currentPage = requestedPage;
-    totalProducts =
-      typeof result.count === "number" && Number.isFinite(result.count)
-        ? result.count
-        : Math.max(totalProducts, startRow + page.length - 1);
+    hasMoreProducts = pagination.hasMore;
+
+    if (typeof result.count === "number" && Number.isFinite(result.count)) {
+      totalProducts = result.count;
+      totalProductsKnown = true;
+    } else {
+      totalProducts = Math.max(0, startRow + page.length - 1);
+      totalProductsKnown = !pagination.hasMore;
+    }
+
     renderFormFields();
     renderTable();
     renderPagination();
@@ -278,9 +288,9 @@ function renderTableCell(field, product) {
   if (field.key === PRODUCT_IMAGE_COLUMN.key) {
     return renderImageCell(product);
   }
-  const value = formatValue(product[field.key]);
-  const escapedValue = escapeHtml(value);
-  return `<td class="col-${escapeHtml(field.key)}" title="${escapedValue}">${escapedValue}</td>`;
+  const content = getProductTableCellContent(field, product[field.key]);
+  const titleAttr = content.title ? ` title="${escapeHtml(content.title)}"` : "";
+  return `<td class="col-${escapeHtml(field.key)}"${titleAttr}>${content.html}</td>`;
 }
 
 function renderImageCell(product) {
@@ -305,30 +315,95 @@ function renderImageCell(product) {
   `;
 }
 
+function getProductTableCellContent(field, value) {
+  if (value === undefined || value === null || value === "") {
+    return {
+      html: '<span class="cell-muted">—</span>',
+      title: "",
+    };
+  }
+
+  const text =
+    field.key === "created_at" ? formatProductTableDate(value) : String(value);
+  const escapedText = escapeHtml(text);
+
+  if (field.key === "name") {
+    return {
+      html: `<div class="manage-cell-title">${escapedText}</div>`,
+      title: text,
+    };
+  }
+
+  if (field.key === "category") {
+    return {
+      html: `<span class="manage-cell-chip">${escapedText}</span>`,
+      title: text,
+    };
+  }
+
+  if (field.key === "created_at") {
+    return {
+      html: `<span class="manage-cell-meta">${escapedText}</span>`,
+      title: String(value),
+    };
+  }
+
+  return {
+    html: escapedText,
+    title: text,
+  };
+}
+
+function formatProductTableDate(value) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    }).format(value);
+  }
+
+  if (typeof value !== "string" && typeof value !== "number") {
+    return String(value);
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return String(value);
+  }
+
+  return new Intl.DateTimeFormat("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  }).format(date);
+}
+
 function renderPagination() {
   const previousButton = document.getElementById("previous-page-button");
   const nextButton = document.getElementById("next-page-button");
   const status = document.getElementById("pagination-status");
-  const totalPages = getTotalPages();
+  const pageStart = products.length > 0 ? (currentPage - 1) * PRODUCT_PAGE_SIZE + 1 : 0;
+  const pageEnd = products.length > 0 ? pageStart + products.length - 1 : 0;
 
   if (previousButton) previousButton.disabled = currentPage <= 1;
   if (nextButton) nextButton.disabled = !hasNextPage();
 
   if (status) {
-    if (totalProducts > 0) {
-      status.textContent = `Page ${currentPage} of ${totalPages} (${totalProducts} products)`;
-    } else {
+    if (products.length === 0) {
       status.textContent = "No products to display";
+    } else if (totalProductsKnown) {
+      status.textContent = `Showing ${pageStart}-${pageEnd} of ${totalProducts} products`;
+    } else {
+      status.textContent = hasMoreProducts
+        ? `Showing ${pageStart}-${pageEnd} products`
+        : `Showing ${pageStart}-${pageEnd} of ${pageEnd} products`;
     }
   }
 }
 
-function getTotalPages() {
-  return Math.max(1, Math.ceil(totalProducts / PRODUCT_PAGE_SIZE));
-}
-
 function hasNextPage() {
-  return currentPage < getTotalPages();
+  return hasMoreProducts;
 }
 
 function formatValue(value) {

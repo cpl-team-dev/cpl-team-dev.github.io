@@ -1,21 +1,24 @@
 const NOTICEBOARD_BLOG_PATH = "/blog";
 const NOTICEBOARD_PAGE_SIZE = 50;
+const NOTICEBOARD_TARGET_PARAM = "title";
+const NOTICEBOARD_SCROLL_OFFSET = 24;
 
 document.addEventListener("DOMContentLoaded", () => {
   const stack = document.getElementById("post-stack");
   if (!stack) return;
 
-  loadNoticeboardPosts(stack);
+  loadNoticeboardPosts(stack, getRequestedPostSlug());
 });
 
-async function loadNoticeboardPosts(stack) {
+async function loadNoticeboardPosts(stack, requestedPostSlug) {
   try {
     const posts = await fetchAllBlogPosts();
-    renderNoticeboardPosts(stack, posts);
+    renderNoticeboardPosts(stack, posts, requestedPostSlug);
   } catch (error) {
+    console.error("Failed to load noticeboard posts.", error);
     renderNoticeboardStatus(
       stack,
-      error && error.message ? error.message : "Unable to load noticeboard posts right now.",
+      "We couldn't load the latest news, please come back later and try again.",
       "error",
     );
   }
@@ -80,31 +83,24 @@ function normalisePost(post) {
   };
 }
 
-function renderNoticeboardPosts(stack, posts) {
+function renderNoticeboardPosts(stack, posts, requestedPostSlug) {
   if (!posts.length) {
     renderNoticeboardStatus(stack, "No noticeboard posts are available right now.", "empty");
     return;
   }
 
-  stack.innerHTML = posts.map(renderPostMarkup).join("");
+  stack.innerHTML = posts
+    .map((post) => renderPostMarkup(post, requestedPostSlug))
+    .join("");
 
   stack.querySelectorAll("[data-post-toggle]").forEach((button) => {
     button.addEventListener("click", () => {
       const card = button.closest(".post-card");
-      const content = card ? card.querySelector("[data-post-content]") : null;
-      const excerpt = card ? card.querySelector(".post-excerpt") : null;
-      if (!card || !content) return;
-
-      const isExpanded = button.getAttribute("aria-expanded") === "true";
-      button.setAttribute("aria-expanded", isExpanded ? "false" : "true");
-      button.textContent = isExpanded ? "Continue Reading ›" : "Show Less ›";
-      card.dataset.expanded = isExpanded ? "false" : "true";
-      content.hidden = isExpanded;
-      if (excerpt) {
-        excerpt.hidden = !isExpanded;
-      }
+      togglePostCard(card, button.getAttribute("aria-expanded") !== "true");
     });
   });
+
+  revealRequestedPost(stack, requestedPostSlug);
 }
 
 function renderNoticeboardStatus(stack, message, state) {
@@ -115,47 +111,143 @@ function renderNoticeboardStatus(stack, message, state) {
   `;
 }
 
-function renderPostMarkup(post) {
+function renderPostMarkup(post, requestedPostSlug) {
   const categories = post.tags.length ? post.tags.join(" / ") : "General";
   const categoriesAttr = post.tags.join(" ").toLowerCase();
   const showExpandableContent = hasExpandableContent(post);
+  const postSlug = createPostSlug(post.title);
+  const isRequestedPost = Boolean(requestedPostSlug && postSlug === requestedPostSlug);
   const imageMarkup = post.imageUrl
     ? `
         <img
           src="${escapeHtml(post.imageUrl)}"
           alt="${escapeHtml(post.title)}"
-          loading="lazy"
+          loading="${isRequestedPost ? "eager" : "lazy"}"
         />
       `
     : "";
+  const excerptHiddenAttr = isRequestedPost && showExpandableContent ? " hidden" : "";
+  const contentHiddenAttr = isRequestedPost ? "" : " hidden";
   const contentMarkup = showExpandableContent
     ? `
         <button
           class="link-red post-toggle"
           type="button"
           data-post-toggle
-          aria-expanded="false"
+          aria-expanded="${isRequestedPost ? "true" : "false"}"
         >
-          Continue Reading &rsaquo;
+          ${isRequestedPost ? "Show Less &rsaquo;" : "Continue Reading &rsaquo;"}
         </button>
-        <div class="post-content" data-post-content hidden>
+        <div class="post-content" data-post-content${contentHiddenAttr}>
           ${formatContent(post.content)}
         </div>
       `
     : "";
 
   return `
-    <article class="card post-card" data-categories="${escapeHtml(categoriesAttr)}" data-expanded="false">
+    <article
+      class="card post-card${isRequestedPost ? " post-card-targeted" : ""}"
+      data-categories="${escapeHtml(categoriesAttr)}"
+      data-expanded="${isRequestedPost ? "true" : "false"}"
+      data-post-slug="${escapeHtml(postSlug)}"
+    >
       ${imageMarkup}
       <h2>${escapeHtml(post.title)}</h2>
       <div class="post-meta">
         👤 Community Playlink Admin &middot; ⏱ ${escapeHtml(formatDisplayDate(post.createdAt))}
       </div>
       <div class="post-cats">📁 ${escapeHtml(categories)}</div>
-      <div class="post-excerpt">${renderInlineContent(post.excerpt)}</div>
+      <div class="post-excerpt"${excerptHiddenAttr}>${renderInlineContent(post.excerpt)}</div>
       ${contentMarkup}
     </article>
   `;
+}
+
+function revealRequestedPost(stack, requestedPostSlug) {
+  if (!requestedPostSlug) return;
+
+  const card = stack.querySelector(`[data-post-slug="${requestedPostSlug}"]`);
+  if (!card) return;
+
+  const targetButton = card.querySelector("[data-post-toggle]");
+  if (targetButton && targetButton.getAttribute("aria-expanded") !== "true") {
+    togglePostCard(card, true);
+  }
+
+  waitForCardAssets(card).finally(() => {
+    scrollPostCardIntoView(card);
+
+    window.setTimeout(() => {
+      scrollPostCardIntoView(card);
+    }, 450);
+  });
+}
+
+function togglePostCard(card, shouldExpand) {
+  const button = card ? card.querySelector("[data-post-toggle]") : null;
+  const content = card ? card.querySelector("[data-post-content]") : null;
+  const excerpt = card ? card.querySelector(".post-excerpt") : null;
+  if (!card || !button || !content) return;
+
+  button.setAttribute("aria-expanded", shouldExpand ? "true" : "false");
+  button.textContent = shouldExpand ? "Show Less ›" : "Continue Reading ›";
+  card.dataset.expanded = shouldExpand ? "true" : "false";
+  content.hidden = !shouldExpand;
+
+  if (excerpt) {
+    excerpt.hidden = shouldExpand;
+  }
+}
+
+function scrollPostCardIntoView(card) {
+  const top = card.getBoundingClientRect().top + window.scrollY - NOTICEBOARD_SCROLL_OFFSET;
+  window.scrollTo({
+    top: Math.max(top, 0),
+    behavior: "smooth",
+  });
+}
+
+function waitForCardAssets(card) {
+  const pendingImages = Array.from(card.querySelectorAll("img")).filter((image) => !image.complete);
+
+  if (!pendingImages.length) {
+    return Promise.resolve();
+  }
+
+  return Promise.race([
+    Promise.all(
+      pendingImages.map(
+        (image) =>
+          new Promise((resolve) => {
+            image.addEventListener("load", resolve, { once: true });
+            image.addEventListener("error", resolve, { once: true });
+          }),
+      ),
+    ),
+    new Promise((resolve) => {
+      window.setTimeout(resolve, 1200);
+    }),
+  ]);
+}
+
+function getRequestedPostSlug() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    return createPostSlug(params.get(NOTICEBOARD_TARGET_PARAM));
+  } catch {
+    return "";
+  }
+}
+
+function createPostSlug(value) {
+  return getTrimmedString(value)
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/&/g, " and ")
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 }
 
 function getTrimmedString(value) {
