@@ -53,38 +53,52 @@
     <link rel="stylesheet" href="../../../assets/css/responsive.css" />
     <link rel="stylesheet" href="../../../assets/css/pages/team-detail.css" />
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.community-playlink.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "About",
-      "item": "https://www.community-playlink.com/about/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Meet the Staff",
-      "item": "https://www.community-playlink.com/about/#meet-the-staff"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Jo Snape",
-      "item": "https://www.community-playlink.com/noticeboard/team-details/jo-snape/"
-    }
-  ]
-}
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.community-playlink.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://www.community-playlink.com/about/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Meet the Staff",
+            "item": "https://www.community-playlink.com/about/#meet-the-staff"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Jo Snape",
+            "item": "https://www.community-playlink.com/noticeboard/team-details/jo-snape/"
+          }
+        ]
+      }
     </script>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-K1XNTLP2X2"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-K1XNTLP2X2");
+  </script>
   <body class="page-team-detail">
     <div class="site-shell">
       <div class="announce">
@@ -105,11 +119,7 @@
       <header class="header-band">
         <div class="container header-grid">
           <div></div>
-          <a
-            class="brand"
-            href="/"
-            aria-label="Community Playlink home"
-          >
+          <a class="brand" href="/" aria-label="Community Playlink home">
             <img
               src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
               width="2560"
@@ -250,10 +260,7 @@
                 </button>
               </a>
               <div class="nav-dropdown-content">
-                <a
-                  href="../../../services/toy-libraries/"
-                  >Toy Libraries</a
-                >
+                <a href="../../../services/toy-libraries/">Toy Libraries</a>
                 <a
                   href="https://library.community-playlink.com/services/playtime/"
                   >Playtime</a
@@ -519,8 +526,6 @@
     <button id="back-top" class="back-top" type="button" title="Back to top">
       ⌃
     </button>
-
-    
 
     <script src="../../../assets/js/shared/navigation.js" defer></script>
     <script src="../../../assets/js/shared/back-to-top.js" defer></script>

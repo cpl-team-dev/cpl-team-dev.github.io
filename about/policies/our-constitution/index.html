@@ -61,38 +61,52 @@
     <link rel="stylesheet" href="../../../assets/css/responsive.css" />
     <link rel="stylesheet" href="../../../assets/css/pages/about.css" />
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": "https://www.community-playlink.com/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "About",
-      "item": "https://www.community-playlink.com/about/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 3,
-      "name": "Policies",
-      "item": "https://www.community-playlink.com/about/policies/"
-    },
-    {
-      "@type": "ListItem",
-      "position": 4,
-      "name": "Our Constitution",
-      "item": "https://www.community-playlink.com/about/policies/our-constitution/"
-    }
-  ]
-}
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.community-playlink.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://www.community-playlink.com/about/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Policies",
+            "item": "https://www.community-playlink.com/about/policies/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Our Constitution",
+            "item": "https://www.community-playlink.com/about/policies/our-constitution/"
+          }
+        ]
+      }
     </script>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-K1XNTLP2X2"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-K1XNTLP2X2");
+  </script>
   <body class="page-about">
     <div class="site-shell">
       <div class="announce">
@@ -233,13 +247,13 @@
             <a class="nav-link" href="../../../">Home</a>
             <div class="nav-dropdown" data-dropdown>
               <a href="../../../about/">
-                <button class="nav-drop-toggle" type="button">
-                  About ▾
-                </button>
+                <button class="nav-drop-toggle" type="button">About ▾</button>
               </a>
               <div class="nav-dropdown-content">
                 <a href="../../../about/#meet-the-staff">Meet the Staff</a>
-                <a href="../../../about/#meet-the-trustee-board">Meet The Trustee Board</a>
+                <a href="../../../about/#meet-the-trustee-board"
+                  >Meet The Trustee Board</a
+                >
                 <a href="../../partners/">Partners</a>
                 <a href="../../policies/">Policies</a>
               </div>
@@ -267,7 +281,9 @@
               >Toy Library</a
             >
             <a class="nav-link" href="../../../contact/">Contact</a>
-            <a class="nav-link nav-cta" href="../../../support-us/">Support Us</a>
+            <a class="nav-link nav-cta" href="../../../support-us/"
+              >Support Us</a
+            >
           </div>
         </div>
       </nav>
@@ -298,7 +314,11 @@
         <section class="section-pad constitution-section">
           <div class="container content-stack">
             <div class="constitution-viewer-shell">
-              <div class="constitution-viewer-frame" role="region" aria-label="Community Playlink constitution PDF viewer">
+              <div
+                class="constitution-viewer-frame"
+                role="region"
+                aria-label="Community Playlink constitution PDF viewer"
+              >
                 <iframe
                   class="constitution-viewer"
                   title="Community Playlink Constitution PDF"
@@ -335,7 +355,6 @@
           ></path>
         </svg>
       </div>
-      
 
       <footer class="footer">
         <div class="container">
@@ -449,11 +468,17 @@
             </div>
           </div>
           <p class="footer-copy">
-            © Community Playlink 2026 • <a href="../../../manage/login.html" target="_parent">Login</a>
+            © Community Playlink 2026 •
+            <a href="../../../manage/login.html" target="_parent">Login</a>
           </p>
           <br />
           <p class="footer-copy">
-            <a href="https://marcel-dev-acc.github.io/developer-profile/" target="_blank" rel="noopener noreferrer">Created by Marcel Mulders</a>
+            <a
+              href="https://marcel-dev-acc.github.io/developer-profile/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Created by Marcel Mulders</a
+            >
           </p>
         </div>
       </footer>
