@@ -22,6 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         phone: formData.get("phone")?.toString().trim() || "",
         enquiry_type: "General enquiry",
         message: [`Subject - ${subject}`, messageBody].filter(Boolean).join("\n\n"),
+        cf_turnstile_response:
+          formData.get("cf-turnstile-response")?.toString() || "",
       };
     },
   });

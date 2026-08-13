@@ -1,3 +1,13 @@
+function getTurnstileToken(form) {
+  return new FormData(form).get("cf-turnstile-response")?.toString() || "";
+}
+
+function resetTurnstile(container) {
+  if (window.turnstile) {
+    window.turnstile.reset(container);
+  }
+}
+
 async function postAuthJson(path, payload) {
   const response = await fetch(getApiEndpoint(path), {
     method: "POST",
@@ -92,6 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
       input.value = "";
     });
     codeInputs[0].focus();
+    // The verify-code widget sits in a hidden panel at load, so it can only
+    // start its challenge once shown-reset kicks off a fresh render/token.
+    resetTurnstile("#verify-code-turnstile");
   }
 
   function resetVerification() {
@@ -186,10 +199,12 @@ document.addEventListener("DOMContentLoaded", () => {
         organisation_id: getOrganisationId(),
         email: email,
         password: password,
+        cf_turnstile_response: getTurnstileToken(requestCodeForm),
       });
 
       showVerification(email);
       setStatus("Code sent. Check your inbox and enter the six-digit number.", "success");
+      resetTurnstile("#request-code-turnstile");
     } catch (error) {
       setStatus(
         error instanceof Error
@@ -197,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "We could not send a code right now. Please try again.",
         "error",
       );
+      resetTurnstile("#request-code-turnstile");
     } finally {
       setBusy(requestCodeButton, false, "Send code", "Sending...");
     }
@@ -228,6 +244,7 @@ document.addEventListener("DOMContentLoaded", () => {
         organisation_id: getOrganisationId(),
         email: requestedEmail,
         code: code,
+        cf_turnstile_response: getTurnstileToken(verifyCodeForm),
       });
 
       if (!result || !result.data || !getManageAuthorization(result.data)) {
@@ -247,6 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : "The code could not be verified. Please try again.",
         "error",
       );
+      resetTurnstile("#verify-code-turnstile");
     } finally {
       setBusy(verifyCodeButton, false, "Verify code", "Verifying...");
     }

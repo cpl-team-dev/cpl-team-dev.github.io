@@ -140,6 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
         phone: primary.phone || "",
         enquiry_type: "Group membership application",
         message: messageSections.join("\n\n"),
+        cf_turnstile_response:
+          formData.get("cf-turnstile-response")?.toString() || "",
       };
     },
   });
