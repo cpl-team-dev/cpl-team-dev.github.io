@@ -212,10 +212,6 @@
 
             <article class="login-card" aria-label="Login form">
               <h2>Login</h2>
-              <p class="login-card-intro">
-                Enter your staff email and password to continue.
-              </p>
-
               <div
                 id="status-banner"
                 class="status-banner"
@@ -224,53 +220,59 @@
                 hidden
               ></div>
 
-              <form id="request-code-form" novalidate>
-                <div class="field">
-                  <label for="email-input">Email address</label>
-                  <input
-                    id="email-input"
-                    name="email"
-                    type="email"
-                    autocomplete="email"
-                    inputmode="email"
-                    placeholder="name@example.com"
-                    required
-                  />
-                  <p class="field-hint">We’ll email you a login code.</p>
-                </div>
+              <div id="request-step">
+                <p class="login-card-intro">
+                  Enter your staff email and password to continue.
+                </p>
 
-                <div class="field">
-                  <label for="password-input">Password</label>
-                  <input
-                    id="password-input"
-                    name="password"
-                    type="password"
-                    autocomplete="current-password"
-                    minlength="8"
-                    placeholder="At least 8 characters"
-                    required
-                  />
-                  <p class="field-hint">
-                    New here? Choose a password now to create your account.
-                  </p>
-                </div>
+                <form id="request-code-form" novalidate>
+                  <div class="field">
+                    <label for="email-input">Email address</label>
+                    <input
+                      id="email-input"
+                      name="email"
+                      type="email"
+                      autocomplete="email"
+                      inputmode="email"
+                      placeholder="name@example.com"
+                      required
+                    />
+                    <p class="field-hint">We’ll email you a login code.</p>
+                  </div>
 
-                <div
-                  id="request-code-turnstile"
-                  class="cf-turnstile"
-                  data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
-                ></div>
+                  <div class="field">
+                    <label for="password-input">Password</label>
+                    <input
+                      id="password-input"
+                      name="password"
+                      type="password"
+                      autocomplete="current-password"
+                      minlength="8"
+                      placeholder="At least 8 characters"
+                      required
+                    />
+                    <p class="field-hint">
+                      New here? Choose a password now to create your account.
+                    </p>
+                  </div>
 
-                <div class="action-row">
-                  <button
-                    id="request-code-button"
-                    class="primary-button"
-                    type="submit"
-                  >
-                    Send code
-                  </button>
-                </div>
-              </form>
+                  <div
+                    id="request-code-turnstile"
+                    class="cf-turnstile"
+                    data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
+                  ></div>
+
+                  <div class="action-row">
+                    <button
+                      id="request-code-button"
+                      class="primary-button"
+                      type="submit"
+                    >
+                      Send code
+                    </button>
+                  </div>
+                </form>
+              </div>
 
               <section
                 id="verification-panel"

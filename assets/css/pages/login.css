@@ -176,6 +176,12 @@ body.login-page {
   border-top: 1px solid #e4daf3;
 }
 
+.login-card.is-verifying .verification-panel {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
 .verification-panel[hidden] {
   display: none;
 }

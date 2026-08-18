@@ -1,5 +1,21 @@
 const BLOG_LIST_PATH = "/blog";
 const BLOG_PAGE_SIZE = 50;
+const BLOG_TABLE_COLUMNS = [
+  { key: "title", label: "Title", filterType: "text", placeholder: "Filter title" },
+  {
+    key: "status",
+    label: "Status",
+    filterType: "select",
+    options: ["", "draft", "published"],
+  },
+  { key: "tags", label: "Tags", filterType: "text", placeholder: "Filter tags" },
+  {
+    key: "created_at",
+    label: "Created",
+    filterType: "text",
+    placeholder: "Search date",
+  },
+];
 
 // The blog Apps Script schema is still being iterated on — keep every
 // field name in this one array so a rename on the backend only needs
@@ -17,6 +33,7 @@ let session = null;
 let posts = [];
 let nextStartRow = 1;
 let editingId = null;
+let postFilters = getDefaultBlogFilters();
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -24,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   wireChrome();
   wireForm();
+  renderTableHead();
   loadPosts(true);
 });
 
@@ -63,6 +81,101 @@ function wireForm() {
   if (form) {
     form.addEventListener("submit", handleSubmit);
   }
+}
+
+function renderTableHead() {
+  const thead = document.getElementById("posts-table-head");
+  if (!thead) return;
+
+  thead.innerHTML = `
+    <tr>
+      ${BLOG_TABLE_COLUMNS.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("")}
+      <th>Actions</th>
+    </tr>
+    <tr class="manage-filter-row">
+      ${BLOG_TABLE_COLUMNS.map((column) => `<th>${renderBlogFilterControl(column)}</th>`).join("")}
+      <th class="manage-filter-actions-cell">
+        <button
+          id="clear-post-filters"
+          class="secondary-button manage-filter-reset"
+          type="button"
+        >
+          Clear
+        </button>
+      </th>
+    </tr>
+  `;
+
+  thead.querySelectorAll("[data-filter-key]").forEach((control) => {
+    const eventName = control.tagName === "SELECT" ? "change" : "input";
+    control.addEventListener(eventName, handleBlogFilterChange);
+  });
+
+  const clearButton = document.getElementById("clear-post-filters");
+  if (clearButton) {
+    clearButton.addEventListener("click", clearBlogFilters);
+  }
+}
+
+function renderBlogFilterControl(column) {
+  const value = postFilters[column.key] || "";
+  const ariaLabel = `Filter by ${column.label.toLowerCase()}`;
+
+  if (column.filterType === "select") {
+    return `
+      <select
+        class="manage-table-filter"
+        data-filter-key="${escapeHtml(column.key)}"
+        aria-label="${escapeHtml(ariaLabel)}"
+      >
+        ${column.options
+          .map((option) => {
+            const selected = option === value ? "selected" : "";
+            const label = option ? capitalize(option) : "All";
+            return `<option value="${escapeHtml(option)}" ${selected}>${escapeHtml(label)}</option>`;
+          })
+          .join("")}
+      </select>
+    `;
+  }
+
+  return `
+    <input
+      class="manage-table-filter"
+      type="text"
+      data-filter-key="${escapeHtml(column.key)}"
+      value="${escapeHtml(value)}"
+      placeholder="${escapeHtml(column.placeholder || `Filter ${column.label.toLowerCase()}`)}"
+      aria-label="${escapeHtml(ariaLabel)}"
+    />
+  `;
+}
+
+function handleBlogFilterChange(event) {
+  const key = event.target && event.target.dataset ? event.target.dataset.filterKey : "";
+  if (!key) return;
+  postFilters[key] = event.target.value.trim();
+  renderTable();
+}
+
+function clearBlogFilters() {
+  postFilters = getDefaultBlogFilters();
+
+  const thead = document.getElementById("posts-table-head");
+  if (thead) {
+    thead.querySelectorAll("[data-filter-key]").forEach((control) => {
+      control.value = "";
+    });
+  }
+
+  renderTable();
+}
+
+function getDefaultBlogFilters() {
+  return BLOG_TABLE_COLUMNS.reduce((filters, column) => {
+    filters[column.key] = "";
+    return filters;
+  }, {});
 }
 
 function renderFieldMarkup(field) {
@@ -159,13 +272,16 @@ function setPostsLoading(isLoading) {
 function renderTable() {
   const tbody = document.getElementById("posts-table-body");
   if (!tbody) return;
+  const filteredPosts = getFilteredPosts();
 
-  if (posts.length === 0) {
-    tbody.innerHTML = '<tr class="manage-empty-row"><td colspan="5">No blog posts yet.</td></tr>';
+  if (filteredPosts.length === 0) {
+    tbody.innerHTML = `<tr class="manage-empty-row"><td colspan="5">${
+      hasActiveBlogFilters() ? "No blog posts match current filters." : "No blog posts yet."
+    }</td></tr>`;
     return;
   }
 
-  tbody.innerHTML = posts
+  tbody.innerHTML = filteredPosts
     .map(
       (post) => `
         <tr data-id="${escapeHtml(post.id)}">
@@ -185,7 +301,7 @@ function renderTable() {
   tbody.querySelectorAll("button[data-action]").forEach((button) => {
     const row = button.closest("tr");
     const id = row && row.dataset.id;
-    const post = posts.find((item) => String(item.id) === id);
+    const post = filteredPosts.find((item) => String(item.id) === id);
     if (!post) return;
 
     if (button.dataset.action === "edit") {
@@ -194,6 +310,36 @@ function renderTable() {
       button.addEventListener("click", () => handleDelete(post));
     }
   });
+}
+
+function getFilteredPosts() {
+  return posts.filter((post) => matchesBlogFilters(post));
+}
+
+function matchesBlogFilters(post) {
+  return BLOG_TABLE_COLUMNS.every((column) => {
+    const filterValue = normalizeFilterValue(postFilters[column.key]);
+    if (!filterValue) return true;
+
+    if (column.key === "status") {
+      return normalizeFilterValue(post && post.status) === filterValue;
+    }
+
+    const values = [];
+    if (post && post[column.key] != null) {
+      values.push(String(post[column.key]));
+    }
+
+    if (column.key === "created_at") {
+      values.push(formatDate(post && post.created_at));
+    }
+
+    return values.some((value) => normalizeFilterValue(value).includes(filterValue));
+  });
+}
+
+function hasActiveBlogFilters() {
+  return Object.values(postFilters).some((value) => normalizeFilterValue(value));
 }
 
 function openForm(post) {
@@ -299,6 +445,10 @@ function formatDate(value) {
 
 function capitalize(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
+}
+
+function normalizeFilterValue(value) {
+  return String(value == null ? "" : value).trim().toLowerCase();
 }
 
 function escapeHtml(value) {

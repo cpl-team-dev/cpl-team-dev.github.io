@@ -69,7 +69,42 @@
 
             <div class="manage-card">
               <div class="manage-toolbar">
-                <h2>All products</h2>
+                <div class="manage-toolbar-title">
+                  <h2>All products</h2>
+                  <button
+                    id="refresh-products-button"
+                    class="manage-icon-button"
+                    type="button"
+                    aria-label="Refresh products"
+                    title="Refresh products"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path
+                        d="M20 12a8 8 0 1 1-2.34-5.66"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M20 4v6h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </button>
+                  <span
+                    id="products-last-refreshed"
+                    class="manage-refresh-timestamp"
+                    aria-live="polite"
+                  >
+                    Last refreshed: —
+                  </span>
+                </div>
                 <button id="add-product-button" class="primary-button" type="button">
                   Add product
                 </button>

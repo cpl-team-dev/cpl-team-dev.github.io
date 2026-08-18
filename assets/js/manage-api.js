@@ -122,3 +122,12 @@ function extractApiPagination(result, startRow, pageSize, pageLength) {
     nextStartRow: startRow + pageLength,
   };
 }
+
+function extractApiTotalCount(result) {
+  const paginationTotalRows = result && result.pagination && Number(result.pagination.totalRows);
+  if (Number.isFinite(paginationTotalRows)) {
+    return paginationTotalRows;
+  }
+
+  return null;
+}

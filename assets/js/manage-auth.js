@@ -35,6 +35,8 @@ async function postAuthJson(path, payload) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  const loginCard = document.querySelector(".login-card");
+  const requestStep = document.getElementById("request-step");
   const requestCodeForm = document.getElementById("request-code-form");
   const verifyCodeForm = document.getElementById("verify-code-form");
   const emailInput = document.getElementById("email-input");
@@ -49,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const codeInputs = Array.from(document.querySelectorAll(".code-digit"));
 
   if (
+    !loginCard ||
+    !requestStep ||
     !requestCodeForm ||
     !verifyCodeForm ||
     !emailInput ||
@@ -94,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
   function showVerification(email) {
     requestedEmail = email;
     sentEmail.textContent = email;
+    requestStep.hidden = true;
     verificationPanel.hidden = false;
+    loginCard.classList.add("is-verifying");
     emailInput.disabled = true;
     passwordInput.disabled = true;
     requestCodeButton.disabled = true;
@@ -109,7 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function resetVerification() {
     requestedEmail = "";
+    requestStep.hidden = false;
     verificationPanel.hidden = true;
+    loginCard.classList.remove("is-verifying");
     emailInput.disabled = false;
     passwordInput.disabled = false;
     passwordInput.value = "";
