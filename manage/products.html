@@ -216,6 +216,54 @@
       </div>
     </div>
 
+    <div id="product-delete-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div
+        class="manage-modal-dialog manage-delete-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="product-delete-modal-title"
+        aria-describedby="product-delete-modal-message"
+      >
+        <div class="manage-modal-header">
+          <h2 id="product-delete-modal-title">Delete product</h2>
+          <button
+            class="manage-modal-close"
+            type="button"
+            data-close-modal
+            aria-label="Close delete confirmation"
+          >
+            &times;
+          </button>
+        </div>
+
+        <div
+          id="product-delete-status-banner"
+          class="status-banner"
+          data-state="info"
+          aria-live="polite"
+          hidden
+        ></div>
+
+        <p id="product-delete-modal-message" class="manage-modal-copy">
+          Are you sure you want to delete this product? This action cannot be undone.
+        </p>
+
+        <div class="action-row">
+          <button
+            id="product-delete-confirm-button"
+            class="danger-button"
+            type="button"
+          >
+            Delete product
+          </button>
+          <button class="secondary-button" type="button" data-close-modal>
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/manage-api.js"></script>
     <script src="../assets/js/manage-session.js"></script>
