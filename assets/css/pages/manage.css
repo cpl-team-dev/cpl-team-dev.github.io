@@ -321,6 +321,21 @@ body.manage-page {
   font-size: 0.85rem;
 }
 
+.manage-action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0;
+}
+
+.manage-action-button svg {
+  width: 18px;
+  height: 18px;
+}
+
 .manage-table-wrap {
   position: relative;
   overflow-x: auto;
@@ -387,6 +402,12 @@ body.manage-page {
   vertical-align: top;
 }
 
+.manage-filter-panel-row th {
+  padding: 0 0 14px;
+  border-bottom: 0;
+  vertical-align: top;
+}
+
 .manage-table-filter {
   width: 100%;
   min-height: 40px;
@@ -411,6 +432,7 @@ body.manage-page {
 
 .manage-filter-reset {
   width: 100%;
+  max-width: 250px;
   min-height: 40px;
   border-radius: 12px;
 }
@@ -487,6 +509,36 @@ body.manage-page {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px 18px;
+}
+
+.manage-blog-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas:
+    "title status tags"
+    "created actions actions";
+  gap: 14px 18px;
+}
+
+.manage-blog-filter-grid .manage-products-filter-field:nth-child(1) {
+  grid-area: title;
+}
+
+.manage-blog-filter-grid .manage-products-filter-field:nth-child(2) {
+  grid-area: status;
+}
+
+.manage-blog-filter-grid .manage-products-filter-field:nth-child(3) {
+  grid-area: tags;
+}
+
+.manage-blog-filter-grid .manage-products-filter-field:nth-child(4) {
+  grid-area: created;
+}
+
+.manage-blog-filter-grid .manage-products-filter-actions {
+  grid-area: actions;
+  align-self: end;
 }
 
 .manage-products-filter-field,
@@ -714,13 +766,13 @@ body.manage-page {
 }
 
 .manage-products-table .text-button {
-  padding: 0 14px;
+  padding: 0;
   background: #f3effc;
   color: #6a4fad;
 }
 
 .manage-products-table .danger-button {
-  padding: 0 16px;
+  padding: 0;
   background: linear-gradient(180deg, #c74735 0%, #b63c2d 100%);
   box-shadow: 0 10px 20px rgba(182, 60, 45, 0.18);
 }
@@ -830,9 +882,21 @@ body.manage-page {
   .manage-products-filter-grid {
     grid-template-columns: 1fr;
   }
+
+  .manage-blog-filter-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
+  .manage-blog-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "title status"
+      "tags created"
+      "actions actions";
+  }
+
   .manage-products-table .col-created_at,
   .manage-products-table .col-currency_symbol {
     display: none;
@@ -840,6 +904,16 @@ body.manage-page {
 }
 
 @media (max-width: 720px) {
+  .manage-blog-filter-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "status"
+      "tags"
+      "created"
+      "actions";
+  }
+
   .manage-products-table .col-price,
   .manage-products-table .col-stock {
     display: none;

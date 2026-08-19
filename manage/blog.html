@@ -69,7 +69,42 @@
 
             <div class="manage-card">
               <div class="manage-toolbar">
-                <h2>All posts</h2>
+                <div class="manage-toolbar-title">
+                  <h2>All posts</h2>
+                  <button
+                    id="refresh-posts-button"
+                    class="manage-icon-button"
+                    type="button"
+                    aria-label="Refresh blog posts"
+                    title="Refresh blog posts"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                      <path
+                        d="M20 12a8 8 0 1 1-2.34-5.66"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                      <path
+                        d="M20 4v6h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                      />
+                    </svg>
+                  </button>
+                  <span
+                    id="posts-last-refreshed"
+                    class="manage-refresh-timestamp"
+                    aria-live="polite"
+                  >
+                    Last refreshed: —
+                  </span>
+                </div>
                 <button id="add-post-button" class="primary-button" type="button">
                   Add blog post
                 </button>
@@ -92,14 +127,17 @@
                 </table>
               </div>
 
-              <div class="action-row manage-table-actions">
+              <div class="action-row manage-pagination manage-table-actions">
                 <button
-                  id="load-more-button"
+                  id="previous-page-button"
                   class="secondary-button"
                   type="button"
-                  hidden
                 >
-                  Load more
+                  Previous
+                </button>
+                <p id="pagination-status" class="manage-pagination-status" aria-live="polite"></p>
+                <button id="next-page-button" class="secondary-button" type="button">
+                  Next
                 </button>
               </div>
             </div>

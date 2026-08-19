@@ -375,8 +375,8 @@ function renderTableBody(tbody, tableFields, filteredProducts) {
             .map((field) => renderTableCell(field, product))
             .join("")}
           <td class="row-actions">
-            <button class="text-button" type="button" data-action="edit">Edit</button>
-            <button class="danger-button" type="button" data-action="delete">Delete</button>
+            ${renderManageActionButton("edit", "Edit product")}
+            ${renderManageActionButton("delete", "Delete product")}
           </td>
         </tr>
       `,
@@ -797,6 +797,85 @@ function renderImageCell(product) {
   `;
 }
 
+function renderManageActionButton(action, label) {
+  const className = action === "delete" ? "danger-button" : "text-button";
+  const icon = action === "delete" ? getTrashIconMarkup() : getPencilIconMarkup();
+
+  return `
+    <button
+      class="${className} manage-action-button"
+      type="button"
+      data-action="${escapeHtml(action)}"
+      aria-label="${escapeHtml(label)}"
+      title="${escapeHtml(label)}"
+    >
+      ${icon}
+    </button>
+  `;
+}
+
+function getPencilIconMarkup() {
+  return `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M12 20h9"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+      <path
+        d="M16.5 3.5a2.12 2.12 0 1 1 3 3L7 19l-4 1 1-4Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+    </svg>
+  `;
+}
+
+function getTrashIconMarkup() {
+  return `
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path
+        d="M3 6h18"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+      <path
+        d="M8 6V4h8v2"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+      <path
+        d="M19 6l-1 14H6L5 6"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+      <path
+        d="M10 11v6M14 11v6"
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      />
+    </svg>
+  `;
+}
+
 function getProductTableCellContent(field, value) {
   if (value === undefined || value === null || value === "") {
     return {
@@ -839,8 +918,8 @@ function getProductTableCellContent(field, value) {
 function formatProductTableDate(value) {
   if (value instanceof Date && !Number.isNaN(value.getTime())) {
     return new Intl.DateTimeFormat("en-GB", {
-      day: "numeric",
-      month: "short",
+      day: "2-digit",
+      month: "2-digit",
       year: "numeric",
     }).format(value);
   }
@@ -855,8 +934,8 @@ function formatProductTableDate(value) {
   }
 
   return new Intl.DateTimeFormat("en-GB", {
-    day: "numeric",
-    month: "short",
+    day: "2-digit",
+    month: "2-digit",
     year: "numeric",
   }).format(date);
 }
