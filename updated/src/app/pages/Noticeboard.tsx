@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { User, Clock, Folder, Tag, ArrowRight } from "lucide-react";
 import { C } from "../shared";
-import logoImg from "@/imports/Community-Playlink-Logo-Retina-scaled.webp";
 
 const DISPLAY = "'Bricolage Grotesque', 'Inter', sans-serif";
 const BODY    = "'Inter', sans-serif";
@@ -88,7 +87,7 @@ function GoFundMeEmbed() {
       style={{ background: "#fff", boxShadow: "0 2px 12px rgba(0,0,0,0.06)" }}>
       <div className="flex flex-col sm:flex-row">
         <div className="sm:w-44 bg-gray-50 p-5 flex flex-col items-center gap-3 border-b sm:border-b-0 sm:border-r border-gray-100">
-          <img src={logoImg} alt="Community Playlink" className="w-28 object-contain" />
+          <img src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp" alt="Community Playlink" className="w-28 object-contain" />
           <div className="text-center">
             <p className="text-xs text-gray-400">Gregory Perry for</p>
             <p className="text-xs font-bold uppercase tracking-wide text-gray-700">Community Playlink</p>

@@ -16,7 +16,6 @@ import {
   X,
   ArrowRight,
 } from "lucide-react";
-import logoImg from "@/imports/Community-Playlink-Logo-Retina-scaled.webp";
 
 /* ─── brand colours ─── */
 export const C = {
@@ -190,7 +189,7 @@ function MobileMenu({ open: isOpen, onClose }: { open: boolean; onClose: () => v
             borderBottom: "1px solid rgba(255,255,255,0.12)",
           }}>
           <Link to="/" onClick={onClose}>
-            <img src={logoImg} alt="Community Playlink" className="h-12 w-auto object-contain"/>
+            <img src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp" alt="Community Playlink" className="h-12 w-auto object-contain"/>
           </Link>
           <button onClick={onClose}
             className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors hover:bg-white/10"
@@ -438,7 +437,7 @@ export function SiteHeader() {
       <header style={{ background: "#7a57be" }} className="px-6 py-2 flex justify-center">
         <Link to="/">
           <img
-            src={logoImg}
+            src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
             alt="Community Playlink"
             className="h-36 w-auto object-contain"
           />
