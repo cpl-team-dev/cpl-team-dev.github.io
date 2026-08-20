@@ -7,11 +7,41 @@ function getOrganisationId() {
   return typeof ORGANISATION_ID === "string" ? ORGANISATION_ID : "";
 }
 
+function isManageInterfaceRequest() {
+  const pathname = window.location && typeof window.location.pathname === "string"
+    ? window.location.pathname
+    : "";
+  return /\/manage(\/|$)/.test(pathname);
+}
+
+function handleManageUnauthorizedResponse(response) {
+  if (!response || response.status !== 401 || !isManageInterfaceRequest()) {
+    return false;
+  }
+
+  const expiredSessionMessage = "Your session has expired";
+
+  if (typeof setManageLoginWarning === "function") {
+    setManageLoginWarning(expiredSessionMessage);
+  }
+
+  if (typeof clearManageSession === "function") {
+    clearManageSession();
+  }
+
+  window.location.href = "./login.html";
+  return true;
+}
+
 async function parseManageApiResponse(response) {
   const contentType = response.headers.get("content-type") || "";
   const result = contentType.includes("application/json")
     ? await response.json().catch(() => null)
     : null;
+
+  if (handleManageUnauthorizedResponse(response)) {
+    throw new Error("Your session has expired");
+  }
 
   if (!response.ok || !result || result.ok === false) {
     const message =

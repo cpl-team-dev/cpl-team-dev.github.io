@@ -468,7 +468,7 @@ function renderProductFilterPanel(tableFields) {
           .map(
             (field) => `
               <div class="manage-products-filter-field">
-                <span class="manage-products-filter-label">${escapeHtml(field.label)}</span>
+                <span class="manage-products-filter-label">${escapeHtml(getProductDisplayLabel(field))}</span>
                 ${renderProductFilterControl(field)}
               </div>
             `,
@@ -487,6 +487,10 @@ function renderProductFilterPanel(tableFields) {
       </div>
     </div>
   `;
+}
+
+function getProductDisplayLabel(field) {
+  return field.key === "created_at" ? "Modified At" : field.label;
 }
 
 function renderProductFilterControl(field) {
