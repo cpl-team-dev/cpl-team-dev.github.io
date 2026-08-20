@@ -112,6 +112,36 @@
   .nav-cta {
     margin-left: 0;
   }
+
+  .quote-stage {
+    padding: 40px 28px 0;
+  }
+
+  .quote-mark {
+    left: 0;
+    font-size: 112px;
+  }
+
+  .offer-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .offer-title {
+    font-size: 56px;
+  }
+
+  .offer-link {
+    font-size: 20px;
+  }
+
+  .offer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .offer-card {
+    min-height: 500px;
+  }
 }
 
 @media (max-width: 760px) {
@@ -230,6 +260,119 @@
   .join-socials {
     gap: 12px;
     margin-top: 34px;
+  }
+
+  .offer-section {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .offer-header {
+    margin-bottom: 28px;
+  }
+
+  .offer-kicker {
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .offer-title {
+    font-size: 44px;
+  }
+
+  .offer-link {
+    font-size: 18px;
+  }
+
+  .offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .offer-card {
+    min-height: 420px;
+    border-radius: 22px;
+  }
+
+  .offer-card-content {
+    padding: 22px 22px 24px;
+  }
+
+  .offer-card-category {
+    font-size: 13px;
+  }
+
+  .offer-card-title {
+    font-size: 18px;
+  }
+
+  .offer-card-body {
+    font-size: 13px;
+  }
+
+  .offer-card-cta {
+    font-size: 13px;
+  }
+
+  .quote-section {
+    padding: 66px 0 74px;
+  }
+
+  .quote-kicker {
+    margin-bottom: 28px;
+    font-size: 13px;
+  }
+
+  .quote-stage {
+    padding: 26px 0 0;
+  }
+
+  .quote-mark {
+    top: -8px;
+    left: 6px;
+    font-size: 78px;
+  }
+
+  .quote-slide {
+    gap: 28px;
+    padding: 0 10px;
+  }
+
+  .quote-slide blockquote {
+    line-height: 1.45;
+  }
+
+  .quote-slide cite {
+    font-size: 18px;
+  }
+
+  .quote-controls {
+    gap: 14px;
+    margin-top: 34px;
+  }
+
+  .quote-arrow {
+    width: 52px;
+    height: 52px;
+    border-width: 2px;
+  }
+
+  .quote-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .quote-dots {
+    gap: 10px;
+  }
+
+  .quote-dot {
+    width: 12px;
+    height: 12px;
+  }
+
+  .quote-dot.active {
+    width: 32px;
+    height: 12px;
   }
 
   .join-map {

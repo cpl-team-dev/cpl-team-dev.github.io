@@ -4,8 +4,6 @@
 }
 
 .page-home .hero-copy p,
-.page-home .service-card p,
-.page-home .service-card .cta-link,
 .page-home .split-copy h3,
 .page-home .split-copy p,
 .page-home .join-copy p,
@@ -14,4 +12,10 @@
 .page-home .contact-item {
   font-size: var(--home-content-size);
   line-height: var(--home-content-line-height);
+}
+
+.page-home .offer-card-body,
+.page-home .offer-card-cta {
+  font-size: 14px;
+  line-height: 1.55;
 }

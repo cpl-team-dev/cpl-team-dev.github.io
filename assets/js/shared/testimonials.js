@@ -1,17 +1,34 @@
 document.addEventListener("DOMContentLoaded", () => {
   const track = document.getElementById("testimonial-track");
   const dotsEl = document.getElementById("testimonial-dots");
+  const prev = document.getElementById("testimonial-prev");
+  const next = document.getElementById("testimonial-next");
 
-  if (!track || !dotsEl) return;
+  if (!track || !dotsEl || !prev || !next) return;
 
   const testimonials = [
-    "The toy library is an invaluable resource for the local community providing accessible toys of all sorts to everyone.",
-    "The toy library is the best thing about Southampton. We love the community there that the toy library creates and think the staff they do a brilliant job.",
-    "Such a wonderful service. The staff are kind, and there is always something new for our children to enjoy.",
-    "Community Playlink has been a lifeline for our family and has helped us through some really difficult periods.",
-    "Amazing charity doing incredible work for families in Southampton. Highly recommended."
+    {
+      quote: "The toy library is an invaluable resource for the local community providing accessible toys of all sorts to everyone.",
+      author: "Parent member"
+    },
+    {
+      quote: "The toy library is the best thing about Southampton. We love the community there that the toy library creates and think the staff they do a brilliant job.",
+      author: "Regular visitor"
+    },
+    {
+      quote: "Such a wonderful service. The staff are kind, and there is always something new for our children to enjoy.",
+      author: "Family member"
+    },
+    {
+      quote: "Community Playlink has been a lifeline for our family and has helped us through some really difficult periods.",
+      author: "Toddler group parent"
+    },
+    {
+      quote: "Amazing charity doing incredible work for families in Southampton. Highly recommended.",
+      author: "Long-term member"
+    }
   ];
-  const autoAdvanceMs = 3000;
+  const autoAdvanceMs = 5000;
 
   let idx = 0;
   let autoAdvanceId = null;
@@ -29,7 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderDots() {
-    const activeIndex = ((idx % testimonials.length) + testimonials.length) % testimonials.length;
+    const activeIndex =
+      ((idx % testimonials.length) + testimonials.length) % testimonials.length;
 
     dotsEl.innerHTML = testimonials
       .map(
@@ -69,7 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   track.innerHTML = loopedTestimonials
-    .map((testimonial) => `<div class="quote-slide"><p>${testimonial}</p></div>`)
+    .map(
+      (testimonial) => `
+        <article class="quote-slide">
+          <blockquote>&ldquo;${testimonial.quote}&rdquo;</blockquote>
+          <cite>&mdash; ${testimonial.author}</cite>
+        </article>
+      `
+    )
     .join("");
 
   track.addEventListener("transitionend", () => {
@@ -85,6 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     isAnimating = false;
     renderDots();
+  });
+
+  prev.addEventListener("click", () => {
+    goTo(idx - 1);
+    restartAutoAdvance();
+  });
+
+  next.addEventListener("click", () => {
+    goTo(idx + 1);
+    restartAutoAdvance();
   });
 
   updateTrack(false);
