@@ -475,7 +475,6 @@ function renderProductFilterPanel(tableFields) {
           )
           .join("")}
         <div class="manage-products-filter-actions">
-          <span class="manage-products-filter-label">Filters</span>
           <button
             id="clear-product-filters"
             class="secondary-button manage-filter-reset"

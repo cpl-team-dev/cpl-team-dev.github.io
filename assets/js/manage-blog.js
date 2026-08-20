@@ -280,7 +280,6 @@ function renderBlogFilterPanel() {
           `,
         ).join("")}
         <div class="manage-products-filter-actions">
-          <span class="manage-products-filter-label">Actions</span>
           <button
             id="clear-post-filters"
             class="secondary-button manage-filter-reset"
