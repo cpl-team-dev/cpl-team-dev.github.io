@@ -63,6 +63,23 @@ const PRODUCT_FILTER_DEBOUNCE_MS = 500;
 const PRODUCT_PAGE_SIZE = 50;
 let currentProductPage = 1;
 
+function getTurnstileToken(container) {
+  if (!container) return "";
+
+  if (container instanceof HTMLFormElement) {
+    return new FormData(container).get("cf-turnstile-response")?.toString() || "";
+  }
+
+  const input = container.querySelector('[name="cf-turnstile-response"]');
+  return input ? input.value?.toString() || "" : "";
+}
+
+function resetTurnstile(container) {
+  if (window.turnstile) {
+    window.turnstile.reset(container);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
   if (!session) return;
@@ -1015,6 +1032,7 @@ function openForm(product) {
   setStatus(document.getElementById("form-status-banner"), "", "info");
 
   showModal(modal);
+  resetTurnstile("#product-form-turnstile");
 }
 
 function closeForm() {
@@ -1048,8 +1066,15 @@ async function handleSubmit(event) {
 
   try {
     const body = editingId
-      ? { subMethodType: "PUT", record: Object.assign({ id: editingId }, record) }
-      : { record: record };
+      ? {
+          subMethodType: "PUT",
+          record: Object.assign({ id: editingId }, record),
+          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+        }
+      : {
+          record: record,
+          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+        };
 
     await manageApiPost(PRODUCT_LIST_PATH, body, session);
     closeForm();
@@ -1057,6 +1082,7 @@ async function handleSubmit(event) {
     setStatus(document.getElementById("status-banner"), "Product saved.", "success");
   } catch (error) {
     setStatus(statusBanner, error.message || "Unable to save product.", "error");
+    resetTurnstile("#product-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
@@ -1076,6 +1102,7 @@ function handleDelete(product) {
   setStatus(document.getElementById("product-delete-status-banner"), "", "info");
   setDeletePendingState(false);
   showModal(modal);
+  resetTurnstile("#product-delete-turnstile");
 }
 
 async function handleDeleteConfirm() {
@@ -1089,7 +1116,13 @@ async function handleDeleteConfirm() {
   try {
     await manageApiPost(
       PRODUCT_LIST_PATH,
-      { subMethodType: "DELETE", id: deleteTargetProduct.id },
+      {
+        subMethodType: "DELETE",
+        id: deleteTargetProduct.id,
+        cf_turnstile_response: getTurnstileToken(
+          document.getElementById("product-delete-modal"),
+        ),
+      },
       session,
     );
     setDeletePendingState(false);
@@ -1099,6 +1132,7 @@ async function handleDeleteConfirm() {
   } catch (error) {
     setStatus(modalStatusBanner, error.message || "Unable to delete product.", "error");
     setStatus(statusBanner, error.message || "Unable to delete product.", "error");
+    resetTurnstile("#product-delete-turnstile");
   } finally {
     setDeletePendingState(false);
   }

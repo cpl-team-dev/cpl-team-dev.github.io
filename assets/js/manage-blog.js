@@ -30,9 +30,28 @@ const BLOG_FIELDS = [
 let session = null;
 let posts = [];
 let editingId = null;
+let deleteTargetPost = null;
+let isDeletePending = false;
 let currentBlogPage = 1;
 let postFilters = getDefaultBlogFilters();
 let blogFilterDebounceTimer = null;
+
+function getTurnstileToken(container) {
+  if (!container) return "";
+
+  if (container instanceof HTMLFormElement) {
+    return new FormData(container).get("cf-turnstile-response")?.toString() || "";
+  }
+
+  const input = container.querySelector('[name="cf-turnstile-response"]');
+  return input ? input.value?.toString() || "" : "";
+}
+
+function resetTurnstile(container) {
+  if (window.turnstile) {
+    window.turnstile.reset(container);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -92,6 +111,11 @@ function wireChrome() {
       if (modal) closeModal(modal);
     });
   });
+
+  const deleteConfirmButton = document.getElementById("post-delete-confirm-button");
+  if (deleteConfirmButton) {
+    deleteConfirmButton.addEventListener("click", handleDeleteConfirm);
+  }
 
   document.addEventListener("keydown", (event) => {
     if (event.key !== "Escape") return;
@@ -696,6 +720,7 @@ function openForm(post) {
 
   setStatus(document.getElementById("form-status-banner"), "", "info");
   showModal(modal);
+  resetTurnstile("#post-form-turnstile");
 }
 
 function closeForm() {
@@ -723,8 +748,20 @@ async function handleSubmit(event) {
 
   try {
     const body = editingId
-      ? Object.assign({ subMethodType: "PUT", id: editingId }, record)
-      : record;
+      ? Object.assign(
+          {
+            subMethodType: "PUT",
+            id: editingId,
+            cf_turnstile_response: getTurnstileToken(event.currentTarget),
+          },
+          record,
+        )
+      : Object.assign(
+          {
+            cf_turnstile_response: getTurnstileToken(event.currentTarget),
+          },
+          record,
+        );
 
     await manageApiPost(BLOG_LIST_PATH, body, session);
     closeForm();
@@ -732,22 +769,57 @@ async function handleSubmit(event) {
     setStatus(document.getElementById("status-banner"), "Blog post saved.", "success");
   } catch (error) {
     setStatus(statusBanner, error.message || "Unable to save blog post.", "error");
+    resetTurnstile("#post-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
 }
 
-async function handleDelete(post) {
-  if (!window.confirm(`Delete "${post.title}"? This cannot be undone.`)) return;
+function handleDelete(post) {
+  deleteTargetPost = post || null;
+
+  const modal = document.getElementById("post-delete-modal");
+  const message = document.getElementById("post-delete-modal-message");
+  if (message) {
+    message.textContent = `Are you sure you want to delete ${getPostDeleteLabel(
+      post,
+    )}? This action cannot be undone.`;
+  }
+
+  setStatus(document.getElementById("post-delete-status-banner"), "", "info");
+  setDeletePendingState(false);
+  showModal(modal);
+  resetTurnstile("#post-delete-turnstile");
+}
+
+async function handleDeleteConfirm() {
+  if (!deleteTargetPost || isDeletePending) return;
 
   const statusBanner = document.getElementById("status-banner");
+  const modalStatusBanner = document.getElementById("post-delete-status-banner");
+  setStatus(modalStatusBanner, "", "info");
+  setDeletePendingState(true);
 
   try {
-    await manageApiPost(BLOG_LIST_PATH, { subMethodType: "DELETE", id: post.id }, session);
+    await manageApiPost(
+      BLOG_LIST_PATH,
+      {
+        subMethodType: "DELETE",
+        id: deleteTargetPost.id,
+        cf_turnstile_response: getTurnstileToken(document.getElementById("post-delete-modal")),
+      },
+      session,
+    );
+    setDeletePendingState(false);
+    closeModal(document.getElementById("post-delete-modal"));
     await loadPosts({ resetView: false });
     setStatus(statusBanner, "Blog post deleted.", "success");
   } catch (error) {
+    setStatus(modalStatusBanner, error.message || "Unable to delete blog post.", "error");
     setStatus(statusBanner, error.message || "Unable to delete blog post.", "error");
+    resetTurnstile("#post-delete-turnstile");
+  } finally {
+    setDeletePendingState(false);
   }
 }
 
@@ -758,10 +830,17 @@ function showModal(modal) {
 
 function closeModal(modal) {
   if (!modal) return;
+  if (modal.id === "post-delete-modal" && isDeletePending) return;
   modal.hidden = true;
 
   if (modal.id === "post-modal") {
     editingId = null;
+  }
+
+  if (modal.id === "post-delete-modal") {
+    deleteTargetPost = null;
+    setDeletePendingState(false);
+    setStatus(document.getElementById("post-delete-status-banner"), "", "info");
   }
 }
 
@@ -793,6 +872,11 @@ function capitalize(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);
 }
 
+function getPostDeleteLabel(post) {
+  const label = post && (post.title || post.id);
+  return `"${label || "this blog post"}"`;
+}
+
 function normalizeFilterValue(value) {
   return String(value == null ? "" : value).trim().toLowerCase();
 }
@@ -801,4 +885,24 @@ function escapeHtml(value) {
   return String(value == null ? "" : value).replace(/[&<>"']/g, (char) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char],
   );
+}
+
+function setDeletePendingState(isPending) {
+  isDeletePending = Boolean(isPending);
+
+  const modal = document.getElementById("post-delete-modal");
+  const confirmButton = document.getElementById("post-delete-confirm-button");
+  if (confirmButton) {
+    confirmButton.disabled = isDeletePending;
+    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete post";
+  }
+
+  if (!modal) return;
+
+  modal.setAttribute("aria-busy", isDeletePending ? "true" : "false");
+  modal.querySelectorAll("[data-close-modal]").forEach((control) => {
+    if ("disabled" in control) {
+      control.disabled = isDeletePending;
+    }
+  });
 }

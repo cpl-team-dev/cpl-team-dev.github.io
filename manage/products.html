@@ -17,6 +17,12 @@
     <link rel="stylesheet" href="../assets/css/components.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css" />
     <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
   </head>
   <body class="manage-page">
     <div class="site-shell">
@@ -176,6 +182,11 @@
 
         <form id="product-form" novalidate>
           <div id="product-form-fields" class="form-grid"></div>
+          <div
+            id="product-form-turnstile"
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
+          ></div>
           <div class="action-row">
             <button id="product-submit-button" class="primary-button" type="submit">
               Save product
@@ -248,6 +259,12 @@
         <p id="product-delete-modal-message" class="manage-modal-copy">
           Are you sure you want to delete this product? This action cannot be undone.
         </p>
+
+        <div
+          id="product-delete-turnstile"
+          class="cf-turnstile"
+          data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
+        ></div>
 
         <div class="action-row">
           <button
