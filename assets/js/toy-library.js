@@ -263,6 +263,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const name = document.createElement("h3");
     name.textContent = product.name;
 
+    const barcode = document.createElement("p");
+    barcode.className = "toy-library-card-code";
+    barcode.textContent = `Barcode: ${product.sku}`;
+
     const link = document.createElement("a");
     link.className = "toy-library-card-link";
     link.href = `mailto:CPLTeam@community-playlink.com?subject=${encodeURIComponent(
@@ -289,7 +293,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    copy.append(category, name, link);
+    if (product.sku) {
+      copy.append(category, name, barcode, link);
+    } else {
+      copy.append(category, name, link);
+    }
     article.append(media, copy);
 
     return article;
@@ -356,6 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
           imageUrl:
             typeof record.image_url === "string" && record.image_url.trim()
               ? record.image_url.trim()
+              : "",
+          sku:
+            typeof record.sku === "string" || typeof record.sku === "number"
+              ? String(record.sku).trim()
               : "",
         }))
         .filter((product) => product.name)

@@ -825,6 +825,10 @@ body.manage-page {
   width: min(92vw, 860px);
 }
 
+.manage-delete-modal-dialog {
+  width: min(92vw, 520px);
+}
+
 .manage-modal-header {
   display: flex;
   align-items: flex-start;
@@ -855,6 +859,13 @@ body.manage-page {
   border-radius: 18px;
   background: #f4f2fa;
   object-fit: contain;
+}
+
+.manage-modal-copy {
+  margin: 0 0 18px;
+  color: #5f5870;
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 @media (max-width: 640px) {

@@ -4,6 +4,7 @@ const PRODUCT_SESSION_STORAGE_REFRESHED_AT_KEY = "manage-products-cache-refreshe
 const PRODUCT_IMAGE_COLUMN = { key: "image_preview", label: "Image" };
 const PRODUCT_TABLE_FIELD_KEYS = [
   "name",
+  "sku",
   "category",
   "created_at",
 ];
@@ -33,6 +34,7 @@ const PRODUCT_IMAGE_CANDIDATE_KEYS = [
 // a frontend change.
 const DEFAULT_PRODUCT_FIELDS = [
   { key: "name", label: "Name", type: "text", required: true },
+  { key: "sku", label: "Barcode", type: "text" },
 ];
 
 const IGNORED_PRODUCT_KEYS = new Set(["id", "organisation_id"]);
@@ -52,12 +54,31 @@ let products = [];
 let totalProducts = 0;
 let totalProductsKnown = false;
 let editingId = null;
+let deleteTargetProduct = null;
+let isDeletePending = false;
 let productFields = DEFAULT_PRODUCT_FIELDS.slice();
 let productFilters = {};
 let productFilterDebounceTimer = null;
 const PRODUCT_FILTER_DEBOUNCE_MS = 500;
 const PRODUCT_PAGE_SIZE = 50;
 let currentProductPage = 1;
+
+function getTurnstileToken(container) {
+  if (!container) return "";
+
+  if (container instanceof HTMLFormElement) {
+    return new FormData(container).get("cf-turnstile-response")?.toString() || "";
+  }
+
+  const input = container.querySelector('[name="cf-turnstile-response"]');
+  return input ? input.value?.toString() || "" : "";
+}
+
+function resetTurnstile(container) {
+  if (window.turnstile) {
+    window.turnstile.reset(container);
+  }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -118,6 +139,11 @@ function wireChrome() {
   const form = document.getElementById("product-form");
   if (form) {
     form.addEventListener("submit", handleSubmit);
+  }
+
+  const deleteConfirmButton = document.getElementById("product-delete-confirm-button");
+  if (deleteConfirmButton) {
+    deleteConfirmButton.addEventListener("click", handleDeleteConfirm);
   }
 
   document.addEventListener("keydown", (event) => {
@@ -442,14 +468,13 @@ function renderProductFilterPanel(tableFields) {
           .map(
             (field) => `
               <div class="manage-products-filter-field">
-                <span class="manage-products-filter-label">${escapeHtml(field.label)}</span>
+                <span class="manage-products-filter-label">${escapeHtml(getProductDisplayLabel(field))}</span>
                 ${renderProductFilterControl(field)}
               </div>
             `,
           )
           .join("")}
         <div class="manage-products-filter-actions">
-          <span class="manage-products-filter-label">Filters</span>
           <button
             id="clear-product-filters"
             class="secondary-button manage-filter-reset"
@@ -461,6 +486,10 @@ function renderProductFilterPanel(tableFields) {
       </div>
     </div>
   `;
+}
+
+function getProductDisplayLabel(field) {
+  return field.key === "created_at" ? "Modified At" : field.label;
 }
 
 function renderProductFilterControl(field) {
@@ -1006,6 +1035,7 @@ function openForm(product) {
   setStatus(document.getElementById("form-status-banner"), "", "info");
 
   showModal(modal);
+  resetTurnstile("#product-form-turnstile");
 }
 
 function closeForm() {
@@ -1039,8 +1069,15 @@ async function handleSubmit(event) {
 
   try {
     const body = editingId
-      ? { subMethodType: "PUT", record: Object.assign({ id: editingId }, record) }
-      : { record: record };
+      ? {
+          subMethodType: "PUT",
+          record: Object.assign({ id: editingId }, record),
+          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+        }
+      : {
+          record: record,
+          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+        };
 
     await manageApiPost(PRODUCT_LIST_PATH, body, session);
     closeForm();
@@ -1048,29 +1085,69 @@ async function handleSubmit(event) {
     setStatus(document.getElementById("status-banner"), "Product saved.", "success");
   } catch (error) {
     setStatus(statusBanner, error.message || "Unable to save product.", "error");
+    resetTurnstile("#product-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
   }
 }
 
-async function handleDelete(product) {
-  if (!window.confirm(`Delete "${product.name || product.id}"? This cannot be undone.`)) {
-    return;
+function handleDelete(product) {
+  deleteTargetProduct = product || null;
+
+  const modal = document.getElementById("product-delete-modal");
+  const message = document.getElementById("product-delete-modal-message");
+  if (message) {
+    message.textContent = `Are you sure you want to delete ${getProductDeleteLabel(
+      product,
+    )}? This action cannot be undone.`;
   }
 
+  setStatus(document.getElementById("product-delete-status-banner"), "", "info");
+  setDeletePendingState(false);
+  showModal(modal);
+  resetTurnstile("#product-delete-turnstile");
+}
+
+async function handleDeleteConfirm() {
+  if (!deleteTargetProduct || isDeletePending) return;
+
   const statusBanner = document.getElementById("status-banner");
+  const modalStatusBanner = document.getElementById("product-delete-status-banner");
+  setStatus(modalStatusBanner, "", "info");
+  setDeletePendingState(true);
 
   try {
-    await manageApiPost(PRODUCT_LIST_PATH, { subMethodType: "DELETE", id: product.id }, session);
+    await manageApiPost(
+      PRODUCT_LIST_PATH,
+      {
+        subMethodType: "DELETE",
+        id: deleteTargetProduct.id,
+        cf_turnstile_response: getTurnstileToken(
+          document.getElementById("product-delete-modal"),
+        ),
+      },
+      session,
+    );
+    setDeletePendingState(false);
+    closeModal(document.getElementById("product-delete-modal"));
     await loadProducts();
     setStatus(statusBanner, "Product deleted.", "success");
   } catch (error) {
+    setStatus(modalStatusBanner, error.message || "Unable to delete product.", "error");
     setStatus(statusBanner, error.message || "Unable to delete product.", "error");
+    resetTurnstile("#product-delete-turnstile");
+  } finally {
+    setDeletePendingState(false);
   }
 }
 
 function getEditableProductFields() {
   return productFields.filter((field) => !HIDDEN_PRODUCT_FORM_KEYS.has(field.key));
+}
+
+function getProductDeleteLabel(product) {
+  const label = product && (product.name || product.sku || product.id);
+  return `"${label || "this product"}"`;
 }
 
 function getProductImageUrl(product) {
@@ -1131,10 +1208,17 @@ function showModal(modal) {
 
 function closeModal(modal) {
   if (!modal) return;
+  if (modal.id === "product-delete-modal" && isDeletePending) return;
   modal.hidden = true;
 
   if (modal.id === "product-modal") {
     editingId = null;
+  }
+
+  if (modal.id === "product-delete-modal") {
+    deleteTargetProduct = null;
+    setDeletePendingState(false);
+    setStatus(document.getElementById("product-delete-status-banner"), "", "info");
   }
 
   if (modal.id === "product-image-modal") {
@@ -1166,4 +1250,24 @@ function escapeHtml(value) {
 
 function normalizeFilterValue(value) {
   return String(value == null ? "" : value).trim().toLowerCase();
+}
+
+function setDeletePendingState(isPending) {
+  isDeletePending = Boolean(isPending);
+
+  const modal = document.getElementById("product-delete-modal");
+  const confirmButton = document.getElementById("product-delete-confirm-button");
+  if (confirmButton) {
+    confirmButton.disabled = isDeletePending;
+    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete product";
+  }
+
+  if (!modal) return;
+
+  modal.setAttribute("aria-busy", isDeletePending ? "true" : "false");
+  modal.querySelectorAll("[data-close-modal]").forEach((control) => {
+    if ("disabled" in control) {
+      control.disabled = isDeletePending;
+    }
+  });
 }
