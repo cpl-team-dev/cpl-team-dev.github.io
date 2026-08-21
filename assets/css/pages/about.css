@@ -270,6 +270,7 @@
   width: 150px;
   height: 150px;
   margin-bottom: 18px;
+  box-shadow: 0 6px 14px rgba(34, 61, 111, 0.14);
 }
 
 .page-about .person-card .name {
