@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700;800&display=swap");
+
 :root {
   --purple: #7a57be;
   --dark-purple: #4a3371;
@@ -13,6 +15,8 @@
   --shadow: 0 8px 24px rgba(45, 35, 84, 0.14);
   --radius-lg: 20px;
   --radius-md: 12px;
+  --font-display: "Bricolage Grotesque", "Inter", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
 }
 
 * {
@@ -28,8 +32,25 @@ body {
 body {
   background: var(--purple);
   color: var(--ink);
-  font-family: "Nunito", "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: var(--font-body);
   line-height: 1.45;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
 }
 
 a {

@@ -157,49 +157,173 @@
   line-height: 1.05;
 }
 
-.family-grid {
+.offer-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 30px;
+}
+
+.offer-kicker {
+  margin: 0 0 8px;
+  color: var(--purple);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.offer-title {
+  margin: 0;
+  color: #24135e;
+  font-size: 56px;
+  line-height: 1.08;
+  font-weight: 900;
+}
+
+.offer-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--purple);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 800;
+  white-space: nowrap;
+  transition: gap 0.2s ease, opacity 0.2s ease;
+}
+
+.offer-link:hover {
+  gap: 18px;
+  opacity: 0.9;
+}
+
+.offer-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 22px;
 }
 
-.service-card {
-  background: #fff;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow);
+.offer-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: 28px;
   overflow: hidden;
-  padding: 14px;
+  background: #222;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 18px 36px rgba(36, 19, 94, 0.12);
+}
+
+.offer-card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.offer-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.2) 42%,
+    rgba(0, 0, 0, 0.84) 100%
+  );
+}
+
+.offer-card-content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 20px 18px 20px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
-.service-card img {
-  width: 100%;
-  height: 144px;
-  object-fit: cover;
-  border-radius: 8px;
+.offer-card-category {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
 }
 
-.service-card h3 {
-  margin: 16px 0 10px;
-  font-size: 16px;
-  color: #1f1f1f;
+.offer-card-title {
+  margin: 8px 0 0;
+  color: #fff;
+  font-size: 18px;
+  line-height: 1.15;
+  font-weight: 900;
 }
 
-.service-card p {
+.offer-card-body {
+  max-height: 0;
   margin: 0;
-  color: #333;
-  font-size: 14px;
-  line-height: 1.45;
-  flex: 1;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    max-height 0.32s ease,
+    margin-top 0.32s ease,
+    opacity 0.25s ease,
+    transform 0.32s ease;
 }
 
-.service-card .cta-link {
-  margin-top: 18px;
-  color: var(--red);
-  text-decoration: underline;
-  font-size: 14px;
-  font-weight: 700;
+.offer-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 10px;
+  color: #ffd166;
+  font-size: 12px;
+  font-weight: 800;
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.32s ease,
+    gap 0.2s ease;
+}
+
+.offer-card:hover .offer-card-image,
+.offer-card:focus-visible .offer-card-image {
+  transform: scale(1.1);
+  opacity: 0.7;
+}
+
+.offer-card:hover .offer-card-body,
+.offer-card:focus-visible .offer-card-body {
+  max-height: 120px;
+  margin-top: 12px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.offer-card:hover .offer-card-cta,
+.offer-card:focus-visible .offer-card-cta {
+  opacity: 1;
+  transform: translateY(0);
+  gap: 13px;
+}
+
+.offer-card:focus-visible,
+.offer-link:focus-visible {
+  outline: 3px solid rgba(122, 87, 190, 0.45);
+  outline-offset: 4px;
 }
 
 .split-card {
@@ -462,39 +586,41 @@
 }
 
 .quote-section {
-  background: var(--salmon);
-  padding: 40px 0;
-  background-color: rgb(255, 141, 127);
+  background: #f7f5fb;
+  padding: 72px 0 78px;
 }
 
-.quote-card {
-  padding: 28px;
+.quote-shell {
+  max-width: 900px;
+  text-align: center;
 }
 
-.quote-card h2 {
-  margin: 0;
-  color: #53903d;
-  font-size: 30px;
-}
-
-.quote-card p {
-  font-size: 14px;
-  color: #2f2f2f;
-}
-
-.quote-box {
-  background: #fff;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+.quote-kicker {
+  margin: 0 0 28px;
+  color: var(--purple);
   font-size: 16px;
-  color: #2f2f2f;
-  font-style: italic;
-  overflow: hidden;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.quote-stage {
+  position: relative;
+  padding: 32px 64px 0;
+}
+
+.quote-mark {
+  position: absolute;
+  top: -4px;
+  left: 28px;
+  color: rgba(122, 87, 190, 0.12);
+  font-family: Georgia, serif;
+  font-size: 100px;
+  line-height: 1;
 }
 
 .quote-track-wrap {
   overflow: hidden;
-  border-radius: 8px;
 }
 
 .quote-track {
@@ -505,11 +631,81 @@
 
 .quote-slide {
   flex: 0 0 100%;
-  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  padding: 0 12px;
 }
 
-.quote-slide p {
+.quote-slide blockquote {
   margin: 0;
+  color: #20283c;
+  font-size: 20px;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+}
+
+.quote-slide cite {
+  color: var(--purple);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.quote-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 28px;
+}
+
+.quote-arrow {
+  width: 58px;
+  height: 58px;
+  border: 2px solid var(--purple);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--purple);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.quote-arrow:hover {
+  background: rgba(122, 87, 190, 0.08);
+  transform: translateY(-1px);
+}
+
+.quote-arrow svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.quote-dots {
+  gap: 10px;
+  padding: 0;
+}
+
+.quote-dot {
+  width: 12px;
+  height: 12px;
+  background: #d8d0ec;
+}
+
+.quote-dot.active {
+  width: 36px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--purple);
 }
 
 .footer {
