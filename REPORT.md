@@ -17,12 +17,13 @@ Everything the repo itself can fix is done (see §0–§3 for detail). What's le
 - **Check NATLL (National Association of Toy and Leisure Libraries) accreditation/listing status** — a plausible, unclaimed backlink/accreditation opportunity (§2.4).
 - **Spot-check NAP (name/address/phone) consistency** across third-party citations now that the domain migration is otherwise ready — hours/address may have drifted during the funding-crisis period (§4).
 - **Keep the noticeboard active around the funding story** — this is ongoing editorial work, not a one-off fix; the funding-crisis coverage is a live SEO/PR asset only if the site keeps publishing against it (§2.5, §6).
-- Add clouflare turnstile
+- Add clouflare turnstile DONE
 - Add google analytics DONE
 - Add google business information
 - Add google search console
-- Restrict all traffic form utside of the UK DONE
+- Restrict all traffic form outside of the UK DONE DONE
 - Allow bots to go through cloudflare
+- Add cookie bot
 
 ---
 
