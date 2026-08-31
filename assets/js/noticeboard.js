@@ -1,5 +1,4 @@
 const NOTICEBOARD_BLOG_PATH = "/blog";
-const NOTICEBOARD_PAGE_SIZE = 50;
 const NOTICEBOARD_TARGET_PARAM = "title";
 const NOTICEBOARD_SCROLL_OFFSET = 24;
 
@@ -29,34 +28,10 @@ async function fetchAllBlogPosts() {
     throw new Error("Noticeboard API is unavailable.");
   }
 
-  const allPosts = [];
-  let startRow = 1;
+  const result = await manageApiGet(NOTICEBOARD_BLOG_PATH);
+  const posts = typeof extractApiList === "function" ? extractApiList(result) : [];
 
-  while (true) {
-    const result = await manageApiGet(NOTICEBOARD_BLOG_PATH, {
-      startRow: startRow,
-      endRow: startRow + NOTICEBOARD_PAGE_SIZE - 1,
-    });
-    const page = typeof extractApiList === "function" ? extractApiList(result) : [];
-
-    allPosts.push(...page);
-
-    const pagination =
-      typeof extractApiPagination === "function"
-        ? extractApiPagination(result, startRow, NOTICEBOARD_PAGE_SIZE, page.length)
-        : {
-            hasMore: page.length >= NOTICEBOARD_PAGE_SIZE,
-            nextStartRow: startRow + page.length,
-          };
-
-    if (!pagination.hasMore || page.length === 0) {
-      break;
-    }
-
-    startRow = pagination.nextStartRow;
-  }
-
-  return allPosts
+  return posts
     .map(normalisePost)
     .filter((post) => post.title && post.status !== "draft")
     .sort((a, b) => b.createdAtTime - a.createdAtTime);

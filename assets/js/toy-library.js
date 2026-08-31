@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const endpoint = `${API_BASE_URL.replace(/\/$/, "")}/product?${new URLSearchParams({
     organisation_id: ORGANISATION_ID,
-    startRow: 1,
-    endRow: 5000,
   }).toString()}`;
   const initialCategoryParam =
     new URLSearchParams(window.location.search).get("category")?.trim() || "";
