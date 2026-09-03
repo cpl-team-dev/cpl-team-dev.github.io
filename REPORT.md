@@ -21,8 +21,8 @@ Everything the repo itself can fix is done (see §0–§3 for detail). What's le
 - Add google analytics DONE
 - Add google business information
 - Add google search console
-- Restrict all traffic form outside of the UK DONE DONE
-- Allow bots to go through cloudflare
+- Restrict all traffic form outside of the UK DONE
+- Allow bots to go through cloudflare DONE
 - Add cookie bot
 
 ---

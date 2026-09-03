@@ -320,6 +320,25 @@
   gap: 13px;
 }
 
+@media (hover: none), (pointer: coarse) {
+  .offer-card .offer-card-image {
+    opacity: 0.7;
+  }
+
+  .offer-card .offer-card-body {
+    max-height: 120px;
+    margin-top: 12px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .offer-card .offer-card-cta {
+    opacity: 1;
+    transform: translateY(0);
+    gap: 13px;
+  }
+}
+
 .offer-card:focus-visible,
 .offer-link:focus-visible {
   outline: 3px solid rgba(122, 87, 190, 0.45);

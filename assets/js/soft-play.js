@@ -45,14 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
     errorId: "party-hire-error",
     submitButtonText: "Submit request",
     successMessage:
-      "Thank you-your party hire request has been noted! We'll be in touch to confirm details and availability.",
+      "Thank you - your soft play reservation request has been noted! We'll be in touch to confirm details and availability.",
     buildPayload(form) {
       const formData = new FormData(form);
       const { firstName, lastName } = splitFullName(
         formData.get("name")?.toString() || "",
       );
       const messageSections = [
-        "Subject - Party hire enquiry",
+        "Subject - Soft play reservation enquiry",
         formatExtraMessageSections([
           {
             title: "Address",
@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
           typeof ORGANISATION_ID === "string" ? ORGANISATION_ID : "",
         email: formData.get("email")?.toString().trim() || "",
         phone: formData.get("phone")?.toString().trim() || "",
-        enquiry_type: "Party hire enquiry",
+        enquiry_type: "Soft play reservation enquiry",
         message: messageSections.join("\n\n"),
         cf_turnstile_response:
           formData.get("cf-turnstile-response")?.toString() || "",
