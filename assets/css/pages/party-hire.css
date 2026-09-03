@@ -753,6 +753,9 @@ fieldset.party-hire-field {
 .soft-play-research-table a {
   color: var(--ph-coral);
 }
+.soft-play-competitor-name {
+  color: var(--ph-coral);
+}
 .soft-play-research-date {
   margin: 13px 0 0;
   color: #776f80;
