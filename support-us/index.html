@@ -670,7 +670,10 @@
                     >privacy policy.</a
                   >
                 </label>
-                <div class="cf-turnstile" data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"></div>
+                <div
+                  class="cf-turnstile"
+                  data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
+                ></div>
                 <div>
                   <button class="btn" type="submit">Submit application</button>
                 </div>
@@ -701,21 +704,54 @@
         </svg>
       </div>
       <section class="quote-section">
-        <div class="container">
-          <div class="card quote-card">
-            <h2>Don't just take our word for it!</h2>
-            <div class="title-underline" style="background: #53903d"></div>
-            <p>These quotes are taken from our last community survey.</p>
-            <div class="quote-box">
-              <div class="quote-track-wrap">
-                <div
-                  class="quote-track"
-                  id="testimonial-track"
-                  aria-live="polite"
-                ></div>
-              </div>
+        <div class="container quote-shell">
+          <p class="quote-kicker">What families say</p>
+          <div class="quote-stage">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <div class="quote-track-wrap">
+              <div
+                class="quote-track"
+                id="testimonial-track"
+                aria-live="polite"
+              ></div>
             </div>
+          </div>
+          <div class="quote-controls">
+            <button
+              class="quote-arrow"
+              id="testimonial-prev"
+              type="button"
+              aria-label="Show previous review"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M15 5l-7 7 7 7"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.25"
+                />
+              </svg>
+            </button>
             <div class="quote-dots" id="testimonial-dots"></div>
+            <button
+              class="quote-arrow"
+              id="testimonial-next"
+              type="button"
+              aria-label="Show next review"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M9 5l7 7-7 7"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.25"
+                />
+              </svg>
+            </button>
           </div>
         </div>
       </section>

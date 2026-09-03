@@ -695,3 +695,105 @@ fieldset.party-hire-field {
   display: flex;
   flex-direction: column;
 }
+
+.soft-play-research {
+  padding: 78px 0;
+  background: #fff;
+}
+.soft-play-research-heading {
+  max-width: 760px;
+  margin-bottom: 30px;
+}
+.soft-play-research-heading .party-hire-eyebrow {
+  color: var(--ph-coral);
+}
+.soft-play-research-heading h2,
+.soft-play-location-links h2 {
+  margin: 0;
+  color: var(--ph-ink);
+  font-size: clamp(28px, 2vw + 18px, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+.soft-play-research-heading > p:last-child {
+  color: #625a70;
+  font-size: 17px;
+  line-height: 1.55;
+}
+.soft-play-research-table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(28, 16, 64, 0.1);
+  border-radius: 16px;
+}
+.soft-play-research-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  text-align: left;
+}
+.soft-play-research-table th {
+  padding: 15px 18px;
+  color: #fff;
+  background: var(--ph-ink);
+  font-size: 14px;
+}
+.soft-play-research-table td {
+  padding: 18px;
+  color: #5b5369;
+  border-top: 1px solid rgba(28, 16, 64, 0.1);
+  font-size: 15px;
+  line-height: 1.52;
+  vertical-align: top;
+}
+.soft-play-research-table td:first-child {
+  width: 22%;
+  color: var(--ph-ink);
+  font-weight: 800;
+}
+.soft-play-research-table a {
+  color: var(--ph-coral);
+}
+.soft-play-research-date {
+  margin: 13px 0 0;
+  color: #776f80;
+  font-size: 13px;
+}
+.soft-play-location-links {
+  padding: 68px 0;
+  color: #fff;
+  background: var(--ph-ink);
+}
+.soft-play-location-links > .container > .party-hire-eyebrow {
+  color: var(--ph-gold);
+}
+.soft-play-location-links h2 {
+  max-width: 690px;
+  color: #fff;
+}
+.soft-play-location-links > .container > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.soft-play-location-links a {
+  padding: 10px 14px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.23);
+  border-radius: 999px;
+  font-weight: 800;
+  text-decoration: none;
+}
+.soft-play-location-links a:hover,
+.soft-play-location-links a:focus-visible {
+  color: var(--ph-ink);
+  background: var(--ph-gold);
+}
+@media (max-width: 680px) {
+  .soft-play-research {
+    padding: 54px 0;
+  }
+  .soft-play-location-links {
+    padding: 54px 0;
+  }
+}

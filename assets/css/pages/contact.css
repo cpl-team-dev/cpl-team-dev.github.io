@@ -2,6 +2,257 @@
   --contact-copy-size: clamp(18px, 0.45vw + 15px, 21px);
 }
 
+.page-contact .announce {
+  background: #26124d;
+  border-top: 1px solid rgba(203, 214, 224, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 12px 0 10px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.page-contact .announce-panels {
+  display: grid;
+  min-height: 64px;
+}
+
+.page-contact .announce-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+  transition:
+    opacity 360ms ease,
+    transform 360ms ease;
+  visibility: hidden;
+}
+
+.page-contact .announce-panel.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  visibility: visible;
+}
+
+.page-contact .announce-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.page-contact .announce-status,
+.page-contact .announce-slot,
+.page-contact .announce-find-us {
+  display: inline-flex;
+  align-items: center;
+}
+
+.page-contact .announce-status {
+  gap: 10px;
+  padding: 14px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 15px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.page-contact .announce-status.is-open {
+  background: rgba(16, 185, 129, 0.18);
+  color: #9ce8bf;
+}
+
+.page-contact .announce-status-icon,
+.page-contact .announce-slot-icon,
+.page-contact .announce-find-us-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-contact .announce-status-icon svg,
+.page-contact .announce-slot-icon svg,
+.page-contact .announce-find-us-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+.page-contact .announce-status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  flex-shrink: 0;
+}
+
+.page-contact .announce-status.is-open .announce-status-dot {
+  background: #4ade80;
+  box-shadow: 0 0 0 6px rgba(74, 222, 128, 0.12);
+}
+
+.page-contact .announce-divider {
+  width: 1px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+.page-contact .announce-hours {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 34px;
+}
+
+.page-contact .announce-slot {
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 15px;
+}
+
+.page-contact .announce-slot-icon {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.page-contact .announce-day {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 800;
+}
+
+.page-contact .announce-time {
+  color: rgba(255, 255, 255, 0.68);
+  font-weight: 700;
+}
+
+.page-contact .announce-slot.is-today .announce-slot-icon {
+  color: #ffd166;
+}
+
+.page-contact .announce-slot.is-today .announce-day {
+  color: #ffd166;
+}
+
+.page-contact .announce-slot.is-today .announce-time {
+  color: #fff;
+}
+
+.page-contact .announce-find-us {
+  margin-left: auto;
+  gap: 8px;
+  color: #ffd166;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.page-contact .announce-find-us:hover {
+  opacity: 0.9;
+}
+
+.page-contact .announce-feature-icon {
+  min-width: 74px;
+  color: #ffd166;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.page-contact .announce-feature-copy {
+  display: grid;
+  gap: 2px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.page-contact .announce-feature-copy strong {
+  color: #fff;
+  font-size: 17px;
+}
+
+.page-contact .announce-feature-copy small {
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 13px;
+}
+
+.page-contact .announce-feature-link {
+  margin-left: auto;
+  color: #ffd166;
+  font-size: 15px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.page-contact .announce-feature-link:hover {
+  text-decoration: underline;
+}
+
+.page-contact .announce-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.page-contact .announce-carousel-dots button {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 209, 102, 0.35);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    width 220ms ease,
+    background-color 220ms ease;
+}
+
+.page-contact .announce-carousel-dots button.is-active {
+  width: 25px;
+  background: rgba(255, 209, 102, 0.25);
+}
+
+.page-contact .announce-carousel-dots button.is-active::before {
+  position: absolute;
+  inset: 0;
+  background: #ffd166;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: announce-dot-progress 4s linear forwards;
+}
+
+.page-contact
+  .announce.is-paused
+  .announce-carousel-dots
+  button.is-active::before {
+  animation-play-state: paused;
+}
+
+.page-contact .announce-carousel-dots button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+}
+
+@keyframes announce-dot-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-contact .announce-carousel-dots button.is-active::before {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
 .page-contact .section-pad {
   padding-top: 30px;
   padding-bottom: 48px;
@@ -102,6 +353,18 @@
 }
 
 @media (max-width: 1100px) {
+  .page-contact .announce-bar {
+    flex-wrap: wrap;
+  }
+
+  .page-contact .announce-find-us {
+    margin-left: 0;
+  }
+
+  .page-contact .announce-feature-link {
+    margin-left: 0;
+  }
+
   .page-contact .contact-intro {
     grid-template-columns: 1fr;
   }
@@ -112,6 +375,58 @@
 }
 
 @media (max-width: 760px) {
+  .page-contact .announce {
+    padding: 14px 0 16px;
+  }
+
+  .page-contact .announce-bar {
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .page-contact .announce-status {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-contact .announce-divider {
+    display: none;
+  }
+
+  .page-contact .announce-hours {
+    gap: 10px 18px;
+  }
+
+  .page-contact .announce-slot {
+    font-size: 14px;
+  }
+
+  .page-contact .announce-find-us {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .page-contact .announce-panels {
+    min-height: 170px;
+  }
+
+  .page-contact .announce-panel-playtime,
+  .page-contact .announce-panel-donate {
+    align-content: flex-start;
+  }
+
+  .page-contact .announce-feature-icon {
+    min-width: 100%;
+  }
+
+  .page-contact .announce-feature-copy strong {
+    font-size: 16px;
+  }
+
+  .page-contact .announce-feature-link {
+    margin-left: 0;
+  }
+
   .page-contact .section-pad {
     padding-top: 20px;
     padding-bottom: 34px;

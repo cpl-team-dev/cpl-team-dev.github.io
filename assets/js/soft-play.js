@@ -4,38 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const item = button.closest(".faq-item");
       if (!item) return;
       item.classList.toggle("open");
-      button.setAttribute("aria-expanded", String(item.classList.contains("open")));
+      button.setAttribute(
+        "aria-expanded",
+        String(item.classList.contains("open")),
+      );
     });
   });
-
-  const toyListField = document.getElementById("ph-toy-list-field");
-  const toyListInput = document.getElementById("ph-toy-list");
-  const requestToysYes = document.getElementById("ph-request-toys-yes");
-  const requestToysNo = document.getElementById("ph-request-toys-no");
-
-  const toggleToyList = () => {
-    if (!toyListField || !toyListInput) return;
-    const show = requestToysYes && requestToysYes.checked;
-    toyListField.hidden = !show;
-    toyListInput.required = show;
-  };
-
-  if (requestToysYes) requestToysYes.addEventListener("change", toggleToyList);
-  if (requestToysNo) requestToysNo.addEventListener("change", toggleToyList);
-  toggleToyList();
 
   document.querySelectorAll("[data-soft-play-choice]").forEach((button) => {
     button.addEventListener("click", () => {
       const choice = button.dataset.softPlayChoice;
-      const smallBagInput = document.getElementById("ph-soft-play-bags");
-      const largeBagInput = document.querySelector('input[name="large-bag"][value="yes"]');
+      const choiceInput = document.getElementById("ph-soft-play-choice");
+      const choices = {
+        small: "Small soft play bag (£5, approx. 4 pieces)",
+        large: "Large soft play bag with mats (£10, approx. 8 pieces)",
+        toys: "Soft play plus 10 toy bundle (£20)",
+      };
 
-      if (choice === "small" && smallBagInput) smallBagInput.value = "1";
-      if (choice === "large" && largeBagInput) largeBagInput.checked = true;
-      if (choice === "toys" && requestToysYes) {
-        requestToysYes.checked = true;
-        toggleToyList();
-      }
+      if (choiceInput && choices[choice]) choiceInput.value = choices[choice];
     });
   });
 
@@ -55,16 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "Subject - Soft play reservation enquiry",
         formatExtraMessageSections([
           {
-            title: "Address",
-            value: [
-              formData.get("address")?.toString().trim() || "",
-              formData.get("city")?.toString().trim() || "",
-              formData.get("postcode")?.toString().trim() || "",
-            ]
-              .filter(Boolean)
-              .join(", "),
-          },
-          {
             title: "Date of collection",
             value: formData.get("date-collect")?.toString() || "",
           },
@@ -73,24 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
             value: formData.get("hire-duration")?.toString() || "",
           },
           {
-            title: "Date of return",
-            value: formData.get("date-return")?.toString() || "",
-          },
-          {
-            title: "Small bags of soft play",
-            value: formData.get("soft-play-bags")?.toString() || "0",
-          },
-          {
-            title: "Large bag of soft play",
-            value: formData.get("large-bag")?.toString() || "",
-          },
-          {
-            title: "Request toys",
-            value: formData.get("request-toys")?.toString() || "",
-          },
-          {
-            title: "Toy list",
-            value: formData.get("toy-list")?.toString() || "",
+            title: "Requested hire",
+            value: formData.get("soft-play-choice")?.toString() || "",
           },
         ]),
       ].filter(Boolean);
