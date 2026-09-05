@@ -1,6 +1,13 @@
 .page-toy-libraries {
   --toy-copy-size: clamp(18px, 0.45vw + 15px, 21px);
   --toy-heading-size: clamp(34px, 1vw + 26px, 42px);
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
+}
+
+.page-toy-libraries .toy-libraries-subhero {
+  isolation: isolate;
+  text-align: center;
 }
 
 .page-toy-libraries .section-pad {
@@ -9,7 +16,7 @@
 }
 
 .page-toy-libraries .toy-libraries-intro {
-  background: #9a82c6;
+  background: #f7f5fb;
 }
 
 .toy-libraries-showcase {
@@ -153,7 +160,7 @@
 }
 
 .page-toy-libraries .toy-libraries-benefits {
-  background: #9a82c6;
+  background: #f7f5fb;
   padding-top: 6px;
   padding-bottom: 40px;
 }
@@ -224,7 +231,7 @@
 }
 
 .toy-libraries-feedback {
-  background: #9a82c6;
+  background: #f7f5fb;
   padding: 34px 0 40px;
 }
 
@@ -301,7 +308,7 @@
 }
 
 .page-toy-libraries .toy-libraries-visit {
-  background: #9a82c6;
+  background: #f7f5fb;
   padding-top: 34px;
   padding-bottom: 18px;
 }

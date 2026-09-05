@@ -38,6 +38,35 @@
   isolation: isolate;
 }
 
+.page-services .services-subhero {
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
+  isolation: isolate;
+  text-align: center;
+}
+
+.page-services .services-copy {
+  padding: 36px 38px;
+}
+
+.page-services .services-copy h2 {
+  margin: 0 0 16px;
+  color: #4064a5;
+  font-size: clamp(26px, 1.6vw, 36px);
+  font-weight: 800;
+}
+
+.page-services .services-copy p {
+  margin: 0 0 14px;
+  color: #3f4e66;
+  font-size: clamp(15px, 0.35vw + 14px, 18px);
+  line-height: 1.7;
+}
+
+.page-services .services-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .page-services .services-hero-inner {
   text-align: center;
 }

@@ -53,8 +53,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--sitemap-coral);
-  box-shadow: 0 0 0 5px rgba(255, 90, 60, 0.13);
+  background: #4ade80;
+  box-shadow: 0 0 0 5px rgba(74, 222, 128, 0.13);
   content: "";
 }
 

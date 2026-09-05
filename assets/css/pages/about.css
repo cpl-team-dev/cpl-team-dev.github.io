@@ -1,6 +1,8 @@
 .page-about {
   --about-copy-size: clamp(20px, 0.7vw + 14px, 24px);
   --about-heading-size: clamp(34px, 1.7vw + 18px, 56px);
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
 }
 
 .page-about .section-pad {
@@ -12,10 +14,15 @@
   gap: 28px;
 }
 
+.page-about .about-subhero {
+  isolation: isolate;
+  text-align: center;
+}
+
 .page-about .constitution-section {
-  background: #9a82c6;
-  padding-top: clamp(28px, 4vw, 56px);
-  padding-bottom: clamp(36px, 5vw, 64px);
+  background: #f7f5fb;
+  padding-top: clamp(48px, 5vw, 72px);
+  padding-bottom: clamp(56px, 6vw, 88px);
 }
 
 .page-about .constitution-viewer-shell {
@@ -24,9 +31,9 @@
 }
 
 .page-about .constitution-viewer-frame {
-  background: #2f2f31;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 24px 48px rgba(34, 21, 66, 0.22);
+  background: #1c1040;
+  border-radius: 20px;
+  box-shadow: 0 24px 48px rgba(28, 16, 64, 0.16);
   overflow: hidden;
 }
 
@@ -36,7 +43,7 @@
   height: min(73vw, 900px);
   min-height: 560px;
   border: 0;
-  background: #2f2f31;
+  background: #1c1040;
 }
 
 .page-about .constitution-download-row {
@@ -47,8 +54,9 @@
 }
 
 .page-about .constitution-file-link {
-  color: #3d2459;
-  font-size: clamp(18px, 0.5vw + 15px, 25px);
+  color: #1c1040;
+  font-size: clamp(16px, 0.4vw + 14px, 20px);
+  font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -58,9 +66,9 @@
   align-items: center;
   justify-content: center;
   min-height: 48px;
-  padding: 12px 20px;
-  border-radius: 999px;
-  background: #c65f33;
+  padding: 12px 24px;
+  border-radius: 13px;
+  background: #ff5a3c;
   color: #fff;
   font-size: clamp(18px, 0.4vw + 15px, 24px);
   font-weight: 800;
@@ -70,8 +78,8 @@
 }
 
 .page-about .constitution-download-btn:hover {
+  opacity: 0.9;
   transform: translateY(-1px);
-  box-shadow: 0 16px 28px rgba(97, 47, 25, 0.26);
 }
 
 .page-about .about-copy {
@@ -95,6 +103,74 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 24px;
+}
+
+.page-about .about-policies-intro {
+  max-width: 720px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.page-about .about-policies-intro h2 {
+  margin: 0 0 14px;
+  color: #1c1040;
+  font-size: clamp(30px, 2.2vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+.page-about .about-policies-intro p {
+  margin: 0;
+  color: #3f4e66;
+  font-size: clamp(15px, 0.35vw + 14px, 18px);
+  line-height: 1.7;
+}
+
+.page-about .about-policy-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 14px 32px rgba(28, 16, 64, 0.06);
+  transition:
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.page-about .about-policy-card:hover {
+  box-shadow: 0 20px 40px rgba(28, 16, 64, 0.1);
+  transform: translateY(-2px);
+}
+
+.page-about .about-policy-card h3 {
+  margin: 0;
+}
+
+.page-about .about-policy-card h3 a {
+  color: #1c1040;
+  font-size: 19px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.page-about .about-policy-card p {
+  margin: 0;
+  color: #59647a;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.page-about .about-policy-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  color: #be4e39;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .page-about .partner-feature {
@@ -144,8 +220,9 @@
 
 .page-about .history-entry h2 {
   margin: 0 0 14px;
-  color: var(--red);
+  color: #be4e39;
   font-size: 32px;
+  font-weight: 800;
 }
 
 .page-about .history-entry p {
