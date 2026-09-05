@@ -1,20 +1,32 @@
+.page-staff-update {
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
+}
+
+.staff-update-subhero {
+  isolation: isolate;
+  text-align: center;
+}
+
 .page-staff-update .section-pad {
-  padding-top: 36px;
-  padding-bottom: 52px;
+  padding-top: 56px;
+  padding-bottom: 64px;
 }
 
 .staff-update-card {
-  padding: 36px;
+  padding: 44px;
   max-width: 860px;
   margin: 0 auto;
+  border-radius: 24px;
+  box-shadow: 0 24px 48px rgba(28, 16, 64, 0.08);
 }
 
 .staff-update-meta {
   margin: 0 0 22px;
   color: #67748a;
-  font-size: clamp(14px, 0.35vw + 12px, 17px);
+  font-size: clamp(13px, 0.3vw + 11px, 15px);
   font-weight: 800;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -22,27 +34,42 @@
   width: 100%;
   max-height: 360px;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 16px;
   margin-bottom: 26px;
-  box-shadow: 0 16px 32px rgba(45, 35, 84, 0.16);
+  box-shadow: 0 16px 32px rgba(28, 16, 64, 0.16);
 }
 
 .staff-update-body h2 {
   margin: 30px 0 14px;
-  color: var(--purple);
-  font-size: clamp(26px, 0.8vw + 20px, 34px);
-  line-height: 1.15;
+  color: #1c1040;
+  font-size: clamp(24px, 0.8vw + 19px, 32px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.18;
 }
 
 .staff-update-body p {
   margin: 0 0 18px;
   color: #3f4e66;
-  font-size: clamp(18px, 0.35vw + 15px, 22px);
-  line-height: 1.72;
+  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  line-height: 1.75;
 }
 
 .staff-update-body p:last-child {
   margin-bottom: 0;
+}
+
+.staff-update-body ul:not(.staff-update-sources):not(.staff-update-timeline) {
+  margin: 0 0 18px;
+  padding-left: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.staff-update-body ul:not(.staff-update-sources):not(.staff-update-timeline) li {
+  color: #3f4e66;
+  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  line-height: 1.65;
 }
 
 .staff-update-sources {
@@ -54,24 +81,60 @@
 
 .staff-update-sources li {
   color: #3f4e66;
-  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  font-size: clamp(15px, 0.25vw + 13px, 17px);
   line-height: 1.6;
 }
 
 .staff-update-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   margin-top: 30px;
 }
 
+.staff-update-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 13px;
+  background: #6b3fa0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: none;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.staff-update-actions .btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.staff-update-actions .btn.blue {
+  background: transparent;
+  border: 2px solid #6b3fa0;
+  color: #6b3fa0;
+}
+
+.staff-update-actions .btn.blue:hover {
+  background: rgba(107, 63, 160, 0.08);
+  opacity: 1;
+}
+
 .staff-update-highlight {
-  background: #f4f2fb;
-  border-left: 6px solid #53903d;
+  background: #f7f5fb;
+  border-left: 6px solid #5a9a6f;
   border-radius: 16px;
-  padding: 26px 30px;
+  padding: 30px 32px;
   margin-bottom: 26px;
 }
 
 .fundraiser-progress-track {
-  background: #e2ddf3;
+  background: #e3ddf3;
   border-radius: 999px;
   height: 16px;
   overflow: hidden;
@@ -79,7 +142,7 @@
 }
 
 .fundraiser-progress-fill {
-  background: linear-gradient(90deg, #53903d, #7ab648);
+  background: linear-gradient(90deg, #5a9a6f, #7ab648);
   height: 100%;
   border-radius: 999px;
 }
@@ -93,9 +156,10 @@
 
 .fundraiser-stat-num {
   display: block;
-  color: var(--purple);
+  color: #6b3fa0;
   font-size: clamp(26px, 1vw + 20px, 36px);
   font-weight: 800;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
@@ -118,10 +182,10 @@
 }
 
 .staff-update-timeline li {
-  border-left: 3px solid #ff8d7f;
+  border-left: 3px solid #ff5a3c;
   padding-left: 18px;
   color: #3f4e66;
-  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  font-size: clamp(15px, 0.3vw + 13px, 18px);
   line-height: 1.65;
 }
 
@@ -144,22 +208,26 @@
 
 .help-link-card {
   display: block;
-  background: #f4f2fb;
-  border-radius: 12px;
-  padding: 16px 20px;
+  background: #f7f5fb;
+  border-radius: 14px;
+  padding: 18px 20px;
   text-decoration: none;
-  transition: background 0.15s ease;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
 }
 
 .help-link-card:hover,
 .help-link-card:focus-visible {
-  background: #e9e4f8;
+  background: #efe9fa;
+  transform: translateY(-2px);
 }
 
 .help-link-card strong {
   display: block;
-  color: var(--purple);
-  font-size: 17px;
+  color: #6b3fa0;
+  font-size: 16px;
+  font-weight: 800;
   margin-bottom: 4px;
 }
 
@@ -171,7 +239,7 @@
 }
 
 .staff-update-faq dt {
-  color: var(--purple);
+  color: #6b3fa0;
   font-weight: 800;
   font-size: clamp(17px, 0.3vw + 15px, 20px);
   margin-top: 18px;
@@ -180,13 +248,13 @@
 .staff-update-faq dd {
   margin: 6px 0 0;
   color: #3f4e66;
-  font-size: clamp(16px, 0.3vw + 14px, 19px);
+  font-size: clamp(15px, 0.3vw + 13px, 18px);
   line-height: 1.65;
 }
 
 @media (max-width: 860px) {
   .staff-update-card {
-    padding: 28px 24px;
+    padding: 30px 24px;
   }
 
   .staff-update-photo {
@@ -194,6 +262,10 @@
   }
 
   .staff-update-highlight {
-    padding: 20px 22px;
+    padding: 22px 22px;
+  }
+
+  .staff-update-actions {
+    flex-direction: column;
   }
 }

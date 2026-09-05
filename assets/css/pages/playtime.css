@@ -1,6 +1,13 @@
 .page-playtime {
-  --playtime-copy-size: clamp(18px, 0.45vw + 15px, 21px);
-  --playtime-heading-size: clamp(34px, 1vw + 26px, 42px);
+  --playtime-copy-size: clamp(16px, 0.3vw + 14px, 19px);
+  --playtime-heading-size: clamp(30px, 0.9vw + 22px, 38px);
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
+}
+
+.page-playtime .playtime-subhero {
+  isolation: isolate;
+  text-align: center;
 }
 
 .page-playtime .section-pad {
@@ -9,7 +16,7 @@
 }
 
 .page-playtime .playtime-intro {
-  background: #9a82c6;
+  background: #f7f5fb;
 }
 
 .playtime-showcase,
@@ -28,22 +35,20 @@
 
 .playtime-copy-card h2,
 .playtime-detail-card h2 {
-  margin: 0 0 22px;
+  margin: 0 0 18px;
+  color: #1c1040;
   font-size: var(--playtime-heading-size);
-  line-height: 1.12;
-  font-weight: 900;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .playtime-copy-card h2 {
-  color: #b34a39;
+  color: #be4e39;
 }
 
 .playtime-detail-card-hours h2 {
-  color: #a13174;
-}
-
-.playtime-detail-card-importance h2 {
-  color: #4b67aa;
+  color: #6b3fa0;
 }
 
 .playtime-copy-card p,
@@ -51,7 +56,7 @@
 .playtime-feature-list li {
   font-size: var(--playtime-copy-size);
   line-height: 1.72;
-  color: #1d1d22;
+  color: #3f4e66;
 }
 
 .playtime-copy-card p,
@@ -66,7 +71,7 @@
 
 .playtime-feature-list {
   margin: 0;
-  padding-left: 24px;
+  padding-left: 22px;
 }
 
 .playtime-feature-list li {
@@ -83,7 +88,8 @@
 
 .playtime-gallery-stage {
   height: clamp(420px, 52vw, 640px);
-  background: #f4f1f7;
+  border-radius: 14px;
+  background: #f1ecfa;
 }
 
 .playtime-gallery .carousel-slide img {
@@ -95,10 +101,10 @@
 .playtime-gallery .carousel-arrow {
   width: 44px;
   height: 44px;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
-  color: #2f2f2f;
-  box-shadow: 0 8px 18px rgba(56, 41, 89, 0.18);
+  color: #1c1040;
+  box-shadow: 0 8px 18px rgba(28, 16, 64, 0.18);
 }
 
 .playtime-gallery .carousel-arrow.left {
@@ -110,23 +116,23 @@
 }
 
 .playtime-gallery .carousel-dots {
-  gap: 12px;
+  gap: 10px;
   padding: 20px 0 6px;
 }
 
 .playtime-gallery .carousel-dot {
-  width: 10px;
-  height: 10px;
-  background: #c3c3c8;
+  width: 8px;
+  height: 8px;
+  background: #ddd6ee;
 }
 
 .playtime-gallery .carousel-dot.active {
-  width: 28px;
-  background: #2e2e33;
+  width: 24px;
+  background: #6b3fa0;
 }
 
 .playtime-details-grid {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .playtime-detail-card {
@@ -136,8 +142,41 @@
 .playtime-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
+  gap: 12px;
   margin-top: 24px;
+}
+
+.playtime-actions .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 13px;
+  background: #6b3fa0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  box-shadow: none;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.playtime-actions .btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.playtime-actions .btn.blue {
+  background: transparent;
+  border: 2px solid #6b3fa0;
+  color: #6b3fa0;
+}
+
+.playtime-actions .btn.blue:hover {
+  background: rgba(107, 63, 160, 0.08);
+  opacity: 1;
 }
 
 @media (max-width: 1100px) {

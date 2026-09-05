@@ -1,6 +1,13 @@
 .page-toddler-groups {
   --toddler-copy-size: clamp(18px, 0.45vw + 15px, 21px);
   --toddler-heading-size: clamp(30px, 0.9vw + 22px, 38px);
+  --hero-pad-top: 64px;
+  --hero-pad-bottom: 64px;
+}
+
+.page-toddler-groups .toddler-groups-subhero {
+  isolation: isolate;
+  text-align: center;
 }
 
 .page-toddler-groups .section-pad {
@@ -9,7 +16,7 @@
 }
 
 .page-toddler-groups .toddler-groups-intro {
-  background: #9a82c6;
+  background: #f7f5fb;
 }
 
 .toddler-groups-showcase {

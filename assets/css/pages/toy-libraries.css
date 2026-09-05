@@ -1,6 +1,6 @@
 .page-toy-libraries {
-  --toy-copy-size: clamp(18px, 0.45vw + 15px, 21px);
-  --toy-heading-size: clamp(34px, 1vw + 26px, 42px);
+  --toy-copy-size: clamp(16px, 0.3vw + 14px, 19px);
+  --toy-heading-size: clamp(30px, 0.9vw + 22px, 38px);
   --hero-pad-top: 64px;
   --hero-pad-bottom: 64px;
 }
@@ -32,8 +32,8 @@
 
 .toy-libraries-gallery-stage {
   height: clamp(440px, 58vw, 760px);
-  border-radius: 0;
-  background: #f4f1f7;
+  border-radius: 14px;
+  background: #f1ecfa;
 }
 
 .toy-libraries-gallery .carousel-slide img {
@@ -45,10 +45,10 @@
 .toy-libraries-gallery .carousel-arrow {
   width: 44px;
   height: 44px;
-  font-size: 36px;
+  font-size: 32px;
   line-height: 1;
-  color: #2f2f2f;
-  box-shadow: 0 8px 18px rgba(56, 41, 89, 0.18);
+  color: #1c1040;
+  box-shadow: 0 8px 18px rgba(28, 16, 64, 0.18);
 }
 
 .toy-libraries-gallery .carousel-arrow.left {
@@ -60,45 +60,47 @@
 }
 
 .toy-libraries-gallery .carousel-dots {
-  gap: 12px;
+  gap: 10px;
   padding: 20px 0 6px;
 }
 
 .toy-libraries-gallery .carousel-dot {
-  width: 10px;
-  height: 10px;
-  background: #c3c3c8;
+  width: 8px;
+  height: 8px;
+  background: #ddd6ee;
 }
 
 .toy-libraries-gallery .carousel-dot.active {
-  width: 28px;
-  background: #2e2e33;
+  width: 24px;
+  background: #6b3fa0;
 }
 
 .toy-libraries-copy-stack {
   display: grid;
-  gap: 26px;
+  gap: 22px;
 }
 
 .toy-libraries-copy-card {
-  padding: 36px 34px 34px;
+  padding: 34px 32px 32px;
 }
 
 .toy-libraries-copy-card h2,
 .toy-libraries-stock-card h2,
 .toy-libraries-feedback-head h2 {
-  margin: 0 0 24px;
+  margin: 0 0 18px;
+  color: #1c1040;
   font-size: var(--toy-heading-size);
-  line-height: 1.12;
-  font-weight: 900;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .toy-libraries-copy-card-intro h2 {
-  color: #b34a39;
+  color: #be4e39;
 }
 
 .toy-libraries-copy-card-process h2 {
-  color: #a13174;
+  color: #6b3fa0;
 }
 
 .toy-libraries-copy-card p,
@@ -114,8 +116,8 @@
 }
 
 .toy-libraries-copy-card p {
-  margin: 0 0 24px;
-  color: #1c1c1f;
+  margin: 0 0 18px;
+  color: #3f4e66;
 }
 
 .toy-libraries-copy-card p:last-child,
@@ -124,18 +126,17 @@
 }
 
 .toy-libraries-stock-card {
-  margin-top: 28px;
-  padding: 34px 32px 38px;
+  margin-top: 24px;
+  padding: 34px 32px 36px;
 }
 
 .toy-libraries-stock-card h2 {
-  color: #594595;
-  margin-bottom: 18px;
+  margin-bottom: 16px;
 }
 
 .toy-libraries-stock-card p {
   margin: 0 0 18px;
-  color: #202026;
+  color: #3f4e66;
 }
 
 .toy-libraries-stock-lists {
@@ -147,12 +148,12 @@
 
 .toy-libraries-stock-lists ul {
   margin: 0;
-  padding-left: 24px;
+  padding-left: 22px;
 }
 
 .toy-libraries-stock-lists li {
   margin: 0 0 10px;
-  color: #202026;
+  color: #3f4e66;
 }
 
 .toy-libraries-stock-note {
@@ -167,20 +168,18 @@
 
 .toy-libraries-benefits-shell {
   padding: 34px 38px 42px;
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
 .toy-libraries-benefits-shell h2 {
   margin: 0;
-  color: #4b67aa;
   font-size: var(--toy-heading-size);
-  line-height: 1.12;
-  font-weight: 900;
+  line-height: 1.15;
 }
 
 .toy-libraries-benefits-intro {
-  margin: 26px 0 0;
-  color: #25252b;
+  margin: 24px 0 0;
+  color: #3f4e66;
   font-size: var(--toy-copy-size);
   line-height: 1.72;
 }
@@ -188,46 +187,61 @@
 .toy-libraries-benefits-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 34px 36px;
-  margin-top: 42px;
+  gap: 24px;
+  margin-top: 36px;
 }
 
 .toy-libraries-benefit-card {
-  min-height: 360px;
-  padding: 52px 42px;
-  border-radius: 36px;
-  color: #17171b;
-  text-align: center;
-  box-shadow: 0 18px 36px rgba(61, 45, 94, 0.08);
+  padding: 34px 34px 36px;
+  border-radius: 20px;
+  text-align: left;
+  box-shadow: 0 18px 36px rgba(28, 16, 64, 0.08);
 }
 
 .toy-libraries-benefit-card h3 {
   margin: 0;
-  font-size: clamp(20px, 0.45vw + 16px, 28px);
-  line-height: 1.28;
-  font-weight: 900;
+  font-size: clamp(19px, 0.4vw + 16px, 23px);
+  line-height: 1.3;
+  font-weight: 800;
 }
 
 .toy-libraries-benefit-card p {
-  margin: 28px 0 0;
+  margin: 14px 0 0;
   font-size: var(--toy-copy-size);
   line-height: 1.72;
+  color: #3f4e66;
 }
 
 .toy-libraries-benefit-card-peach {
-  background: #ffc98a;
+  background: #fff1ec;
+}
+
+.toy-libraries-benefit-card-peach h3 {
+  color: #be4e39;
 }
 
 .toy-libraries-benefit-card-green {
-  background: #a6e388;
+  background: #eef6f0;
+}
+
+.toy-libraries-benefit-card-green h3 {
+  color: #3f7d54;
 }
 
 .toy-libraries-benefit-card-yellow {
-  background: #fff07a;
+  background: #fff8e6;
+}
+
+.toy-libraries-benefit-card-yellow h3 {
+  color: #a67c12;
 }
 
 .toy-libraries-benefit-card-blue {
-  background: #8cc4eb;
+  background: #f1ecfa;
+}
+
+.toy-libraries-benefit-card-blue h3 {
+  color: #5a2e9a;
 }
 
 .toy-libraries-feedback {
@@ -237,7 +251,7 @@
 
 .toy-libraries-feedback-shell {
   padding: 24px 24px 34px;
-  border-radius: 18px;
+  border-radius: 20px;
 }
 
 .toy-libraries-feedback-head {
@@ -246,19 +260,18 @@
 }
 
 .toy-libraries-feedback-head h2 {
-  color: #4b80af;
-  font-size: clamp(34px, 1.1vw + 24px, 52px);
-  margin-bottom: 18px;
+  font-size: clamp(30px, 1vw + 22px, 44px);
+  margin-bottom: 16px;
 }
 
 .toy-libraries-feedback-head p {
   margin: 0;
-  color: #1d1d22;
+  color: #3f4e66;
   font-style: normal;
 }
 
 .toy-libraries-feedback-quote-box {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .toy-libraries-feedback-track-wrap {
@@ -278,9 +291,10 @@
 
 .toy-libraries-feedback-slide-card {
   background: #fff;
-  box-shadow: 0 12px 34px rgba(61, 45, 94, 0.08);
-  min-height: 240px;
-  padding: 46px 52px;
+  box-shadow: 0 12px 34px rgba(28, 16, 64, 0.08);
+  border-radius: 20px;
+  min-height: 220px;
+  padding: 40px 46px;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: 18px;
@@ -288,23 +302,23 @@
 }
 
 .toy-libraries-feedback-quote-mark {
-  color: #ff8f7e;
-  font-size: 90px;
+  color: #ff5a3c;
+  font-size: 80px;
   line-height: 0.7;
-  font-weight: 900;
+  font-weight: 800;
   transform: translateY(8px);
 }
 
 .toy-libraries-feedback-slide p {
   margin: 0;
-  color: #1d1d22;
-  font-size: clamp(24px, 0.75vw + 16px, 33px);
-  line-height: 1.7;
+  color: #1c1040;
+  font-size: clamp(21px, 0.6vw + 15px, 28px);
+  line-height: 1.6;
   font-style: italic;
 }
 
 .toy-libraries-feedback-dots {
-  padding-top: 26px;
+  padding-top: 24px;
 }
 
 .page-toy-libraries .toy-libraries-visit {
@@ -314,39 +328,40 @@
 }
 
 .toy-libraries-visit-card {
-  padding: 34px 48px 38px;
+  padding: 34px 40px 38px;
 }
 
 .toy-libraries-visit-card h2 {
   margin: 0;
-  color: #5a973b;
-  font-size: clamp(42px, 1.6vw + 26px, 60px);
-  line-height: 1.08;
-  font-weight: 900;
+  color: #1c1040;
+  font-size: clamp(32px, 1.1vw + 22px, 44px);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .toy-libraries-visit-card p {
-  margin: 28px 0 0;
-  color: #1f1f25;
-  font-size: clamp(20px, 0.55vw + 17px, 30px);
+  margin: 20px 0 0;
+  color: #3f4e66;
+  font-size: clamp(16px, 0.35vw + 14px, 19px);
   line-height: 1.7;
 }
 
 .toy-libraries-visit-card .link-red {
-  color: #4b4b4f;
+  color: #6b3fa0;
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }
 
 .toy-libraries-panorama-shell {
-  margin-top: 28px;
+  margin-top: 24px;
 }
 
 .toy-libraries-panorama-frame {
   position: relative;
   width: 100%;
   overflow: hidden;
-  border-radius: 0;
+  border-radius: 20px;
 }
 
 .toy-libraries-panorama-frame::before {
@@ -391,29 +406,27 @@
   }
 
   .toy-libraries-benefits-grid {
-    gap: 24px;
-    margin-top: 28px;
+    gap: 18px;
+    margin-top: 24px;
   }
 
   .toy-libraries-benefit-card {
-    min-height: 0;
-    padding: 34px 24px;
-    border-radius: 28px;
+    padding: 26px 24px 28px;
   }
 
   .toy-libraries-benefit-card p {
-    margin-top: 18px;
+    margin-top: 12px;
   }
 
   .toy-libraries-feedback-slide-card {
     min-height: 0;
-    padding: 30px 24px;
+    padding: 28px 22px;
     grid-template-columns: 1fr;
     gap: 10px;
   }
 
   .toy-libraries-feedback-quote-mark {
-    font-size: 66px;
+    font-size: 56px;
     transform: none;
   }
 
@@ -423,12 +436,12 @@
   }
 
   .toy-libraries-visit-card {
-    padding-top: 28px;
-    padding-bottom: 30px;
+    padding-top: 26px;
+    padding-bottom: 28px;
   }
 
   .toy-libraries-visit-card p {
-    margin-top: 20px;
+    margin-top: 16px;
   }
 
   .toy-libraries-gallery-stage {
