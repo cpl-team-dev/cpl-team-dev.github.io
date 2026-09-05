@@ -240,6 +240,14 @@
   font-size: 14px;
 }
 
+.contact-footer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .contact-footer a {
   color: #fff;
   text-underline-offset: 3px;

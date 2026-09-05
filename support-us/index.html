@@ -58,7 +58,18 @@
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/components.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css" />
-    <link rel="stylesheet" href="../assets/css/pages/support-us.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/css/sections/rebrand-patterns.css?v=20260905-shared"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/sections/endcap.css?v=20260905-footer-pills"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/pages/support-us.css?v=20260905-rebrand"
+    />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -468,110 +479,102 @@
       </nav>
 
       <main>
-        <section class="page-title">
-          <div class="container">
-            <h1>Support Community Playlink Southampton</h1>
-            <div class="breadcrumb" aria-label="Breadcrumb">
-              <a href="/">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"
-                  />
-                </svg>
-              </a>
-              <span class="breadcrumb-sep" aria-hidden="true">›</span>
-              <span>Support Us</span>
+        <section class="support-hero rebrand-gradient-hero">
+          <div class="container support-hero-inner rebrand-hero-inner">
+            <p class="support-hero-badge">Support Community Playlink</p>
+            <h1>Support <span>our mission</span></h1>
+            <p class="support-hero-intro">
+              Community Playlink relies on the generosity of volunteers,
+              donors and toy donors. Whether you can give toys, give money, or
+              give your time, every contribution keeps play free for families
+              in Southampton.
+            </p>
+            <div class="support-jump-chips">
+              <a href="#give-toys">Give toys</a>
+              <a href="#donate">Donate</a>
+              <a href="#volunteering">Volunteer</a>
             </div>
           </div>
         </section>
 
-        <section class="section-pad" style="background: #7a57be">
-          <div class="container support-intro">
-            <article class="card">
-              <img
-                src="https://ik.imagekit.io/communityplaylink/website/support-us/toy-libraries.jpg"
-                width="1350"
-                height="900"
-                alt="Shelves of toys at Community Playlink's toy library"
-                loading="lazy"
-              />
-              <div class="copy">
-                <h2>Toys</h2>
-                <p>
-                  Give toys a second life and bring joy to countless children by
-                  donating your unwanted, quality toys to us.
-                </p>
-                <p>
-                  If you want to donate to a toy library in Southampton, your
-                  gifts directly support local children and families.
-                </p>
-                <p><a class="link-red" href="#give-toys">Find out how</a></p>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="https://ik.imagekit.io/communityplaylink/website/support-us/Donation-April-2025.jpg"
-                width="1920"
-                height="1440"
-                alt="Our chairman Richard Maunder with Marcel and Jess Mulders holding a donation cheque"
-                loading="lazy"
-              />
-              <div class="copy">
-                <h2>Donations</h2>
-                <p>
-                  Help us keep supporting the local community in the face of
-                  increased pressure from the cost of living crisis and spending
-                  cuts.
-                </p>
-                <p>
-                  Every donation helps support Community Playlink and protect
-                  Southampton&rsquo;s free toy library for the families who rely
-                  on it.
-                </p>
-                <p><a class="link-red" href="#donate">Support us</a></p>
-              </div>
-            </article>
-            <article class="card">
-              <img
-                src="https://ik.imagekit.io/communityplaylink/website/support-us/volunteer.jpg"
-                width="1920"
-                height="2560"
-                alt="A volunteer helping out at Community Playlink"
-                loading="lazy"
-              />
-              <div class="copy">
-                <h2>Volunteer</h2>
-                <p>
-                  We have an extensive catalogue, which is a lot of work to
-                  manage. Love making a difference in your community?
-                </p>
-                <p>
-                  If you are looking for volunteer toy library opportunities in
-                  Southampton, we would love to hear from you.
-                </p>
-                <p>
-                  <a class="link-red" href="#volunteering"
-                    >Volunteer with us!</a
+        <section class="support-ways">
+          <div class="container">
+            <div class="support-ways-header">
+              <p class="support-kicker">Three ways to help</p>
+              <h2>How you can make a difference</h2>
+            </div>
+            <div class="support-ways-grid">
+              <a class="support-way-card" href="#give-toys">
+                <div class="support-way-media">
+                  <img
+                    src="https://ik.imagekit.io/communityplaylink/website/support-us/toy-libraries.jpg"
+                    width="1350"
+                    height="900"
+                    alt="Shelves of toys at Community Playlink's toy library"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="support-way-body">
+                  <h3>Toys</h3>
+                  <p>
+                    Give toys a second life and bring joy to countless
+                    children by donating your unwanted, quality toys to us.
+                  </p>
+                  <span class="support-way-arrow"
+                    >Find out how <span aria-hidden="true">→</span></span
                   >
-                </p>
-              </div>
-            </article>
+                </div>
+              </a>
+              <a class="support-way-card" href="#donate">
+                <div class="support-way-media">
+                  <img
+                    src="https://ik.imagekit.io/communityplaylink/website/support-us/Donation-April-2025.jpg"
+                    width="1920"
+                    height="1440"
+                    alt="Our chairman Richard Maunder with Marcel and Jess Mulders holding a donation cheque"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="support-way-body">
+                  <h3>Donations</h3>
+                  <p>
+                    Help us keep supporting the local community in the face of
+                    increased pressure from the cost of living crisis and
+                    spending cuts.
+                  </p>
+                  <span class="support-way-arrow"
+                    >Support us <span aria-hidden="true">→</span></span
+                  >
+                </div>
+              </a>
+              <a class="support-way-card" href="#volunteering">
+                <div class="support-way-media">
+                  <img
+                    src="https://ik.imagekit.io/communityplaylink/website/support-us/volunteer.jpg"
+                    width="1920"
+                    height="2560"
+                    alt="A volunteer helping out at Community Playlink"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="support-way-body">
+                  <h3>Volunteer</h3>
+                  <p>
+                    We have an extensive catalogue, which is a lot of work to
+                    manage. Love making a difference in your community?
+                  </p>
+                  <span class="support-way-arrow"
+                    >Volunteer with us! <span aria-hidden="true">→</span></span
+                  >
+                </div>
+              </a>
+            </div>
           </div>
         </section>
 
-        <div class="wave" style="background: #7a57be">
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-            <path
-              d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-              fill="#ff8d7f"
-            ></path>
-          </svg>
-        </div>
-
-        <section class="section-pad" style="background: #ff8d7f">
-          <div class="container support-double">
-            <article id="give-toys" class="card">
+        <section id="give-toys" class="support-split">
+          <div class="container support-split-grid">
+            <div class="support-split-media">
               <img
                 src="https://ik.imagekit.io/communityplaylink/website/support-us/Toy-Library-2.jpg"
                 width="3072"
@@ -579,154 +582,210 @@
                 alt="A well-stocked shelf of toys ready to be borrowed or donated"
                 loading="lazy"
               />
-              <div class="copy">
-                <h2>Give Toys</h2>
-                <p>
-                  We accept donations of quality, complete toys in good
-                  condition, that are suitable for children from 0&ndash;14
-                  years old. Have something you&rsquo;d like to donate? Bring it
-                  into our main base in Swaythling Neighbourhood Centre. You
-                  have the opportunity to make a massive difference, whilst
-                  reducing clutter from unwanted toys and preventing perfectly
-                  usable toys from ending up in landfill.
-                </p>
-                <p>
-                  Donating toys to our Southampton toy library helps us keep
-                  shelves full of educational toys, sensory toys, and play
-                  resources ready for local families.
-                </p>
-                <a class="btn block" href="../contact/">Find us</a>
-              </div>
-            </article>
-            <article id="donate" class="card">
-              <img
-                src="https://ik.imagekit.io/communityplaylink/website/support-us/Donations.jpg"
-                width="2048"
-                height="1023"
-                alt="A donation cheque presented to Community Playlink by the Rotary Club of Southampton Magna"
-                loading="lazy"
-              />
-              <div class="copy">
-                <h2>Donate</h2>
-                <p>
-                  We receive very few monetary donations, which means we rely
-                  heavily on grants, that are increasingly coming under pressure
-                  from spending cuts. The cost of living has massively increased
-                  the number of people making use of our services, but this has
-                  also increased the workload for our limited number of staff
-                  and volunteers.
-                </p>
-                <p>Donations allow us to:</p>
-                <ul>
-                  <li>Hire more paid staff and increase staff hours</li>
-                  <li>Purchase new, quality toys requested by members</li>
-                  <li>Offer more playtime sessions every week</li>
-                  <li>
-                    Maintain our extensive offering of quality, educational toys
-                  </li>
-                </ul>
-                <a
-                  class="btn block"
-                  href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Donate</a
-                >
-              </div>
-            </article>
+            </div>
+            <div class="support-split-copy">
+              <p class="support-kicker support-kicker-gold">
+                Give something back
+              </p>
+              <h2>Give toys a<br />second life.</h2>
+              <p>
+                We accept donations of quality, complete toys in good
+                condition, that are suitable for children from 0&ndash;14
+                years old. Have something you&rsquo;d like to donate? Bring it
+                into our main base in Swaythling Neighbourhood Centre. You
+                have the opportunity to make a massive difference, whilst
+                reducing clutter from unwanted toys and preventing perfectly
+                usable toys from ending up in landfill.
+              </p>
+              <p>
+                Donating toys to our Southampton toy library helps us keep
+                shelves full of educational toys, sensory toys, and play
+                resources ready for local families.
+              </p>
+              <a class="support-btn-primary" href="../contact/"
+                >Find us <span aria-hidden="true">→</span></a
+              >
+            </div>
           </div>
         </section>
 
-        <div class="wave" style="background: #ff8d7f">
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-            <path
-              d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-              fill="#7a57be"
-            ></path>
-          </svg>
-        </div>
+        <section id="donate" class="support-donate">
+          <div class="container support-donate-grid">
+            <div class="support-donate-copy">
+              <p class="support-kicker">Financial support</p>
+              <h2>Every donation<br />keeps us going.</h2>
+              <p>
+                We receive very few monetary donations, which means we rely
+                heavily on grants, that are increasingly coming under pressure
+                from spending cuts. The cost of living has massively increased
+                the number of people making use of our services, but this has
+                also increased the workload for our limited number of staff
+                and volunteers.
+              </p>
+              <p>Donations allow us to:</p>
+              <ul class="support-donate-list">
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M20 6L9 17l-5-5"
+                    />
+                  </svg>
+                  Hire more paid staff and increase staff hours
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M20 6L9 17l-5-5"
+                    />
+                  </svg>
+                  Purchase new, quality toys requested by members
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M20 6L9 17l-5-5"
+                    />
+                  </svg>
+                  Offer more playtime sessions every week
+                </li>
+                <li>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M20 6L9 17l-5-5"
+                    />
+                  </svg>
+                  Maintain our extensive offering of quality, educational toys
+                </li>
+              </ul>
+              <a
+                class="support-btn-donate"
+                href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Donate now <span aria-hidden="true">→</span></a
+              >
+            </div>
+            <div class="support-donate-card">
+              <p class="support-kicker support-kicker-gold">Your impact</p>
+              <h3>Every donation helps support Community Playlink</h3>
+              <p>
+                Every donation helps protect Southampton&rsquo;s free toy
+                library for the families who rely on it.
+              </p>
+              <a
+                class="support-btn-donate"
+                href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Donate now <span aria-hidden="true">→</span></a
+              >
+            </div>
+          </div>
+        </section>
 
-        <section class="section-pad" style="background: #7a57be">
-          <div class="container">
-            <article id="volunteering" class="card volunteer-shell">
-              <h2>Volunteering</h2>
-              <h3>Why volunteer with us?</h3>
+        <section id="volunteering" class="support-volunteer">
+          <div class="container support-volunteer-grid">
+            <div class="support-volunteer-info">
+              <p class="support-kicker support-kicker-gold">Get involved</p>
+              <h2>Volunteer<br />with us.</h2>
               <p>
-                As a small, local charity, volunteers are extremely important to
-                keep Community Playlink running.
+                As a small, local charity, volunteers are extremely important
+                to keep Community Playlink running. Volunteering with
+                Community Playlink is a hands-on way to support a Southampton
+                children&rsquo;s charity toy library and make a direct
+                difference in your community.
               </p>
               <p>
-                Volunteering with Community Playlink is a hands-on way to
-                support a Southampton children&rsquo;s charity toy library and
-                make a direct difference in your community.
+                Volunteering with us can also be a brilliant opportunity to
+                get some work experience if you&rsquo;re studying to work
+                with children, or if you have to complete volunteering as
+                part of a programme, like the Duke of Edinburgh award.
               </p>
-              <p>
-                Volunteering with us can also be a brilliant opportunity to get
-                some work experience if you&rsquo;re studying to work with
-                children, or if you have to complete volunteering as part of a
-                programme, like the Duke of Edinburgh award.
+              <p class="support-kicker support-kicker-gold">
+                What can I help with?
               </p>
-              <h3>What can I help with?</h3>
-              <p>Some of our volunteer responsibilities include:</p>
-              <ul>
+              <ul class="support-volunteer-list">
                 <li>Helping with the toy library</li>
                 <li>General office duties</li>
                 <li>Checking and cleaning toys</li>
                 <li>Cataloguing toys</li>
                 <li>DIY, e.g. mending wooden toys</li>
               </ul>
+            </div>
+
+            <div class="support-form-card">
+              <h3>Volunteer application</h3>
               <p>
-                Sound like something you&rsquo;d find fulfilling? Complete the
-                form below and we&rsquo;ll get back to you as soon as possible!
+                Sound like something you&rsquo;d find fulfilling? Complete
+                the form below and we&rsquo;ll get back to you as soon as
+                possible!
               </p>
 
-              <form
-                id="volunteer-form"
-                class="form-grid"
-                style="margin-top: 18px"
-              >
-                <div>
-                  <label class="label" for="vol-name"
-                    >Name <span class="required">*</span></label
-                  >
-                  <input
-                    class="input"
-                    type="text"
-                    id="vol-name"
-                    name="name"
-                    autocomplete="name"
-                    required
-                  />
+              <form id="volunteer-form" class="support-form-grid">
+                <div class="support-field-row">
+                  <div class="support-field">
+                    <label for="vol-name"
+                      >Name <span class="required">*</span></label
+                    >
+                    <input
+                      class="support-input"
+                      type="text"
+                      id="vol-name"
+                      name="name"
+                      autocomplete="name"
+                      required
+                    />
+                  </div>
+                  <div class="support-field">
+                    <label for="vol-email"
+                      >Email Address <span class="required">*</span></label
+                    >
+                    <input
+                      class="support-input"
+                      type="email"
+                      id="vol-email"
+                      name="email"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label class="label" for="vol-email"
-                    >Email Address <span class="required">*</span></label
-                  >
+                <div class="support-field">
+                  <label for="vol-phone">Phone</label>
                   <input
-                    class="input"
-                    type="email"
-                    id="vol-email"
-                    name="email"
-                    autocomplete="email"
-                    required
-                  />
-                </div>
-                <div>
-                  <label class="label" for="vol-phone">Phone</label>
-                  <input
-                    class="input"
+                    class="support-input"
                     type="tel"
                     id="vol-phone"
                     name="phone"
                     autocomplete="tel"
                   />
                 </div>
-                <div>
-                  <p class="label">
+                <div class="support-field">
+                  <p class="support-field-label">
                     Is there anything you&rsquo;re volunteering for?
                     <span class="required">*</span>
                   </p>
-                  <div class="radio-list">
+                  <div class="support-choice-grid">
                     <label
                       ><input
                         type="radio"
@@ -762,12 +821,12 @@
                     >
                   </div>
                 </div>
-                <div>
-                  <p class="label">
+                <div class="support-field">
+                  <p class="support-field-label">
                     What would you like to get involved with?
                     <span class="required">*</span>
                   </p>
-                  <div class="checkbox-list">
+                  <div class="support-choice-grid">
                     <label
                       ><input
                         type="checkbox"
@@ -817,80 +876,78 @@
                       Social Media Helper</label
                     >
                     <label
-                      ><input type="checkbox" name="interests" value="Other" />
+                      ><input
+                        type="checkbox"
+                        name="interests"
+                        value="Other"
+                      />
                       Other</label
                     >
                   </div>
                 </div>
-                <div>
-                  <label class="label" for="vol-motivation"
-                    >Why do you want to get involved with Community Playlink?
-                    <span class="required">*</span></label
+                <div class="support-field">
+                  <label for="vol-motivation"
+                    >Why do you want to get involved with Community
+                    Playlink? <span class="required">*</span></label
                   >
                   <textarea
-                    class="textarea"
+                    class="support-textarea"
                     id="vol-motivation"
                     name="motivation"
-                    rows="5"
+                    rows="4"
                     required
                     placeholder="Tell us why you want to get involved."
                   ></textarea>
                 </div>
-                <div>
-                  <label class="label" for="vol-availability"
+                <div class="support-field">
+                  <label for="vol-availability"
                     >What&rsquo;s your availability?
                     <span class="required">*</span></label
                   >
                   <textarea
-                    class="textarea"
+                    class="support-textarea"
                     id="vol-availability"
                     name="availability"
-                    rows="5"
+                    rows="3"
                     required
                     placeholder="Tell us when you are usually available."
                   ></textarea>
                 </div>
 
-                <label class="form-inline">
+                <label class="support-consent">
                   <input type="checkbox" required />
-                  Yes, I agree with the
-                  <a class="link-red" href="../about/policies/"
-                    >privacy policy.</a
-                  >
+                  <span>
+                    Yes, I agree with the
+                    <a href="../about/policies/">privacy policy</a>.
+                  </span>
                 </label>
                 <div
                   class="cf-turnstile"
                   data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
                 ></div>
                 <div>
-                  <button class="btn" type="submit">Submit application</button>
+                  <button class="support-btn-submit" type="submit">
+                    Submit application <span aria-hidden="true">→</span>
+                  </button>
                 </div>
               </form>
-              <div
+              <p
                 id="volunteer-success"
-                class="notice"
-                style="display: none; margin-top: 14px"
+                class="support-notice"
+                style="display: none"
               >
                 Application submitted. Thank you for volunteering.
-              </div>
-              <div
+              </p>
+              <p
                 id="volunteer-error"
-                class="notice"
-                style="display: none; margin-top: 14px"
-              ></div>
-            </article>
+                class="support-notice"
+                style="display: none"
+              ></p>
+            </div>
           </div>
         </section>
       </main>
 
-      <div class="wave" style="background: #7a57be">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#ff8d7f"
-          ></path>
-        </svg>
-      </div>
       <section class="quote-section">
         <div class="container quote-shell">
           <p class="quote-kicker">What families say</p>
@@ -943,132 +1000,192 @@
           </div>
         </div>
       </section>
-      <div class="wave" style="background: #ff8d7f">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#27272b"
-          ></path>
-        </svg>
-      </div>
 
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-grid">
-            <div class="card footer-card">
-              <nav class="footer-links" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="../about/">About</a>
-                <a href="../services/">Services</a>
-                <a href="../noticeboard/">News</a>
-                <a href="../contact/">Contact</a>
-                <a href="../support-us/">Support Us</a>
-              </nav>
+      <section id="find-us" class="visit-section">
+        <div class="container visit-grid">
+          <div class="visit-copy">
+            <p class="contact-kicker contact-kicker-gold">Come and visit us</p>
+            <h2>We&rsquo;d love to<br />meet you.</h2>
+            <p class="visit-intro">
+              Drop in during opening hours to explore our toy library, join a
+              playtime session, or just say hello. No booking needed.
+            </p>
+            <div class="visit-row">
+              <span class="visit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 21s6-6.1 6-11a6 6 0 10-12 0c0 4.9 6 11 6 11z" />
+                  <circle cx="12" cy="10" r="2" />
+                </svg>
+              </span>
+              <span
+                ><strong>Swaythling Neighbourhood Centre</strong
+                ><small>Hampton Pk Wy, Southampton SO17 3AT</small></span
+              >
             </div>
-            <div class="card footer-card">
-              <div class="footer-social" aria-label="Footer social links">
-                <a
-                  href="https://www.instagram.com/communityplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.facebook.com/cplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://bsky.app/profile/community-playlink.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Bluesky"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <ellipse
-                      cx="8"
-                      cy="8"
-                      rx="3.2"
-                      ry="5.1"
-                      transform="rotate(-35 8 8)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="16"
-                      cy="8"
-                      rx="3.2"
-                      ry="5.1"
-                      transform="rotate(35 16 8)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="9"
-                      cy="16"
-                      rx="2.8"
-                      ry="4.5"
-                      transform="rotate(25 9 16)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="15"
-                      cy="16"
-                      rx="2.8"
-                      ry="4.5"
-                      transform="rotate(-25 15 16)"
-                      fill="currentColor"
-                    ></ellipse>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.youtube.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
-                    />
-                  </svg>
-                </a>
-              </div>
+            <div class="visit-row">
+              <span class="visit-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M7 4l3 4-2 2c1.4 2.8 3.5 4.9 6.3 6.3l2-2 3.7 3c-.5 1.7-1.8 2.7-3.6 2.7C10.2 20 4 13.8 4 7.6 4 5.8 5.2 4.5 7 4z"
+                  />
+                </svg>
+              </span>
+              <span class="visit-hours" data-opening-hours="visit">
+                <span><em>Tuesday</em><strong>10am &ndash; 1pm</strong></span>
+                <span><em>Wednesday</em><strong>10am &ndash; 1pm</strong></span>
+                <span><em>Saturday</em><strong>10am &ndash; 1pm</strong></span>
+              </span>
+            </div>
+            <div class="visit-social" aria-label="Social links">
+              <a
+                href="https://www.facebook.com/cplaylink/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    stroke="none"
+                    d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/communityplaylink/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="4" y="4" width="16" height="16" rx="5" />
+                  <circle cx="12" cy="12" r="3.5" />
+                  <circle cx="17" cy="7" r="1" />
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@communityplaylink"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M4 7.5c0-1 1-1.7 2-1.8 4-.4 8-.4 12 0 1 .1 2 .8 2 1.8v9c0 1-1 1.7-2 1.8-4 .4-8 .4-12 0-1-.1-2-.8-2-1.8z"
+                  />
+                  <path d="M10 9l5 3-5 3z" />
+                </svg>
+              </a>
+              <a href="../noticeboard/" aria-label="News and updates">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle
+                    cx="6"
+                    cy="18"
+                    r="1.5"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <path d="M5 11a8 8 0 018 8M5 5a14 14 0 0114 14" />
+                </svg>
+              </a>
+              <a
+                href="https://www.tiktok.com/@communityplaylink"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    stroke="none"
+                    d="M15.8 2h-3v12a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 00-.7 0A5.5 5.5 0 1015.8 14V8.4A7.1 7.1 0 0020 9.8V6.9a4.2 4.2 0 01-4.2-4.1V2Z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://bsky.app/profile/community-playlink.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Bluesky"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <ellipse
+                    cx="8"
+                    cy="8"
+                    rx="3.2"
+                    ry="5.1"
+                    transform="rotate(-35 8 8)"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="16"
+                    cy="8"
+                    rx="3.2"
+                    ry="5.1"
+                    transform="rotate(35 16 8)"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="9"
+                    cy="16"
+                    rx="2.8"
+                    ry="4.5"
+                    transform="rotate(25 9 16)"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                  <ellipse
+                    cx="15"
+                    cy="16"
+                    rx="2.8"
+                    ry="4.5"
+                    transform="rotate(-25 15 16)"
+                    fill="currentColor"
+                    stroke="none"
+                  />
+                </svg>
+              </a>
             </div>
           </div>
-          <p class="footer-copy">
-            © Community Playlink 2026 • <a href="../manage/login.html">Login</a>
-          </p>
-          <br />
-          <p class="footer-copy">
+          <div class="visit-map">
+            <iframe
+              title="Community Playlink location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.1!2d-1.3800!3d50.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCommunity%20Playlink!5e0!3m2!1sen!2suk!4v1"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <footer class="contact-footer">
+        <div class="container contact-footer-inner">
+          <p>Registered Charity Number: 1184505</p>
+          <div class="contact-footer-actions" aria-label="Footer links">
+            <a class="contact-footer-login" href="/sitemap/">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="5" r="2" />
+                <circle cx="5" cy="19" r="2" />
+                <circle cx="19" cy="19" r="2" />
+                <path d="M12 7v5M5 17v-3h14v3M12 12v2" />
+              </svg>
+              <span>Sitemap</span>
+            </a>
+            <a class="contact-footer-login" href="/manage/login.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 8l4 4-4 4M18 12H7M11 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5"
+                />
+              </svg>
+              <span>Login</span>
+            </a>
+          </div>
+          <p>
             <a
+              class="contact-footer-credit"
               href="https://marcel-dev-acc.github.io/developer-profile/"
               target="_blank"
               rel="noopener noreferrer"
@@ -1079,16 +1196,26 @@
       </footer>
     </div>
 
-    <button id="back-top" class="back-top" type="button" title="Back to top">
-      ⌃
-    </button>
+    <a
+      id="admin-shortcut"
+      class="admin-shortcut"
+      href="../manage/dashboard.html"
+      title="Open admin dashboard"
+      aria-label="Open admin dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l7 3.2v5c0 4.8-3 8.9-7 9.8-4-.9-7-5-7-9.8v-5L12 3z" />
+        <path d="M9.3 12.2l1.8 1.8 3.6-3.8" />
+      </svg>
+    </a>
 
     <script src="../assets/js/config.js" defer></script>
+    <script src="../assets/js/manage-session.js" defer></script>
     <script src="../assets/js/shared/contact-form.js" defer></script>
     <script src="../assets/js/shared/navigation.js" defer></script>
     <script src="../assets/js/shared/announce.js" defer></script>
     <script src="../assets/js/shared/testimonials.js" defer></script>
-    <script src="../assets/js/shared/back-to-top.js" defer></script>
+    <script src="../assets/js/shared/admin-shortcut.js" defer></script>
     <script src="../assets/js/support-us.js" defer></script>
   </body>
 </html>

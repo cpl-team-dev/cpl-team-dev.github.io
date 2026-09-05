@@ -169,6 +169,7 @@
 .page-services .service-media {
   position: relative;
   min-height: 100%;
+  overflow: hidden;
 }
 
 .page-services .service-media img {

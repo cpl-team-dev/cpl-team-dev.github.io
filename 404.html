@@ -12,58 +12,15 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
     <link rel="stylesheet" href="/assets/css/components.css" />
     <link rel="stylesheet" href="/assets/css/responsive.css" />
-    <style>
-      .page-404 {
-        margin: 0;
-        min-height: 100vh;
-        background: #fff;
-      }
-
-      .redirect-shell {
-        width: min(760px, 100%);
-        background: #fff;
-        border-radius: 20px;
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
-
-      .redirect-body {
-        padding: 28px 24px 32px;
-      }
-
-      .redirect-main {
-        display: grid;
-        place-items: center;
-        padding: 32px 16px 56px;
-      }
-
-      .not-found-state {
-        text-align: center;
-      }
-
-      .not-found-state h1 {
-        margin: 0 0 12px;
-        font-size: clamp(28px, 4vw, 36px);
-        color: var(--dark-purple);
-      }
-
-      .not-found-state p {
-        margin: 0 auto;
-        max-width: 34rem;
-        font-size: 18px;
-      }
-
-      .not-found-state .btn {
-        margin-top: 24px;
-      }
-
-      @media (max-width: 640px) {
-        .redirect-body {
-          padding-left: 18px;
-          padding-right: 18px;
-        }
-      }
-    </style>
+    <link
+      rel="stylesheet"
+      href="/assets/css/sections/rebrand-patterns.css?v=20260905-shared"
+    />
+    <link
+      rel="stylesheet"
+      href="/assets/css/sections/endcap.css?v=20260905-footer-pills"
+    />
+    <link rel="stylesheet" href="/assets/css/pages/404.css" />
   </head>
   <!-- Google tag (gtag.js) -->
   <script
@@ -458,23 +415,73 @@
         </div>
       </nav>
 
-      <main class="redirect-main">
-        <div class="redirect-shell">
-          <section class="redirect-body">
-            <div class="not-found-state">
-              <h1>Page not found</h1>
-              <p>
-                The page you are looking for does not exist. You may have
-                mistyped the address or the page may have moved.
-              </p>
-              <a class="btn blue" href="/">Go back to the homepage</a>
-            </div>
-          </section>
-        </div>
+      <main>
+        <section class="notfound-hero rebrand-gradient-hero">
+          <div class="container notfound-hero-inner rebrand-hero-inner">
+            <p class="notfound-kicker">Error 404</p>
+            <h1>Page not <span>found</span></h1>
+            <p class="notfound-message">
+              The page you are looking for does not exist. You may have
+              mistyped the address or the page may have moved.
+            </p>
+            <a class="notfound-btn" href="/"
+              >Go back to the homepage <span aria-hidden="true">→</span></a
+            >
+          </div>
+        </section>
       </main>
+
+      <footer class="contact-footer">
+        <div class="container contact-footer-inner">
+          <p>Registered Charity Number: 1184505</p>
+          <div class="contact-footer-actions" aria-label="Footer links">
+            <a class="contact-footer-login" href="/sitemap/">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="5" r="2" />
+                <circle cx="5" cy="19" r="2" />
+                <circle cx="19" cy="19" r="2" />
+                <path d="M12 7v5M5 17v-3h14v3M12 12v2" />
+              </svg>
+              <span>Sitemap</span>
+            </a>
+            <a class="contact-footer-login" href="/manage/login.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 8l4 4-4 4M18 12H7M11 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5"
+                />
+              </svg>
+              <span>Login</span>
+            </a>
+          </div>
+          <p>
+            <a
+              class="contact-footer-credit"
+              href="https://marcel-dev-acc.github.io/developer-profile/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Created by Marcel Mulders</a
+            >
+          </p>
+        </div>
+      </footer>
     </div>
 
+    <a
+      id="admin-shortcut"
+      class="admin-shortcut"
+      href="./manage/dashboard.html"
+      title="Open admin dashboard"
+      aria-label="Open admin dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l7 3.2v5c0 4.8-3 8.9-7 9.8-4-.9-7-5-7-9.8v-5L12 3z" />
+        <path d="M9.3 12.2l1.8 1.8 3.6-3.8" />
+      </svg>
+    </a>
+
+    <script src="/assets/js/manage-session.js" defer></script>
     <script src="/assets/js/shared/navigation.js" defer></script>
     <script src="/assets/js/shared/announce.js" defer></script>
+    <script src="/assets/js/shared/admin-shortcut.js" defer></script>
   </body>
 </html>
