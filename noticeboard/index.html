@@ -56,7 +56,14 @@
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/components.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css" />
-    <link rel="stylesheet" href="../assets/css/pages/noticeboard.css" />
+    <link
+      rel="stylesheet"
+      href="../assets/css/sections/endcap.css?v=20260905-shared"
+    />
+    <link
+      rel="stylesheet"
+      href="../assets/css/pages/noticeboard.css?v=20260905-hero"
+    />
   </head>
   <!-- Google tag (gtag.js) -->
   <script
@@ -440,22 +447,13 @@
       </nav>
 
       <main>
-        <section class="page-title">
-          <div class="container">
-            <h1>Noticeboard</h1>
-            <p>Find out the latest to do with Community Playlink.</p>
-            <div class="breadcrumb" aria-label="Breadcrumb">
-              <a href="/">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"
-                  />
-                </svg>
-              </a>
-              <span class="breadcrumb-sep" aria-hidden="true">›</span>
-              <span>Noticeboard</span>
-            </div>
+        <section class="noticeboard-hero">
+          <div class="container noticeboard-hero-inner">
+            <p class="noticeboard-hero-kicker">Latest news &amp; updates</p>
+            <h1><span>Notice</span><strong>board</strong></h1>
+            <p class="noticeboard-hero-intro">
+              Stay up to date with everything happening at Community Playlink.
+            </p>
           </div>
         </section>
 
@@ -531,54 +529,50 @@
             </div>
           </div>
         </section>
-      </main>
-
-      <div class="wave" style="background: #7a57be">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#ff8d7f"
-          ></path>
-        </svg>
-      </div>
-
-      <div class="wave" style="background: #ff8d7f">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#27272b"
-          ></path>
-        </svg>
-      </div>
-
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-grid">
-            <div class="card footer-card">
-              <nav class="footer-links" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="../about/">About</a>
-                <a href="../services/">Services</a>
-                <a href="../noticeboard/">News</a>
-                <a href="../contact/">Contact</a>
-                <a href="../support-us/">Support Us</a>
-              </nav>
-            </div>
-            <div class="card footer-card">
-              <div class="footer-social" aria-label="Footer social links">
-                <a
-                  href="https://www.instagram.com/communityplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
+        <section id="find-us" class="visit-section">
+          <div class="container visit-grid">
+            <div class="visit-copy">
+              <p class="contact-kicker contact-kicker-gold">
+                Come and visit us
+              </p>
+              <h2>We&rsquo;d love to<br />meet you.</h2>
+              <p class="visit-intro">
+                Drop in during opening hours to explore our toy library, join a
+                playtime session, or just say hello. No booking needed.
+              </p>
+              <div class="visit-row">
+                <span class="visit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
                     <path
-                      fill="currentColor"
-                      d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
+                      d="M12 21s6-6.1 6-11a6 6 0 10-12 0c0 4.9 6 11 6 11z"
+                    />
+                    <circle cx="12" cy="10" r="2" />
+                  </svg>
+                </span>
+                <span
+                  ><strong>Swaythling Neighbourhood Centre</strong
+                  ><small>Hampton Pk Wy, Southampton SO17 3AT</small></span
+                >
+              </div>
+              <div class="visit-row">
+                <span class="visit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 4l3 4-2 2c1.4 2.8 3.5 4.9 6.3 6.3l2-2 3.7 3c-.5 1.7-1.8 2.7-3.6 2.7C10.2 20 4 13.8 4 7.6 4 5.8 5.2 4.5 7 4z"
                     />
                   </svg>
-                </a>
+                </span>
+                <span class="visit-hours" data-opening-hours="visit">
+                  <span><em>Tuesday</em><strong>10am &ndash; 1pm</strong></span>
+                  <span
+                    ><em>Wednesday</em><strong>10am &ndash; 1pm</strong></span
+                  >
+                  <span
+                    ><em>Saturday</em><strong>10am &ndash; 1pm</strong></span
+                  >
+                </span>
+              </div>
+              <div class="visit-social" aria-label="Social links">
                 <a
                   href="https://www.facebook.com/cplaylink/"
                   target="_blank"
@@ -588,7 +582,59 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       fill="currentColor"
+                      stroke="none"
                       d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/communityplaylink/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="4" y="4" width="16" height="16" rx="5" />
+                    <circle cx="12" cy="12" r="3.5" />
+                    <circle cx="17" cy="7" r="1" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.youtube.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 7.5c0-1 1-1.7 2-1.8 4-.4 8-.4 12 0 1 .1 2 .8 2 1.8v9c0 1-1 1.7-2 1.8-4 .4-8 .4-12 0-1-.1-2-.8-2-1.8z"
+                    />
+                    <path d="M10 9l5 3-5 3z" />
+                  </svg>
+                </a>
+                <a href="../noticeboard/" aria-label="News and updates">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle
+                      cx="6"
+                      cy="18"
+                      r="1.5"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                    <path d="M5 11a8 8 0 018 8M5 5a14 14 0 0114 14" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      stroke="none"
+                      d="M15.8 2h-3v12a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 00-.7 0A5.5 5.5 0 1015.8 14V8.4A7.1 7.1 0 0020 9.8V6.9a4.2 4.2 0 01-4.2-4.1V2Z"
                     />
                   </svg>
                 </a>
@@ -606,7 +652,8 @@
                       ry="5.1"
                       transform="rotate(-35 8 8)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="16"
                       cy="8"
@@ -614,7 +661,8 @@
                       ry="5.1"
                       transform="rotate(35 16 8)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="9"
                       cy="16"
@@ -622,7 +670,8 @@
                       ry="4.5"
                       transform="rotate(25 9 16)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="15"
                       cy="16"
@@ -630,44 +679,59 @@
                       ry="4.5"
                       transform="rotate(-25 15 16)"
                       fill="currentColor"
-                    ></ellipse>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.youtube.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+                      stroke="none"
                     />
                   </svg>
                 </a>
               </div>
             </div>
+            <div class="visit-map">
+              <iframe
+                title="Community Playlink location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.1!2d-1.3800!3d50.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCommunity%20Playlink!5e0!3m2!1sen!2suk!4v1"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
           </div>
-          <p class="footer-copy">
-            © Community Playlink 2026 • <a href="../manage/login.html">Login</a>
+        </section>
+
+        <section class="contact-cta">
+          <div class="container contact-cta-inner">
+            <div>
+              <h2>Help us keep play free.</h2>
+              <p>
+                Every donation keeps our toy library running for the next
+                family.
+              </p>
+            </div>
+            <div class="contact-cta-actions">
+              <a class="contact-cta-primary" href="../support-us/">Donate</a>
+              <a class="contact-cta-secondary" href="../support-us/"
+                >Volunteer</a
+              >
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="contact-footer">
+        <div class="container contact-footer-inner">
+          <p>Registered Charity Number: 1184505</p>
+          <p>
+            <a class="contact-footer-login" href="../manage/login.html">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 8l4 4-4 4M18 12H7M11 5H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h5"
+                />
+              </svg>
+              <span>Login</span>
+            </a>
           </p>
-          <br />
-          <p class="footer-copy">
+          <p>
             <a
+              class="contact-footer-credit"
               href="https://marcel-dev-acc.github.io/developer-profile/"
               target="_blank"
               rel="noopener noreferrer"
@@ -678,16 +742,25 @@
       </footer>
     </div>
 
-    <button id="back-top" class="back-top" type="button" title="Back to top">
-      ⌃
-    </button>
+    <a
+      id="admin-shortcut"
+      class="admin-shortcut"
+      href="../manage/dashboard.html"
+      title="Open admin dashboard"
+      aria-label="Open admin dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l7 3.2v5c0 4.8-3 8.9-7 9.8-4-.9-7-5-7-9.8v-5L12 3z" />
+        <path d="M9.3 12.2l1.8 1.8 3.6-3.8" />
+      </svg>
+    </a>
 
     <script src="../assets/js/config.js" defer></script>
+    <script src="../assets/js/manage-session.js" defer></script>
     <script src="../assets/js/manage-api.js" defer></script>
     <script src="../assets/js/noticeboard.js" defer></script>
     <script src="../assets/js/shared/navigation.js" defer></script>
     <script src="../assets/js/shared/announce.js" defer></script>
-    <script src="../assets/js/shared/testimonials.js" defer></script>
-    <script src="../assets/js/shared/back-to-top.js" defer></script>
+    <script src="../assets/js/shared/admin-shortcut.js" defer></script>
   </body>
 </html>

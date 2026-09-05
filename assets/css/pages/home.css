@@ -10,6 +10,20 @@
   --home-muted: rgba(255, 255, 255, 0.64);
   --home-content-size: clamp(15px, 0.32vw + 13px, 18px);
   --home-content-line-height: 1.7;
+  --hero-deep: var(--home-deep);
+  --hero-mid: var(--home-purple);
+  --hero-violet: var(--home-violet);
+  --hero-dot-opacity: 0.045;
+  --hero-pad-top: clamp(76px, 8vw, 112px);
+  --hero-pad-bottom: clamp(82px, 9vw, 122px);
+  --stats-bg: var(--home-purple);
+  --endcap-deep: var(--home-deep);
+  --endcap-coral: var(--home-coral);
+  --endcap-pink: var(--home-pink);
+  --endcap-gold: var(--home-yellow);
+  --endcap-kicker: #6b3fa0;
+  --admin-shortcut-bg: #6b3fa0;
+  --admin-shortcut-hover: var(--home-deep);
   background: var(--home-deep);
 }
 
@@ -44,27 +58,8 @@
 
 /* Reference-style hero: layered indigo, dot texture and image mosaic. */
 .page-home .home-hero {
-  position: relative;
   min-height: 720px;
-  overflow: hidden;
-  padding: clamp(76px, 8vw, 112px) 0 clamp(82px, 9vw, 122px);
-  background: linear-gradient(
-    135deg,
-    var(--home-deep) 0%,
-    var(--home-purple) 60%,
-    var(--home-violet) 100%
-  ) !important;
   isolation: isolate;
-}
-
-.page-home .home-hero::before {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background-image: radial-gradient(circle, #fff 1px, transparent 1px);
-  background-size: 32px 32px;
-  content: "";
-  opacity: 0.045;
 }
 
 .page-home .home-hero::after {
@@ -281,39 +276,19 @@
   }
 }
 
-/* Quick stats strip along the bottom of the hero. */
+/* Quick stats strip base styles are shared in sections/rebrand-patterns.css. */
+
 .page-home .home-stats {
   padding: 0;
-  background: var(--home-purple);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.page-home .home-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.page-home .home-stats-item {
-  padding: 34px 24px;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  text-align: center;
-}
-
-.page-home .home-stats-item:last-child {
-  border-right: 0;
 }
 
 .page-home .home-stats-item strong {
-  display: block;
-  color: #fff;
   font-family: var(--font-display);
   font-size: clamp(28px, 3vw, 38px);
-  font-weight: 800;
   letter-spacing: -0.03em;
 }
 
 .page-home .home-stats-item span {
-  display: block;
   margin-top: 6px;
   color: rgba(255, 255, 255, 0.55);
   font-size: 14px;
@@ -649,353 +624,7 @@
   background: #6b3fa0;
 }
 
-/* Visit us + donate CTA, ported from the contact page footer area. */
-.page-home .contact-kicker {
-  margin: 0;
-  color: #6b3fa0;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.page-home .contact-kicker-gold {
-  color: var(--home-yellow);
-}
-
-.page-home .visit-section {
-  padding: 86px 0;
-  background: var(--home-deep);
-}
-
-.page-home .visit-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.35fr);
-  gap: 64px;
-  align-items: center;
-}
-
-.page-home .visit-copy h2 {
-  margin: 22px 0 28px;
-  color: #fff;
-  font-size: clamp(42px, 4vw, 60px);
-  font-weight: 800;
-  letter-spacing: -0.045em;
-  line-height: 1.05;
-}
-
-.page-home .visit-intro {
-  margin: 0 0 30px;
-  color: rgba(255, 255, 255, 0.56);
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.page-home .visit-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  margin-top: 16px;
-  color: #fff;
-}
-
-.page-home .visit-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.68);
-  flex: 0 0 auto;
-}
-
-.page-home .visit-icon svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.page-home .visit-row strong,
-.page-home .visit-row small {
-  display: block;
-  font-size: 14px;
-}
-.page-home .visit-row strong {
-  font-weight: 700;
-}
-
-.page-home .visit-row small,
-.page-home .visit-hours em {
-  color: rgba(255, 255, 255, 0.48);
-  font-style: normal;
-  line-height: 1.6;
-}
-
-.page-home .visit-hours > span {
-  display: grid;
-  grid-template-columns: 105px auto;
-  gap: 18px;
-  line-height: 1.55;
-}
-
-.page-home .visit-social {
-  display: flex;
-  gap: 9px;
-  margin-top: 34px;
-}
-
-.page-home .visit-social a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.62);
-  transition:
-    background 180ms ease,
-    color 180ms ease;
-}
-
-.page-home .visit-social a:hover {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
-}
-
-.page-home .visit-social svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-}
-
-.page-home .visit-map {
-  height: 420px;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #202b3c;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.24);
-}
-
-.page-home .visit-map iframe {
-  width: 100%;
-  height: 100%;
-  border: 0;
-}
-
-.page-home .contact-cta {
-  position: relative;
-  overflow: hidden;
-  padding: 52px 0;
-  background: linear-gradient(90deg, var(--home-coral), var(--home-pink));
-}
-
-.page-home .contact-cta::before {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.7) 1px,
-    transparent 1px
-  );
-  background-size: 24px 24px;
-  content: "";
-  opacity: 0.1;
-}
-
-.page-home .contact-cta-inner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.page-home .contact-cta h2 {
-  margin: 0;
-  color: #fff;
-  font-size: clamp(30px, 3vw, 42px);
-  font-weight: 800;
-  letter-spacing: -0.04em;
-}
-
-.page-home .contact-cta p {
-  margin: 5px 0 0;
-  color: rgba(255, 255, 255, 0.76);
-  font-size: 15px;
-}
-
-.page-home .contact-cta-actions {
-  display: flex;
-  gap: 14px;
-  flex: 0 0 auto;
-}
-
-.page-home .contact-cta-actions a {
-  min-width: 120px;
-  padding: 14px 24px;
-  border-radius: 13px;
-  font-size: 15px;
-  font-weight: 700;
-  text-align: center;
-  text-decoration: none;
-  transition:
-    transform 180ms ease,
-    background 180ms ease;
-}
-
-.page-home .contact-cta-actions a:hover {
-  transform: translateY(-1px);
-}
-.page-home .contact-cta-primary {
-  background: #fff;
-  color: var(--home-coral);
-}
-.page-home .contact-cta-secondary {
-  border: 2px solid rgba(255, 255, 255, 0.42);
-  color: #fff;
-}
-
-.page-home .contact-footer {
-  padding: 28px 0;
-  background: var(--home-deep);
-  color: rgba(255, 255, 255, 0.68);
-  text-align: center;
-}
-
-.page-home .contact-footer-inner {
-  display: grid;
-  gap: 10px;
-}
-
-.page-home .contact-footer p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.page-home .contact-footer a {
-  color: #fff;
-  text-underline-offset: 3px;
-}
-
-.page-home .contact-footer .contact-footer-login {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin: 4px 0;
-  padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.48);
-  border-radius: 999px;
-  text-decoration: none;
-  transition:
-    background-color 180ms ease,
-    border-color 180ms ease,
-    color 180ms ease,
-    transform 180ms ease;
-}
-
-.page-home .contact-footer-login svg {
-  width: 17px;
-  height: 17px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.page-home .contact-footer .contact-footer-login:hover,
-.page-home .contact-footer .contact-footer-login:focus-visible {
-  border-color: #fff;
-  background: #fff;
-  color: var(--home-deep);
-  transform: translateY(-1px);
-}
-
-.page-home .contact-footer .contact-footer-login:focus-visible {
-  outline: 3px solid var(--home-yellow);
-  outline-offset: 3px;
-}
-
-.page-home .contact-footer-credit:hover {
-  background-image: linear-gradient(
-    110deg,
-    #fff 0%,
-    #fff 38%,
-    var(--home-yellow) 48%,
-    #fff 58%,
-    #fff 100%
-  );
-  background-position: 100% center;
-  background-size: 250% 100%;
-  background-clip: text;
-  color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: contact-credit-shimmer 900ms ease-out forwards;
-}
-
-@keyframes contact-credit-shimmer {
-  to {
-    background-position: 0 center;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .page-home .contact-footer-credit:hover {
-    color: var(--home-yellow);
-    -webkit-text-fill-color: currentColor;
-    animation: none;
-  }
-}
-
-/* Admin shortcut replaces the generic back-to-top button on this page. */
-.page-home .admin-shortcut {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: #6b3fa0;
-  color: #fff;
-  text-decoration: none;
-  box-shadow: 0 8px 20px rgba(28, 16, 64, 0.3);
-  z-index: 90;
-  transition:
-    transform 180ms ease,
-    background 180ms ease;
-}
-
-.page-home .admin-shortcut.is-visible {
-  display: inline-flex;
-}
-.page-home .admin-shortcut:hover {
-  background: var(--home-deep);
-  transform: translateY(-2px);
-}
-
-.page-home .admin-shortcut svg {
-  width: 22px;
-  height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.9;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
+/* Visit, CTA, footer, and admin shortcut are shared in sections/endcap.css. */
 
 @media (max-width: 1100px) {
   .page-home .hero-grid {
@@ -1195,41 +824,11 @@
   .page-home .quote-stage {
     padding-inline: 10px;
   }
-  .page-home .visit-section {
-    padding: 64px 0;
-  }
-  .page-home .visit-copy h2 {
-    margin-top: 16px;
-  }
-  .page-home .visit-map {
-    height: 320px;
-  }
-  .page-home .contact-cta {
-    padding: 44px 0;
-  }
-  .page-home .contact-cta-inner {
-    align-items: flex-start;
-    flex-direction: column;
-  }
 }
 
 @media (max-width: 480px) {
   .page-home .hero-copy::before {
     font-size: 11px;
-  }
-  .page-home .visit-hours > span {
-    grid-template-columns: 92px auto;
-    gap: 8px;
-  }
-  .page-home .visit-social {
-    flex-wrap: wrap;
-  }
-  .page-home .contact-cta-actions {
-    width: 100%;
-  }
-  .page-home .contact-cta-actions a {
-    min-width: 0;
-    flex: 1;
   }
 }
 

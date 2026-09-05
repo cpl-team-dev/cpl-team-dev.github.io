@@ -1,6 +1,91 @@
 .page-toy-library {
+  --toy-deep: #1c1040;
+  --toy-purple: #3d1b7a;
+  --toy-violet: #5a2e9a;
+  --toy-gold: #ffd166;
   --toy-copy-size: clamp(18px, 0.45vw + 15px, 22px);
   --toy-heading-size: clamp(34px, 1.2vw + 24px, 52px);
+  --endcap-deep: var(--toy-deep);
+  --endcap-coral: #ff5a3c;
+  --endcap-pink: #e83060;
+  --endcap-gold: var(--toy-gold);
+  --endcap-kicker: #6b3fa0;
+  --admin-shortcut-bg: #6b3fa0;
+  --admin-shortcut-hover: var(--toy-deep);
+}
+
+/* Matches the shared visual language used by the contact and noticeboard heroes. */
+.toy-library-page-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--toy-deep) 0%,
+    var(--toy-purple) 60%,
+    var(--toy-violet) 100%
+  );
+}
+
+.toy-library-page-hero::before {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  content: "";
+  opacity: 0.04;
+}
+
+.toy-library-page-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 88px 0 96px;
+  text-align: center;
+}
+
+.toy-library-page-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  margin: 0 0 36px;
+  padding: 7px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.toy-library-page-hero h1 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: clamp(56px, 6vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.toy-library-page-hero h1 span,
+.toy-library-page-hero h1 strong {
+  font: inherit;
+}
+
+.toy-library-page-hero h1 strong {
+  color: var(--toy-gold);
+}
+
+.toy-library-page-hero-intro {
+  max-width: 920px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(18px, 1.5vw, 25px);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .page-toy-library .section-pad {
@@ -595,6 +680,25 @@
 }
 
 @media (max-width: 760px) {
+  .toy-library-page-hero-inner {
+    padding: 68px 0 74px;
+  }
+
+  .toy-library-page-hero-kicker {
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+
+  .toy-library-page-hero h1 {
+    margin-bottom: 22px;
+    font-size: clamp(50px, 15vw, 68px);
+  }
+
+  .toy-library-page-hero-intro {
+    max-width: 520px;
+    font-size: 17px;
+  }
+
   .toy-library-hero,
   .toy-library-panel,
   .toy-library-cta-card {

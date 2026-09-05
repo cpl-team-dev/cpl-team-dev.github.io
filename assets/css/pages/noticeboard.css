@@ -1,5 +1,90 @@
 .page-noticeboard {
+  --notice-deep: #1c1040;
+  --notice-purple: #3d1b7a;
+  --notice-violet: #5a2e9a;
+  --notice-gold: #ffd166;
   --notice-copy-size: clamp(17px, 0.4vw + 14px, 19px);
+  --endcap-deep: var(--notice-deep);
+  --endcap-coral: #ff5a3c;
+  --endcap-pink: #e83060;
+  --endcap-gold: var(--notice-gold);
+  --endcap-kicker: #6b3fa0;
+  --admin-shortcut-bg: #6b3fa0;
+  --admin-shortcut-hover: var(--notice-deep);
+}
+
+/* Matches the shared visual language used by the contact-page hero. */
+.noticeboard-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    var(--notice-deep) 0%,
+    var(--notice-purple) 60%,
+    var(--notice-violet) 100%
+  );
+}
+
+.noticeboard-hero::before {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  content: "";
+  opacity: 0.04;
+}
+
+.noticeboard-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 88px 0 96px;
+  text-align: center;
+}
+
+.noticeboard-hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  margin: 0 0 36px;
+  padding: 7px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.noticeboard-hero h1 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: clamp(56px, 6vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.noticeboard-hero h1 span,
+.noticeboard-hero h1 strong {
+  font: inherit;
+}
+
+.noticeboard-hero h1 strong {
+  color: var(--notice-gold);
+}
+
+.noticeboard-hero-intro {
+  max-width: 920px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: clamp(18px, 1.5vw, 25px);
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 .page-noticeboard .section-pad {
@@ -139,6 +224,25 @@
 }
 
 @media (max-width: 760px) {
+  .noticeboard-hero-inner {
+    padding: 68px 0 74px;
+  }
+
+  .noticeboard-hero-kicker {
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+
+  .noticeboard-hero h1 {
+    margin-bottom: 22px;
+    font-size: clamp(50px, 15vw, 68px);
+  }
+
+  .noticeboard-hero-intro {
+    max-width: 520px;
+    font-size: 17px;
+  }
+
   .page-noticeboard .section-pad {
     padding-top: 20px;
     padding-bottom: 34px;
