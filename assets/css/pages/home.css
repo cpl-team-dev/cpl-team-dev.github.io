@@ -139,11 +139,7 @@
 
 .page-home .hero-copy p,
 .page-home .split-copy h3,
-.page-home .split-copy p,
-.page-home .join-copy p,
-.page-home .join-location p,
-.page-home .hours-table td,
-.page-home .contact-item {
+.page-home .split-copy p {
   font-size: var(--home-content-size);
   line-height: var(--home-content-line-height);
 }
@@ -283,6 +279,44 @@
   to {
     transform: scale(1.09) translate(-1%, -1%);
   }
+}
+
+/* Quick stats strip along the bottom of the hero. */
+.page-home .home-stats {
+  padding: 0;
+  background: var(--home-purple);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.page-home .home-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.page-home .home-stats-item {
+  padding: 34px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.page-home .home-stats-item:last-child {
+  border-right: 0;
+}
+
+.page-home .home-stats-item strong {
+  display: block;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.page-home .home-stats-item span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 14px;
 }
 
 /* Soft play retains its original card styling. */
@@ -503,140 +537,86 @@
   box-shadow: none;
 }
 
-/* Visit, hours and contact are unified into the reference's dark lower page. */
-.page-home .home-visit {
-  padding: 92px 0;
+/* Impact stats grid beneath the group membership section. */
+.page-home .home-impact {
+  padding: 96px 0;
   background: var(--home-deep) !important;
 }
 
-.page-home .home-visit .join-panel {
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
-  gap: clamp(44px, 7vw, 86px);
-  overflow: visible;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
+.page-home .home-impact-header {
+  margin-bottom: 64px;
+  text-align: center;
 }
 
-.page-home .home-visit .join-copy {
-  align-self: center;
-  padding: 0;
-}
-
-.page-home .home-visit .join-copy h2 {
-  color: #fff;
-  font-size: clamp(46px, 5vw, 66px);
-  letter-spacing: -0.055em;
-}
-
-.page-home .home-visit .join-underline {
-  width: 72px;
-  height: 5px;
-  margin: 22px 0 30px;
-  background: var(--home-yellow);
-}
-
-.page-home .home-visit .join-copy > p {
-  color: var(--home-muted);
-}
-
-.page-home .home-visit .join-copy .link-red {
-  color: #fff;
-  text-decoration-color: rgba(255, 209, 102, 0.55);
-}
-
-.page-home .home-visit .join-location {
-  grid-template-columns: 38px minmax(0, 1fr);
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.page-home .home-visit .join-location-icon {
-  width: 38px;
-  height: 38px;
-  padding: 9px;
-  border-radius: 11px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.72);
-}
-
-.page-home .home-visit .join-location p {
-  color: rgba(255, 255, 255, 0.82);
-}
-.page-home .home-visit .join-socials {
-  justify-content: flex-start;
-  margin-top: 34px;
-}
-
-.page-home .home-visit .join-socials a {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.page-home .home-visit .join-socials a:hover,
-.page-home .home-visit .join-socials a:focus-visible {
-  background: rgba(255, 255, 255, 0.18);
-  color: #fff;
-}
-
-.page-home .home-visit .join-map {
-  min-height: 520px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  background: #202c3c;
-  box-shadow: 0 24px 60px rgba(5, 2, 18, 0.3);
-}
-
-.page-home .home-details {
-  padding: 0 0 96px;
-  background: var(--home-deep) !important;
-}
-.page-home .home-details .two-col {
-  gap: 18px;
-}
-
-.page-home .home-details .card {
-  padding: 34px 36px 40px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.055);
-  box-shadow: none;
-}
-
-.page-home .home-details .split-copy h2,
-.page-home .home-details .contact-card h2 {
-  color: #fff;
-  font-size: clamp(32px, 3vw, 44px);
-  letter-spacing: -0.045em;
-}
-
-.page-home .home-details .title-underline {
-  background: var(--home-yellow);
-}
-
-.page-home .home-details .hours-table td {
-  border-bottom-color: rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.page-home .home-details .hours-table td:first-child {
-  color: #fff;
-}
-.page-home .home-details .contact-list {
-  gap: 24px;
-}
-
-.page-home .home-details .contact-item,
-.page-home .home-details .contact-link,
-.page-home .home-details .contact-note {
-  color: rgba(255, 255, 255, 0.72);
-}
-.page-home .home-details .contact-icon {
+.page-home .home-impact-kicker {
+  margin: 0 0 12px;
   color: var(--home-yellow);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.page-home .home-impact-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(30px, 3vw, 40px);
+  letter-spacing: -0.04em;
+}
+
+.page-home .home-impact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.page-home .home-impact-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.page-home .home-impact-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--home-purple);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.page-home .home-impact-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.page-home .home-impact-card strong {
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.page-home .home-impact-label {
+  margin: -6px 0 0;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.page-home .home-impact-desc {
+  margin: -8px 0 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 13px;
+  line-height: 1.55;
 }
 
 .page-home .quote-section {
@@ -669,27 +649,317 @@
   background: #6b3fa0;
 }
 
-.page-home .footer {
-  padding-top: 62px;
-  background: #181226;
+/* Visit us + donate CTA, ported from the contact page footer area. */
+.page-home .contact-kicker {
+  margin: 0;
+  color: #6b3fa0;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
 }
 
-.page-home .footer-card {
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.05);
+.page-home .contact-kicker-gold {
+  color: var(--home-yellow);
 }
 
-.page-home .footer-links a {
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 17px;
+.page-home .visit-section {
+  padding: 86px 0;
+  background: var(--home-deep);
 }
-.page-home .footer-social a {
-  color: rgba(255, 255, 255, 0.64);
+
+.page-home .visit-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.35fr);
+  gap: 64px;
+  align-items: center;
+}
+
+.page-home .visit-copy h2 {
+  margin: 22px 0 28px;
+  color: #fff;
+  font-size: clamp(42px, 4vw, 60px);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.05;
+}
+
+.page-home .visit-intro {
+  margin: 0 0 30px;
+  color: rgba(255, 255, 255, 0.56);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.page-home .visit-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-top: 16px;
+  color: #fff;
+}
+
+.page-home .visit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.68);
+  flex: 0 0 auto;
+}
+
+.page-home .visit-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.page-home .visit-row strong,
+.page-home .visit-row small {
+  display: block;
+  font-size: 14px;
+}
+.page-home .visit-row strong {
+  font-weight: 700;
+}
+
+.page-home .visit-row small,
+.page-home .visit-hours em {
+  color: rgba(255, 255, 255, 0.48);
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.page-home .visit-hours > span {
+  display: grid;
+  grid-template-columns: 105px auto;
+  gap: 18px;
+  line-height: 1.55;
+}
+
+.page-home .visit-social {
+  display: flex;
+  gap: 9px;
+  margin-top: 34px;
+}
+
+.page-home .visit-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.62);
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.page-home .visit-social a:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+}
+
+.page-home .visit-social svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+.page-home .visit-map {
+  height: 420px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #202b3c;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.24);
+}
+
+.page-home .visit-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.page-home .contact-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 52px 0;
+  background: linear-gradient(90deg, var(--home-coral), var(--home-pink));
+}
+
+.page-home .contact-cta::before {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 1px,
+    transparent 1px
+  );
+  background-size: 24px 24px;
+  content: "";
+  opacity: 0.1;
+}
+
+.page-home .contact-cta-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.page-home .contact-cta h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.page-home .contact-cta p {
+  margin: 5px 0 0;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 15px;
+}
+
+.page-home .contact-cta-actions {
+  display: flex;
+  gap: 14px;
+  flex: 0 0 auto;
+}
+
+.page-home .contact-cta-actions a {
+  min-width: 120px;
+  padding: 14px 24px;
+  border-radius: 13px;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.page-home .contact-cta-actions a:hover {
+  transform: translateY(-1px);
+}
+.page-home .contact-cta-primary {
+  background: #fff;
+  color: var(--home-coral);
+}
+.page-home .contact-cta-secondary {
+  border: 2px solid rgba(255, 255, 255, 0.42);
+  color: #fff;
+}
+
+.page-home .contact-footer {
+  padding: 28px 0;
+  background: var(--home-deep);
+  color: rgba(255, 255, 255, 0.68);
+  text-align: center;
+}
+
+.page-home .contact-footer-inner {
+  display: grid;
+  gap: 10px;
+}
+
+.page-home .contact-footer p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.page-home .contact-footer a {
+  color: #fff;
+  text-underline-offset: 3px;
+}
+
+.page-home .contact-footer .contact-footer-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  padding: 8px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 999px;
+  text-decoration: none;
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.page-home .contact-footer-login svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.page-home .contact-footer .contact-footer-login:hover,
+.page-home .contact-footer .contact-footer-login:focus-visible {
+  border-color: #fff;
+  background: #fff;
+  color: var(--home-deep);
+  transform: translateY(-1px);
+}
+
+.page-home .contact-footer .contact-footer-login:focus-visible {
+  outline: 3px solid var(--home-yellow);
+  outline-offset: 3px;
+}
+
+.page-home .contact-footer-credit:hover {
+  background-image: linear-gradient(
+    110deg,
+    #fff 0%,
+    #fff 38%,
+    var(--home-yellow) 48%,
+    #fff 58%,
+    #fff 100%
+  );
+  background-position: 100% center;
+  background-size: 250% 100%;
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: contact-credit-shimmer 900ms ease-out forwards;
+}
+
+@keyframes contact-credit-shimmer {
+  to {
+    background-position: 0 center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-home .contact-footer-credit:hover {
+    color: var(--home-yellow);
+    -webkit-text-fill-color: currentColor;
+    animation: none;
+  }
 }
 
 @media (max-width: 1100px) {
-  .page-home .hero-grid,
-  .page-home .home-visit .join-panel {
+  .page-home .hero-grid {
     grid-template-columns: 1fr;
   }
   .page-home .home-hero {
@@ -710,8 +980,15 @@
     max-height: 520px;
   }
 
-  .page-home .home-visit .join-map {
-    min-height: 460px;
+  .page-home .home-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .page-home .visit-grid {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+  .page-home .visit-map {
+    height: 360px;
   }
 }
 
@@ -828,6 +1105,19 @@
     border-radius: 6px;
     background: var(--home-deep);
   }
+  .page-home .home-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .page-home .home-stats-item {
+    padding: 24px 16px;
+  }
+  .page-home .home-stats-item:nth-child(2n) {
+    border-right: 0;
+  }
+  .page-home .home-stats-item:nth-child(1),
+  .page-home .home-stats-item:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
   .page-home .home-soft-play {
     padding-bottom: 50px;
   }
@@ -838,8 +1128,7 @@
     min-height: 250px;
   }
 
-  .page-home .offer-section,
-  .page-home .home-visit {
+  .page-home .offer-section {
     padding: 68px 0 74px;
   }
 
@@ -855,26 +1144,53 @@
   .page-home .home-groups .split-copy {
     padding: 54px 24px 62px;
   }
-  .page-home .home-visit .join-map {
-    min-height: 360px;
+  .page-home .home-impact {
+    padding: 64px 0;
   }
-  .page-home .home-details {
-    padding-bottom: 72px;
+  .page-home .home-impact-header {
+    margin-bottom: 40px;
   }
-  .page-home .home-details .two-col {
+  .page-home .home-impact-grid {
     grid-template-columns: 1fr;
-  }
-  .page-home .home-details .card {
-    padding: 30px 24px 34px;
   }
   .page-home .quote-stage {
     padding-inline: 10px;
+  }
+  .page-home .visit-section {
+    padding: 64px 0;
+  }
+  .page-home .visit-copy h2 {
+    margin-top: 16px;
+  }
+  .page-home .visit-map {
+    height: 320px;
+  }
+  .page-home .contact-cta {
+    padding: 44px 0;
+  }
+  .page-home .contact-cta-inner {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
 @media (max-width: 480px) {
   .page-home .hero-copy::before {
     font-size: 11px;
+  }
+  .page-home .visit-hours > span {
+    grid-template-columns: 92px auto;
+    gap: 8px;
+  }
+  .page-home .visit-social {
+    flex-wrap: wrap;
+  }
+  .page-home .contact-cta-actions {
+    width: 100%;
+  }
+  .page-home .contact-cta-actions a {
+    min-width: 0;
+    flex: 1;
   }
 }
 
