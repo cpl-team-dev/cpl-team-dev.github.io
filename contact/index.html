@@ -117,7 +117,12 @@
               <span class="announce-status-text">Closed today</span>
             </div>
             <span class="announce-divider" aria-hidden="true"></span>
-            <div class="announce-hours" role="list" aria-label="Opening hours">
+            <div
+              class="announce-hours"
+              role="list"
+              aria-label="Opening hours"
+              data-opening-hours="banner"
+            >
               <div class="announce-slot" data-open-day="2" role="listitem">
                 <span class="announce-slot-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" focusable="false">
@@ -155,7 +160,7 @@
                 <span class="announce-time">10am &ndash; 1pm</span>
               </div>
             </div>
-            <a class="announce-find-us" href="../#join-us">
+            <a class="announce-find-us" href="#find-us">
               <span class="announce-find-us-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path
@@ -177,8 +182,12 @@
             <div class="announce-feature-icon" aria-hidden="true">Playtime</div>
             <div class="announce-feature-copy">
               <strong>Free Playtime sessions</strong>
-              <span>Tuesday &amp; Wednesday, 10:30 - 11:30am</span>
-              <small>Including half term and summer holidays</small>
+              <span data-free-playtimes-line="1"
+                >Tuesday &amp; Wednesday, 10:30 - 11:30am</span
+              >
+              <small data-free-playtimes-line="2"
+                >Including half term and summer holidays</small
+              >
             </div>
             <a class="announce-feature-link" href="../services/playtime/"
               >Find out more</a
@@ -229,10 +238,40 @@
         </div>
       </div>
 
+      <div class="rebrand-banner" role="note">
+        <div class="container rebrand-banner-inner">
+          <p>
+            <span class="rebrand-banner-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M12 3.4c.6 0 1.1.3 1.4.9l6.7 12.2c.6 1.1-.2 2.4-1.4 2.4H5.3c-1.2 0-2-1.3-1.4-2.4L10.6 4.3c.3-.6.8-.9 1.4-.9Z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M12 9.7v3.6"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                />
+                <circle cx="12" cy="16.2" r="0.95" fill="currentColor" />
+              </svg>
+            </span>
+            <strong>Heads up!</strong> We&rsquo;re part-way through a website
+            rebrand, so some pages have our fresh new look while others are
+            still on the classic design. Thanks for your patience while we
+            finish the upgrade!
+          </p>
+        </div>
+      </div>
+
       <header class="header-band">
         <div class="container header-grid">
           <div></div>
-          <a class="brand" href="..//" aria-label="Community Playlink home">
+          <a class="brand" href="../" aria-label="Community Playlink home">
             <img
               src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
               width="2560"
@@ -352,230 +391,317 @@
           <div id="nav-list" class="nav-list" role="menubar">
             <a class="nav-link" href="/">Home</a>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../about/">
-                <button class="nav-drop-toggle" type="button">About ▾</button>
+              <a class="nav-drop-toggle" href="../about/" aria-haspopup="true">
+                <span>About</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
               </a>
               <div class="nav-dropdown-content">
-                <a href="../about#meet-the-staff">Meet the Staff</a>
-                <a href="../about#meet-the-trustee-board"
-                  >Meet The Trustee Board</a
-                >
-                <a href="../about/partners/">Partners</a>
-                <a href="../about/policies/">Policies</a>
+                <span class="nav-dropdown-accent" aria-hidden="true"></span>
+                <a href="../about#meet-the-staff">
+                  <strong>Meet The Staff</strong>
+                  <small>The people behind Playlink</small>
+                </a>
+                <a href="../about#meet-the-trustee-board">
+                  <strong>Meet The Trustee Board</strong>
+                  <small>Our volunteer board</small>
+                </a>
+                <a href="../about/partners/">
+                  <strong>Partners</strong>
+                  <small>Organisations we work with</small>
+                </a>
+                <a href="../about/policies/">
+                  <strong>Policies</strong>
+                  <small>Governance &amp; documents</small>
+                </a>
               </div>
             </div>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../services/">
-                <button class="nav-drop-toggle" type="button">
-                  Services ▾
-                </button>
+              <a
+                class="nav-drop-toggle"
+                href="../services/"
+                aria-haspopup="true"
+              >
+                <span>Services</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
               </a>
               <div class="nav-dropdown-content">
-                <a href="../services/toy-libraries/">Toy Libraries</a>
-                <a href="../services/playtime/">Playtime</a>
-                <a href="../services/soft-play/">Soft Play Hire</a>
-                <a href="../services/party-hire/">Party Hire</a>
-                <a href="../services/toddler-groups/">Toddler Groups</a>
-                <a href="../services/group-membership-scheme/"
-                  >Group Membership</a
-                >
+                <span class="nav-dropdown-accent" aria-hidden="true"></span>
+                <a href="../services/toy-libraries/">
+                  <strong>Toy Libraries</strong>
+                  <small>Borrow toys free of charge</small>
+                </a>
+                <a href="../services/playtime/">
+                  <strong>Playtime Sessions</strong>
+                  <small>Weekly drop-in for under-5s</small>
+                </a>
+                <a href="../services/soft-play/">
+                  <strong>Soft Play Hire</strong>
+                  <small>Soft play equipment for parties &amp; events</small>
+                </a>
+                <a href="../services/party-hire/">
+                  <strong>Party Hire</strong>
+                  <small>Equipment for birthdays &amp; events</small>
+                </a>
+                <a href="../services/toddler-groups/">
+                  <strong>Toddler Groups</strong>
+                  <small>Groups we support across the city</small>
+                </a>
+                <a href="../services/group-membership-scheme/">
+                  <strong>Group Membership</strong>
+                  <small>For schools &amp; early years settings</small>
+                </a>
               </div>
             </div>
             <a class="nav-link" href="../noticeboard/">Noticeboard</a>
             <a class="nav-link" href="../services/toy-libraries/toy-library/"
               >Toy Library</a
             >
-            <a class="nav-link is-active" href="../contact/">Contact</a>
+            <a class="nav-link is-active" href="../contact/" aria-current="page"
+              >Contact</a
+            >
             <a class="nav-link nav-cta" href="../support-us/">Support Us</a>
           </div>
         </div>
       </nav>
 
       <main>
-        <section class="page-title">
-          <div class="container">
-            <h1>Contact</h1>
-            <div class="breadcrumb" aria-label="Breadcrumb">
-              <a href="/">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    fill="currentColor"
-                    d="M4 20h5v-6h6v6h5V10.8L12 4 4 10.8V20Zm2-2v-6.2l6-4.7 6 4.7V18h-1v-6h-10v6H6Z"
-                  />
-                </svg>
-              </a>
-              <span class="breadcrumb-sep" aria-hidden="true">›</span>
-              <span>Contact</span>
-            </div>
+        <section class="contact-hero">
+          <div class="container contact-hero-inner">
+            <h1>Get in <span>touch</span></h1>
+            <p>
+              Questions, feedback, or just want to say hello &mdash; we&rsquo;d
+              love to hear from you.
+            </p>
           </div>
         </section>
 
-        <section class="section-pad" style="background: #7a57be">
-          <div class="container content-stack">
-            <article id="find-us" class="card split-card contact-intro">
-              <div class="split-copy">
-                <p>
-                  Any questions? Get in touch with us by email, phone, or by
-                  filling in the contact form below, and we&rsquo;ll get back to
-                  you as soon as possible.
-                </p>
-                <p>
-                  Please note that the office is not open every day (see our
-                  <a class="link-red" href="/">opening hours</a>), but if you
-                  leave a message we will get back to you.
-                </p>
-                <p class="contact-item">
-                  <span class="contact-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        fill="currentColor"
-                        d="M3 6.8A2.8 2.8 0 0 1 5.8 4h12.4A2.8 2.8 0 0 1 21 6.8v10.4a2.8 2.8 0 0 1-2.8 2.8H5.8A2.8 2.8 0 0 1 3 17.2V6.8Zm2.1-.7 6.3 5 6.3-5H5.1Zm13.8 1.1-6.6 5.2a1 1 0 0 1-1.2 0L4.5 7.2v10c0 .7.6 1.3 1.3 1.3h12.4c.7 0 1.3-.6 1.3-1.3v-10Z"
-                      />
-                    </svg>
-                  </span>
-                  <a
-                    class="contact-link"
-                    href="mailto:CPLTeam@community-playlink.com"
-                    >CPLTeam@community-playlink.com</a
-                  >
-                </p>
-                <p class="contact-item contact-item-phone">
-                  <span class="contact-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        fill="currentColor"
-                        d="M6.4 4.3c.5-.5 1.2-.7 1.8-.5l2 .6c.7.2 1.1.8 1.1 1.5l.1 2.1c0 .5-.2 1-.6 1.3l-1.4 1.2a14.4 14.4 0 0 0 4.1 4.1l1.2-1.4c.4-.4.8-.6 1.3-.6l2.1.1c.7 0 1.3.5 1.5 1.1l.6 2c.2.7 0 1.4-.5 1.8l-1.3 1.3c-.8.8-2 1.2-3.1 1-3-.5-5.8-2-8.3-4.5-2.5-2.5-4-5.3-4.5-8.3-.2-1.1.2-2.2 1-3.1l1.3-1.3Z"
-                      />
-                    </svg>
-                  </span>
-                  <span class="contact-text">
-                    <a class="contact-link" href="tel:02380335362"
-                      >02380 335362</a
-                    >
-                    <span class="contact-note"
-                      >(we&#8217;re open Tuesday, Wednesday and Saturday
-                      10:00am-1:00pm)</span
-                    >
-                  </span>
-                </p>
-              </div>
-              <img
-                src="https://ik.imagekit.io/communityplaylink/website/contact-us/contact-us.png"
-                width="600"
-                height="400"
-                alt="Community Playlink toy library base"
-                loading="lazy"
-              />
-            </article>
+        <section class="contact-section">
+          <div class="container contact-grid">
+            <aside class="contact-panel" aria-labelledby="reach-us-title">
+              <p id="reach-us-title" class="contact-kicker contact-kicker-gold">
+                Reach us directly
+              </p>
 
-            <article class="card form-card">
-              <h2>Send us a message</h2>
-              <form id="contact-form" class="form-grid">
-                <div>
-                  <label class="label" for="contact-name"
-                    >Name <span class="required">*</span></label
-                  >
+              <a
+                class="contact-detail"
+                href="mailto:CPLTeam@community-playlink.com"
+              >
+                <span class="contact-detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M4 6.5h16v11H4zM4.5 7l7.5 6 7.5-6" />
+                  </svg>
+                </span>
+                <span>
+                  <small>Email</small>
+                  <strong>CPLTeam@community-playlink.com</strong>
+                </span>
+              </a>
+
+              <a class="contact-detail" href="tel:02380335362">
+                <span class="contact-detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 4l3 4-2 2c1.4 2.8 3.5 4.9 6.3 6.3l2-2 3.7 3c-.5 1.7-1.8 2.7-3.6 2.7C10.2 20 4 13.8 4 7.6 4 5.8 5.2 4.5 7 4z"
+                    />
+                  </svg>
+                </span>
+                <span>
+                  <small>Phone</small>
+                  <strong>02380 335362</strong>
+                </span>
+              </a>
+
+              <div class="contact-detail">
+                <span class="contact-detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M12 21s6-6.1 6-11a6 6 0 10-12 0c0 4.9 6 11 6 11z"
+                    />
+                    <circle cx="12" cy="10" r="2" />
+                  </svg>
+                </span>
+                <span>
+                  <small>Address</small>
+                  <strong>Swaythling Neighbourhood Centre</strong>
+                  <em>Broadlands Road, Southampton, SO16 3LS</em>
+                </span>
+              </div>
+
+              <div class="contact-detail">
+                <span class="contact-detail-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="8" />
+                    <path d="M12 7v5l3 2" />
+                  </svg>
+                </span>
+                <span>
+                  <small>Opening hours</small>
+                  <span data-opening-hours="contact">
+                    <span class="contact-hours"
+                      ><span>Tuesday</span
+                      ><strong>10am &ndash; 1pm</strong></span
+                    >
+                    <span class="contact-hours"
+                      ><span>Wednesday</span
+                      ><strong>10am &ndash; 1pm</strong></span
+                    >
+                    <span class="contact-hours"
+                      ><span>Saturday</span
+                      ><strong>10am &ndash; 1pm</strong></span
+                    >
+                  </span>
+                </span>
+              </div>
+            </aside>
+
+            <article class="contact-form-card">
+              <header class="contact-form-heading">
+                <p class="contact-kicker">Send a message</p>
+                <h2>We&rsquo;ll get back to you soon</h2>
+                <p>
+                  Note: our office isn&rsquo;t open every day &mdash; if you
+                  leave a message we&rsquo;ll respond as soon as we can.
+                </p>
+              </header>
+
+              <form id="contact-form" class="contact-form">
+                <div class="contact-field">
+                  <label for="contact-name">Name <span>*</span></label>
                   <input
-                    class="input"
                     type="text"
                     id="contact-name"
                     name="name"
                     autocomplete="name"
+                    placeholder="Your name"
                     required
                   />
                 </div>
-                <div>
-                  <label class="label" for="contact-email"
-                    >Email Address <span class="required">*</span></label
-                  >
+                <div class="contact-field">
+                  <label for="contact-email">Email <span>*</span></label>
                   <input
-                    class="input"
                     type="email"
                     id="contact-email"
                     name="email"
                     autocomplete="email"
+                    placeholder="your@email.com"
                     required
                   />
                 </div>
-                <div>
-                  <label class="label" for="contact-phone">Phone</label>
+                <div class="contact-field">
+                  <label for="contact-phone">Phone</label>
                   <input
-                    class="input"
                     type="tel"
                     id="contact-phone"
                     name="phone"
                     autocomplete="tel"
+                    placeholder="Optional"
                   />
                 </div>
-                <div>
-                  <label class="label" for="contact-subject"
-                    >Subject <span class="required">*</span></label
-                  >
-                  <input
-                    class="input"
-                    type="text"
-                    id="contact-subject"
-                    name="subject"
-                    required
-                  />
+                <div class="contact-field">
+                  <label for="contact-subject">Subject <span>*</span></label>
+                  <select id="contact-subject" name="subject" required>
+                    <option value="">Select a topic&hellip;</option>
+                    <option value="Toy Library">Toy Library</option>
+                    <option value="Playtime Sessions">Playtime Sessions</option>
+                    <option value="Party Hire">Party Hire</option>
+                    <option value="Group Membership">Group Membership</option>
+                    <option value="Volunteering">Volunteering</option>
+                    <option value="Donation">Donation</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
-                <div>
-                  <label class="label" for="contact-message"
-                    >Message <span class="required">*</span></label
-                  >
+                <div class="contact-field contact-field-wide">
+                  <label for="contact-message">Message <span>*</span></label>
                   <textarea
-                    class="textarea"
                     id="contact-message"
                     name="message"
-                    rows="8"
+                    rows="6"
+                    placeholder="How can we help?"
                     required
                   ></textarea>
                 </div>
-                <label class="form-inline">
+                <label class="contact-consent contact-field-wide">
                   <input type="checkbox" required />
-                  Yes, I agree with the
-                  <a class="link-red" href="../about/policies/"
-                    >privacy policy and terms and conditions</a
-                  >.
+                  <span>
+                    I agree to the
+                    <a href="../about/policies/">privacy policy</a> and
+                    <a href="../about/policies/">terms and conditions</a>.
+                  </span>
                 </label>
                 <div
-                  class="cf-turnstile"
+                  class="cf-turnstile contact-field-wide"
                   data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
                 ></div>
-                <div><button class="btn" type="submit">Submit</button></div>
+                <div class="contact-field-wide">
+                  <button class="contact-submit" type="submit">
+                    Send message <span aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
               </form>
-              <div id="contact-success" class="notice" style="display: none">
+              <div
+                id="contact-success"
+                class="contact-notice contact-notice-success"
+                style="display: none"
+              >
                 Message sent! Thank you for getting in touch.
               </div>
               <div
                 id="contact-error"
-                class="notice"
+                class="contact-notice contact-notice-error"
                 style="display: none"
               ></div>
             </article>
+          </div>
+        </section>
 
-            <article class="card form-card get-social-card">
-              <h2>Get Social</h2>
-              <p>
-                Follow us on the social media platforms you use to stay
-                up-to-date with updates to our services (including changes to
-                opening hours and closures due to holidays or staff sickness),
-                find out about events that we host, and more!
+        <section id="find-us" class="visit-section">
+          <div class="container visit-grid">
+            <div class="visit-copy">
+              <p class="contact-kicker contact-kicker-gold">
+                Come and visit us
               </p>
-              <div class="footer-social" aria-label="Social links">
-                <a
-                  href="https://www.instagram.com/communityplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
+              <h2>We&rsquo;d love to<br />meet you.</h2>
+              <p class="visit-intro">
+                Drop in during opening hours to explore our toy library, join a
+                playtime session, or just say hello. No booking needed.
+              </p>
+              <div class="visit-row">
+                <span class="visit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
                     <path
-                      fill="currentColor"
-                      d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
+                      d="M12 21s6-6.1 6-11a6 6 0 10-12 0c0 4.9 6 11 6 11z"
+                    />
+                    <circle cx="12" cy="10" r="2" />
+                  </svg>
+                </span>
+                <span
+                  ><strong>Swaythling Neighbourhood Centre</strong
+                  ><small>Hampton Pk Wy, Southampton SO17 3AT</small></span
+                >
+              </div>
+              <div class="visit-row">
+                <span class="visit-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path
+                      d="M7 4l3 4-2 2c1.4 2.8 3.5 4.9 6.3 6.3l2-2 3.7 3c-.5 1.7-1.8 2.7-3.6 2.7C10.2 20 4 13.8 4 7.6 4 5.8 5.2 4.5 7 4z"
                     />
                   </svg>
-                </a>
+                </span>
+                <span class="visit-hours" data-opening-hours="visit">
+                  <span><em>Tuesday</em><strong>10am &ndash; 1pm</strong></span>
+                  <span
+                    ><em>Wednesday</em><strong>10am &ndash; 1pm</strong></span
+                  >
+                  <span
+                    ><em>Saturday</em><strong>10am &ndash; 1pm</strong></span
+                  >
+                </span>
+              </div>
+              <div class="visit-social" aria-label="Social links">
                 <a
                   href="https://www.facebook.com/cplaylink/"
                   target="_blank"
@@ -585,7 +711,59 @@
                   <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       fill="currentColor"
+                      stroke="none"
                       d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.instagram.com/communityplaylink/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="4" y="4" width="16" height="16" rx="5" />
+                    <circle cx="12" cy="12" r="3.5" />
+                    <circle cx="17" cy="7" r="1" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.youtube.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M4 7.5c0-1 1-1.7 2-1.8 4-.4 8-.4 12 0 1 .1 2 .8 2 1.8v9c0 1-1 1.7-2 1.8-4 .4-8 .4-12 0-1-.1-2-.8-2-1.8z"
+                    />
+                    <path d="M10 9l5 3-5 3z" />
+                  </svg>
+                </a>
+                <a href="../noticeboard/" aria-label="News and updates">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle
+                      cx="6"
+                      cy="18"
+                      r="1.5"
+                      fill="currentColor"
+                      stroke="none"
+                    />
+                    <path d="M5 11a8 8 0 018 8M5 5a14 14 0 0114 14" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.tiktok.com/@communityplaylink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="TikTok"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      stroke="none"
+                      d="M15.8 2h-3v12a2.6 2.6 0 11-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 00-.7 0A5.5 5.5 0 1015.8 14V8.4A7.1 7.1 0 0020 9.8V6.9a4.2 4.2 0 01-4.2-4.1V2Z"
                     />
                   </svg>
                 </a>
@@ -603,7 +781,8 @@
                       ry="5.1"
                       transform="rotate(-35 8 8)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="16"
                       cy="8"
@@ -611,7 +790,8 @@
                       ry="5.1"
                       transform="rotate(35 16 8)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="9"
                       cy="16"
@@ -619,7 +799,8 @@
                       ry="4.5"
                       transform="rotate(25 9 16)"
                       fill="currentColor"
-                    ></ellipse>
+                      stroke="none"
+                    />
                     <ellipse
                       cx="15"
                       cy="16"
@@ -627,195 +808,62 @@
                       ry="4.5"
                       transform="rotate(-25 15 16)"
                       fill="currentColor"
-                    ></ellipse>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.youtube.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
+                      stroke="none"
                     />
                   </svg>
                 </a>
               </div>
-            </article>
+            </div>
+            <div class="visit-map">
+              <iframe
+                title="Community Playlink location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2513.1!2d-1.3800!3d50.9300!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sCommunity%20Playlink!5e0!3m2!1sen!2suk!4v1"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+
+        <section class="contact-cta">
+          <div class="container contact-cta-inner">
+            <div>
+              <h2>Help us keep play free.</h2>
+              <p>
+                Every donation keeps our toy library running for the next
+                family.
+              </p>
+            </div>
+            <div class="contact-cta-actions">
+              <a class="contact-cta-primary" href="../support-us/">Donate</a>
+              <a class="contact-cta-secondary" href="../support-us/"
+                >Volunteer</a
+              >
+            </div>
           </div>
         </section>
       </main>
-
-      <div class="wave" style="background: #7a57be">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#ff8d7f"
-          ></path>
-        </svg>
-      </div>
-
-      <div class="wave" style="background: #ff8d7f">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
-          <path
-            d="M0,38 C220,72 470,10 720,38 C980,70 1215,5 1440,36 L1440,80 L0,80 Z"
-            fill="#27272b"
-          ></path>
-        </svg>
-      </div>
-
-      <footer class="footer">
-        <div class="container">
-          <div class="footer-grid">
-            <div class="card footer-card">
-              <nav class="footer-links" aria-label="Footer navigation">
-                <a href="/">Home</a>
-                <a href="../about/">About</a>
-                <a href="../services/">Services</a>
-                <a href="../noticeboard/">News</a>
-                <a href="../contact/">Contact</a>
-                <a href="../support-us/">Support Us</a>
-              </nav>
-            </div>
-            <div class="card footer-card">
-              <div class="footer-social" aria-label="Footer social links">
-                <a
-                  href="https://www.instagram.com/communityplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M7.8 3h8.4A4.8 4.8 0 0 1 21 7.8v8.4a4.8 4.8 0 0 1-4.8 4.8H7.8A4.8 4.8 0 0 1 3 16.2V7.8A4.8 4.8 0 0 1 7.8 3Zm0 1.7A3.1 3.1 0 0 0 4.7 7.8v8.4a3.1 3.1 0 0 0 3.1 3.1h8.4a3.1 3.1 0 0 0 3.1-3.1V7.8a3.1 3.1 0 0 0-3.1-3.1H7.8Zm8.9 1.3a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.7A3.3 3.3 0 1 0 12 15.3 3.3 3.3 0 0 0 12 8.7Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.facebook.com/cplaylink/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.6c0-.8.2-1.3 1.4-1.3h1.4V5.9c-.2 0-1-.1-2-.1-2 0-3.3 1.2-3.3 3.5v2h-2.2V14H11v7h2.5Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://bsky.app/profile/community-playlink.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Bluesky"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <ellipse
-                      cx="8"
-                      cy="8"
-                      rx="3.2"
-                      ry="5.1"
-                      transform="rotate(-35 8 8)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="16"
-                      cy="8"
-                      rx="3.2"
-                      ry="5.1"
-                      transform="rotate(35 16 8)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="9"
-                      cy="16"
-                      rx="2.8"
-                      ry="4.5"
-                      transform="rotate(25 9 16)"
-                      fill="currentColor"
-                    ></ellipse>
-                    <ellipse
-                      cx="15"
-                      cy="16"
-                      rx="2.8"
-                      ry="4.5"
-                      transform="rotate(-25 15 16)"
-                      fill="currentColor"
-                    ></ellipse>
-                  </svg>
-                </a>
-                <a
-                  href="https://www.tiktok.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="TikTok"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M15.8 2h-3v12a2.6 2.6 0 1 1-2.6-2.6c.2 0 .5 0 .7.1V8.6a5.8 5.8 0 0 0-.7 0A5.5 5.5 0 1 0 15.8 14V8.4a7.1 7.1 0 0 0 4.2 1.4V6.9a4.2 4.2 0 0 1-4.2-4.1V2Z"
-                    />
-                  </svg>
-                </a>
-                <a
-                  href="https://www.youtube.com/@communityplaylink"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="YouTube"
-                >
-                  <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      fill="currentColor"
-                      d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.6.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.9.5 7.6.5 7.6.5s5.7 0 7.6-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.5v-7l6 3.5-6 3.5Z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-          <p class="footer-copy">
-            © Community Playlink 2026 • <a href="../manage/login.html">Login</a>
-          </p>
-          <br />
-          <p class="footer-copy">
-            <a
-              href="https://marcel-dev-acc.github.io/developer-profile/"
-              target="_blank"
-              rel="noopener noreferrer"
-              >Created by Marcel Mulders</a
-            >
-          </p>
-        </div>
-      </footer>
     </div>
 
-    <button id="back-top" class="back-top" type="button" title="Back to top">
-      ⌃
-    </button>
+    <a
+      id="admin-shortcut"
+      class="admin-shortcut"
+      href="../manage/dashboard.html"
+      title="Open admin dashboard"
+      aria-label="Open admin dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l7 3.2v5c0 4.8-3 8.9-7 9.8-4-.9-7-5-7-9.8v-5L12 3z" />
+        <path d="M9.3 12.2l1.8 1.8 3.6-3.8" />
+      </svg>
+    </a>
 
     <script src="../assets/js/config.js" defer></script>
+    <script src="../assets/js/manage-session.js" defer></script>
     <script src="../assets/js/shared/contact-form.js" defer></script>
     <script src="../assets/js/shared/navigation.js" defer></script>
     <script src="../assets/js/shared/testimonials.js" defer></script>
-    <script src="../assets/js/shared/back-to-top.js" defer></script>
     <script src="../assets/js/contact.js" defer></script>
   </body>
 </html>

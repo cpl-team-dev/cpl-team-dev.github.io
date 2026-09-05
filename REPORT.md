@@ -24,6 +24,7 @@ Everything the repo itself can fix is done (see §0–§3 for detail). What's le
 - Restrict all traffic form outside of the UK DONE
 - Allow bots to go through cloudflare DONE
 - Add cookie bot
+- Capture what the site looked like in commit 7d0046c89c9b5e4997eaeeef48634d7a7fc93ef2
 
 ---
 

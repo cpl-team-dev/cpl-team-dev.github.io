@@ -191,10 +191,10 @@ async function loadProducts(options = {}) {
     applyLoadedProducts(loadedProducts);
 
     if (showSuccessMessage) {
-      setStatus(statusBanner, "Products refreshed.", "success");
+      setStatus(statusBanner, "Toys refreshed.", "success");
     }
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to load products.", "error");
+    setStatus(statusBanner, error.message || "Unable to load toys.", "error");
   } finally {
     setProductsLoading(false);
   }
@@ -387,7 +387,7 @@ function renderTableBody(tbody, tableFields, filteredProducts) {
     tbody.innerHTML = `<tr class="manage-empty-row"><td colspan="${
       tableFields.length + 1
     }">${
-      hasActiveProductFilters() ? "No products match current filters." : "No products yet."
+      hasActiveProductFilters() ? "No toys match current filters." : "No toys yet."
     }</td></tr>`;
     renderPagination(0, pagination);
     return;
@@ -401,8 +401,8 @@ function renderTableBody(tbody, tableFields, filteredProducts) {
             .map((field) => renderTableCell(field, product))
             .join("")}
           <td class="row-actions">
-            ${renderManageActionButton("edit", "Edit product")}
-            ${renderManageActionButton("delete", "Delete product")}
+            ${renderManageActionButton("edit", "Edit toy")}
+            ${renderManageActionButton("delete", "Delete toy")}
           </td>
         </tr>
       `,
@@ -810,7 +810,7 @@ function renderImageCell(product) {
     return '<td class="col-image_preview"><span class="cell-muted">—</span></td>';
   }
 
-  const previewTitle = product && product.name ? `${product.name} image` : "Product image";
+  const previewTitle = product && product.name ? `${product.name} image` : "Toy image";
   return `
     <td class="col-image_preview">
       <button
@@ -989,26 +989,26 @@ function renderPagination(filteredCount, pagination) {
 
   if (status) {
     if (products.length === 0) {
-      status.textContent = "No products to display";
+      status.textContent = "No toys to display";
     } else if (filteredCount === 0) {
       status.textContent = hasActiveProductFilters()
-        ? "Showing 0 filtered products"
-        : "No products to display";
+        ? "Showing 0 filtered toys"
+        : "No toys to display";
     } else if (hasActiveProductFilters()) {
       status.textContent =
         totalPages > 1
-          ? `Showing ${start}-${end} of ${filteredCount} filtered products (${totalProducts} total)`
-          : `Showing ${filteredCount} filtered products of ${totalProducts} total`;
+          ? `Showing ${start}-${end} of ${filteredCount} filtered toys (${totalProducts} total)`
+          : `Showing ${filteredCount} filtered toys of ${totalProducts} total`;
     } else if (totalProductsKnown) {
       status.textContent =
         totalPages > 1
-          ? `Showing ${start}-${end} of ${totalProducts} products`
-          : `Showing ${totalProducts} products`;
+          ? `Showing ${start}-${end} of ${totalProducts} toys`
+          : `Showing ${totalProducts} toys`;
     } else {
       status.textContent =
         totalPages > 1
-          ? `Showing ${start}-${end} of ${products.length} products`
-          : `Showing ${products.length} products`;
+          ? `Showing ${start}-${end} of ${products.length} toys`
+          : `Showing ${products.length} toys`;
     }
   }
 }
@@ -1022,7 +1022,7 @@ function openForm(product) {
 
   const modal = document.getElementById("product-modal");
   const title = document.getElementById("product-modal-title");
-  if (title) title.textContent = product ? "Edit product" : "Add product";
+  if (title) title.textContent = product ? "Edit toy" : "Add toy";
 
   getEditableProductFields().forEach((field) => {
     const input = document.getElementById(`product-field-${field.key}`);
@@ -1082,9 +1082,9 @@ async function handleSubmit(event) {
     await manageApiPost(PRODUCT_LIST_PATH, body, session);
     closeForm();
     await loadProducts();
-    setStatus(document.getElementById("status-banner"), "Product saved.", "success");
+    setStatus(document.getElementById("status-banner"), "Toy saved.", "success");
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to save product.", "error");
+    setStatus(statusBanner, error.message || "Unable to save toy.", "error");
     resetTurnstile("#product-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
@@ -1131,10 +1131,10 @@ async function handleDeleteConfirm() {
     setDeletePendingState(false);
     closeModal(document.getElementById("product-delete-modal"));
     await loadProducts();
-    setStatus(statusBanner, "Product deleted.", "success");
+    setStatus(statusBanner, "Toy deleted.", "success");
   } catch (error) {
-    setStatus(modalStatusBanner, error.message || "Unable to delete product.", "error");
-    setStatus(statusBanner, error.message || "Unable to delete product.", "error");
+    setStatus(modalStatusBanner, error.message || "Unable to delete toy.", "error");
+    setStatus(statusBanner, error.message || "Unable to delete toy.", "error");
     resetTurnstile("#product-delete-turnstile");
   } finally {
     setDeletePendingState(false);
@@ -1147,7 +1147,7 @@ function getEditableProductFields() {
 
 function getProductDeleteLabel(product) {
   const label = product && (product.name || product.sku || product.id);
-  return `"${label || "this product"}"`;
+  return `"${label || "this toy"}"`;
 }
 
 function getProductImageUrl(product) {
@@ -1194,7 +1194,7 @@ function openImagePreview(imageUrl, title) {
   const heading = document.getElementById("product-image-modal-title");
   if (!modal || !image || !imageUrl) return;
 
-  const previewTitle = title || "Product image";
+  const previewTitle = title || "Toy image";
   if (heading) heading.textContent = previewTitle;
   image.src = imageUrl;
   image.alt = previewTitle;
@@ -1259,7 +1259,7 @@ function setDeletePendingState(isPending) {
   const confirmButton = document.getElementById("product-delete-confirm-button");
   if (confirmButton) {
     confirmButton.disabled = isDeletePending;
-    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete product";
+    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete toy";
   }
 
   if (!modal) return;

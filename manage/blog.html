@@ -25,131 +25,302 @@
     ></script>
   </head>
   <body class="manage-page">
-    <div class="site-shell">
-      <header class="header-band">
-        <div class="container header-grid">
-          <div></div>
-          <a
-            class="brand"
-            href="/"
-            aria-label="Community Playlink home"
-          >
+    <div class="site-shell manage-app">
+      <aside class="manage-sidebar" id="manage-sidebar">
+        <script>
+          (function () {
+            try {
+              if (localStorage.getItem("manage-sidebar-collapsed") === "1") {
+                document.currentScript.parentElement.classList.add(
+                  "is-collapsed",
+                );
+              }
+            } catch (error) {
+              /* localStorage unavailable — default to expanded */
+            }
+          })();
+        </script>
+
+        <div class="manage-sidebar-header">
+          <a class="manage-brand" href="/" aria-label="Community Playlink home">
             <img
               src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
-              style="width: 256px; height: 144px"
               alt="Community Playlink"
             />
           </a>
-          <div></div>
+          <button
+            id="sidebar-toggle"
+            class="manage-sidebar-toggle"
+            type="button"
+            aria-expanded="true"
+            aria-label="Collapse navigation"
+            title="Collapse navigation"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <path
+                d="m12 4-6 6 6 6"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+              />
+            </svg>
+          </button>
         </div>
-      </header>
 
-      <main>
-        <section class="section-pad manage-shell">
-          <div class="container">
-            <div class="manage-header">
-              <div>
-                <h1>Blog posts</h1>
-                <p class="manage-account">
-                  Signed in as <strong id="account-email">…</strong>
-                </p>
-              </div>
-              <button id="logout-button" class="secondary-button" type="button">
-                Log out
+        <nav class="manage-sidebar-nav" aria-label="Management sections">
+          <a href="./dashboard.html" title="Dashboard">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <rect
+                  x="3"
+                  y="3"
+                  width="7"
+                  height="7"
+                  rx="1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <rect
+                  x="14"
+                  y="3"
+                  width="7"
+                  height="7"
+                  rx="1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <rect
+                  x="3"
+                  y="14"
+                  width="7"
+                  height="7"
+                  rx="1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <rect
+                  x="14"
+                  y="14"
+                  width="7"
+                  height="7"
+                  rx="1.5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Dashboard</span>
+          </a>
+          <a href="./organisations.html" title="Organisations">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M4 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16m-8 0h12m-4 0v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M7 7h1m-1 4h1m-1 4h1m3-8h1m-1 4h1"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Organisations</span>
+          </a>
+          <a href="./products.html" title="Toys">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M21 8 12 3 3 8m18 0-9 5m9-5v8l-9 5m0-8L3 8m9 5v8M3 8v8l9 5"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Toys</span>
+          </a>
+          <a href="./blog.html" class="is-active" title="Blog posts">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path
+                  d="M4 5h16M4 12h16M4 19h10"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Blog posts</span>
+          </a>
+        </nav>
+
+        <div class="manage-sidebar-footer">
+          <div class="manage-account-chip">
+            <span class="manage-account-avatar" aria-hidden="true">CP</span>
+            <div class="manage-account-meta">
+              <span>Signed in</span>
+              <strong id="account-email">…</strong>
+            </div>
+            <button
+              id="logout-button"
+              class="manage-logout-button"
+              type="button"
+              aria-label="Log out"
+              title="Log out"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path
+                  d="M15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+                <path
+                  d="M10 8l-4 4 4 4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+                <path
+                  d="M14 12H3"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="manage-main">
+        <div class="manage-context-bar">
+          <div class="container manage-context-bar-inner">
+            <nav class="manage-breadcrumb" aria-label="Breadcrumb">
+              <a href="./dashboard.html">Management</a>
+              <span class="manage-breadcrumb-sep">/</span>
+              <span class="manage-breadcrumb-current">Blog posts</span>
+            </nav>
+            <div class="manage-context-actions">
+              <button
+                id="refresh-posts-button"
+                class="manage-icon-button"
+                type="button"
+                aria-label="Refresh blog posts"
+                title="Refresh blog posts"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path
+                    d="M20 12a8 8 0 1 1-2.34-5.66"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M20 4v6h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                  />
+                </svg>
+              </button>
+              <span
+                id="posts-last-refreshed"
+                class="manage-refresh-timestamp"
+                aria-live="polite"
+              >
+                Last refreshed: —
+              </span>
+              <button id="add-post-button" class="primary-button" type="button">
+                Add blog post
               </button>
             </div>
+          </div>
+        </div>
 
-            <nav class="manage-subnav" aria-label="Management sections">
-              <a href="./dashboard.html">Dashboard</a>
-              <a href="./blog.html" class="is-active">Blog posts</a>
-              <a href="./products.html">Products</a>
-            </nav>
+        <main>
+          <section class="section-pad manage-shell">
+            <div class="container">
+              <div class="manage-page-header">
+                <h1>Blog posts</h1>
+              </div>
 
-            <div
-              id="status-banner"
-              class="status-banner"
-              data-state="info"
-              aria-live="polite"
-              hidden
-            ></div>
+              <div
+                id="status-banner"
+                class="status-banner"
+                data-state="info"
+                aria-live="polite"
+                hidden
+              ></div>
 
-            <div class="manage-card">
-              <div class="manage-toolbar">
-                <div class="manage-toolbar-title">
+              <div class="manage-card">
+                <div class="manage-toolbar">
                   <h2>All posts</h2>
-                  <button
-                    id="refresh-posts-button"
-                    class="manage-icon-button"
-                    type="button"
-                    aria-label="Refresh blog posts"
-                    title="Refresh blog posts"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path
-                        d="M20 12a8 8 0 1 1-2.34-5.66"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      />
-                      <path
-                        d="M20 4v6h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                      />
-                    </svg>
-                  </button>
-                  <span
-                    id="posts-last-refreshed"
-                    class="manage-refresh-timestamp"
+                </div>
+
+                <div class="manage-table-wrap">
+                  <div
+                    id="posts-loading"
+                    class="manage-loading"
+                    role="status"
                     aria-live="polite"
+                    hidden
                   >
-                    Last refreshed: —
-                  </span>
+                    <span class="manage-spinner" aria-hidden="true"></span>
+                    <span>Loading blog posts…</span>
+                  </div>
+                  <table class="manage-table">
+                    <thead id="posts-table-head"></thead>
+                    <tbody id="posts-table-body"></tbody>
+                  </table>
                 </div>
-                <button id="add-post-button" class="primary-button" type="button">
-                  Add blog post
-                </button>
-              </div>
 
-              <div class="manage-table-wrap">
-                <div
-                  id="posts-loading"
-                  class="manage-loading"
-                  role="status"
-                  aria-live="polite"
-                  hidden
-                >
-                  <span class="manage-spinner" aria-hidden="true"></span>
-                  <span>Loading blog posts…</span>
+                <div class="action-row manage-pagination manage-table-actions">
+                  <button
+                    id="previous-page-button"
+                    class="secondary-button"
+                    type="button"
+                  >
+                    Previous
+                  </button>
+                  <p
+                    id="pagination-status"
+                    class="manage-pagination-status"
+                    aria-live="polite"
+                  ></p>
+                  <button
+                    id="next-page-button"
+                    class="secondary-button"
+                    type="button"
+                  >
+                    Next
+                  </button>
                 </div>
-                <table class="manage-table">
-                  <thead id="posts-table-head"></thead>
-                  <tbody id="posts-table-body"></tbody>
-                </table>
-              </div>
-
-              <div class="action-row manage-pagination manage-table-actions">
-                <button
-                  id="previous-page-button"
-                  class="secondary-button"
-                  type="button"
-                >
-                  Previous
-                </button>
-                <p id="pagination-status" class="manage-pagination-status" aria-live="polite"></p>
-                <button id="next-page-button" class="secondary-button" type="button">
-                  Next
-                </button>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      </div>
     </div>
 
     <div id="post-modal" class="manage-modal" hidden>
@@ -188,7 +359,11 @@
             data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"
           ></div>
           <div class="action-row">
-            <button id="post-submit-button" class="primary-button" type="submit">
+            <button
+              id="post-submit-button"
+              class="primary-button"
+              type="submit"
+            >
               Save post
             </button>
             <button class="secondary-button" type="button" data-close-modal>
@@ -229,7 +404,8 @@
         ></div>
 
         <p id="post-delete-modal-message" class="manage-modal-copy">
-          Are you sure you want to delete this blog post? This action cannot be undone.
+          Are you sure you want to delete this blog post? This action cannot be
+          undone.
         </p>
 
         <div
@@ -256,6 +432,7 @@
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/manage-api.js"></script>
     <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-nav.js"></script>
     <script src="../assets/js/manage-blog.js"></script>
   </body>
 </html>

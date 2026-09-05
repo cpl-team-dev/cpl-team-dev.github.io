@@ -1,10 +1,44 @@
 body.login-page {
-  background: var(--purple);
+  /* Scoped overrides of the sitewide tokens (base.css) — only affects /manage/ pages. */
+  --purple: #6b3fa0;
+  --dark-purple: #1c1040;
+  --nav-purple: #2d1760;
+  --navy: #1d3a56;
+  --red: #ff5a3c;
+  --ink: #241a3d;
+  --shadow: 0 20px 45px rgba(28, 16, 64, 0.14);
+  background: #f4f2fa;
   color: var(--ink);
 }
 
+body.login-page .site-shell {
+  background: #f4f2fa;
+}
+
+.login-topbar {
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0
+      0 / 26px 26px,
+    linear-gradient(160deg, #1c1040 0%, #2d1760 55%, #3d1b7a 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(17, 12, 31, 0.28);
+}
+
+.login-topbar-inner {
+  display: flex;
+  justify-content: center;
+  padding: 16px 0;
+}
+
+.login-topbar-inner img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
 .login-section {
-  background: var(--purple);
+  background: transparent;
+  padding: 56px 0;
 }
 
 .login-shell {
@@ -75,7 +109,9 @@ body.login-page {
   color: var(--ink);
   font: inherit;
   padding: 0 16px;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .field input:focus,
@@ -132,7 +168,9 @@ body.login-page {
   font: inherit;
   font-weight: 800;
   cursor: pointer;
-  transition: transform 160ms ease, opacity 160ms ease;
+  transition:
+    transform 160ms ease,
+    opacity 160ms ease;
 }
 
 .primary-button:hover,
@@ -153,7 +191,12 @@ body.login-page {
   min-height: 56px;
   padding: 0 20px;
   color: #fff;
-  background: var(--red);
+  background: linear-gradient(135deg, #ff5a3c 0%, #e83060 100%);
+  box-shadow: 0 10px 24px rgba(232, 48, 96, 0.28);
+}
+
+.primary-button:hover {
+  box-shadow: 0 14px 30px rgba(232, 48, 96, 0.36);
 }
 
 .secondary-button {

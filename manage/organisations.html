@@ -3,20 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Staff Dashboard | Community Playlink</title>
-    <meta
-      name="description"
-      content="Staff management dashboard for Community Playlink."
-    />
-    <link
-      rel="icon"
-      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
-      sizes="32x32"
-    />
+    <title>Manage Organisation | Community Playlink</title>
+    <meta name="description" content="Manage Community Playlink organisation details." />
+    <link rel="icon" href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp" sizes="32x32" />
     <link rel="stylesheet" href="../assets/css/base.css" />
     <link rel="stylesheet" href="../assets/css/components.css" />
     <link rel="stylesheet" href="../assets/css/responsive.css" />
     <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
   </head>
   <body class="manage-page">
     <div class="site-shell manage-app">
@@ -35,19 +30,9 @@
 
         <div class="manage-sidebar-header">
           <a class="manage-brand" href="/" aria-label="Community Playlink home">
-            <img
-              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
-              alt="Community Playlink"
-            />
+            <img src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp" alt="Community Playlink" />
           </a>
-          <button
-            id="sidebar-toggle"
-            class="manage-sidebar-toggle"
-            type="button"
-            aria-expanded="true"
-            aria-label="Collapse navigation"
-            title="Collapse navigation"
-          >
+          <button id="sidebar-toggle" class="manage-sidebar-toggle" type="button" aria-expanded="true" aria-label="Collapse navigation" title="Collapse navigation">
             <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
               <path d="m12 4-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
             </svg>
@@ -55,7 +40,7 @@
         </div>
 
         <nav class="manage-sidebar-nav" aria-label="Management sections">
-          <a href="./dashboard.html" class="is-active" title="Dashboard">
+          <a href="./dashboard.html" title="Dashboard">
             <span class="manage-sidebar-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false">
                 <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2" />
@@ -66,7 +51,7 @@
             </span>
             <span class="manage-sidebar-label">Dashboard</span>
           </a>
-          <a href="./organisations.html" title="Organisations">
+          <a href="./organisations.html" class="is-active" title="Organisations">
             <span class="manage-sidebar-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" focusable="false">
                 <path d="M4 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16m-8 0h12m-4 0v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M7 7h1m-1 4h1m-1 4h1m3-8h1m-1 4h1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -99,13 +84,7 @@
               <span>Signed in</span>
               <strong id="account-email">…</strong>
             </div>
-            <button
-              id="logout-button"
-              class="manage-logout-button"
-              type="button"
-              aria-label="Log out"
-              title="Log out"
-            >
+            <button id="logout-button" class="manage-logout-button" type="button" aria-label="Log out" title="Log out">
               <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path d="M15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
                 <path d="M10 8l-4 4 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
@@ -122,55 +101,49 @@
             <nav class="manage-breadcrumb" aria-label="Breadcrumb">
               <a href="./dashboard.html">Management</a>
               <span class="manage-breadcrumb-sep">/</span>
-              <span class="manage-breadcrumb-current">Dashboard</span>
+              <span class="manage-breadcrumb-current">Organisation</span>
             </nav>
+            <div class="manage-context-actions">
+              <button id="refresh-organisation-button" class="manage-icon-button" type="button" aria-label="Refresh organisation details" title="Refresh organisation details">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M20 12a8 8 0 1 1-2.34-5.66" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                  <path d="M20 4v6h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+              <span id="organisation-last-refreshed" class="manage-refresh-timestamp" aria-live="polite">Last refreshed: —</span>
+            </div>
           </div>
         </div>
 
         <main>
-          <section class="section-pad manage-shell">
-            <div class="container">
-              <div class="manage-page-header">
-                <h1>Staff dashboard</h1>
+        <section class="section-pad manage-shell">
+          <div class="container">
+            <div class="manage-page-header">
+              <h1>Organisation</h1>
+            </div>
+
+            <div id="status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
+
+            <div class="manage-card manage-organisation-card">
+              <div class="manage-toolbar">
+                <h2>Organisation details</h2>
               </div>
 
-              <div class="manage-overview">
-                <h2>What would you like to manage?</h2>
-                <p class="field-hint" style="margin-bottom: 18px">
-                  Choose a section below to create, edit or remove content.
-                </p>
-                <div class="manage-link-grid">
-                  <a class="card manage-link-card" href="./organisations.html">
-                    <span class="manage-link-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" focusable="false">
-                        <path d="M4 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16m-8 0h12m-4 0v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M7 7h1m-1 4h1m-1 4h1m3-8h1m-1 4h1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                      </svg>
-                    </span>
-                    <h3>Organisations</h3>
-                    <p>Manage organisation contact and address details.</p>
-                  </a>
-                  <a class="card manage-link-card" href="./products.html">
-                    <span class="manage-link-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" focusable="false">
-                        <path d="M21 8 12 3 3 8m18 0-9 5m9-5v8l-9 5m0-8L3 8m9 5v8M3 8v8l9 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                      </svg>
-                    </span>
-                    <h3>Toys</h3>
-                    <p>Manage the toy library catalogue.</p>
-                  </a>
-                  <a class="card manage-link-card" href="./blog.html">
-                    <span class="manage-link-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" focusable="false">
-                        <path d="M4 5h16M4 12h16M4 19h10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
-                      </svg>
-                    </span>
-                    <h3>Blog posts</h3>
-                    <p>Create, edit and remove noticeboard posts.</p>
-                  </a>
-                </div>
+              <div id="organisation-loading" class="manage-loading" role="status" aria-live="polite" hidden>
+                <span class="manage-spinner" aria-hidden="true"></span>
+                <span>Loading organisation details…</span>
               </div>
+
+              <form id="organisation-form" novalidate>
+                <div id="organisation-form-fields" class="form-grid"></div>
+                <div id="organisation-form-turnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"></div>
+                <div class="action-row">
+                  <button id="organisation-submit-button" class="primary-button" type="submit">Save organisation details</button>
+                </div>
+              </form>
             </div>
-          </section>
+          </div>
+        </section>
         </main>
       </div>
     </div>
@@ -179,6 +152,6 @@
     <script src="../assets/js/manage-api.js"></script>
     <script src="../assets/js/manage-session.js"></script>
     <script src="../assets/js/manage-nav.js"></script>
-    <script src="../assets/js/manage-dashboard.js"></script>
+    <script src="../assets/js/manage-organisations.js"></script>
   </body>
 </html>

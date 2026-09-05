@@ -1,5 +1,6 @@
 function getApiEndpoint(path) {
-  const base = typeof API_BASE_URL === "string" ? API_BASE_URL.replace(/\/+$/, "") : "";
+  const base =
+    typeof API_BASE_URL === "string" ? API_BASE_URL.replace(/\/+$/, "") : "";
   return `${base}${path}`;
 }
 
@@ -8,9 +9,10 @@ function getOrganisationId() {
 }
 
 function isManageInterfaceRequest() {
-  const pathname = window.location && typeof window.location.pathname === "string"
-    ? window.location.pathname
-    : "";
+  const pathname =
+    window.location && typeof window.location.pathname === "string"
+      ? window.location.pathname
+      : "";
   return /\/manage(\/|$)/.test(pathname);
 }
 
@@ -59,17 +61,22 @@ async function manageApiGet(path, params) {
     Object.assign({ organisation_id: getOrganisationId() }, params || {}),
   );
 
-  const response = await fetch(`${getApiEndpoint(path)}?${searchParams.toString()}`, {
-    method: "GET",
-    headers: { Accept: "application/json" },
-  });
+  const response = await fetch(
+    `${getApiEndpoint(path)}?${searchParams.toString()}`,
+    {
+      method: "GET",
+      headers: { Accept: "application/json" },
+    },
+  );
 
   return parseManageApiResponse(response);
 }
 
 async function manageApiPost(path, body, session) {
   const authorization =
-    typeof getManageAuthorization === "function" ? getManageAuthorization(session) : "";
+    typeof getManageAuthorization === "function"
+      ? getManageAuthorization(session)
+      : "";
 
   const response = await fetch(getApiEndpoint(path), {
     method: "POST",
@@ -95,24 +102,55 @@ async function manageApiPost(path, body, session) {
 function extractApiList(result) {
   if (!result) return [];
   if (Array.isArray(result.records)) return result.records;
+  if (Array.isArray(result.organisations)) return result.organisations;
+  if (Array.isArray(result.organizations)) return result.organizations;
   if (Array.isArray(result.products)) return result.products;
   if (Array.isArray(result.posts)) return result.posts;
   if (Array.isArray(result.blogs)) return result.blogs;
   if (Array.isArray(result.data)) return result.data;
-  if (result.data && Array.isArray(result.data.products)) return result.data.products;
+  if (result.data && Array.isArray(result.data.organisations))
+    return result.data.organisations;
+  if (result.data && Array.isArray(result.data.organizations))
+    return result.data.organizations;
+  if (result.data && Array.isArray(result.data.products))
+    return result.data.products;
   if (result.data && Array.isArray(result.data.posts)) return result.data.posts;
   if (result.data && Array.isArray(result.data.blogs)) return result.data.blogs;
-  if (result.data && Array.isArray(result.data.records)) return result.data.records;
+  if (result.data && Array.isArray(result.data.records))
+    return result.data.records;
   return [];
 }
 
 function extractApiRecord(result) {
   if (!result) return null;
   if (result.record) return result.record;
-  if (result.product && typeof result.product === "object") return result.product;
+  if (result.organisation && typeof result.organisation === "object")
+    return result.organisation;
+  if (result.organization && typeof result.organization === "object")
+    return result.organization;
+  if (result.product && typeof result.product === "object")
+    return result.product;
   if (result.post && typeof result.post === "object") return result.post;
   if (result.blog && typeof result.blog === "object") return result.blog;
-  if (result.data && result.data.product && typeof result.data.product === "object") {
+  if (
+    result.data &&
+    result.data.organisation &&
+    typeof result.data.organisation === "object"
+  ) {
+    return result.data.organisation;
+  }
+  if (
+    result.data &&
+    result.data.organization &&
+    typeof result.data.organization === "object"
+  ) {
+    return result.data.organization;
+  }
+  if (
+    result.data &&
+    result.data.product &&
+    typeof result.data.product === "object"
+  ) {
     return result.data.product;
   }
   if (result.data && result.data.post && typeof result.data.post === "object") {
@@ -121,7 +159,11 @@ function extractApiRecord(result) {
   if (result.data && result.data.blog && typeof result.data.blog === "object") {
     return result.data.blog;
   }
-  if (result.data && typeof result.data === "object" && !Array.isArray(result.data)) {
+  if (
+    result.data &&
+    typeof result.data === "object" &&
+    !Array.isArray(result.data)
+  ) {
     return result.data;
   }
   return null;
@@ -139,7 +181,11 @@ function extractApiPagination(result, startRow, pageSize, pageLength) {
     };
   }
 
-  if (result && typeof result.count === "number" && Number.isFinite(result.count)) {
+  if (
+    result &&
+    typeof result.count === "number" &&
+    Number.isFinite(result.count)
+  ) {
     const nextStartRow = startRow + pageLength;
     return {
       hasMore: nextStartRow <= result.count,
@@ -154,7 +200,8 @@ function extractApiPagination(result, startRow, pageSize, pageLength) {
 }
 
 function extractApiTotalCount(result) {
-  const paginationTotalRows = result && result.pagination && Number(result.pagination.totalRows);
+  const paginationTotalRows =
+    result && result.pagination && Number(result.pagination.totalRows);
   if (Number.isFinite(paginationTotalRows)) {
     return paginationTotalRows;
   }
