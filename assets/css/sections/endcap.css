@@ -149,8 +149,8 @@
   padding: 52px 0;
   background: linear-gradient(
     90deg,
-    var(--endcap-coral, #ff5a3c),
-    var(--endcap-pink, #e83060)
+    var(--cta-coral, #e42300),
+    var(--cta-pink, #e5194f)
   );
 }
 
@@ -186,7 +186,7 @@
 
 .contact-cta p {
   margin: 5px 0 0;
-  color: rgba(255, 255, 255, 0.76);
+  color: #fff;
   font-size: 15px;
 }
 
@@ -215,7 +215,7 @@
 
 .contact-cta-primary {
   background: #fff;
-  color: var(--endcap-coral, #ff5a3c);
+  color: var(--cta-coral, #e42300);
 }
 
 .contact-cta-secondary {

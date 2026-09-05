@@ -57,7 +57,7 @@
 .rebrand-stat-item span {
   display: block;
   margin-top: 8px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 13px;
 }
 
@@ -92,7 +92,7 @@
 .rebrand-subhero-intro {
   max-width: 580px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.65);
   font-size: clamp(15px, 0.35vw + 14px, 17px);
   line-height: 1.7;
 }

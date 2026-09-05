@@ -395,15 +395,6 @@
     font-size: 15px;
   }
 
-  .page-title h1 {
-    font-size: 54px;
-  }
-
-  .breadcrumb {
-    gap: 8px;
-    font-size: 18px;
-  }
-
   .label,
   .input,
   .textarea,
