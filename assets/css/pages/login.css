@@ -15,25 +15,51 @@ body.login-page .site-shell {
   background: #f4f2fa;
 }
 
-.login-topbar {
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px) 0
-      0 / 26px 26px,
-    linear-gradient(160deg, #1c1040 0%, #2d1760 55%, #3d1b7a 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px rgba(17, 12, 31, 0.28);
+.login-hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1c1040 0%, #3d1b7a 60%, #5a2e9a 100%);
 }
 
-.login-topbar-inner {
-  display: flex;
-  justify-content: center;
-  padding: 16px 0;
+.login-hero::before {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.7) 1px,
+    transparent 1px
+  );
+  background-size: 32px 32px;
+  content: "";
+  opacity: 0.04;
 }
 
-.login-topbar-inner img {
-  height: 46px;
-  width: auto;
-  display: block;
+.login-hero-inner {
+  position: relative;
+  z-index: 1;
+  padding: 88px 0 96px;
+  text-align: center;
+}
+
+.login-hero h1 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: clamp(56px, 6vw, 88px);
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.login-hero h1 span {
+  color: #ffd166;
+}
+
+.login-hero p {
+  max-width: 660px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 18px;
+  line-height: 1.6;
 }
 
 .login-section {
@@ -46,29 +72,10 @@ body.login-page .site-shell {
   gap: 22px;
 }
 
-.login-title-card,
 .login-card {
   background: #fff;
   border-radius: 24px;
   box-shadow: var(--shadow);
-}
-
-.login-title-card {
-  width: min(100%, 660px);
-  margin: 0 auto;
-  padding: 28px 28px 24px;
-}
-
-.login-title-card h1 {
-  margin: 0 0 10px;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.1;
-  color: var(--navy);
-}
-
-.login-title-card p {
-  margin: 0;
-  max-width: 40rem;
 }
 
 .login-card {
@@ -281,10 +288,13 @@ body.login-page .site-shell {
 }
 
 @media (max-width: 640px) {
-  .login-title-card,
   .login-card {
     padding: 22px;
     border-radius: 20px;
+  }
+
+  .login-hero-inner {
+    padding: 70px 0 76px;
   }
 
   .verification-header {

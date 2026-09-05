@@ -99,18 +99,144 @@
   </script>
   <body class="page-staff-update">
     <div class="site-shell">
-      <div class="announce">
-        <div class="container">
-          <strong>Toy Library opening times are -</strong><br />
-          Tuesday, Wednesday &amp; Saturday 10:00am &ndash; 1:00pm<br />
-          <strong>Playtime</strong> - Tuesday &amp; Wednesday 10:30 - 11:30am
-          (including half term and summer holidays)<br />
-          <a
-            href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Donate here</a
+      <div class="announce" data-announce-carousel>
+        <div class="announce-panels">
+          <section
+            class="container announce-bar announce-panel is-active"
+            data-announce-panel
+            aria-label="Toy library opening times"
           >
+            <div class="announce-status" data-opening-status>
+              <span class="announce-status-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M6 3.5A2.5 2.5 0 0 0 3.5 6v12A2.5 2.5 0 0 0 6 20.5h12a2.5 2.5 0 0 0 2.5-2.5V9.7a2.5 2.5 0 0 0-.7-1.8l-3.7-3.7a2.5 2.5 0 0 0-1.8-.7H6Zm0 1.5h8v4H6V5Zm0 5.5h12.5V18A1 1 0 0 1 18 19H6a1 1 0 0 1-1-1v-7.5Zm2 2.5v3h2.5v-3H8Zm4 0v3h4v-3h-4Z"
+                  />
+                </svg>
+              </span>
+              <span class="announce-status-dot" aria-hidden="true"></span>
+              <span class="announce-status-text">Closed today</span>
+            </div>
+            <span class="announce-divider" aria-hidden="true"></span>
+            <div
+              class="announce-hours"
+              role="list"
+              aria-label="Opening hours"
+              data-opening-hours="banner"
+            >
+              <div class="announce-slot" data-open-day="2" role="listitem">
+                <span class="announce-slot-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path
+                      fill="currentColor"
+                      d="M12 2.8A9.2 9.2 0 1 0 21.2 12 9.2 9.2 0 0 0 12 2.8Zm0 1.8A7.4 7.4 0 1 1 4.6 12 7.4 7.4 0 0 1 12 4.6Zm-.9 2.8v5.1c0 .2.1.5.3.6l3.5 2.4 1-1.5-2.9-2V7.4h-1.8Z"
+                    />
+                  </svg>
+                </span>
+                <span class="announce-day">Tue</span>
+                <span class="announce-time">10am &ndash; 1pm</span>
+              </div>
+              <div class="announce-slot" data-open-day="3" role="listitem">
+                <span class="announce-slot-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path
+                      fill="currentColor"
+                      d="M12 2.8A9.2 9.2 0 1 0 21.2 12 9.2 9.2 0 0 0 12 2.8Zm0 1.8A7.4 7.4 0 1 1 4.6 12 7.4 7.4 0 0 1 12 4.6Zm-.9 2.8v5.1c0 .2.1.5.3.6l3.5 2.4 1-1.5-2.9-2V7.4h-1.8Z"
+                    />
+                  </svg>
+                </span>
+                <span class="announce-day">Wed</span>
+                <span class="announce-time">10am &ndash; 1pm</span>
+              </div>
+              <div class="announce-slot" data-open-day="6" role="listitem">
+                <span class="announce-slot-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path
+                      fill="currentColor"
+                      d="M12 2.8A9.2 9.2 0 1 0 21.2 12 9.2 9.2 0 0 0 12 2.8Zm0 1.8A7.4 7.4 0 1 1 4.6 12 7.4 7.4 0 0 1 12 4.6Zm-.9 2.8v5.1c0 .2.1.5.3.6l3.5 2.4 1-1.5-2.9-2V7.4h-1.8Z"
+                    />
+                  </svg>
+                </span>
+                <span class="announce-day">Sat</span>
+                <span class="announce-time">10am &ndash; 1pm</span>
+              </div>
+            </div>
+            <a class="announce-find-us" href="../../../contact/#find-us">
+              <span class="announce-find-us-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path
+                    fill="currentColor"
+                    d="M12 2.8A6.2 6.2 0 0 0 5.8 9c0 4.3 5.4 10.6 5.6 10.9.3.4.9.4 1.2 0 .2-.3 5.6-6.6 5.6-10.9A6.2 6.2 0 0 0 12 2.8Zm0 8.8A2.6 2.6 0 1 1 12 6.4a2.6 2.6 0 0 1 0 5.2Z"
+                  />
+                </svg>
+              </span>
+              <span>Find us</span>
+            </a>
+          </section>
+
+          <section
+            class="container announce-bar announce-panel announce-panel-playtime"
+            data-announce-panel
+            aria-label="Playtime sessions"
+            aria-hidden="true"
+          >
+            <div class="announce-feature-icon" aria-hidden="true">Playtime</div>
+            <div class="announce-feature-copy">
+              <strong>Free Playtime sessions</strong>
+              <span data-free-playtimes-line="1"
+                >Tuesday &amp; Wednesday, 10:30 - 11:30am</span
+              >
+              <small data-free-playtimes-line="2"
+                >Including half term and summer holidays</small
+              >
+            </div>
+            <a class="announce-feature-link" href="../../../services/playtime/"
+              >Find out more</a
+            >
+          </section>
+
+          <section
+            class="container announce-bar announce-panel announce-panel-donate"
+            data-announce-panel
+            aria-label="Donate to Community Playlink"
+            aria-hidden="true"
+          >
+            <div class="announce-feature-icon" aria-hidden="true">Donate</div>
+            <div class="announce-feature-copy">
+              <strong>Help keep play accessible to every family</strong>
+              <span
+                >Your donation keeps our toy library and free sessions
+                going.</span
+              >
+            </div>
+            <a
+              class="announce-feature-link"
+              href="https://cafdonate.cafonline.org/28918#!/DonationDetails"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Donate now</a
+            >
+          </section>
+        </div>
+        <div class="announce-carousel-dots" aria-label="Banner slides">
+          <button
+            class="is-active"
+            type="button"
+            data-announce-dot
+            aria-label="Show opening times"
+            aria-current="true"
+          ></button>
+          <button
+            type="button"
+            data-announce-dot
+            aria-label="Show Playtime details"
+          ></button>
+          <button
+            type="button"
+            data-announce-dot
+            aria-label="Show donation appeal"
+          ></button>
         </div>
       </div>
 
@@ -267,33 +393,65 @@
           <div id="nav-list" class="nav-list" role="menubar">
             <a class="nav-link" href="/">Home</a>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../../../about/">
-                <button class="nav-drop-toggle" type="button">About ▾</button>
+              <a class="nav-drop-toggle" href="../../../about/" aria-haspopup="true">
+                <span>About</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
               </a>
               <div class="nav-dropdown-content">
-                <a href="../../../about/#meet-the-staff">Meet the Staff</a>
-                <a href="../../../about/#meet-the-trustee-board"
-                  >Meet The Trustee Board</a
-                >
-                <a href="../../../about/partners/">Partners</a>
-                <a href="../../../about/policies/">Policies</a>
+                <span class="nav-dropdown-accent" aria-hidden="true"></span>
+                <a href="../../../about/#meet-the-staff">
+                  <strong>Meet The Staff</strong>
+                  <small>The people behind Playlink</small>
+                </a>
+                <a href="../../../about/#meet-the-trustee-board">
+                  <strong>Meet The Trustee Board</strong>
+                  <small>Our volunteer board</small>
+                </a>
+                <a href="../../../about/partners/">
+                  <strong>Partners</strong>
+                  <small>Organisations we work with</small>
+                </a>
+                <a href="../../../about/policies/">
+                  <strong>Policies</strong>
+                  <small>Governance &amp; documents</small>
+                </a>
               </div>
             </div>
             <div class="nav-dropdown" data-dropdown>
-              <a href="../../../services/">
-                <button class="nav-drop-toggle" type="button">
-                  Services ▾
-                </button>
+              <a class="nav-drop-toggle" href="../../../services/" aria-haspopup="true">
+                <span>Services</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m7 10 5 5 5-5" />
+                </svg>
               </a>
               <div class="nav-dropdown-content">
-                <a href="../../../services/toy-libraries/">Toy Libraries</a>
-                <a href="../../../services/playtime/">Playtime</a>
-                <a href="../../../services/soft-play/">Soft Play Hire</a>
-                <a href="../../../services/party-hire/">Party Hire</a>
-                <a href="../../../services/toddler-groups/">Toddler Groups</a>
-                <a href="../../../services/group-membership-scheme/"
-                  >Group Membership</a
-                >
+                <span class="nav-dropdown-accent" aria-hidden="true"></span>
+                <a href="../../../services/toy-libraries/">
+                  <strong>Toy Libraries</strong>
+                  <small>Borrow toys free of charge</small>
+                </a>
+                <a href="../../../services/playtime/">
+                  <strong>Playtime Sessions</strong>
+                  <small>Weekly drop-in for under-5s</small>
+                </a>
+                <a href="../../../services/soft-play/">
+                  <strong>Soft Play Hire</strong>
+                  <small>Soft play equipment for parties &amp; events</small>
+                </a>
+                <a href="../../../services/party-hire/">
+                  <strong>Party Hire</strong>
+                  <small>Equipment for birthdays &amp; events</small>
+                </a>
+                <a href="../../../services/toddler-groups/">
+                  <strong>Toddler Groups</strong>
+                  <small>Groups we support across the city</small>
+                </a>
+                <a href="../../../services/group-membership-scheme/">
+                  <strong>Group Membership</strong>
+                  <small>For schools &amp; early years settings</small>
+                </a>
               </div>
             </div>
             <a class="nav-link is-active" href="../../../noticeboard/"
@@ -689,6 +847,7 @@
     </button>
 
     <script src="../../../assets/js/shared/navigation.js" defer></script>
+    <script src="../../../assets/js/shared/announce.js" defer></script>
     <script src="../../../assets/js/shared/back-to-top.js" defer></script>
   </body>
 </html>
