@@ -1148,14 +1148,24 @@
       </footer>
     </div>
 
-    <button id="back-top" class="back-top" type="button" title="Back to top">
-      ⌃
-    </button>
+    <a
+      id="admin-shortcut"
+      class="admin-shortcut"
+      href="./manage/dashboard.html"
+      title="Open admin dashboard"
+      aria-label="Open admin dashboard"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 3l7 3.2v5c0 4.8-3 8.9-7 9.8-4-.9-7-5-7-9.8v-5L12 3z" />
+        <path d="M9.3 12.2l1.8 1.8 3.6-3.8" />
+      </svg>
+    </a>
 
+    <script src="./assets/js/manage-session.js" defer></script>
     <script src="./assets/js/shared/navigation.js" defer></script>
     <script src="./assets/js/shared/announce.js" defer></script>
     <script src="./assets/js/shared/testimonials.js" defer></script>
-    <script src="./assets/js/shared/back-to-top.js" defer></script>
+    <script src="./assets/js/shared/admin-shortcut.js" defer></script>
     <script src="./assets/js/home.js?v=20260905-mosaic" defer></script>
   </body>
 </html>

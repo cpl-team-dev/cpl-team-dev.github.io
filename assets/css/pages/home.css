@@ -958,6 +958,45 @@
   }
 }
 
+/* Admin shortcut replaces the generic back-to-top button on this page. */
+.page-home .admin-shortcut {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #6b3fa0;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(28, 16, 64, 0.3);
+  z-index: 90;
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.page-home .admin-shortcut.is-visible {
+  display: inline-flex;
+}
+.page-home .admin-shortcut:hover {
+  background: var(--home-deep);
+  transform: translateY(-2px);
+}
+
+.page-home .admin-shortcut svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 @media (max-width: 1100px) {
   .page-home .hero-grid {
     grid-template-columns: 1fr;
