@@ -235,8 +235,8 @@
 .page-home .hero-toy-badge {
   position: absolute;
   z-index: 3;
-  bottom: -34px;
-  left: -28px;
+  bottom: -75px;
+  left: 250px;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -287,7 +287,7 @@
 
 /* Soft play retains its original card styling. */
 .page-home .home-soft-play {
-  padding: 0 0 78px;
+  padding: 78px 0;
   color: #fff;
   background: linear-gradient(
     135deg,
@@ -729,8 +729,104 @@
   .page-home .hero-title {
     font-size: clamp(50px, 15vw, 68px);
   }
+
+  /* Mobile shows a real single-image carousel under the hero copy,
+     instead of the desktop's static photo mosaic. */
   .page-home .carousel {
+    display: block;
+    margin-top: 28px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 20px 44px rgba(8, 3, 28, 0.28);
+    overflow: hidden;
+  }
+
+  .page-home .carousel-stage {
+    height: min(70vw, 320px);
+    overflow: hidden;
+  }
+
+  .page-home .carousel-track {
+    display: block;
+    position: relative;
+  }
+
+  .page-home .carousel-slide,
+  .page-home .carousel-slide:nth-child(1),
+  .page-home .carousel-slide:nth-child(2),
+  .page-home .carousel-slide:nth-child(3),
+  .page-home .carousel-slide:nth-child(4),
+  .page-home .carousel-slide:nth-child(5),
+  .page-home .carousel-slide:nth-child(6),
+  .page-home .carousel-slide:nth-child(7) {
     display: none;
+    grid-column: auto;
+    transform: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .page-home .carousel-slide.is-active {
+    display: block !important;
+  }
+
+  .page-home .hero-toy-badge {
+    display: none;
+  }
+
+  .page-home .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    transform: translateY(-50%);
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--home-deep);
+    font-size: 20px;
+    line-height: 1;
+    box-shadow: 0 8px 20px rgba(8, 3, 28, 0.25);
+  }
+
+  .page-home .carousel-arrow.left {
+    left: 14px;
+  }
+
+  .page-home .carousel-arrow.right {
+    right: 14px;
+  }
+
+  .page-home .carousel-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  .page-home .carousel-dots button {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: #d9d7e2;
+    transition:
+      width 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .page-home .carousel-dots button.is-active {
+    width: 22px;
+    border-radius: 6px;
+    background: var(--home-deep);
   }
   .page-home .home-soft-play {
     padding-bottom: 50px;

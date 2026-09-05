@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const startRotation = () => {
       if (!prefersReducedMotion && !rotationId) {
         announceCarousel.classList.remove("is-paused");
-        rotationId = window.setInterval(() => showPanel(activeIndex + 1), 4000);
+        rotationId = window.setInterval(() => showPanel(activeIndex + 1), 5000);
       }
     };
 

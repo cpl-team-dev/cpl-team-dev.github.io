@@ -42,4 +42,33 @@ document.addEventListener("DOMContentLoaded", () => {
         `<div class="carousel-slide"><img src="${slide.src}" alt="${slide.alt}"></div>`
     )
     .join("");
+
+  dots.innerHTML = slides
+    .map(
+      (_slide, index) =>
+        `<button type="button" aria-label="Show photo ${index + 1}"></button>`
+    )
+    .join("");
+
+  const slideEls = Array.from(track.children);
+  const dotEls = Array.from(dots.children);
+  let activeIndex = 0;
+
+  function showSlide(index) {
+    activeIndex = (index + slideEls.length) % slideEls.length;
+    slideEls.forEach((el, i) => {
+      el.classList.toggle("is-active", i === activeIndex);
+    });
+    dotEls.forEach((el, i) => {
+      el.classList.toggle("is-active", i === activeIndex);
+    });
+  }
+
+  prev.addEventListener("click", () => showSlide(activeIndex - 1));
+  next.addEventListener("click", () => showSlide(activeIndex + 1));
+  dotEls.forEach((dot, index) => {
+    dot.addEventListener("click", () => showSlide(index));
+  });
+
+  showSlide(0);
 });
