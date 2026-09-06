@@ -1610,7 +1610,7 @@
    Originally built for the contact page only; promoted here so every
    page shares the same header look and behaviour. */
 .announce {
-  background: #1c1040;
+  background: var(--theme-announce-bg, #1c1040);
   border-top: 1px solid rgba(203, 214, 224, 0.45);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 12px 0 10px;
@@ -1849,7 +1849,7 @@
   top: 0;
   z-index: 50;
   border-bottom: 0;
-  background: #2d1760;
+  background: var(--theme-nav-bg, #2d1760);
   box-shadow: none;
   padding: 4px 16px;
 }
@@ -2089,7 +2089,7 @@
 .breadcrumb-bar {
   position: relative;
   overflow: hidden;
-  background: var(--endcap-deep, #1c1040);
+  background: var(--theme-chrome-bg, #1c1040);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding: 4px 16px;
 }

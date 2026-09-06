@@ -1,17 +1,12 @@
 .page-sitemap {
   --sitemap-deep: #1c1040;
-  --sitemap-mid: #3d1b7a;
   --sitemap-purple: #6b3fa0;
   --sitemap-coral: #ff5a3c;
   --sitemap-pink: #e83060;
   --sitemap-gold: #ffd166;
   --sitemap-paper: #f7f5fb;
   --sitemap-muted: #746d84;
-  --hero-deep: var(--sitemap-deep);
-  --hero-mid: var(--sitemap-mid);
-  --hero-violet: #5a2e9a;
   --hero-dot-opacity: 0.04;
-  --endcap-deep: var(--sitemap-deep);
   --endcap-coral: var(--sitemap-coral);
   --endcap-pink: var(--sitemap-pink);
   --endcap-gold: var(--sitemap-gold);

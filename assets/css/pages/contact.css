@@ -1,99 +1,21 @@
+/* Theme tokens (announce/nav/breadcrumb/hero/endcap/dropdown colors, muted-text
+   opacities) now live globally in base.css/components.css/endcap.css/
+   rebrand-patterns.css so every page shares the same light/dark behaviour. */
 .page-contact {
   --contact-purple: #6b3fa0;
   --contact-coral: #e42300;
   --contact-pink: #e5194f;
   --contact-gold: #ffd166;
-  --hero-deep: var(--theme-hero-1);
-  --hero-mid: var(--theme-hero-2);
-  --hero-violet: var(--theme-hero-3);
   --hero-dot-opacity: 0.04;
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
-  --endcap-deep: var(--theme-chrome-bg);
   --endcap-coral: var(--contact-coral);
   --endcap-pink: var(--contact-pink);
   --endcap-gold: var(--contact-gold);
-  --endcap-kicker: var(--contact-purple);
-  --admin-shortcut-bg: var(--contact-purple);
-  --admin-shortcut-hover: var(--theme-chrome-bg);
   background: var(--theme-bg);
   color: var(--theme-text);
-
-  /* Secondary/muted white text (opening times, breadcrumbs, visit details, footer)
-     was tuned at low opacity for the old near-black chrome. Against the lighter
-     chrome above, low opacity can't reach 4.5:1 at any reasonable value, so these
-     go near-opaque in light mode; dark mode restores the original values below. */
-  --announce-muted: rgba(255, 255, 255, 0.95);
-  --announce-day: rgba(255, 255, 255, 0.88);
-  --announce-time: rgba(255, 255, 255, 0.97);
-  --announce-feature-copy: rgba(255, 255, 255, 0.95);
-  --announce-feature-small: rgba(255, 255, 255, 0.9);
-  --breadcrumb-muted: rgba(255, 255, 255, 0.95);
-  --visit-intro: rgba(255, 255, 255, 0.96);
-  --visit-small: rgba(255, 255, 255, 0.96);
-  --footer-muted: rgba(255, 255, 255, 0.96);
-  --theme-panel-muted: rgba(255, 255, 255, 0.96);
-  --theme-hero-muted: rgba(255, 255, 255, 0.96);
-
-  /* Nav dropdown ("About"/"Services" pop-outs) was a fixed dark frosted card. */
-  --dropdown-bg: var(--theme-surface);
-  --dropdown-border: var(--theme-border);
-  --dropdown-hover-bg: rgba(122, 87, 190, 0.1);
-  --dropdown-title: var(--theme-text);
-  --dropdown-subtitle: var(--theme-text-muted);
 }
 
-.page-contact .site-shell {
-  background: var(--theme-bg);
-}
-
-.page-contact .announce {
-  background: var(--theme-announce-bg);
-}
-
-.page-contact .main-nav {
-  background: var(--theme-nav-bg);
-}
-
-@media (prefers-color-scheme: dark) {
-  .page-contact:not([data-theme="light"]) {
-    --announce-muted: rgba(255, 255, 255, 0.62);
-    --announce-day: rgba(255, 255, 255, 0.45);
-    --announce-time: rgba(255, 255, 255, 0.66);
-    --announce-feature-copy: rgba(255, 255, 255, 0.72);
-    --announce-feature-small: rgba(255, 255, 255, 0.56);
-    --breadcrumb-muted: rgba(255, 255, 255, 0.6);
-    --visit-intro: rgba(255, 255, 255, 0.56);
-    --visit-small: rgba(255, 255, 255, 0.48);
-    --footer-muted: rgba(255, 255, 255, 0.68);
-    --theme-panel-muted: rgba(255, 255, 255, 0.5);
-    --theme-hero-muted: rgba(255, 255, 255, 0.6);
-    --dropdown-bg: rgba(20, 10, 48, 0.97);
-    --dropdown-border: rgba(255, 255, 255, 0.1);
-    --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
-    --dropdown-title: rgba(255, 255, 255, 0.92);
-    --dropdown-subtitle: rgba(255, 255, 255, 0.38);
-  }
-}
-
-[data-theme="dark"] .page-contact {
-  --announce-muted: rgba(255, 255, 255, 0.62);
-  --announce-day: rgba(255, 255, 255, 0.45);
-  --announce-time: rgba(255, 255, 255, 0.66);
-  --announce-feature-copy: rgba(255, 255, 255, 0.72);
-  --announce-feature-small: rgba(255, 255, 255, 0.56);
-  --breadcrumb-muted: rgba(255, 255, 255, 0.6);
-  --visit-intro: rgba(255, 255, 255, 0.56);
-  --visit-small: rgba(255, 255, 255, 0.48);
-  --footer-muted: rgba(255, 255, 255, 0.68);
-  --theme-panel-muted: rgba(255, 255, 255, 0.5);
-  --theme-hero-muted: rgba(255, 255, 255, 0.6);
-  --dropdown-bg: rgba(20, 10, 48, 0.97);
-  --dropdown-border: rgba(255, 255, 255, 0.1);
-  --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
-  --dropdown-title: rgba(255, 255, 255, 0.92);
-  --dropdown-subtitle: rgba(255, 255, 255, 0.38);
-}
 .page-contact .container {
   width: min(1120px, calc(100% - 48px));
 }

@@ -9,20 +9,13 @@
   --services-green: #5a9a6f;
   --services-violet-accent: #7c5ac2;
   --services-pink: #d73ea2;
-  --hero-deep: var(--services-deep);
-  --hero-mid: var(--services-mid);
-  --hero-violet: var(--services-violet);
   --hero-dot-opacity: 0.045;
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
   --stats-bg: var(--services-purple);
-  --endcap-deep: var(--services-deep);
   --endcap-coral: #ff5a3c;
   --endcap-pink: #e83060;
   --endcap-gold: #ffd166;
-  --endcap-kicker: #6b3fa0;
-  --admin-shortcut-bg: #6b3fa0;
-  --admin-shortcut-hover: var(--services-deep);
   background: var(--services-deep);
 }
 

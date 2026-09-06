@@ -1,16 +1,12 @@
 .page-noticeboard {
-  --notice-deep: #1c1040;
-  --notice-purple: #3d1b7a;
-  --notice-violet: #5a2e9a;
+  --notice-deep: var(--theme-hero-1);
+  --notice-purple: var(--theme-hero-2);
+  --notice-violet: var(--theme-hero-3);
   --notice-gold: #ffd166;
   --notice-copy-size: clamp(17px, 0.4vw + 14px, 19px);
-  --endcap-deep: var(--notice-deep);
   --endcap-coral: #ff5a3c;
   --endcap-pink: #e83060;
   --endcap-gold: var(--notice-gold);
-  --endcap-kicker: #6b3fa0;
-  --admin-shortcut-bg: #6b3fa0;
-  --admin-shortcut-hover: var(--notice-deep);
 }
 
 /* Matches the shared visual language used by the contact-page hero. */

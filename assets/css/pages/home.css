@@ -10,20 +10,13 @@
   --home-muted: rgba(255, 255, 255, 0.64);
   --home-content-size: clamp(15px, 0.32vw + 13px, 18px);
   --home-content-line-height: 1.7;
-  --hero-deep: var(--home-deep);
-  --hero-mid: var(--home-purple);
-  --hero-violet: var(--home-violet);
   --hero-dot-opacity: 0.045;
   --hero-pad-top: clamp(76px, 8vw, 112px);
   --hero-pad-bottom: clamp(82px, 9vw, 122px);
   --stats-bg: var(--home-purple);
-  --endcap-deep: var(--home-deep);
   --endcap-coral: var(--home-coral);
   --endcap-pink: var(--home-pink);
   --endcap-gold: var(--home-yellow);
-  --endcap-kicker: #6b3fa0;
-  --admin-shortcut-bg: #6b3fa0;
-  --admin-shortcut-hover: var(--home-deep);
   background: var(--home-deep);
 }
 

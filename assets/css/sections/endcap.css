@@ -1,6 +1,6 @@
 .contact-kicker {
   margin: 0;
-  color: var(--endcap-kicker, #6b3fa0);
+  color: var(--purple-accent, #6b3fa0);
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.13em;
@@ -13,7 +13,7 @@
 
 .visit-section {
   padding: 86px 0;
-  background: var(--endcap-deep, #1c1040);
+  background: var(--theme-chrome-bg, #1c1040);
 }
 
 .visit-grid {
@@ -225,7 +225,7 @@
 
 .contact-footer {
   padding: 28px 0;
-  background: var(--endcap-deep, #1c1040);
+  background: var(--theme-chrome-bg, #1c1040);
   color: var(--footer-muted, rgba(255, 255, 255, 0.68));
   text-align: center;
 }
@@ -283,7 +283,7 @@
 .contact-footer .contact-footer-login:focus-visible {
   border-color: #fff;
   background: #fff;
-  color: var(--endcap-deep, #1c1040);
+  color: var(--theme-chrome-bg, #1c1040);
   transform: translateY(-1px);
 }
 
@@ -334,7 +334,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--admin-shortcut-bg, #6b3fa0);
+  background: var(--purple-accent, #6b3fa0);
   color: #fff;
   text-decoration: none;
   box-shadow: 0 8px 20px rgba(28, 16, 64, 0.3);
@@ -349,7 +349,7 @@
 }
 
 .admin-shortcut:hover {
-  background: var(--admin-shortcut-hover, #1c1040);
+  background: var(--theme-chrome-bg, #1c1040);
   transform: translateY(-2px);
 }
 

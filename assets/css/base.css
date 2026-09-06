@@ -12,6 +12,7 @@
   --salmon: #e8896a;
   --ink: #2b2b2b;
   --surface: #ffffff;
+  --purple-accent: #6b3fa0;
   --shadow: 0 8px 24px rgba(45, 35, 84, 0.14);
   --radius-lg: 20px;
   --radius-md: 12px;
@@ -43,11 +44,33 @@
   --theme-hero-1: #704bb9;
   --theme-hero-2: #805fc1;
   --theme-hero-3: #9377ca;
+
+  /* Secondary/muted white text (opening times, breadcrumbs, visit details, footer,
+     nav dropdown) was tuned at low opacity for the old near-black chrome. Against
+     the lighter chrome above, low opacity can't reach 4.5:1 at any reasonable
+     value, so these go near-opaque/light in light mode; dark mode below restores
+     the original values exactly. */
+  --announce-muted: rgba(255, 255, 255, 0.95);
+  --announce-day: rgba(255, 255, 255, 0.88);
+  --announce-time: rgba(255, 255, 255, 0.97);
+  --announce-feature-copy: rgba(255, 255, 255, 0.95);
+  --announce-feature-small: rgba(255, 255, 255, 0.9);
+  --breadcrumb-muted: rgba(255, 255, 255, 0.95);
+  --visit-intro: rgba(255, 255, 255, 0.96);
+  --visit-small: rgba(255, 255, 255, 0.96);
+  --footer-muted: rgba(255, 255, 255, 0.96);
+  --theme-panel-muted: rgba(255, 255, 255, 0.96);
+  --theme-hero-muted: rgba(255, 255, 255, 0.96);
+  --dropdown-bg: var(--theme-surface);
+  --dropdown-border: var(--theme-border);
+  --dropdown-hover-bg: rgba(122, 87, 190, 0.1);
+  --dropdown-title: var(--theme-text);
+  --dropdown-subtitle: var(--theme-text-muted);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --theme-bg: #ddc5ff;
+    --theme-bg: #381a62;
     --theme-surface: #241a3d;
     --theme-surface-strong: #34255c;
     --theme-text: #f1eef7;
@@ -60,11 +83,27 @@
     --theme-hero-1: #1c1040;
     --theme-hero-2: #3d1b7a;
     --theme-hero-3: #5a2e9a;
+    --announce-muted: rgba(255, 255, 255, 0.62);
+    --announce-day: rgba(255, 255, 255, 0.45);
+    --announce-time: rgba(255, 255, 255, 0.66);
+    --announce-feature-copy: rgba(255, 255, 255, 0.72);
+    --announce-feature-small: rgba(255, 255, 255, 0.56);
+    --breadcrumb-muted: rgba(255, 255, 255, 0.6);
+    --visit-intro: rgba(255, 255, 255, 0.56);
+    --visit-small: rgba(255, 255, 255, 0.48);
+    --footer-muted: rgba(255, 255, 255, 0.68);
+    --theme-panel-muted: rgba(255, 255, 255, 0.5);
+    --theme-hero-muted: rgba(255, 255, 255, 0.6);
+    --dropdown-bg: rgba(20, 10, 48, 0.97);
+    --dropdown-border: rgba(255, 255, 255, 0.1);
+    --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
+    --dropdown-title: rgba(255, 255, 255, 0.92);
+    --dropdown-subtitle: rgba(255, 255, 255, 0.38);
   }
 }
 
 :root[data-theme="dark"] {
-  --theme-bg: #ddc5ff;
+  --theme-bg: #381a62;
   --theme-surface: #241a3d;
   --theme-surface-strong: #34255c;
   --theme-text: #f1eef7;
@@ -77,6 +116,22 @@
   --theme-hero-1: #1c1040;
   --theme-hero-2: #3d1b7a;
   --theme-hero-3: #5a2e9a;
+  --announce-muted: rgba(255, 255, 255, 0.62);
+  --announce-day: rgba(255, 255, 255, 0.45);
+  --announce-time: rgba(255, 255, 255, 0.66);
+  --announce-feature-copy: rgba(255, 255, 255, 0.72);
+  --announce-feature-small: rgba(255, 255, 255, 0.56);
+  --breadcrumb-muted: rgba(255, 255, 255, 0.6);
+  --visit-intro: rgba(255, 255, 255, 0.56);
+  --visit-small: rgba(255, 255, 255, 0.48);
+  --footer-muted: rgba(255, 255, 255, 0.68);
+  --theme-panel-muted: rgba(255, 255, 255, 0.5);
+  --theme-hero-muted: rgba(255, 255, 255, 0.6);
+  --dropdown-bg: rgba(20, 10, 48, 0.97);
+  --dropdown-border: rgba(255, 255, 255, 0.1);
+  --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
+  --dropdown-title: rgba(255, 255, 255, 0.92);
+  --dropdown-subtitle: rgba(255, 255, 255, 0.38);
 }
 
 * {
@@ -129,7 +184,7 @@ img {
 
 .site-shell {
   min-height: 100vh;
-  background: var(--purple);
+  background: var(--theme-bg, var(--purple));
 }
 
 .announce {

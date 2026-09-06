@@ -1,17 +1,10 @@
 .page-404 {
-  --hero-deep: #1c1040;
-  --hero-mid: #3d1b7a;
-  --hero-violet: #5a2e9a;
   --hero-dot-opacity: 0.045;
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
-  --endcap-deep: #1c1040;
   --endcap-coral: #ff5a3c;
   --endcap-pink: #e83060;
   --endcap-gold: #ffd166;
-  --endcap-kicker: #6b3fa0;
-  --admin-shortcut-bg: #6b3fa0;
-  --admin-shortcut-hover: #1c1040;
   margin: 0;
   min-height: 100vh;
   background: #1c1040;

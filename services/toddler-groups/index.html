@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en-GB">
   <head>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var theme =
+          stored ||
+          (window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light");
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Toddler Groups in Southampton | Community Playlink</title>
@@ -430,6 +441,44 @@
             <a class="nav-link" href="../../contact/">Contact</a>
             <a class="nav-link nav-cta" href="../../support-us/">Support Us</a>
           </div>
+          <button
+            type="button"
+            class="theme-toggle"
+            id="theme-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-label="Switch to dark theme"
+          >
+            <span class="theme-toggle-track">
+              <span class="theme-toggle-stars" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="theme-toggle-cloud" aria-hidden="true"></span>
+              <span class="theme-toggle-thumb" aria-hidden="true">
+                <svg
+                  class="theme-toggle-icon theme-toggle-icon-sun"
+                  viewBox="0 0 24 24"
+                >
+                  <circle cx="12" cy="12" r="4.2" />
+                  <path
+                    d="M12 2.5v2.4M12 19.1v2.4M4.4 4.4l1.7 1.7M17.9 17.9l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.4 19.6l1.7-1.7M17.9 6.1l1.7-1.7"
+                  />
+                </svg>
+                <svg
+                  class="theme-toggle-icon theme-toggle-icon-moon"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5Z"
+                  />
+                </svg>
+              </span>
+            </span>
+          </button>
         </div>
       </nav>
 
@@ -855,6 +904,7 @@
 
     <script src="../../assets/js/manage-session.js" defer></script>
     <script src="../../assets/js/shared/navigation.js" defer></script>
+    <script src="../../assets/js/shared/theme-toggle.js" defer></script>
     <script src="../../assets/js/shared/announce.js" defer></script>
     <script src="../../assets/js/shared/admin-shortcut.js" defer></script>
   </body>
