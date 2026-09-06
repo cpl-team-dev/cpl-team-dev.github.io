@@ -1,8 +1,8 @@
 .page-group-membership {
   --group-copy-size: clamp(16px, 0.3vw + 14px, 19px);
   --group-heading-size: clamp(30px, 0.9vw + 22px, 38px);
-  --hero-pad-top: 64px;
-  --hero-pad-bottom: 64px;
+  --hero-pad-top: 44px;
+  --hero-pad-bottom: 48px;
 }
 
 .page-group-membership .group-membership-subhero {

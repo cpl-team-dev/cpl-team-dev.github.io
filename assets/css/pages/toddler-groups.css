@@ -1,8 +1,8 @@
 .page-toddler-groups {
   --toddler-copy-size: clamp(16px, 0.3vw + 14px, 19px);
   --toddler-heading-size: clamp(28px, 0.8vw + 21px, 36px);
-  --hero-pad-top: 64px;
-  --hero-pad-bottom: 64px;
+  --hero-pad-top: 44px;
+  --hero-pad-bottom: 48px;
 }
 
 .page-toddler-groups .toddler-groups-subhero {

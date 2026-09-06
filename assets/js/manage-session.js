@@ -67,7 +67,7 @@ function consumeManageLoginWarning() {
   return message;
 }
 
-function requireManageSession(loginPath) {
+function requireManageSession(loginPath, allowedAccountTypes) {
   const session = getManageSession();
   if (!session) {
     clearManageSession();
@@ -75,10 +75,12 @@ function requireManageSession(loginPath) {
     return null;
   }
 
-  if (getManageAccountType(session) !== "admin") {
-    setManageLoginWarning("This is not an admin account");
-    clearManageSession();
-    window.location.href = loginPath || "./login.html";
+  const allowedTypes = Array.isArray(allowedAccountTypes)
+    ? allowedAccountTypes.map((type) => String(type).toLowerCase())
+    : ["admin"];
+
+  if (!allowedTypes.includes(getManageAccountType(session))) {
+    window.location.href = "./dashboard.html";
     return null;
   }
 

@@ -17,6 +17,66 @@
   --radius-md: 12px;
   --font-display: "Bricolage Grotesque", "Inter", sans-serif;
   --font-body: "Inter", "Segoe UI", sans-serif;
+
+  /* Theme-aware content tokens (brand tokens above stay fixed across themes).
+     Namespaced --theme-* to avoid colliding with existing tokens (e.g. --surface,
+     used site-wide by .card) until those are deliberately migrated too. */
+  --theme-bg: #f7f5fb;
+  --theme-surface: #ffffff;
+  --theme-surface-strong: #805fc1;
+  --theme-text: #1c1040;
+  --theme-text-muted: #6b6478;
+  --theme-border: #dedce4;
+  --theme-shadow-color: rgba(45, 35, 84, 0.14);
+
+  /* Chrome tokens: announce bar, nav bar, breadcrumb/endcap panels, hero gradient.
+     These previously stayed a fixed dark purple in both themes; light-mode values
+     below give them a lighter purple identity, dark-mode values match the site's
+     original fixed-dark look exactly (no change there).
+     Light values are picked from the same hue/saturation as --purple, tuned so
+     white text at full opacity clears WCAG AA (4.5:1): #704bb9 -> 6.18:1,
+     #805fc1 -> 4.86:1. #9377ca is deliberately lighter (~3.7:1) but only ever
+     sits behind the hero's decorative gradient corner, not text. */
+  --theme-announce-bg: #704bb9;
+  --theme-nav-bg: #704bb9;
+  --theme-chrome-bg: #805fc1;
+  --theme-hero-1: #704bb9;
+  --theme-hero-2: #805fc1;
+  --theme-hero-3: #9377ca;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --theme-bg: #ddc5ff;
+    --theme-surface: #241a3d;
+    --theme-surface-strong: #34255c;
+    --theme-text: #f1eef7;
+    --theme-text-muted: #b7aed0;
+    --theme-border: rgba(255, 255, 255, 0.14);
+    --theme-shadow-color: rgba(0, 0, 0, 0.4);
+    --theme-announce-bg: #1c1040;
+    --theme-nav-bg: #2d1760;
+    --theme-chrome-bg: #1c1040;
+    --theme-hero-1: #1c1040;
+    --theme-hero-2: #3d1b7a;
+    --theme-hero-3: #5a2e9a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --theme-bg: #ddc5ff;
+  --theme-surface: #241a3d;
+  --theme-surface-strong: #34255c;
+  --theme-text: #f1eef7;
+  --theme-text-muted: #b7aed0;
+  --theme-border: rgba(255, 255, 255, 0.14);
+  --theme-shadow-color: rgba(0, 0, 0, 0.4);
+  --theme-announce-bg: #1c1040;
+  --theme-nav-bg: #2d1760;
+  --theme-chrome-bg: #1c1040;
+  --theme-hero-1: #1c1040;
+  --theme-hero-2: #3d1b7a;
+  --theme-hero-3: #5a2e9a;
 }
 
 * {

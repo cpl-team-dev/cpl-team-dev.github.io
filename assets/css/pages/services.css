@@ -13,8 +13,8 @@
   --hero-mid: var(--services-mid);
   --hero-violet: var(--services-violet);
   --hero-dot-opacity: 0.045;
-  --hero-pad-top: 88px;
-  --hero-pad-bottom: 96px;
+  --hero-pad-top: 44px;
+  --hero-pad-bottom: 48px;
   --stats-bg: var(--services-purple);
   --endcap-deep: var(--services-deep);
   --endcap-coral: #ff5a3c;

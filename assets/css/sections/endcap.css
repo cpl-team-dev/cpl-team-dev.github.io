@@ -34,7 +34,7 @@
 
 .visit-intro {
   margin: 0 0 30px;
-  color: rgba(255, 255, 255, 0.56);
+  color: var(--visit-intro, rgba(255, 255, 255, 0.56));
   font-size: 15px;
   line-height: 1.75;
 }
@@ -81,7 +81,7 @@
 
 .visit-row small,
 .visit-hours em {
-  color: rgba(255, 255, 255, 0.48);
+  color: var(--visit-small, rgba(255, 255, 255, 0.48));
   font-style: normal;
   line-height: 1.6;
 }
@@ -226,7 +226,7 @@
 .contact-footer {
   padding: 28px 0;
   background: var(--endcap-deep, #1c1040);
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--footer-muted, rgba(255, 255, 255, 0.68));
   text-align: center;
 }
 

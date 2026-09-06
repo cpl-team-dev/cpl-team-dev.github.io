@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   let requestedEmail = "";
+  let requestedUserRowNumber = null;
 
   function setStatus(message, state) {
     if (!message) {
@@ -95,8 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
     button.textContent = isBusy ? busyLabel : idleLabel;
   }
 
-  function showVerification(email) {
+  function showVerification(email, userRowNumber) {
     requestedEmail = email;
+    requestedUserRowNumber = userRowNumber;
     sentEmail.textContent = email;
     requestStep.hidden = true;
     verificationPanel.hidden = false;
@@ -115,6 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function resetVerification() {
     requestedEmail = "";
+    requestedUserRowNumber = null;
     requestStep.hidden = false;
     verificationPanel.hidden = true;
     loginCard.classList.remove("is-verifying");
@@ -203,14 +206,19 @@ document.addEventListener("DOMContentLoaded", () => {
     setBusy(requestCodeButton, true, "Send code", "Sending...");
 
     try {
-      await postAuthJson("/create-session", {
+      const result = await postAuthJson("/create-session", {
         organisation_id: getOrganisationId(),
         email: email,
         password: password,
         cf_turnstile_response: getTurnstileToken(requestCodeForm),
       });
 
-      showVerification(email);
+      const userRowNumber = result?.data?.user_row_number;
+      if (!Number.isFinite(Number(userRowNumber))) {
+        throw new Error("The login response did not include the account reference.");
+      }
+
+      showVerification(email, Number(userRowNumber));
       setStatus("Code sent. Check your inbox and enter the six-digit number.", "success");
       resetTurnstile("#request-code-turnstile");
     } catch (error) {
@@ -238,6 +246,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    if (!Number.isFinite(requestedUserRowNumber)) {
+      setStatus("Request a new code before continuing.", "error");
+      return;
+    }
+
     if (!/^\d{6}$/.test(code)) {
       setStatus("Enter the full six-digit code.", "error");
       const firstEmptyInput = codeInputs.find((input) => !input.value);
@@ -252,6 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
         organisation_id: getOrganisationId(),
         email: requestedEmail,
         code: code,
+        user_row_number: requestedUserRowNumber,
         cf_turnstile_response: getTurnstileToken(verifyCodeForm),
       });
 
@@ -263,7 +277,10 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordInput.value = "";
       setStatus("Login successful. Redirecting...", "success");
       window.setTimeout(() => {
-        window.location.href = "./dashboard.html";
+        window.location.href =
+          getManageAccountType(result.data) === "member"
+            ? "./users.html"
+            : "./dashboard.html";
       }, 600);
     } catch (error) {
       setStatus(

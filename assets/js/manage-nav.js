@@ -14,6 +14,15 @@
   let collapsed = sidebar.classList.contains("is-collapsed");
   apply(collapsed);
 
+  const session =
+    typeof getManageSession === "function" ? getManageSession() : null;
+  const isAdmin =
+    typeof getManageAccountType === "function" &&
+    getManageAccountType(session) === "admin";
+  document.querySelectorAll("[data-admin-only]").forEach((element) => {
+    element.hidden = !isAdmin;
+  });
+
   toggle.addEventListener("click", () => {
     collapsed = !collapsed;
     apply(collapsed);

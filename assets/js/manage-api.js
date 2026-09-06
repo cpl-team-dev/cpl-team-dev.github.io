@@ -50,22 +50,36 @@ async function parseManageApiResponse(response) {
       result && typeof result.error === "string" && result.error.trim()
         ? result.error
         : `Request failed with status ${response.status}`;
-    throw new Error(message);
+    const error = new Error(message);
+    error.status = response.status;
+    throw error;
   }
 
   return result;
 }
 
-async function manageApiGet(path, params) {
+async function manageApiGet(path, params, session) {
   const searchParams = new URLSearchParams(
     Object.assign({ organisation_id: getOrganisationId() }, params || {}),
   );
+
+  const activeSession =
+    session ||
+    (typeof getManageSession === "function" ? getManageSession() : null);
+  const authorization =
+    typeof getManageAuthorization === "function"
+      ? getManageAuthorization(activeSession)
+      : "";
+
+  const headers = { Accept: "application/json" };
+  if (authorization) headers.Authorization = authorization;
 
   const response = await fetch(
     `${getApiEndpoint(path)}?${searchParams.toString()}`,
     {
       method: "GET",
-      headers: { Accept: "application/json" },
+      headers: headers,
+      cache: "no-store",
     },
   );
 
@@ -83,12 +97,11 @@ async function manageApiPost(path, body, session) {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      ...(authorization ? { Authorization: authorization } : {}),
     },
+    cache: "no-store",
     body: JSON.stringify(
-      Object.assign(
-        { organisation_id: getOrganisationId(), authorization: authorization },
-        body || {},
-      ),
+      Object.assign({ organisation_id: getOrganisationId() }, body || {}),
     ),
   });
 

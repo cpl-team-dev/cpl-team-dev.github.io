@@ -1,8 +1,8 @@
 .page-about {
   --about-copy-size: clamp(20px, 0.7vw + 14px, 24px);
   --about-heading-size: clamp(34px, 1.7vw + 18px, 56px);
-  --hero-pad-top: 64px;
-  --hero-pad-bottom: 64px;
+  --hero-pad-top: 44px;
+  --hero-pad-bottom: 48px;
 }
 
 .page-about .section-pad {

@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Manage Users | Community Playlink</title>
+    <meta
+      name="description"
+      content="Manage your Community Playlink profile and organisation user accounts."
+    />
+    <link
+      rel="icon"
+      href="https://ik.imagekit.io/communityplaylink/website/head/cropped-Site-Icon-32x32.webp"
+      sizes="32x32"
+    />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/responsive.css" />
+    <link rel="stylesheet" href="../assets/css/pages/manage.css" />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+  </head>
+  <body class="manage-page">
+    <div class="site-shell manage-app">
+      <aside class="manage-sidebar" id="manage-sidebar">
+        <script>
+          (function () {
+            try {
+              if (localStorage.getItem("manage-sidebar-collapsed") === "1") {
+                document.currentScript.parentElement.classList.add("is-collapsed");
+              }
+            } catch (error) {
+              /* localStorage unavailable — default to expanded */
+            }
+          })();
+        </script>
+
+        <div class="manage-sidebar-header">
+          <a class="manage-brand" href="/" aria-label="Community Playlink home">
+            <img
+              src="https://ik.imagekit.io/communityplaylink/website/Community-Playlink-Logo-Retina-scaled.webp"
+              alt="Community Playlink"
+            />
+          </a>
+          <button
+            id="sidebar-toggle"
+            class="manage-sidebar-toggle"
+            type="button"
+            aria-expanded="true"
+            aria-label="Collapse navigation"
+            title="Collapse navigation"
+          >
+            <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <path d="m12 4-6 6 6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+            </svg>
+          </button>
+        </div>
+
+        <nav class="manage-sidebar-nav" aria-label="Management sections">
+          <a href="./dashboard.html" title="Dashboard">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2" />
+                <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2" />
+                <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2" />
+                <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Dashboard</span>
+          </a>
+          <a href="./users.html" class="is-active" title="Users">
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M4 21a8 8 0 0 1 16 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Users</span>
+          </a>
+          <a href="./organisations.html" title="Organisations" data-admin-only>
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M4 21V5a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v16m-8 0h12m-4 0v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5M7 7h1m-1 4h1m-1 4h1m3-8h1m-1 4h1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Organisations</span>
+          </a>
+          <a href="./products.html" title="Toys" data-admin-only>
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M21 8 12 3 3 8m18 0-9 5m9-5v8l-9 5m0-8L3 8m9 5v8M3 8v8l9 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Toys</span>
+          </a>
+          <a href="./blog.html" title="Blog posts" data-admin-only>
+            <span class="manage-sidebar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false">
+                <path d="M4 5h16M4 12h16M4 19h10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </svg>
+            </span>
+            <span class="manage-sidebar-label">Blog posts</span>
+          </a>
+        </nav>
+
+        <div class="manage-sidebar-footer">
+          <div class="manage-account-chip">
+            <span id="account-avatar" class="manage-account-avatar" aria-hidden="true">CP</span>
+            <div class="manage-account-meta">
+              <span id="account-role">Signed in</span>
+              <strong id="account-email">…</strong>
+            </div>
+            <button
+              id="logout-button"
+              class="manage-logout-button"
+              type="button"
+              aria-label="Log out"
+              title="Log out"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M15 4h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                <path d="M10 8l-4 4 4 4" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                <path d="M14 12H3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <div class="manage-main">
+        <div class="manage-context-bar">
+          <div class="container manage-context-bar-inner">
+            <nav class="manage-breadcrumb" aria-label="Breadcrumb">
+              <a href="./dashboard.html">Management</a>
+              <span class="manage-breadcrumb-sep">/</span>
+              <span class="manage-breadcrumb-current">Users</span>
+            </nav>
+            <div class="manage-context-actions">
+              <button
+                id="refresh-users-button"
+                class="manage-icon-button"
+                type="button"
+                aria-label="Refresh users"
+                title="Refresh users"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M20 12a8 8 0 1 1-2.34-5.66" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                  <path d="M20 4v6h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                </svg>
+              </button>
+              <span id="users-last-refreshed" class="manage-refresh-timestamp" aria-live="polite">Last refreshed: —</span>
+            </div>
+          </div>
+        </div>
+
+        <main>
+          <section class="section-pad manage-shell">
+            <div class="container">
+              <div class="manage-page-header">
+                <h1 id="users-page-title">Users</h1>
+                <p id="users-page-intro">Manage user accounts for your organisation.</p>
+              </div>
+
+              <div id="status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
+
+              <div id="users-loading" class="manage-card manage-loading" role="status" aria-live="polite" hidden>
+                <span class="manage-spinner" aria-hidden="true"></span>
+                <span>Loading user details…</span>
+              </div>
+
+              <section id="member-profile-panel" class="manage-card" aria-labelledby="member-profile-title" hidden>
+                <div class="manage-toolbar">
+                  <div>
+                    <h2 id="member-profile-title">Your profile</h2>
+                    <p class="field-hint">Your contact and membership account details.</p>
+                  </div>
+                  <button id="edit-profile-button" class="primary-button" type="button">Edit profile</button>
+                </div>
+                <dl id="member-profile-details" class="manage-user-details"></dl>
+              </section>
+
+              <section id="admin-users-panel" class="manage-card" aria-labelledby="admin-users-title" hidden>
+                <div class="manage-toolbar">
+                  <div>
+                    <h2 id="admin-users-title">Organisation users</h2>
+                    <p class="field-hint">Accounts are created when a new user signs in for the first time.</p>
+                  </div>
+                  <span id="users-count" class="manage-count-badge"></span>
+                </div>
+                <div class="manage-table-wrap">
+                  <table class="manage-table manage-users-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Created</th>
+                        <th scope="col"><span class="visually-hidden">Actions</span></th>
+                      </tr>
+                    </thead>
+                    <tbody id="users-table-body"></tbody>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="user-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div class="manage-modal-dialog manage-user-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="user-modal-title">
+        <div class="manage-modal-header">
+          <div>
+            <h2 id="user-modal-title">Edit user</h2>
+            <p id="user-modal-subtitle" class="field-hint"></p>
+          </div>
+          <button class="manage-modal-close" type="button" data-close-modal aria-label="Close">&times;</button>
+        </div>
+
+        <div id="user-form-status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
+
+        <form id="user-form" novalidate>
+          <div class="form-grid manage-user-form-grid">
+            <div class="field">
+              <label for="user-field-first_name">First name</label>
+              <input id="user-field-first_name" name="first_name" type="text" autocomplete="given-name" />
+            </div>
+            <div class="field">
+              <label for="user-field-last_name">Last name</label>
+              <input id="user-field-last_name" name="last_name" type="text" autocomplete="family-name" />
+            </div>
+            <div class="field manage-user-email-field">
+              <label for="user-field-email">Email address <span class="required">*</span></label>
+              <input id="user-field-email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div id="user-role-field" class="field">
+              <label for="user-field-user_type">Role</label>
+              <select id="user-field-user_type" name="user_type">
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="user-field-phone">Phone</label>
+              <input id="user-field-phone" name="phone" type="tel" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <label for="user-field-address_1">Address line 1</label>
+              <input id="user-field-address_1" name="address_1" type="text" autocomplete="address-line1" />
+            </div>
+            <div class="field">
+              <label for="user-field-address_2">Address line 2</label>
+              <input id="user-field-address_2" name="address_2" type="text" autocomplete="address-line2" />
+            </div>
+            <div class="field">
+              <label for="user-field-postcode">Postcode</label>
+              <input id="user-field-postcode" name="postcode" type="text" autocomplete="postal-code" />
+            </div>
+            <div class="field">
+              <label for="user-field-county">County</label>
+              <input id="user-field-county" name="county" type="text" autocomplete="address-level2" />
+            </div>
+            <div class="field">
+              <label for="user-field-country">Country code</label>
+              <input id="user-field-country" name="country" type="text" autocomplete="country" maxlength="2" placeholder="GB" />
+            </div>
+            <div class="field manage-user-custom-field">
+              <label for="user-field-custom">Additional data</label>
+              <textarea id="user-field-custom" name="custom" rows="5" spellcheck="false" placeholder='{"email_updates": true}'></textarea>
+              <p class="field-hint">Optional JSON object for additional account preferences.</p>
+            </div>
+          </div>
+          <div id="user-form-turnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"></div>
+          <div class="action-row">
+            <button id="user-submit-button" class="primary-button" type="submit">Save changes</button>
+            <button class="secondary-button" type="button" data-close-modal>Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="user-delete-modal" class="manage-modal" hidden>
+      <div class="manage-modal-backdrop" data-close-modal></div>
+      <div class="manage-modal-dialog manage-delete-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="user-delete-modal-title">
+        <div class="manage-modal-header">
+          <h2 id="user-delete-modal-title">Delete member account?</h2>
+          <button class="manage-modal-close" type="button" data-close-modal aria-label="Close">&times;</button>
+        </div>
+        <div id="user-delete-status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
+        <p id="user-delete-modal-message" class="manage-modal-copy"></p>
+        <p class="manage-delete-warning">This action cannot be undone. Admin accounts cannot be deleted.</p>
+        <div id="user-delete-turnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"></div>
+        <div class="action-row">
+          <button id="user-delete-confirm-button" class="danger-button" type="button">Delete member</button>
+          <button class="secondary-button" type="button" data-close-modal>Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/js/manage-api.js"></script>
+    <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-nav.js"></script>
+    <script src="../assets/js/manage-users.js"></script>
+  </body>
+</html>
