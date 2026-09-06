@@ -1,23 +1,25 @@
 .page-home {
+  /* Still fixed: --home-deep is also the ink color used on the paper/white
+     sections below (offer-title, hero-toy-badge-copy, mobile carousel
+     controls), and --home-purple also colors the impact-icon squares — both
+     stay solid brand accents in both themes, same as contact's icon squares. */
   --home-deep: #1c1040;
-  --home-mid: #2d1760;
   --home-purple: #3d1b7a;
-  --home-violet: #5a2e9a;
   --home-coral: #e42300;
   --home-pink: #e5194f;
   --home-yellow: #ffd166;
   --home-paper: #f7f5fb;
-  --home-muted: rgba(255, 255, 255, 0.64);
+  --home-muted: var(--theme-hero-muted);
   --home-content-size: clamp(15px, 0.32vw + 13px, 18px);
   --home-content-line-height: 1.7;
   --hero-dot-opacity: 0.045;
   --hero-pad-top: clamp(76px, 8vw, 112px);
   --hero-pad-bottom: clamp(82px, 9vw, 122px);
-  --stats-bg: var(--home-purple);
+  --stats-bg: var(--theme-hero-2);
   --endcap-coral: var(--home-coral);
   --endcap-pink: var(--home-pink);
   --endcap-gold: var(--home-yellow);
-  background: var(--home-deep);
+  background: var(--theme-hero-1);
 }
 
 .page-home .container {
@@ -283,7 +285,7 @@
 
 .page-home .home-stats-item span {
   margin-top: 6px;
-  color: rgba(255, 255, 255, 0.55);
+  color: var(--theme-hero-muted);
   font-size: 14px;
 }
 
@@ -293,9 +295,9 @@
   color: #fff;
   background: linear-gradient(
     135deg,
-    var(--home-deep) 0%,
-    var(--home-purple) 60%,
-    var(--home-violet) 100%
+    var(--theme-hero-1) 0%,
+    var(--theme-hero-2) 60%,
+    var(--theme-hero-3) 100%
   ) !important;
 }
 
@@ -305,7 +307,7 @@
   grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
   overflow: hidden;
   border-radius: 22px;
-  background: #1c1040;
+  background: var(--theme-hero-1);
   box-shadow: 0 22px 42px rgba(28, 16, 64, 0.28);
 }
 
@@ -444,7 +446,7 @@
 /* Group membership becomes the bold full-width split from the reference. */
 .page-home .home-groups {
   padding: 0;
-  background: var(--home-deep) !important;
+  background: var(--theme-hero-1) !important;
 }
 .page-home .home-groups > .container {
   width: 100%;
@@ -455,7 +457,7 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   min-height: 520px;
   border-radius: 0;
-  background: var(--home-deep);
+  background: var(--theme-hero-1);
   box-shadow: none;
 }
 
@@ -468,7 +470,7 @@
   flex-direction: column;
   justify-content: center;
   padding: clamp(52px, 7vw, 108px);
-  background: var(--home-mid);
+  background: var(--theme-hero-2);
 }
 
 .page-home .home-groups .split-copy h2 {
@@ -508,7 +510,7 @@
 /* Impact stats grid beneath the group membership section. */
 .page-home .home-impact {
   padding: 96px 0;
-  background: var(--home-deep) !important;
+  background: var(--theme-hero-1) !important;
 }
 
 .page-home .home-impact-header {
@@ -582,7 +584,7 @@
 
 .page-home .home-impact-desc {
   margin: -8px 0 0;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--theme-hero-muted);
   font-size: 13px;
   line-height: 1.55;
 }

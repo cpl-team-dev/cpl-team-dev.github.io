@@ -31,7 +31,7 @@
 }
 
 .page-about .constitution-viewer-frame {
-  background: #1c1040;
+  background: var(--theme-surface-strong);
   border-radius: 20px;
   box-shadow: 0 24px 48px rgba(28, 16, 64, 0.16);
   overflow: hidden;
@@ -43,7 +43,7 @@
   height: min(73vw, 900px);
   min-height: 560px;
   border: 0;
-  background: #1c1040;
+  background: var(--theme-surface-strong);
 }
 
 .page-about .constitution-download-row {
@@ -318,7 +318,12 @@
   overflow: hidden;
   padding: 96px 24px;
   text-align: center;
-  background: linear-gradient(135deg, #1c1040 0%, #3d1b7a 60%, #5a2e9a 100%);
+  background: linear-gradient(
+    135deg,
+    var(--theme-hero-1) 0%,
+    var(--theme-hero-2) 60%,
+    var(--theme-hero-3) 100%
+  );
 }
 
 .page-about .about-hero::before {
@@ -345,7 +350,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.7));
   font-size: 12px;
   font-weight: 600;
 }
@@ -366,7 +371,7 @@
 .page-about .about-hero-sub {
   margin: 0 auto;
   max-width: 560px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: 18px;
   line-height: 1.6;
 }
@@ -462,7 +467,7 @@
 .page-about .about-stat-card {
   padding: 32px;
   border-radius: 20px;
-  background: #1c1040;
+  background: var(--theme-surface-strong);
   text-align: center;
 }
 
@@ -478,7 +483,7 @@
 .page-about .about-stat-card span {
   display: block;
   margin-top: 6px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--theme-panel-muted, rgba(255, 255, 255, 0.5));
   font-size: 14px;
   font-weight: 600;
 }
@@ -551,7 +556,7 @@
 /* Our aims */
 .page-about .about-aims {
   padding: 88px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-about .about-aims-header {
@@ -601,7 +606,7 @@
 
 .page-about .about-aim-card p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.7));
   font-size: 14px;
   line-height: 1.65;
 }
@@ -675,6 +680,9 @@
 .page-about .about-section-blurb-left {
   max-width: 480px;
   text-align: left;
+  /* Only ever used inside the dark hero-family bands (trustees, FAQ), unlike
+     the base class above which sits on the fixed-light staff/news sections. */
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.7));
 }
 
 /* Meet the staff */
@@ -774,7 +782,7 @@
 /* Meet the trustee board */
 .page-about .about-trustees {
   padding: 88px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-about .about-trustees h2 {
@@ -832,7 +840,7 @@
 }
 
 .page-about .about-trustee-card small {
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--theme-panel-muted, rgba(255, 255, 255, 0.4));
   font-size: 12px;
 }
 
@@ -946,7 +954,7 @@
 /* Partners teaser */
 .page-about .about-partners-teaser {
   padding: 64px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
   text-align: center;
 }
 
@@ -960,7 +968,7 @@
 .page-about .about-partners-teaser p {
   max-width: 620px;
   margin: 0 auto 24px;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--theme-panel-muted, rgba(255, 255, 255, 0.5));
   font-size: 14px;
   line-height: 1.7;
 }
@@ -1050,7 +1058,7 @@
 /* FAQ */
 .page-about .about-faq {
   padding: 88px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-about .about-faq-inner {

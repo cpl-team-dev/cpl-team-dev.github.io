@@ -5,11 +5,11 @@
   --endcap-coral: #ff5a3c;
   --endcap-pink: #e83060;
   --endcap-gold: #ffd166;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-support-us .site-shell {
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 /* Shared kicker + buttons */
@@ -84,7 +84,7 @@
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.7));
   font-size: 13px;
   font-weight: 700;
 }
@@ -105,7 +105,7 @@
 .page-support-us .support-hero-intro {
   max-width: 620px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: clamp(15px, 0.35vw + 14px, 18px);
   line-height: 1.7;
 }
@@ -124,7 +124,7 @@
   border: 1px solid rgba(255, 255, 255, 0.26);
   border-radius: 999px;
   padding: 9px 18px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.88));
   background: rgba(255, 255, 255, 0.06);
   font-size: 13px;
   font-weight: 700;
@@ -269,7 +269,7 @@
   flex-direction: column;
   justify-content: center;
   padding: 56px 60px;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-support-us .support-split-copy h2 {
@@ -283,7 +283,7 @@
 
 .page-support-us .support-split-copy p {
   margin: 0 0 18px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: 15px;
   line-height: 1.75;
 }
@@ -349,7 +349,7 @@
 .page-support-us .support-donate-card {
   padding: 44px 36px;
   border-radius: 20px;
-  background: #1c1040;
+  background: var(--theme-surface-strong);
   text-align: center;
 }
 
@@ -367,7 +367,7 @@
 
 .page-support-us .support-donate-card p {
   margin: 0 0 26px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: 14px;
   line-height: 1.65;
 }
@@ -375,7 +375,7 @@
 /* Volunteering */
 .page-support-us .support-volunteer {
   padding: 88px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-support-us .support-volunteer-grid {
@@ -396,7 +396,7 @@
 
 .page-support-us .support-volunteer-info p {
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: 15px;
   line-height: 1.75;
 }
@@ -411,7 +411,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.75));
   font-size: 14px;
 }
 

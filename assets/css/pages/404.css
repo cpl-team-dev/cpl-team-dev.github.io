@@ -7,11 +7,11 @@
   --endcap-gold: #ffd166;
   margin: 0;
   min-height: 100vh;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-404 .site-shell {
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .notfound-hero-inner {
@@ -53,7 +53,7 @@
 .notfound-message {
   margin: 0 auto 34px;
   max-width: 34rem;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: clamp(15px, 0.35vw + 14px, 18px);
   line-height: 1.7;
 }

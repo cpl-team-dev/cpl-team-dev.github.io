@@ -37,7 +37,7 @@
   align-items: center;
   gap: 9px;
   margin: 0 0 22px;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.72));
   font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -69,7 +69,7 @@
 .sitemap-hero p:last-child {
   max-width: 650px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.64);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.64));
   font-size: 18px;
   line-height: 1.65;
 }
@@ -279,7 +279,7 @@
   margin-top: 24px;
   padding: 30px;
   border-radius: 22px;
-  background: var(--sitemap-deep);
+  background: var(--theme-surface-strong);
   color: #fff;
   text-align: center;
 }
@@ -292,7 +292,7 @@
 
 .sitemap-help p {
   margin: 0;
-  color: rgba(255, 255, 255, 0.63);
+  color: var(--theme-panel-muted, rgba(255, 255, 255, 0.63));
   font-size: 15px;
 }
 

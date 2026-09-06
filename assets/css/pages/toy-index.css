@@ -5,11 +5,11 @@
   --endcap-coral: #ff5a3c;
   --endcap-pink: #e83060;
   --endcap-gold: #ffd166;
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-toy-index .site-shell {
-  background: #1c1040;
+  background: var(--theme-hero-1);
 }
 
 .page-toy-index .toy-index-hero-badge {
@@ -21,7 +21,7 @@
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.7));
   font-size: 13px;
   font-weight: 700;
 }
@@ -42,7 +42,7 @@
 .page-toy-index .toy-index-hero-intro {
   max-width: 640px;
   margin: 0 auto;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: clamp(15px, 0.35vw + 14px, 18px);
   line-height: 1.7;
 }
@@ -129,7 +129,7 @@
 
 .page-toy-index .toy-index-cta {
   padding: 80px 0;
-  background: #1c1040;
+  background: var(--theme-hero-1);
   text-align: center;
 }
 
@@ -144,7 +144,7 @@
 .page-toy-index .toy-index-cta p {
   margin: 0 auto 30px;
   max-width: 520px;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.6));
   font-size: clamp(15px, 0.35vw + 14px, 18px);
   line-height: 1.7;
 }

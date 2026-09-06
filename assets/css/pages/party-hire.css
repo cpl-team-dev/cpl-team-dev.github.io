@@ -13,7 +13,12 @@
   color: #fff;
   background:
     radial-gradient(circle at 82% 20%, #7f4fc2 0, transparent 30%),
-    linear-gradient(125deg, #16072e 0%, var(--ph-ink) 45%, #44208b 100%);
+    linear-gradient(
+      125deg,
+      var(--theme-hero-1) 0%,
+      var(--theme-hero-2) 45%,
+      var(--theme-hero-3) 100%
+    );
 }
 .party-hire-hero-grid {
   display: grid;
@@ -49,7 +54,7 @@
 .party-hire-hero-lead {
   max-width: 590px;
   margin: 22px 0 28px;
-  color: rgba(255, 255, 255, 0.78);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.78));
   font-size: var(--ph-copy-size);
   line-height: 1.65;
 }
@@ -121,7 +126,7 @@
 }
 .soft-play-call small {
   margin-top: 2px;
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.72));
   font-size: 12px;
 }
 .party-hire-hero-points {
@@ -136,7 +141,7 @@
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 99px;
   padding: 7px 12px;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.82));
   font-size: 13px;
   font-weight: 700;
 }
@@ -174,7 +179,7 @@
 }
 .party-hire-value-strip {
   color: #fff;
-  background: #6641a2;
+  background: var(--theme-hero-2);
 }
 .party-hire-value-grid {
   display: grid;
@@ -270,7 +275,7 @@
 }
 .party-hire-collection {
   color: #fff;
-  background: var(--ph-ink);
+  background: var(--theme-hero-1);
 }
 .party-hire-collection-grid {
   display: grid;
@@ -282,7 +287,7 @@
 .party-hire-collection-copy > p:not(.party-hire-eyebrow) {
   max-width: 470px;
   margin: 20px 0 24px;
-  color: rgba(255, 255, 255, 0.68);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.68));
   font-size: var(--ph-copy-size);
   line-height: 1.6;
 }
@@ -314,7 +319,7 @@
 }
 .party-hire-steps p {
   margin: 7px 0 0;
-  color: rgba(255, 255, 255, 0.64);
+  color: var(--theme-hero-muted, rgba(255, 255, 255, 0.64));
   line-height: 1.5;
 }
 .party-hire-local {
@@ -734,7 +739,7 @@ fieldset.party-hire-field {
 .soft-play-research-table th {
   padding: 15px 18px;
   color: #fff;
-  background: var(--ph-ink);
+  background: var(--theme-surface-strong);
   font-size: 14px;
 }
 .soft-play-research-table td {
@@ -764,7 +769,7 @@ fieldset.party-hire-field {
 .soft-play-location-links {
   padding: 68px 0;
   color: #fff;
-  background: var(--ph-ink);
+  background: var(--theme-hero-1);
 }
 .soft-play-location-links > .container > .party-hire-eyebrow {
   color: var(--ph-gold);
