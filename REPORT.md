@@ -117,7 +117,7 @@ Community Playlink received real press attention (BBC, and other outlets referen
 1. **✅ Resolved — every page `<title>` now contains "Southampton."** The original audit found the whole site following `Community Playlink – [Section]` with no location qualifier. Verified against the current codebase, every page title now includes it:
    - `index.html` → `Community Playlink Southampton | Toy Library & Play Services`
    - `about/index.html` → `About Community Playlink Southampton | Children's Charity`
-   - `services/toy-libraries/index.html` → `Toy Libraries in Southampton | Community Playlink`
+   - `services/toy-libraries/index.html` → `Our Toy Library in Southampton | Community Playlink`
    - `services/party-hire/index.html` → `Party Hire & Soft Play Hire Southampton | Community Playlink`
    - `services/playtime/`, `services/toddler-groups/`, `services/group-membership-scheme/`, `support-us/`, `contact/`, `noticeboard/` — all follow the same pattern.
 

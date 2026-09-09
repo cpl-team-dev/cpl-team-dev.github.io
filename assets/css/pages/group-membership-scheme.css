@@ -3,6 +3,52 @@
   --group-heading-size: clamp(30px, 0.9vw + 22px, 38px);
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
+  /* Brand accents used as text on cards; dark mode brightens them since the
+     cards below now go dark (see .page-group-membership .card). */
+  --group-red: #be4e39;
+  --group-purple: #6b3fa0;
+  --group-orange: #ff5a3c;
+  --group-chip-peach-bg: #fff1ec;
+  --group-chip-peach-text: #be4e39;
+  --group-chip-green-bg: #eef6f0;
+  --group-chip-green-text: #3f7d54;
+  --group-chip-yellow-bg: #fff8e6;
+  --group-chip-yellow-text: #a67c12;
+  --group-chip-blue-bg: #f1ecfa;
+  --group-chip-blue-text: #5a2e9a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-group-membership {
+    --group-red: #e2836a;
+    --group-purple: #b18ce0;
+    --group-chip-peach-bg: #3a2420;
+    --group-chip-peach-text: #f0a58c;
+    --group-chip-green-bg: #1f2f24;
+    --group-chip-green-text: #8fd1a8;
+    --group-chip-yellow-bg: #332a10;
+    --group-chip-yellow-text: #e0b955;
+    --group-chip-blue-bg: #2a2044;
+    --group-chip-blue-text: #b79ae0;
+  }
+}
+
+:root[data-theme="dark"] .page-group-membership {
+  --group-red: #e2836a;
+  --group-purple: #b18ce0;
+  --group-chip-peach-bg: #3a2420;
+  --group-chip-peach-text: #f0a58c;
+  --group-chip-green-bg: #1f2f24;
+  --group-chip-green-text: #8fd1a8;
+  --group-chip-yellow-bg: #332a10;
+  --group-chip-yellow-text: #e0b955;
+  --group-chip-blue-bg: #2a2044;
+  --group-chip-blue-text: #b79ae0;
+}
+
+.page-group-membership .card {
+  background: var(--theme-surface);
+  box-shadow: 0 4px 18px var(--theme-shadow-color);
 }
 
 .page-group-membership .group-membership-subhero {
@@ -19,7 +65,7 @@
 .page-group-membership .group-membership-benefits,
 .page-group-membership .group-membership-notes,
 .page-group-membership .group-membership-join {
-  background: #f7f5fb;
+  background: var(--theme-bg);
 }
 
 .group-membership-showcase,
@@ -39,7 +85,7 @@
 .group-membership-notes-shell h2,
 .group-membership-join-card h2 {
   margin: 0 0 20px;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: var(--group-heading-size);
   line-height: 1.15;
   font-weight: 800;
@@ -47,7 +93,7 @@
 }
 
 .group-membership-copy-card h2 {
-  color: #be4e39;
+  color: var(--group-red);
 }
 
 .group-membership-copy-card p,
@@ -58,7 +104,7 @@
 .group-membership-join-card p {
   font-size: var(--group-copy-size);
   line-height: 1.72;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
 }
 
 .group-membership-copy-card p,
@@ -85,12 +131,12 @@
 .group-membership-price-copy {
   padding: 30px 32px 34px;
   text-align: center;
-  background: #f7f5fb;
+  background: var(--theme-bg);
 }
 
 .group-membership-price-copy h2 {
   margin: 0;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: clamp(26px, 0.7vw + 21px, 32px);
   line-height: 1.15;
   font-weight: 800;
@@ -98,7 +144,7 @@
 
 .group-membership-price {
   margin: 16px 0 0;
-  color: #ff5a3c;
+  color: var(--group-orange);
   font-size: clamp(48px, 2.6vw + 22px, 76px);
   line-height: 1;
   font-weight: 800;
@@ -114,7 +160,7 @@
 
 .group-membership-price-subtitle {
   margin: 8px 0 22px;
-  color: #657287;
+  color: var(--theme-text-muted);
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -197,35 +243,35 @@
 }
 
 .group-membership-benefit-card-peach {
-  background: #fff1ec;
+  background: var(--group-chip-peach-bg);
 }
 
 .group-membership-benefit-card-peach h3 {
-  color: #be4e39;
+  color: var(--group-chip-peach-text);
 }
 
 .group-membership-benefit-card-green {
-  background: #eef6f0;
+  background: var(--group-chip-green-bg);
 }
 
 .group-membership-benefit-card-green h3 {
-  color: #3f7d54;
+  color: var(--group-chip-green-text);
 }
 
 .group-membership-benefit-card-yellow {
-  background: #fff8e6;
+  background: var(--group-chip-yellow-bg);
 }
 
 .group-membership-benefit-card-yellow h3 {
-  color: #a67c12;
+  color: var(--group-chip-yellow-text);
 }
 
 .group-membership-benefit-card-blue {
-  background: #f1ecfa;
+  background: var(--group-chip-blue-bg);
 }
 
 .group-membership-benefit-card-blue h3 {
-  color: #5a2e9a;
+  color: var(--group-chip-blue-text);
 }
 
 .group-membership-notes {
@@ -244,7 +290,7 @@
   align-items: start;
   padding: 22px 24px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--theme-surface);
 }
 
 .group-membership-note-icon {
@@ -293,18 +339,18 @@
 }
 
 .group-form-label {
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: clamp(15px, 0.3vw + 13px, 16px);
   font-weight: 700;
 }
 
 .group-form-required {
-  color: #be4e39;
+  color: var(--group-red);
 }
 
 .group-form-hint {
   margin: 0 0 4px;
-  color: #67748a;
+  color: var(--theme-text-muted);
   font-size: clamp(13px, 0.25vw + 12px, 14px);
   line-height: 1.5;
 }
@@ -312,13 +358,13 @@
 .group-form-input {
   width: 100%;
   height: 46px;
-  border: 1px solid #ddd6ee;
+  border: 1px solid var(--theme-border);
   border-radius: 10px;
   padding: 10px 14px;
   font-family: inherit;
   font-size: 16px;
-  color: #1c1040;
-  background: #fff;
+  color: var(--theme-text);
+  background: var(--theme-surface);
 }
 
 .group-form-input:focus {
@@ -337,12 +383,12 @@
   margin: 0;
   padding: 24px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--theme-surface);
 }
 
 .group-form-subheading {
   margin: 4px 0 0;
-  color: #6b3fa0;
+  color: var(--group-purple);
   font-size: clamp(20px, 0.5vw + 17px, 24px);
   font-weight: 800;
 }
@@ -357,21 +403,21 @@
   gap: 20px;
   padding: 26px;
   border-radius: 16px;
-  background: #fff;
+  background: var(--theme-surface);
 }
 
 .group-form-consent {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: clamp(14px, 0.25vw + 12px, 15px);
   line-height: 1.6;
   cursor: pointer;
 }
 
 .group-form-consent strong {
-  color: #1c1040;
+  color: var(--theme-text);
 }
 
 .group-form-consent input {
@@ -383,7 +429,7 @@
   background: none;
   border: 0;
   padding: 0;
-  color: #be4e39;
+  color: var(--group-red);
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -401,9 +447,9 @@
   font-weight: 700;
   text-decoration: none;
   box-shadow: none;
-  border: 2px solid #6b3fa0;
+  border: 2px solid var(--group-purple);
   background: transparent;
-  color: #6b3fa0;
+  color: var(--group-purple);
   transition:
     background-color 180ms ease,
     opacity 180ms ease,

@@ -1,14 +1,19 @@
 .page-home {
-  /* Still fixed: --home-deep is also the ink color used on the paper/white
-     sections below (offer-title, hero-toy-badge-copy, mobile carousel
-     controls), and --home-purple also colors the impact-icon squares — both
-     stay solid brand accents in both themes, same as contact's icon squares. */
+  /* Still fixed: --home-deep is the ink color for fixed-white floating
+     controls only now (hero-toy-badge-copy, mobile carousel arrow/dots) —
+     those sit on their own permanent white pill/frame regardless of theme,
+     same as the carousel arrows on the service pages. --home-purple also
+     colors the impact-icon squares, which sit on the always-dark impact
+     section, so it stays a solid brand accent in both themes too, same as
+     contact's icon squares. --home-paper now follows --theme-bg (see below)
+     so the offer/quote sections go dark instead of staying stranded light. */
   --home-deep: #1c1040;
   --home-purple: #3d1b7a;
   --home-coral: #e42300;
   --home-pink: #e5194f;
   --home-yellow: #ffd166;
-  --home-paper: #f7f5fb;
+  --home-paper: var(--theme-bg);
+  --home-accent-purple: #6b3fa0;
   --home-muted: var(--theme-hero-muted);
   --home-content-size: clamp(15px, 0.32vw + 13px, 18px);
   --home-content-line-height: 1.7;
@@ -20,6 +25,16 @@
   --endcap-pink: var(--home-pink);
   --endcap-gold: var(--home-yellow);
   background: var(--theme-hero-1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-home {
+    --home-accent-purple: #b18ce0;
+  }
+}
+
+:root[data-theme="dark"] .page-home {
+  --home-accent-purple: #b18ce0;
 }
 
 .page-home .container {
@@ -414,18 +429,18 @@
   margin-bottom: 42px;
 }
 .page-home .offer-kicker {
-  color: #6b3fa0;
+  color: var(--home-accent-purple);
   font-size: 12px;
 }
 
 .page-home .offer-title {
-  color: var(--home-deep);
+  color: var(--theme-text);
   font-size: clamp(44px, 4.4vw, 62px);
   letter-spacing: -0.055em;
 }
 
 .page-home .offer-link {
-  color: #6b3fa0;
+  color: var(--home-accent-purple);
   font-size: 14px;
 }
 .page-home .offer-grid {
@@ -594,12 +609,12 @@
   background: var(--home-paper);
 }
 .page-home .quote-kicker {
-  color: #6b3fa0;
+  color: var(--home-accent-purple);
   font-size: 12px;
 }
 
 .page-home .quote-slide blockquote {
-  color: #20283c;
+  color: var(--theme-text);
   font-family: var(--font-display);
   font-size: clamp(22px, 2.3vw, 30px);
   font-weight: 600;
@@ -608,15 +623,15 @@
 
 .page-home .quote-slide cite,
 .page-home .quote-arrow {
-  color: #6b3fa0;
+  color: var(--home-accent-purple);
 }
 .page-home .quote-arrow {
   width: 44px;
   height: 44px;
-  border-color: #6b3fa0;
+  border-color: var(--home-accent-purple);
 }
 .page-home .quote-dot.active {
-  background: #6b3fa0;
+  background: var(--home-accent-purple);
 }
 
 /* Visit, CTA, footer, and admin shortcut are shared in sections/endcap.css. */

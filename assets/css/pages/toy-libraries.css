@@ -3,6 +3,55 @@
   --toy-heading-size: clamp(30px, 0.9vw + 22px, 38px);
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
+  /* Brand accents used as text on cards; dark mode brightens them since the
+     cards below now go dark (see .page-toy-libraries .card). */
+  --toy-red: #be4e39;
+  --toy-purple: #6b3fa0;
+  --toy-chip-peach-bg: #fff1ec;
+  --toy-chip-peach-text: #be4e39;
+  --toy-chip-green-bg: #eef6f0;
+  --toy-chip-green-text: #3f7d54;
+  --toy-chip-yellow-bg: #fff8e6;
+  --toy-chip-yellow-text: #a67c12;
+  --toy-chip-blue-bg: #f1ecfa;
+  --toy-chip-blue-text: #5a2e9a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-toy-libraries {
+    --toy-red: #e2836a;
+    --toy-purple: #b18ce0;
+    --toy-chip-peach-bg: #3a2420;
+    --toy-chip-peach-text: #f0a58c;
+    --toy-chip-green-bg: #1f2f24;
+    --toy-chip-green-text: #8fd1a8;
+    --toy-chip-yellow-bg: #332a10;
+    --toy-chip-yellow-text: #e0b955;
+    --toy-chip-blue-bg: #2a2044;
+    --toy-chip-blue-text: #b79ae0;
+  }
+}
+
+:root[data-theme="dark"] .page-toy-libraries {
+  --toy-red: #e2836a;
+  --toy-purple: #b18ce0;
+  --toy-chip-peach-bg: #3a2420;
+  --toy-chip-peach-text: #f0a58c;
+  --toy-chip-green-bg: #1f2f24;
+  --toy-chip-green-text: #8fd1a8;
+  --toy-chip-yellow-bg: #332a10;
+  --toy-chip-yellow-text: #e0b955;
+  --toy-chip-blue-bg: #2a2044;
+  --toy-chip-blue-text: #b79ae0;
+}
+
+.page-toy-libraries .card {
+  background: var(--theme-surface);
+  box-shadow: 0 4px 18px var(--theme-shadow-color);
+}
+
+.page-toy-libraries .link-red {
+  color: var(--toy-red);
 }
 
 .page-toy-libraries .toy-libraries-subhero {
@@ -16,7 +65,7 @@
 }
 
 .page-toy-libraries .toy-libraries-intro {
-  background: #f7f5fb;
+  background: var(--theme-bg);
 }
 
 .toy-libraries-showcase {
@@ -33,7 +82,7 @@
 .toy-libraries-gallery-stage {
   height: clamp(440px, 58vw, 760px);
   border-radius: 14px;
-  background: #f1ecfa;
+  background: var(--toy-chip-blue-bg);
 }
 
 .toy-libraries-gallery .carousel-slide img {
@@ -67,12 +116,12 @@
 .toy-libraries-gallery .carousel-dot {
   width: 8px;
   height: 8px;
-  background: #ddd6ee;
+  background: var(--theme-border);
 }
 
 .toy-libraries-gallery .carousel-dot.active {
   width: 24px;
-  background: #6b3fa0;
+  background: var(--toy-purple);
 }
 
 .toy-libraries-copy-stack {
@@ -88,7 +137,7 @@
 .toy-libraries-stock-card h2,
 .toy-libraries-feedback-head h2 {
   margin: 0 0 18px;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: var(--toy-heading-size);
   line-height: 1.15;
   font-weight: 800;
@@ -96,11 +145,11 @@
 }
 
 .toy-libraries-copy-card-intro h2 {
-  color: #be4e39;
+  color: var(--toy-red);
 }
 
 .toy-libraries-copy-card-process h2 {
-  color: #6b3fa0;
+  color: var(--toy-purple);
 }
 
 .toy-libraries-copy-card p,
@@ -117,7 +166,7 @@
 
 .toy-libraries-copy-card p {
   margin: 0 0 18px;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
 }
 
 .toy-libraries-copy-card p:last-child,
@@ -136,7 +185,7 @@
 
 .toy-libraries-stock-card p {
   margin: 0 0 18px;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
 }
 
 .toy-libraries-stock-lists {
@@ -153,7 +202,7 @@
 
 .toy-libraries-stock-lists li {
   margin: 0 0 10px;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
 }
 
 .toy-libraries-stock-note {
@@ -161,7 +210,7 @@
 }
 
 .page-toy-libraries .toy-libraries-benefits {
-  background: #f7f5fb;
+  background: var(--theme-bg);
   padding-top: 6px;
   padding-bottom: 40px;
 }
@@ -173,13 +222,14 @@
 
 .toy-libraries-benefits-shell h2 {
   margin: 0;
+  color: var(--theme-text);
   font-size: var(--toy-heading-size);
   line-height: 1.15;
 }
 
 .toy-libraries-benefits-intro {
   margin: 24px 0 0;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: var(--toy-copy-size);
   line-height: 1.72;
 }
@@ -209,43 +259,43 @@
   margin: 14px 0 0;
   font-size: var(--toy-copy-size);
   line-height: 1.72;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
 }
 
 .toy-libraries-benefit-card-peach {
-  background: #fff1ec;
+  background: var(--toy-chip-peach-bg);
 }
 
 .toy-libraries-benefit-card-peach h3 {
-  color: #be4e39;
+  color: var(--toy-chip-peach-text);
 }
 
 .toy-libraries-benefit-card-green {
-  background: #eef6f0;
+  background: var(--toy-chip-green-bg);
 }
 
 .toy-libraries-benefit-card-green h3 {
-  color: #3f7d54;
+  color: var(--toy-chip-green-text);
 }
 
 .toy-libraries-benefit-card-yellow {
-  background: #fff8e6;
+  background: var(--toy-chip-yellow-bg);
 }
 
 .toy-libraries-benefit-card-yellow h3 {
-  color: #a67c12;
+  color: var(--toy-chip-yellow-text);
 }
 
 .toy-libraries-benefit-card-blue {
-  background: #f1ecfa;
+  background: var(--toy-chip-blue-bg);
 }
 
 .toy-libraries-benefit-card-blue h3 {
-  color: #5a2e9a;
+  color: var(--toy-chip-blue-text);
 }
 
 .toy-libraries-feedback {
-  background: #f7f5fb;
+  background: var(--theme-bg);
   padding: 34px 0 40px;
 }
 
@@ -266,7 +316,7 @@
 
 .toy-libraries-feedback-head p {
   margin: 0;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-style: normal;
 }
 
@@ -290,7 +340,7 @@
 }
 
 .toy-libraries-feedback-slide-card {
-  background: #fff;
+  background: var(--theme-surface);
   box-shadow: 0 12px 34px rgba(28, 16, 64, 0.08);
   border-radius: 20px;
   min-height: 220px;
@@ -311,7 +361,7 @@
 
 .toy-libraries-feedback-slide p {
   margin: 0;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: clamp(21px, 0.6vw + 15px, 28px);
   line-height: 1.6;
   font-style: italic;
@@ -322,7 +372,7 @@
 }
 
 .page-toy-libraries .toy-libraries-visit {
-  background: #f7f5fb;
+  background: var(--theme-bg);
   padding-top: 34px;
   padding-bottom: 18px;
 }
@@ -333,7 +383,7 @@
 
 .toy-libraries-visit-card h2 {
   margin: 0;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: clamp(32px, 1.1vw + 22px, 44px);
   line-height: 1.12;
   font-weight: 800;
@@ -342,13 +392,13 @@
 
 .toy-libraries-visit-card p {
   margin: 20px 0 0;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: clamp(16px, 0.35vw + 14px, 19px);
   line-height: 1.7;
 }
 
 .toy-libraries-visit-card .link-red {
-  color: #6b3fa0;
+  color: var(--toy-purple);
   text-decoration-thickness: 2px;
   text-underline-offset: 4px;
 }

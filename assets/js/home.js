@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const slideEls = Array.from(track.children);
   const dotEls = Array.from(dots.children);
   let activeIndex = 0;
+  let autoplayId = null;
 
   function showSlide(index) {
     activeIndex = (index + slideEls.length) % slideEls.length;
@@ -64,11 +65,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  prev.addEventListener("click", () => showSlide(activeIndex - 1));
-  next.addEventListener("click", () => showSlide(activeIndex + 1));
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayId = window.setInterval(() => {
+      showSlide(activeIndex + 1);
+    }, 4500);
+  }
+
+  function stopAutoplay() {
+    if (autoplayId !== null) {
+      window.clearInterval(autoplayId);
+      autoplayId = null;
+    }
+  }
+
+  const carousel = track.closest(".carousel");
+
+  prev.addEventListener("click", () => {
+    showSlide(activeIndex - 1);
+    startAutoplay();
+  });
+  next.addEventListener("click", () => {
+    showSlide(activeIndex + 1);
+    startAutoplay();
+  });
   dotEls.forEach((dot, index) => {
-    dot.addEventListener("click", () => showSlide(index));
+    dot.addEventListener("click", () => {
+      showSlide(index);
+      startAutoplay();
+    });
   });
 
+  if (carousel) {
+    carousel.addEventListener("mouseenter", stopAutoplay);
+    carousel.addEventListener("mouseleave", startAutoplay);
+    carousel.addEventListener("focusin", stopAutoplay);
+    carousel.addEventListener("focusout", startAutoplay);
+  }
+
   showSlide(0);
+  startAutoplay();
 });

@@ -1,12 +1,35 @@
 .page-party-hire {
   --ph-ink: #1c1040;
+  --ph-badge-bg: #1c1040;
   --ph-purple: #41207d;
   --ph-lilac: #f5f1fb;
   --ph-coral: #ff5a3c;
   --ph-gold: #ffd166;
   --ph-copy-size: clamp(16px, 0.45vw + 13px, 19px);
   --ph-heading-size: clamp(32px, 2vw + 20px, 52px);
-  background: #fbfaff;
+  background: var(--theme-bg);
+}
+
+/* --ph-ink is used as TEXT throughout, so it can safely follow --theme-text
+   in dark mode; --ph-badge-bg is split out for the one spot (.faq-q span)
+   where the same value is used as a fixed dark badge background instead, and
+   must not flip to a light colour. --ph-lilac follows --theme-surface-strong
+   so the pastel-lilac sections/cards go dark instead of staying stranded. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-party-hire {
+    --ph-ink: var(--theme-text);
+    --ph-lilac: var(--theme-surface-strong);
+  }
+}
+
+:root[data-theme="dark"] .page-party-hire {
+  --ph-ink: var(--theme-text);
+  --ph-lilac: var(--theme-surface-strong);
+}
+
+.page-party-hire .card {
+  background: var(--theme-surface);
+  box-shadow: 0 4px 18px var(--theme-shadow-color);
 }
 .party-hire-hero {
   overflow: hidden;
@@ -221,7 +244,7 @@
 }
 .party-hire-section-heading > p:last-child {
   margin: 16px 0 0;
-  color: #5e5970;
+  color: var(--theme-text-muted);
   font-size: var(--ph-copy-size);
   line-height: 1.55;
 }
@@ -267,9 +290,10 @@
   font-size: 23px;
   line-height: 1.13;
 }
-.party-hire-pricing-body p:last-child {
+.party-hire-pricing-body p:last-child,
+.party-hire-pricing-body h3 + p {
   margin: 0;
-  color: #655f73;
+  color: var(--theme-text-muted);
   font-size: 16px;
   line-height: 1.52;
 }
@@ -324,7 +348,7 @@
 }
 .party-hire-local {
   padding: 80px 0;
-  background: #fff;
+  background: var(--theme-bg);
 }
 .party-hire-local-card {
   display: grid;
@@ -337,6 +361,11 @@
 }
 .party-hire-local-card .party-hire-eyebrow {
   color: #8d3a5f;
+}
+/* This card keeps its fixed light pastel gradient in both themes, so its
+   heading must stay fixed dark too instead of following --ph-ink to white. */
+.party-hire-local-card h2 {
+  color: #1c1040;
 }
 .party-hire-local-card > p {
   margin: 0;
@@ -353,7 +382,7 @@
   text-align: center;
 }
 .party-hire-faq {
-  background: #fff;
+  background: var(--theme-bg);
 }
 .party-hire-faq-card,
 .party-hire-form-card {
@@ -367,7 +396,7 @@
   padding: 20px 0;
 }
 .page-party-hire .faq-a {
-  color: #615b6d;
+  color: var(--theme-text-muted);
   font-size: var(--ph-copy-size);
   line-height: 1.65;
   padding-bottom: 20px;
@@ -375,7 +404,7 @@
 .party-hire-faq-more {
   margin: 25px 0 0;
   text-align: center;
-  color: #514b5d;
+  color: var(--theme-text-muted);
   font-size: var(--ph-copy-size);
 }
 .party-hire-request {
@@ -405,20 +434,20 @@
 }
 .party-hire-hint {
   margin: 0;
-  color: #70697a;
+  color: var(--theme-text-muted);
   font-size: 14px;
   line-height: 1.5;
 }
 .party-hire-input,
 .party-hire-textarea {
   width: 100%;
-  border: 1px solid #d7d0e1;
+  border: 1px solid var(--theme-border);
   border-radius: 9px;
   padding: 11px 13px;
   font-family: inherit;
   font-size: 16px;
-  color: #1c1c1f;
-  background: #fff;
+  color: var(--theme-text);
+  background: var(--theme-surface);
 }
 .party-hire-input:focus,
 .party-hire-textarea:focus {
@@ -448,7 +477,7 @@ fieldset.party-hire-field {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #383241;
+  color: var(--theme-text-muted);
   font-size: 16px;
   cursor: pointer;
 }
@@ -456,7 +485,7 @@ fieldset.party-hire-field {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  color: #383241;
+  color: var(--theme-text-muted);
   font-size: 15px;
   cursor: pointer;
 }
@@ -569,7 +598,7 @@ fieldset.party-hire-field {
 
 .page-party-hire .faq-q:hover,
 .page-party-hire .faq-q:focus-visible {
-  background: #f4effb;
+  background: var(--ph-lilac);
 }
 
 .page-party-hire .faq-q:focus-visible {
@@ -584,7 +613,7 @@ fieldset.party-hire-field {
   width: 32px;
   height: 32px;
   color: #fff;
-  background: var(--ph-ink);
+  background: var(--ph-badge-bg);
   border-radius: 50%;
   font-size: 15px;
   line-height: 1;
@@ -616,7 +645,7 @@ fieldset.party-hire-field {
 }
 
 .page-party-hire .faq-item.open {
-  background: #f4effb;
+  background: var(--ph-lilac);
   box-shadow: 0 10px 24px rgba(28, 16, 64, 0.08);
 }
 
@@ -648,8 +677,8 @@ fieldset.party-hire-field {
 
 .party-hire-product-meta span {
   padding: 6px 9px;
-  color: #554b69;
-  background: #f4effb;
+  color: var(--theme-text-muted);
+  background: var(--ph-lilac);
   border-radius: 999px;
   font-size: 12px;
   font-weight: 800;
@@ -657,7 +686,7 @@ fieldset.party-hire-field {
 
 .party-hire-product-details {
   margin: 0 0 17px;
-  color: #625a70;
+  color: var(--theme-text-muted);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -703,7 +732,7 @@ fieldset.party-hire-field {
 
 .soft-play-research {
   padding: 78px 0;
-  background: #fff;
+  background: var(--theme-bg);
 }
 .soft-play-research-heading {
   max-width: 760px;
@@ -721,7 +750,7 @@ fieldset.party-hire-field {
   letter-spacing: -0.04em;
 }
 .soft-play-research-heading > p:last-child {
-  color: #625a70;
+  color: var(--theme-text-muted);
   font-size: 17px;
   line-height: 1.55;
 }
@@ -744,7 +773,7 @@ fieldset.party-hire-field {
 }
 .soft-play-research-table td {
   padding: 18px;
-  color: #5b5369;
+  color: var(--theme-text-muted);
   border-top: 1px solid rgba(28, 16, 64, 0.1);
   font-size: 15px;
   line-height: 1.52;
@@ -763,7 +792,7 @@ fieldset.party-hire-field {
 }
 .soft-play-research-date {
   margin: 13px 0 0;
-  color: #776f80;
+  color: var(--theme-text-muted);
   font-size: 13px;
 }
 .soft-play-location-links {

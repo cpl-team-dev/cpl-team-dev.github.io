@@ -3,6 +3,30 @@
   --toddler-heading-size: clamp(28px, 0.8vw + 21px, 36px);
   --hero-pad-top: 44px;
   --hero-pad-bottom: 48px;
+  /* Brand accents used as text on cards; dark mode brightens them since the
+     cards below now go dark (see .page-toddler-groups .card). */
+  --toddler-red: #be4e39;
+  --toddler-purple: #6b3fa0;
+  --toddler-green: #5a9a6f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .page-toddler-groups {
+    --toddler-red: #e2836a;
+    --toddler-purple: #b18ce0;
+    --toddler-green: #7dc99a;
+  }
+}
+
+:root[data-theme="dark"] .page-toddler-groups {
+  --toddler-red: #e2836a;
+  --toddler-purple: #b18ce0;
+  --toddler-green: #7dc99a;
+}
+
+.page-toddler-groups .card {
+  background: var(--theme-surface);
+  box-shadow: 0 4px 18px var(--theme-shadow-color);
 }
 
 .page-toddler-groups .toddler-groups-subhero {
@@ -16,7 +40,7 @@
 }
 
 .page-toddler-groups .toddler-groups-intro {
-  background: #f7f5fb;
+  background: var(--theme-bg);
 }
 
 .toddler-groups-showcase {
@@ -52,7 +76,7 @@
 .toddler-groups-find-card h2,
 .toddler-groups-guidance-card h2 {
   margin: 0 0 16px;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: var(--toddler-heading-size);
   line-height: 1.18;
   font-weight: 800;
@@ -68,17 +92,17 @@
 
 .toddler-groups-copy-card h3:first-of-type {
   margin-top: 0;
-  color: #be4e39;
+  color: var(--toddler-red);
 }
 
 .toddler-groups-copy-card h3:last-of-type {
-  color: #6b3fa0;
+  color: var(--toddler-purple);
 }
 
 .toddler-groups-copy-card p,
 .toddler-groups-find-card p {
   margin: 0;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: var(--toddler-copy-size);
   line-height: 1.72;
 }
@@ -93,7 +117,7 @@
 }
 
 .page-toddler-groups .toddler-groups-guidance {
-  background: #f7f5fb;
+  background: var(--theme-bg);
 }
 
 .toddler-groups-guidance-grid {
@@ -107,11 +131,11 @@
 }
 
 .toddler-groups-guidance-card-tips h2 {
-  color: #be4e39;
+  color: var(--toddler-red);
 }
 
 .toddler-groups-guidance-card-know h2 {
-  color: #6b3fa0;
+  color: var(--toddler-purple);
 }
 
 .toddler-groups-check-list {
@@ -133,17 +157,17 @@
   width: 24px;
   height: 24px;
   margin-top: 2px;
-  color: #5a9a6f;
+  color: var(--toddler-green);
 }
 
 .toddler-groups-check-list span {
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: var(--toddler-copy-size);
   line-height: 1.6;
 }
 
 .page-toddler-groups .toddler-groups-cta {
-  background: #f7f5fb;
+  background: var(--theme-bg);
   padding: 40px 0 48px;
 }
 
@@ -154,7 +178,7 @@
 
 .toddler-groups-cta-card h2 {
   margin: 0;
-  color: #1c1040;
+  color: var(--theme-text);
   font-size: clamp(26px, 1vw + 19px, 38px);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -162,7 +186,7 @@
 
 .toddler-groups-cta-card p {
   margin: 16px 0 26px;
-  color: #3f4e66;
+  color: var(--theme-text-muted);
   font-size: var(--toddler-copy-size);
   line-height: 1.6;
 }

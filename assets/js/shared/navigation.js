@@ -68,46 +68,50 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (quickLinks.childElementCount) menuNav.append(quickLinks);
 
-    ["Home", "Noticeboard", "Toy Library", "Contact"].forEach((label) => {
-      const source = Array.from(navList.querySelectorAll(":scope > .nav-link")).find(
-        (link) => link.textContent.trim() === label,
-      );
-      if (source) menuNav.append(makeLink(source));
-    });
+    // Build the drawer's link list in the same order as the desktop nav
+    // (Home, About, Services, Noticeboard, Toy Library, Contact), skipping
+    // the "Support Us" CTA which is rendered separately in the footer.
+    Array.from(navList.children).forEach((child) => {
+      if (child.matches("[data-dropdown]")) {
+        const dropdown = child;
+        const titleLink = dropdown.querySelector(":scope > a");
+        const title = dropdown.querySelector(".nav-drop-toggle")?.textContent.replace("▾", "").trim();
+        const subLinks = dropdown.querySelectorAll(".nav-dropdown-content a");
+        if (!titleLink || !title || !subLinks.length) return;
+        const section = document.createElement("section");
+        section.className = "mobile-menu-section";
+        const row = document.createElement("div");
+        row.className = "mobile-menu-section-row";
+        const sectionLink = titleLink.cloneNode(true);
+        sectionLink.className = "mobile-menu-section-link";
+        sectionLink.textContent = title;
+        const sectionButton = document.createElement("button");
+        sectionButton.type = "button";
+        sectionButton.className = "mobile-menu-section-toggle";
+        sectionButton.setAttribute("aria-label", `Show ${title} links`);
+        sectionButton.setAttribute("aria-expanded", "false");
+        sectionButton.innerHTML = icon("chevron");
+        row.append(sectionLink, sectionButton);
+        const content = document.createElement("div");
+        content.className = "mobile-menu-sub-links";
+        Array.from(subLinks).forEach((source) => {
+          const link = source.cloneNode(true);
+          link.className = "mobile-menu-sub-link";
+          content.append(link);
+        });
+        sectionButton.addEventListener("click", () => {
+          const isOpen = section.classList.toggle("is-open");
+          sectionButton.setAttribute("aria-expanded", String(isOpen));
+          sectionButton.setAttribute("aria-label", `${isOpen ? "Hide" : "Show"} ${title} links`);
+        });
+        section.append(row, content);
+        menuNav.append(section);
+        return;
+      }
 
-    navList.querySelectorAll(":scope > [data-dropdown]").forEach((dropdown) => {
-      const titleLink = dropdown.querySelector(":scope > a");
-      const title = dropdown.querySelector(".nav-drop-toggle")?.textContent.replace("▾", "").trim();
-      const subLinks = dropdown.querySelectorAll(".nav-dropdown-content a");
-      if (!titleLink || !title || !subLinks.length) return;
-      const section = document.createElement("section");
-      section.className = "mobile-menu-section";
-      const row = document.createElement("div");
-      row.className = "mobile-menu-section-row";
-      const sectionLink = titleLink.cloneNode(true);
-      sectionLink.className = "mobile-menu-section-link";
-      sectionLink.textContent = title;
-      const sectionButton = document.createElement("button");
-      sectionButton.type = "button";
-      sectionButton.className = "mobile-menu-section-toggle";
-      sectionButton.setAttribute("aria-label", `Show ${title} links`);
-      sectionButton.setAttribute("aria-expanded", "false");
-      sectionButton.innerHTML = icon("chevron");
-      row.append(sectionLink, sectionButton);
-      const content = document.createElement("div");
-      content.className = "mobile-menu-sub-links";
-      Array.from(subLinks).forEach((source) => {
-        const link = source.cloneNode(true);
-        link.className = "mobile-menu-sub-link";
-        content.append(link);
-      });
-      sectionButton.addEventListener("click", () => {
-        const isOpen = section.classList.toggle("is-open");
-        sectionButton.setAttribute("aria-expanded", String(isOpen));
-        sectionButton.setAttribute("aria-label", `${isOpen ? "Hide" : "Show"} ${title} links`);
-      });
-      section.append(row, content);
-      menuNav.append(section);
+      if (child.matches(".nav-link:not(.nav-cta)")) {
+        menuNav.append(makeLink(child));
+      }
     });
     panel.append(menuNav);
 
