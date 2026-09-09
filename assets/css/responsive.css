@@ -52,21 +52,55 @@
   }
 
   .mobile-nav-toggle {
-    display: inline-block;
-    min-width: 48px;
-    min-height: 48px;
-    padding: 12px;
-    font-size: 0;
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 11px;
+    border-radius: 12px;
+    transition: background-color 150ms ease;
   }
 
-  .mobile-nav-toggle::before {
-    content: "";
+  .mobile-nav-toggle:hover,
+  .mobile-nav-toggle:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .mobile-nav-toggle .hamburger {
+    display: grid;
+    gap: 5px;
+    width: 22px;
+  }
+
+  .mobile-nav-toggle .hamburger span {
     display: block;
-    width: 24px;
     height: 2px;
-    margin: 0 auto;
+    border-radius: 2px;
     background: currentColor;
-    box-shadow: 0 7px 0 currentColor, 0 -7px 0 currentColor;
+    transition:
+      transform 220ms ease,
+      opacity 150ms ease,
+      width 220ms ease;
+  }
+
+  .mobile-nav-toggle .hamburger span:nth-child(2) {
+    width: 16px;
+    margin-left: auto;
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(1) {
+    width: 22px;
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(2) {
+    width: 22px;
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .mobile-nav-toggle[aria-expanded="true"] .hamburger span:nth-child(3) {
+    width: 22px;
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   .carousel-stage {
@@ -759,7 +793,8 @@
   .mobile-menu-backdrop,
   .mobile-menu-panel,
   .mobile-menu-section-toggle svg,
-  .mobile-menu-sub-links {
+  .mobile-menu-sub-links,
+  .mobile-nav-toggle .hamburger span {
     transition-duration: 1ms;
   }
 }

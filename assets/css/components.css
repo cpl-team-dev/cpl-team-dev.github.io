@@ -1526,10 +1526,12 @@
 
 .mobile-nav-toggle {
   display: none;
+  align-items: center;
+  justify-content: center;
   border: 0;
   background: transparent;
   color: #fff;
-  font-size: 28px;
+  cursor: pointer;
   padding: 10px;
 }
 
