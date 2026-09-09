@@ -41,9 +41,9 @@
   --theme-announce-bg: #704bb9;
   --theme-nav-bg: #704bb9;
   --theme-chrome-bg: #805fc1;
-  --theme-hero-1: #704bb9;
-  --theme-hero-2: #805fc1;
-  --theme-hero-3: #9377ca;
+  --theme-hero-1: #9377ca;
+  --theme-hero-2: #a58ed3;
+  --theme-hero-3: #b7a5dc;
 
   /* Secondary/muted white text (opening times, breadcrumbs, visit details, footer,
      nav dropdown) was tuned at low opacity for the old near-black chrome. Against
