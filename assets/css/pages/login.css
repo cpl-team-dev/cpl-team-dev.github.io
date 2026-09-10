@@ -184,6 +184,11 @@ body.login-page .site-shell {
   font-size: 0.95rem;
 }
 
+.field-hint a {
+  color: var(--purple);
+  font-weight: 800;
+}
+
 .status-banner {
   min-height: 56px;
   margin-bottom: 20px;

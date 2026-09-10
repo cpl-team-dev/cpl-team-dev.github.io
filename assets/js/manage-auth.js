@@ -106,8 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const loginWarning =
     typeof consumeManageLoginWarning === "function" ? consumeManageLoginWarning() : "";
+  const loginNotice =
+    typeof consumeManageLoginNotice === "function" ? consumeManageLoginNotice() : null;
   if (loginWarning) {
     setStatus(loginWarning, "error");
+  } else if (loginNotice && loginNotice.message) {
+    setStatus(loginNotice.message, loginNotice.state || "info");
   }
 
   function setBusy(button, isBusy, idleLabel, busyLabel) {
