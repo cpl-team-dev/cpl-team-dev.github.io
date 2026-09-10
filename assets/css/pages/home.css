@@ -69,6 +69,7 @@
 /* Reference-style hero: layered indigo, dot texture and image mosaic. */
 .page-home .home-hero {
   min-height: 720px;
+  padding-bottom: 110px;
   isolation: isolate;
 }
 
@@ -280,8 +281,23 @@
   transition: transform 8s ease-in-out;
 }
 
-.page-home .carousel-slide:nth-child(1) img {
+.page-home .carousel-slide:nth-child(1) img,
+.page-home .carousel-slide:nth-child(2) img,
+.page-home .carousel-slide:nth-child(3) img,
+.page-home .carousel-slide:nth-child(4) img {
   animation: home-ken-burns 12s ease-in-out infinite alternate;
+}
+
+.page-home .carousel-slide:nth-child(2) img {
+  animation-delay: -3s;
+}
+
+.page-home .carousel-slide:nth-child(3) img {
+  animation-delay: -6s;
+}
+
+.page-home .carousel-slide:nth-child(4) img {
+  animation-delay: -9s;
 }
 
 .page-home .carousel-arrow,
@@ -899,7 +915,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page-home .carousel-slide:nth-child(1) img {
+  .page-home .carousel-slide:nth-child(1) img,
+  .page-home .carousel-slide:nth-child(2) img,
+  .page-home .carousel-slide:nth-child(3) img,
+  .page-home .carousel-slide:nth-child(4) img {
     animation: none;
   }
   .page-home .hero-status-star,
