@@ -269,6 +269,92 @@ body.manage-page .site-shell.manage-app {
   height: 16px;
 }
 
+.manage-session-timer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.manage-session-timer-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.manage-session-timer-value {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+}
+
+.manage-session-timer.is-warning .manage-session-timer-value {
+  color: #ffb14e;
+  animation: manage-session-timer-flash 2s ease-in-out infinite;
+}
+
+@keyframes manage-session-timer-flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.manage-sidebar.is-collapsed .manage-session-timer {
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px 2px;
+}
+
+.manage-sidebar.is-collapsed .manage-session-timer-label {
+  display: none;
+}
+
+.manage-toast {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 1300;
+  max-width: 320px;
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: #fff2f0;
+  border: 1px solid #f0beb7;
+  color: #8a2e21;
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.manage-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 640px) {
+  .manage-toast {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
+
 /* ─── main column ─── */
 .manage-main {
   flex: 1;
@@ -782,6 +868,26 @@ body.manage-page .site-shell.manage-app {
   }
 }
 
+.manage-spinner-inline {
+  width: 16px;
+  height: 16px;
+  border-width: 2px;
+  flex-shrink: 0;
+}
+
+.manage-spinner-inline[hidden] {
+  display: none;
+}
+
+.manage-loading-inline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #8a8397;
+  font-weight: 700;
+}
+
 .manage-table {
   width: 100%;
   border-collapse: collapse;
@@ -1174,6 +1280,17 @@ body.manage-page .site-shell.manage-app {
   color: #6c6580;
   font-size: 0.88rem;
   font-weight: 700;
+}
+
+.manage-audit-meta-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow-wrap: anywhere;
+}
+
+.manage-products-table .col-modified_meta {
+  width: 16%;
 }
 
 .manage-products-table .text-button,

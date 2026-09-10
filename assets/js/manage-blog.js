@@ -13,6 +13,7 @@ const BLOG_TABLE_COLUMNS = [
   },
   { key: "tags", label: "Tags", filterType: "text", placeholder: "Filter tags" },
   { key: "created_at", label: "Modified At", filterType: "date" },
+  { key: "modified_meta", label: "Last edited", filterType: null },
 ];
 
 // The blog Apps Script schema is still being iterated on — keep every
@@ -271,7 +272,7 @@ function renderBlogFilterPanel() {
     <div class="manage-products-filter-panel">
       <div class="manage-products-filter-heading">Filters</div>
       <div class="manage-blog-filter-grid">
-        ${BLOG_TABLE_COLUMNS.map(
+        ${BLOG_TABLE_COLUMNS.filter((column) => column.filterType).map(
           (column) => `
             <div class="manage-products-filter-field">
               <span class="manage-products-filter-label">${escapeHtml(column.label)}</span>
@@ -358,7 +359,7 @@ function clearBlogFilters() {
 }
 
 function getDefaultBlogFilters() {
-  return BLOG_TABLE_COLUMNS.reduce((filters, column) => {
+  return BLOG_TABLE_COLUMNS.filter((column) => column.filterType).reduce((filters, column) => {
     filters[column.key] = "";
     return filters;
   }, {});
@@ -531,7 +532,7 @@ function renderTableBody(tbody, filteredPosts) {
 
   if (filteredPosts.length === 0) {
     currentBlogPage = 1;
-    tbody.innerHTML = `<tr class="manage-empty-row"><td colspan="5">${
+    tbody.innerHTML = `<tr class="manage-empty-row"><td colspan="${BLOG_TABLE_COLUMNS.length + 1}">${
       hasActiveBlogFilters() ? "No blog posts match current filters." : "No blog posts yet."
     }</td></tr>`;
     renderPagination(0, pagination);
@@ -546,6 +547,7 @@ function renderTableBody(tbody, filteredPosts) {
           <td>${escapeHtml(post.status || "—")}</td>
           <td class="cell-muted">${escapeHtml(post.tags || "—")}</td>
           <td class="cell-muted">${formatDate(post.created_at)}</td>
+          <td>${renderBlogModifiedMetaCell(post)}</td>
           <td class="row-actions">
             ${renderManageActionButton("edit", "Edit blog post")}
             ${renderManageActionButton("delete", "Delete blog post")}
@@ -569,6 +571,16 @@ function renderTableBody(tbody, filteredPosts) {
   });
 
   renderPagination(filteredPosts.length, pagination);
+}
+
+function renderBlogModifiedMetaCell(post) {
+  const { modifiedBy, modifiedAt } = getManageAuditMetaDisplay(post && post.custom);
+  return `
+    <div class="manage-audit-meta-cell">
+      <span class="manage-cell-meta">${escapeHtml(modifiedBy)}</span>
+      <span class="cell-muted">${escapeHtml(modifiedAt)}</span>
+    </div>
+  `;
 }
 
 function renderFilteredPosts() {
@@ -666,6 +678,8 @@ function getFilteredPosts() {
 
 function matchesBlogFilters(post) {
   return BLOG_TABLE_COLUMNS.every((column) => {
+    if (!column.filterType) return true;
+
     const rawFilterValue = postFilters[column.key];
     const filterValue = normalizeFilterValue(rawFilterValue);
     if (!filterValue) return true;

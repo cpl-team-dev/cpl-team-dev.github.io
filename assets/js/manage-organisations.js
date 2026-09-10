@@ -25,6 +25,10 @@ const ORGANISATION_FIELDS = [
 
 let session = null;
 let organisationId = null;
+let retainedAuditMeta = {};
+
+const AUDIT_META_FIELD_KEY = "custom_1";
+const AUDIT_META_KEYS = ["modified_by", "modified_at"];
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -112,6 +116,16 @@ function populateForm(organisation) {
     }
     if (input) input.value = organisation?.[field.key] == null ? "" : String(organisation[field.key]);
   });
+
+  renderOrganisationModifiedMeta(organisation?.[AUDIT_META_FIELD_KEY]);
+}
+
+function renderOrganisationModifiedMeta(rawAuditMetaValue) {
+  const target = document.getElementById("organisation-modified-meta");
+  if (!target) return;
+
+  const { modifiedBy, modifiedAt } = getManageAuditMetaDisplay(rawAuditMetaValue);
+  target.textContent = `Last edited by ${modifiedBy} · ${modifiedAt}`;
 }
 
 async function handleSubmit(event) {
@@ -179,7 +193,21 @@ function setCustomFieldRows(key, value) {
   rows.innerHTML = "";
 
   const customFields = parseCustomFieldsResponse(value);
-  Object.entries(customFields).forEach(([item, fieldValue]) => addCustomFieldRow(key, item, fieldValue));
+
+  // modified_by/modified_at are backend-managed audit metadata, not staff-editable
+  // custom items - keep the raw values so they can be resubmitted unchanged, but
+  // don't render them as editable rows.
+  retainedAuditMeta[key] =
+    key === AUDIT_META_FIELD_KEY
+      ? AUDIT_META_KEYS.reduce((meta, metaKey) => {
+          if (Object.hasOwn(customFields, metaKey)) meta[metaKey] = customFields[metaKey];
+          return meta;
+        }, {})
+      : null;
+
+  Object.entries(customFields)
+    .filter(([item]) => !(key === AUDIT_META_FIELD_KEY && AUDIT_META_KEYS.includes(item)))
+    .forEach(([item, fieldValue]) => addCustomFieldRow(key, item, fieldValue));
 }
 
 function parseCustomFieldsResponse(value) {
@@ -223,6 +251,8 @@ function getCustomFieldsValue(field) {
     if (Object.hasOwn(values, item)) throw new Error(`${field.label}: item names must be unique.`);
     values[item] = value;
   }
+
+  Object.assign(values, retainedAuditMeta[field.key]);
 
   return values;
 }

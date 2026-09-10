@@ -2,6 +2,7 @@ const PRODUCT_LIST_PATH = "/product";
 const PRODUCT_SESSION_STORAGE_KEY = "manage-products-cache";
 const PRODUCT_SESSION_STORAGE_REFRESHED_AT_KEY = "manage-products-cache-refreshed-at";
 const PRODUCT_IMAGE_COLUMN = { key: "image_preview", label: "Image" };
+const PRODUCT_MODIFIED_COLUMN = { key: "modified_meta", label: "Last edited" };
 const PRODUCT_TABLE_FIELD_KEYS = [
   "name",
   "sku",
@@ -458,7 +459,9 @@ function renderTableHead(thead, tableFields) {
 }
 
 function renderProductFilterPanel(tableFields) {
-  const filterableFields = tableFields.filter((field) => field.key !== PRODUCT_IMAGE_COLUMN.key);
+  const filterableFields = tableFields.filter(
+    (field) => field.key !== PRODUCT_IMAGE_COLUMN.key && field.key !== PRODUCT_MODIFIED_COLUMN.key,
+  );
 
   return `
     <div class="manage-products-filter-panel">
@@ -647,7 +650,7 @@ function getFilteredProducts(tableFields) {
 
 function matchesProductFilters(product, tableFields) {
   return tableFields.every((field) => {
-    if (field.key === PRODUCT_IMAGE_COLUMN.key) return true;
+    if (field.key === PRODUCT_IMAGE_COLUMN.key || field.key === PRODUCT_MODIFIED_COLUMN.key) return true;
 
     const rawFilterValue = productFilters[field.key];
     if (field.key === "category") {
@@ -789,19 +792,34 @@ function getVisibleTableFields() {
   );
 
   if (preferredFields.length > 0) {
-    return [PRODUCT_IMAGE_COLUMN, ...preferredFields];
+    return [PRODUCT_IMAGE_COLUMN, ...preferredFields, PRODUCT_MODIFIED_COLUMN];
   }
 
-  return [PRODUCT_IMAGE_COLUMN, ...productFields.slice(0, 5)];
+  return [PRODUCT_IMAGE_COLUMN, ...productFields.slice(0, 5), PRODUCT_MODIFIED_COLUMN];
 }
 
 function renderTableCell(field, product) {
   if (field.key === PRODUCT_IMAGE_COLUMN.key) {
     return renderImageCell(product);
   }
+  if (field.key === PRODUCT_MODIFIED_COLUMN.key) {
+    return renderModifiedMetaCell(product);
+  }
   const content = getProductTableCellContent(field, product[field.key]);
   const titleAttr = content.title ? ` title="${escapeHtml(content.title)}"` : "";
   return `<td class="col-${escapeHtml(field.key)}"${titleAttr}>${content.html}</td>`;
+}
+
+function renderModifiedMetaCell(product) {
+  const { modifiedBy, modifiedAt } = getManageAuditMetaDisplay(product && product.custom);
+  return `
+    <td class="col-modified_meta">
+      <div class="manage-audit-meta-cell">
+        <span class="manage-cell-meta">${escapeHtml(modifiedBy)}</span>
+        <span class="cell-muted">${escapeHtml(modifiedAt)}</span>
+      </div>
+    </td>
+  `;
 }
 
 function renderImageCell(product) {
@@ -1056,6 +1074,9 @@ async function handleSubmit(event) {
   });
 
   HIDDEN_PRODUCT_FORM_KEYS.forEach((key) => {
+    // "custom" holds backend-managed audit metadata (modified_by/modified_at) -
+    // leave it out of the submitted record instead of blanking it.
+    if (key === "custom") return;
     record[key] = "";
   });
 

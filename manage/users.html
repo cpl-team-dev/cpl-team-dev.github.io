@@ -167,15 +167,13 @@
 
               <div id="status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
 
-              <div id="users-loading" class="manage-card manage-loading" role="status" aria-live="polite" hidden>
-                <span class="manage-spinner" aria-hidden="true"></span>
-                <span>Loading user details…</span>
-              </div>
-
               <section id="member-profile-panel" class="manage-card" aria-labelledby="member-profile-title" hidden>
                 <div class="manage-toolbar">
                   <div>
-                    <h2 id="member-profile-title">Your profile</h2>
+                    <div class="manage-toolbar-title">
+                      <h2 id="member-profile-title">Your profile</h2>
+                      <span id="member-profile-spinner" class="manage-spinner manage-spinner-inline" role="status" aria-label="Loading" hidden></span>
+                    </div>
                     <p class="field-hint">Your contact and membership account details.</p>
                   </div>
                   <button id="edit-profile-button" class="primary-button" type="button">Edit profile</button>
@@ -186,7 +184,10 @@
               <section id="admin-users-panel" class="manage-card" aria-labelledby="admin-users-title" hidden>
                 <div class="manage-toolbar">
                   <div>
-                    <h2 id="admin-users-title">Organisation users</h2>
+                    <div class="manage-toolbar-title">
+                      <h2 id="admin-users-title">Organisation users</h2>
+                      <span id="admin-users-spinner" class="manage-spinner manage-spinner-inline" role="status" aria-label="Loading" hidden></span>
+                    </div>
                     <p class="field-hint">Accounts are created when a new user signs in for the first time.</p>
                   </div>
                   <span id="users-count" class="manage-count-badge"></span>
@@ -195,11 +196,11 @@
                   <table class="manage-table manage-users-table">
                     <thead>
                       <tr>
-                        <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Created</th>
+                        <th scope="col">Last edited</th>
                         <th scope="col"><span class="visually-hidden">Actions</span></th>
                       </tr>
                     </thead>
@@ -308,6 +309,8 @@
     <script src="../assets/js/manage-api.js"></script>
     <script src="../assets/js/manage-session.js"></script>
     <script src="../assets/js/manage-nav.js"></script>
+    <script src="../assets/js/manage-session-timer.js"></script>
+    <script src="../assets/js/manage-audit-meta.js"></script>
     <script src="../assets/js/manage-users.js"></script>
   </body>
 </html>

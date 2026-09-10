@@ -125,6 +125,11 @@ async function loadUsers(showSuccessMessage = false) {
     }
   } catch (error) {
     setUsersStatus(statusBanner, getUsersErrorMessage(error, "Unable to load user details."), "error");
+    if (usersIsAdmin && users.length === 0) {
+      renderUsersTableError();
+    } else if (!usersIsAdmin && !ownUser) {
+      renderOwnUserError();
+    }
   } finally {
     setUsersLoading(false);
   }
@@ -180,21 +185,26 @@ function renderUsersTable() {
 
   tableBody.innerHTML = users
     .map((user) => {
-      const name = getUserName(user);
       const isCurrentUser = sameUserEmail(user.email, usersSession.email);
       const role = String(user.user_type || "member").toLowerCase();
       const canDelete = role === "member";
+      const { modifiedBy, modifiedAt } = getManageAuditMetaDisplay(user.custom);
 
       return `
         <tr>
           <td>
-            <strong>${escapeUsersHtml(name || "Name not provided")}</strong>
+            ${escapeUsersHtml(user.email || "—")}
             ${isCurrentUser ? '<span class="manage-you-label">You</span>' : ""}
           </td>
-          <td>${escapeUsersHtml(user.email || "—")}</td>
           <td><span class="manage-role-badge" data-role="${escapeUsersHtml(role)}">${escapeUsersHtml(formatUserRole(role))}</span></td>
           <td class="${user.phone ? "" : "cell-muted"}">${escapeUsersHtml(user.phone || "Not provided")}</td>
           <td>${escapeUsersHtml(formatUserDate(user.created_at))}</td>
+          <td>
+            <div class="manage-audit-meta-cell">
+              <span class="manage-cell-meta">${escapeUsersHtml(modifiedBy)}</span>
+              <span class="cell-muted">${escapeUsersHtml(modifiedAt)}</span>
+            </div>
+          </td>
           <td class="row-actions">
             <button class="secondary-button manage-user-action" type="button" data-edit-user="${escapeUsersHtml(user.id || "")}">Edit</button>
             ${canDelete ? `<button class="danger-button manage-user-action" type="button" data-delete-user="${escapeUsersHtml(user.id || "")}">Delete</button>` : ""}
@@ -426,10 +436,63 @@ function setUserDeletePending(isPending) {
 }
 
 function setUsersLoading(isLoading) {
-  const loading = document.getElementById("users-loading");
   const refreshButton = document.getElementById("refresh-users-button");
-  if (loading) loading.hidden = !isLoading;
   if (refreshButton) refreshButton.disabled = isLoading;
+
+  const hasData = usersIsAdmin ? users.length > 0 : !!ownUser;
+  const titleSpinner = document.getElementById(
+    usersIsAdmin ? "admin-users-spinner" : "member-profile-spinner",
+  );
+  if (titleSpinner) titleSpinner.hidden = !(isLoading && hasData);
+
+  if (isLoading && !hasData) {
+    if (usersIsAdmin) {
+      renderUsersTableLoading();
+    } else {
+      renderOwnUserLoading();
+    }
+  }
+}
+
+function renderUsersTableLoading() {
+  const tableBody = document.getElementById("users-table-body");
+  if (!tableBody) return;
+  tableBody.innerHTML = `
+    <tr class="manage-empty-row">
+      <td colspan="6">
+        <span class="manage-loading-inline">
+          <span class="manage-spinner manage-spinner-inline" aria-hidden="true"></span>
+          <span>Loading user details…</span>
+        </span>
+      </td>
+    </tr>
+  `;
+}
+
+function renderOwnUserLoading() {
+  const container = document.getElementById("member-profile-details");
+  if (!container) return;
+  container.innerHTML = `
+    <dt class="visually-hidden">Loading</dt>
+    <dd class="manage-loading-inline">
+      <span class="manage-spinner manage-spinner-inline" aria-hidden="true"></span>
+      <span>Loading your profile…</span>
+    </dd>
+  `;
+}
+
+function renderUsersTableError() {
+  const tableBody = document.getElementById("users-table-body");
+  if (!tableBody) return;
+  tableBody.innerHTML =
+    '<tr class="manage-empty-row"><td colspan="6">Unable to load users. Try refreshing.</td></tr>';
+}
+
+function renderOwnUserError() {
+  const container = document.getElementById("member-profile-details");
+  if (!container) return;
+  container.innerHTML =
+    '<dt class="visually-hidden">Error</dt><dd class="field-hint">Unable to load your profile. Try refreshing.</dd>';
 }
 
 function setUsersStatus(banner, message, state) {
