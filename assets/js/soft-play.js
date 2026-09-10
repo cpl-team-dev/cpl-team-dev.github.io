@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const choice = button.dataset.softPlayChoice;
       const choiceInput = document.getElementById("ph-soft-play-choice");
       const choices = {
-        small: "Small soft play bag (£5, approx. 4 pieces)",
-        large: "Large soft play bag with mats (£10, approx. 8 pieces)",
+        small: "Small soft play bag (£5/week, approx. 4 pieces)",
+        large: "Large soft play bag with mats (£10/week, approx. 8 pieces)",
         toys: "Soft play plus 10 toy bundle (£20)",
       };
 
