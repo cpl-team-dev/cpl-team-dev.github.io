@@ -247,15 +247,38 @@
 
                   <div class="field">
                     <label for="password-input">Password</label>
-                    <input
-                      id="password-input"
-                      name="password"
-                      type="password"
-                      autocomplete="current-password"
-                      minlength="8"
-                      placeholder="At least 8 characters"
-                      required
-                    />
+                    <div class="password-field">
+                      <input
+                        id="password-input"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        minlength="8"
+                        placeholder="At least 8 characters"
+                        required
+                      />
+                      <button
+                        id="password-toggle"
+                        class="password-toggle"
+                        type="button"
+                        aria-label="Show password"
+                        aria-pressed="false"
+                        aria-controls="password-input"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-eye">
+                          <path
+                            fill="currentColor"
+                            d="M12 5c-5.5 0-9.7 3.9-11 7 1.3 3.1 5.5 7 11 7s9.7-3.9 11-7c-1.3-3.1-5.5-7-11-7Zm0 11.5A4.5 4.5 0 1 1 12 7.5a4.5 4.5 0 0 1 0 9Zm0-7.3a2.8 2.8 0 1 0 0 5.6 2.8 2.8 0 0 0 0-5.6Z"
+                          />
+                        </svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-eye-off" hidden>
+                          <path
+                            fill="currentColor"
+                            d="m3.3 2.5 18.2 18.2-1.4 1.4-3-3A12.9 12.9 0 0 1 12 20c-5.5 0-9.7-3.9-11-7 .7-1.6 2.1-3.4 4-4.8L1.9 3.9l1.4-1.4Zm5.4 5.4 1.6 1.6a2.8 2.8 0 0 0 3.8 3.8l1.6 1.6a4.5 4.5 0 0 1-7-7Zm3.3-1.4a4.5 4.5 0 0 1 4.5 4.5c0 .5-.1 1-.3 1.5l-1.5-1.5a2.8 2.8 0 0 0-2.7-2.7l-1.5-1.5c.5-.2 1-.3 1.5-.3ZM12 4c5.5 0 9.7 3.9 11 7-.5 1.2-1.4 2.5-2.6 3.7l-1.4-1.4c.9-.9 1.6-1.8 2-2.6-1.3-2.6-4.7-5.7-9-5.7-1 0-1.9.2-2.8.4L7.6 3.8C9 3.3 10.5 4 12 4Z"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                     <p class="field-hint">
                       New here? Choose a password now to create a member account.
                     </p>

@@ -128,6 +128,55 @@ body.login-page .site-shell {
   box-shadow: 0 0 0 4px rgba(122, 87, 190, 0.16);
 }
 
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 52px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #6b617e;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.password-toggle:hover,
+.password-toggle:focus-visible {
+  background: #f1ecfa;
+  color: var(--purple);
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.password-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.password-toggle svg[hidden] {
+  display: none;
+}
+
 .field-hint,
 .microcopy {
   margin: 0;

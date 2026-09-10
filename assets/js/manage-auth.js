@@ -41,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const verifyCodeForm = document.getElementById("verify-code-form");
   const emailInput = document.getElementById("email-input");
   const passwordInput = document.getElementById("password-input");
+  const passwordToggle = document.getElementById("password-toggle");
   const requestCodeButton = document.getElementById("request-code-button");
   const verificationPanel = document.getElementById("verification-panel");
   const verifyCodeButton = document.getElementById("verify-code-button");
@@ -67,6 +68,24 @@ document.addEventListener("DOMContentLoaded", () => {
     codeInputs.length === 0
   ) {
     return;
+  }
+
+  if (passwordToggle) {
+    passwordToggle.addEventListener("click", () => {
+      const isVisible = passwordInput.type === "text";
+      passwordInput.type = isVisible ? "password" : "text";
+      passwordToggle.setAttribute("aria-pressed", String(!isVisible));
+      passwordToggle.setAttribute(
+        "aria-label",
+        isVisible ? "Show password" : "Hide password",
+      );
+      passwordToggle
+        .querySelector(".icon-eye")
+        .toggleAttribute("hidden", isVisible);
+      passwordToggle
+        .querySelector(".icon-eye-off")
+        .toggleAttribute("hidden", !isVisible);
+    });
   }
 
   let requestedEmail = "";
