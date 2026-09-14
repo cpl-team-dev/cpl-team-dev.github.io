@@ -88,18 +88,21 @@ function renderFieldMarkup(field) {
 }
 
 async function loadOrganisation(showSuccessMessage = false) {
-  const statusBanner = document.getElementById("status-banner");
-  setStatus(statusBanner, "", "info");
   setLoading(true);
 
   try {
-    const result = await manageApiGet(ORGANISATION_PATH);
+    const [result] = await Promise.all([
+      manageApiGet(ORGANISATION_PATH),
+      typeof ensureManageUsersCache === "function"
+        ? ensureManageUsersCache(session)
+        : Promise.resolve(),
+    ]);
     const organisation = extractApiRecord(result);
     populateForm(organisation);
     renderOrganisationRefreshTimestamp(new Date());
-    if (showSuccessMessage) setStatus(statusBanner, "Organisation details refreshed.", "success");
+    if (showSuccessMessage) setStatus("Organisation details refreshed.", "success");
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to load organisation details.", "error");
+    setStatus(error.message || "Unable to load organisation details.", "error");
   } finally {
     setLoading(false);
   }
@@ -130,8 +133,6 @@ function renderOrganisationModifiedMeta(rawAuditMetaValue) {
 
 async function handleSubmit(event) {
   event.preventDefault();
-  const statusBanner = document.getElementById("status-banner");
-  setStatus(statusBanner, "", "info");
 
   const record = {};
   for (const field of ORGANISATION_FIELDS) {
@@ -142,13 +143,13 @@ async function handleSubmit(event) {
           ? getCustomFieldsValue(field)
           : document.getElementById(`organisation-field-${field.key}`)?.value.trim() || "";
     } catch (_error) {
-      setStatus(statusBanner, _error.message, "error");
+      setStatus(_error.message, "error");
       return;
     }
   }
 
   if (!record.name) {
-    setStatus(statusBanner, "Name is required.", "error");
+    setStatus("Name is required.", "error");
     return;
   }
 
@@ -167,9 +168,9 @@ async function handleSubmit(event) {
       session,
     );
     organisationId = id;
-    setStatus(statusBanner, "Organisation details saved.", "success");
+    setStatus("Organisation details saved.", "success");
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to save organisation details.", "error");
+    setStatus(error.message || "Unable to save organisation details.", "error");
     resetTurnstile("#organisation-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
@@ -302,11 +303,9 @@ function renderOrganisationRefreshTimestamp(value) {
   timestamp.textContent = `Last refreshed: ${formatted}`;
 }
 
-function setStatus(banner, message, state) {
-  if (!banner) return;
-  banner.hidden = !message;
-  banner.textContent = message || "";
-  banner.dataset.state = state || "info";
+function setStatus(message, state) {
+  if (!message || typeof showToast !== "function") return;
+  showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
 }
 
 function escapeHtml(value) {

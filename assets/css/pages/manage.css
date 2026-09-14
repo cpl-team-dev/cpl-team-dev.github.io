@@ -320,41 +320,6 @@ body.manage-page .site-shell.manage-app {
   display: none;
 }
 
-.manage-toast {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 1300;
-  max-width: 320px;
-  padding: 14px 18px;
-  border-radius: 14px;
-  background: #fff2f0;
-  border: 1px solid #f0beb7;
-  color: #8a2e21;
-  font-size: 0.88rem;
-  font-weight: 700;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  transform: translateY(12px);
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease;
-}
-
-.manage-toast.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 640px) {
-  .manage-toast {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    max-width: none;
-  }
-}
-
 /* ─── main column ─── */
 .manage-main {
   flex: 1;
@@ -438,6 +403,35 @@ body.manage-page .site-shell.manage-app {
   border-radius: 24px;
   box-shadow: var(--shadow);
   padding: 26px;
+  margin-bottom: 24px;
+}
+
+/* Toys/Blog posts pages: wraps the page header + card so both sit with a
+   small consistent margin instead of the container's full padding. */
+.manage-content-wrap {
+  margin: 1rem;
+}
+
+/* Toys page: drop the card chrome (shadow, rounded corners, background)
+   and trim the padding/margin so the table gets more of the available
+   width and height. */
+.manage-card--flat {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 4px;
+  margin-bottom: 0;
+}
+
+/* Users page: drop the card chrome and widen the container so the table
+   makes full use of the available space instead of floating in a boxed
+   panel with large side margins. */
+.manage-users-wide {
+  width: calc(100% - 48px);
+  max-width: none;
+}
+
+.manage-panel-flush {
   margin-bottom: 24px;
 }
 
@@ -720,32 +714,6 @@ body.manage-page .site-shell.manage-app {
 
 .manage-custom-fields-add {
   justify-self: start;
-}
-
-.status-banner {
-  min-height: 56px;
-  margin-bottom: 20px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid transparent;
-  background: #f6f2ff;
-  color: #36275b;
-}
-
-.status-banner[hidden] {
-  display: none;
-}
-
-.status-banner[data-state="error"] {
-  background: #fff2f0;
-  border-color: #f0beb7;
-  color: #8a2e21;
-}
-
-.status-banner[data-state="success"] {
-  background: #eef9f1;
-  border-color: #b9e0c0;
-  color: #205d2e;
 }
 
 .action-row {
@@ -1034,7 +1002,7 @@ body.manage-page .site-shell.manage-app {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-areas:
     "title status tags"
-    "created actions actions";
+    "actions actions actions";
   gap: 14px 18px;
 }
 
@@ -1048,10 +1016,6 @@ body.manage-page .site-shell.manage-app {
 
 .manage-blog-filter-grid .manage-products-filter-field:nth-child(3) {
   grid-area: tags;
-}
-
-.manage-blog-filter-grid .manage-products-filter-field:nth-child(4) {
-  grid-area: created;
 }
 
 .manage-blog-filter-grid .manage-products-filter-actions {
@@ -1201,8 +1165,7 @@ body.manage-page .site-shell.manage-app {
 .manage-products-table .col-category,
 .manage-products-table .col-price,
 .manage-products-table .col-currency_symbol,
-.manage-products-table .col-stock,
-.manage-products-table .col-created_at {
+.manage-products-table .col-stock {
   width: 14%;
 }
 
@@ -1394,9 +1357,14 @@ body.manage-modal-open {
 
 .manage-users-table td {
   vertical-align: middle;
+  background: #fff;
 }
 
-.manage-users-table .row-actions {
+.manage-users-table thead th {
+  background: transparent;
+}
+
+.manage-users-table .row-actions-inner {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
@@ -1413,6 +1381,7 @@ body.manage-modal-open {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
   margin: 0;
+  background: #fff;
   border: 1px solid #ebe4f5;
   border-radius: 18px;
   overflow: hidden;
@@ -1557,6 +1526,10 @@ body.manage-modal-open {
     border-radius: 18px;
   }
 
+  .manage-card--flat {
+    padding: 0;
+  }
+
   .manage-modal-dialog {
     padding: 20px;
   }
@@ -1619,11 +1592,9 @@ body.manage-modal-open {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:
       "title status"
-      "tags created"
-      "actions actions";
+      "tags actions";
   }
 
-  .manage-products-table .col-created_at,
   .manage-products-table .col-currency_symbol {
     display: none;
   }
@@ -1674,7 +1645,6 @@ body.manage-modal-open {
       "title"
       "status"
       "tags"
-      "created"
       "actions";
   }
 

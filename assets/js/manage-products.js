@@ -7,7 +7,6 @@ const PRODUCT_TABLE_FIELD_KEYS = [
   "name",
   "sku",
   "category",
-  "created_at",
 ];
 const PRODUCT_IMAGE_CANDIDATE_KEYS = [
   "image",
@@ -90,6 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const cachedProducts = restoreProductsFromSessionStorage();
   if (cachedProducts) {
     applyLoadedProducts(cachedProducts);
+    if (typeof ensureManageUsersCache === "function") {
+      // Toys may already be cached, but the users list (needed to resolve
+      // modified_by ids to names) might not be yet - re-render once it is.
+      ensureManageUsersCache(session).then(() => renderTable());
+    }
   } else {
     loadProducts();
   }
@@ -180,22 +184,25 @@ function humanizeKey(key) {
 
 async function loadProducts(options = {}) {
   const { showSuccessMessage = false, resetView = true } = options;
-  const statusBanner = document.getElementById("status-banner");
-  setStatus(statusBanner, "", "info");
   setProductsLoading(true);
 
   try {
-    const loadedProducts = await fetchProductsFromEndpoint();
+    const [loadedProducts] = await Promise.all([
+      fetchProductsFromEndpoint(),
+      typeof ensureManageUsersCache === "function"
+        ? ensureManageUsersCache(session)
+        : Promise.resolve(),
+    ]);
     if (resetView) {
       resetProductListViewState();
     }
     applyLoadedProducts(loadedProducts);
 
     if (showSuccessMessage) {
-      setStatus(statusBanner, "Toys refreshed.", "success");
+      setStatus("Toys refreshed.", "success");
     }
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to load toys.", "error");
+    setStatus(error.message || "Unable to load toys.", "error");
   } finally {
     setProductsLoading(false);
   }
@@ -441,7 +448,7 @@ function renderTableHead(thead, tableFields) {
     </tr>
     <tr>
       ${tableFields
-        .map((field) => `<th class="col-${escapeHtml(field.key)}">${field.key === "created_at" ? "Modified At" : escapeHtml(field.label)}</th>`)
+        .map((field) => `<th class="col-${escapeHtml(field.key)}">${escapeHtml(field.label)}</th>`)
         .join("")}
       <th>Actions</th>
     </tr>
@@ -471,7 +478,7 @@ function renderProductFilterPanel(tableFields) {
           .map(
             (field) => `
               <div class="manage-products-filter-field">
-                <span class="manage-products-filter-label">${escapeHtml(getProductDisplayLabel(field))}</span>
+                <span class="manage-products-filter-label">${escapeHtml(field.label)}</span>
                 ${renderProductFilterControl(field)}
               </div>
             `,
@@ -489,10 +496,6 @@ function renderProductFilterPanel(tableFields) {
       </div>
     </div>
   `;
-}
-
-function getProductDisplayLabel(field) {
-  return field.key === "created_at" ? "Modified At" : field.label;
 }
 
 function renderProductFilterControl(field) {
@@ -560,12 +563,11 @@ function renderProductCategoryFilterControl(field) {
   `;
 }
 
-function getProductFilterInputType(field) {
-  return field.key === "created_at" ? "date" : "text";
+function getProductFilterInputType(_field) {
+  return "text";
 }
 
 function getProductFilterPlaceholder(field) {
-  if (field.key === "created_at") return "Search date";
   return `Filter ${field.label.toLowerCase()}`;
 }
 
@@ -660,10 +662,6 @@ function matchesProductFilters(product, tableFields) {
     const filterValue = normalizeFilterValue(rawFilterValue);
     if (!filterValue) return true;
 
-    if (field.key === "created_at") {
-      return matchesProductDateFilter(product && product.created_at, rawFilterValue);
-    }
-
     const values = [];
     if (product && product[field.key] != null) {
       values.push(String(product[field.key]));
@@ -676,29 +674,6 @@ function matchesProductFilters(product, tableFields) {
 function matchesProductCategoryFilter(value, filterValues) {
   if (!Array.isArray(filterValues) || filterValues.length === 0) return true;
   return filterValues.includes(String(value == null ? "" : value));
-}
-
-function matchesProductDateFilter(value, filterValue) {
-  if (!filterValue) return true;
-
-  const productDate = getProductFilterDateValue(value);
-  if (!productDate) return false;
-
-  return productDate === filterValue;
-}
-
-function getProductFilterDateValue(value) {
-  if (value === undefined || value === null || value === "") return "";
-
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "UTC",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(date);
 }
 
 function hasActiveProductFilters() {
@@ -931,8 +906,7 @@ function getProductTableCellContent(field, value) {
     };
   }
 
-  const text =
-    field.key === "created_at" ? formatProductTableDate(value) : String(value);
+  const text = String(value);
   const escapedText = escapeHtml(text);
 
   if (field.key === "name") {
@@ -949,42 +923,10 @@ function getProductTableCellContent(field, value) {
     };
   }
 
-  if (field.key === "created_at") {
-    return {
-      html: `<span class="manage-cell-meta">${escapedText}</span>`,
-      title: String(value),
-    };
-  }
-
   return {
     html: escapedText,
     title: text,
   };
-}
-
-function formatProductTableDate(value) {
-  if (value instanceof Date && !Number.isNaN(value.getTime())) {
-    return new Intl.DateTimeFormat("en-GB", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    }).format(value);
-  }
-
-  if (typeof value !== "string" && typeof value !== "number") {
-    return String(value);
-  }
-
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) {
-    return String(value);
-  }
-
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-  }).format(date);
 }
 
 function renderPagination(filteredCount, pagination) {
@@ -1050,8 +992,6 @@ function openForm(product) {
     }
   });
 
-  setStatus(document.getElementById("form-status-banner"), "", "info");
-
   showModal(modal);
   resetTurnstile("#product-form-turnstile");
 }
@@ -1062,8 +1002,6 @@ function closeForm() {
 
 async function handleSubmit(event) {
   event.preventDefault();
-  const statusBanner = document.getElementById("form-status-banner");
-  setStatus(statusBanner, "", "info");
 
   const record = {};
   getEditableProductFields().forEach((field) => {
@@ -1081,7 +1019,7 @@ async function handleSubmit(event) {
   });
 
   if (!record.name) {
-    setStatus(statusBanner, "Name is required.", "error");
+    setStatus("Name is required.", "error");
     return;
   }
 
@@ -1103,9 +1041,9 @@ async function handleSubmit(event) {
     await manageApiPost(PRODUCT_LIST_PATH, body, session);
     closeForm();
     await loadProducts();
-    setStatus(document.getElementById("status-banner"), "Toy saved.", "success");
+    setStatus("Toy saved.", "success");
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to save toy.", "error");
+    setStatus(error.message || "Unable to save toy.", "error");
     resetTurnstile("#product-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
@@ -1123,7 +1061,6 @@ function handleDelete(product) {
     )}? This action cannot be undone.`;
   }
 
-  setStatus(document.getElementById("product-delete-status-banner"), "", "info");
   setDeletePendingState(false);
   showModal(modal);
   resetTurnstile("#product-delete-turnstile");
@@ -1132,9 +1069,6 @@ function handleDelete(product) {
 async function handleDeleteConfirm() {
   if (!deleteTargetProduct || isDeletePending) return;
 
-  const statusBanner = document.getElementById("status-banner");
-  const modalStatusBanner = document.getElementById("product-delete-status-banner");
-  setStatus(modalStatusBanner, "", "info");
   setDeletePendingState(true);
 
   try {
@@ -1152,10 +1086,9 @@ async function handleDeleteConfirm() {
     setDeletePendingState(false);
     closeModal(document.getElementById("product-delete-modal"));
     await loadProducts();
-    setStatus(statusBanner, "Toy deleted.", "success");
+    setStatus("Toy deleted.", "success");
   } catch (error) {
-    setStatus(modalStatusBanner, error.message || "Unable to delete toy.", "error");
-    setStatus(statusBanner, error.message || "Unable to delete toy.", "error");
+    setStatus(error.message || "Unable to delete toy.", "error");
     resetTurnstile("#product-delete-turnstile");
   } finally {
     setDeletePendingState(false);
@@ -1239,7 +1172,6 @@ function closeModal(modal) {
   if (modal.id === "product-delete-modal") {
     deleteTargetProduct = null;
     setDeletePendingState(false);
-    setStatus(document.getElementById("product-delete-status-banner"), "", "info");
   }
 
   if (modal.id === "product-image-modal") {
@@ -1251,16 +1183,9 @@ function closeModal(modal) {
   }
 }
 
-function setStatus(banner, message, state) {
-  if (!banner) return;
-  if (!message) {
-    banner.hidden = true;
-    banner.textContent = "";
-    return;
-  }
-  banner.hidden = false;
-  banner.textContent = message;
-  banner.dataset.state = state || "info";
+function setStatus(message, state) {
+  if (!message || typeof showToast !== "function") return;
+  showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
 }
 
 function escapeHtml(value) {

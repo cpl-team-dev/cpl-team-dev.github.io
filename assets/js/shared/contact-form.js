@@ -69,7 +69,6 @@ function setupContactForm(options) {
   const {
     formId,
     successId,
-    errorId,
     submitButtonText,
     buildPayload,
     successMessage,
@@ -78,9 +77,8 @@ function setupContactForm(options) {
 
   const form = document.getElementById(formId);
   const success = document.getElementById(successId);
-  const error = document.getElementById(errorId);
 
-  if (!form || !success || !error) {
+  if (!form || !success) {
     return;
   }
 
@@ -101,8 +99,6 @@ function setupContactForm(options) {
     }
 
     success.style.display = "none";
-    error.style.display = "none";
-    error.textContent = "";
     setSubmissionState(submitButton, true, idleButtonText);
 
     try {
@@ -115,9 +111,12 @@ function setupContactForm(options) {
       success.style.display = "block";
     } catch (submissionError) {
       console.error("Failed to submit contact form:", submissionError);
-      error.textContent =
-        "We could not send your message right now. Please try again in a moment.";
-      error.style.display = "block";
+      if (typeof showToast === "function") {
+        showToast(
+          "We could not send your message right now. Please try again in a moment.",
+          { type: "error" },
+        );
+      }
     } finally {
       setSubmissionState(submitButton, false, idleButtonText);
     }

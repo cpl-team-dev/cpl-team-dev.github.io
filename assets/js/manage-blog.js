@@ -12,7 +12,6 @@ const BLOG_TABLE_COLUMNS = [
     options: ["", "draft", "published"],
   },
   { key: "tags", label: "Tags", filterType: "text", placeholder: "Filter tags" },
-  { key: "created_at", label: "Modified At", filterType: "date" },
   { key: "modified_meta", label: "Last edited", filterType: null },
 ];
 
@@ -66,6 +65,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const cachedPosts = restorePostsFromSessionStorage();
   if (cachedPosts) {
     applyLoadedPosts(cachedPosts);
+    if (typeof ensureManageUsersCache === "function") {
+      // Posts may already be cached, but the users list (needed to resolve
+      // modified_by ids to names) might not be yet - re-render once it is.
+      ensureManageUsersCache(session).then(() => renderTable());
+    }
   } else {
     loadPosts();
   }
@@ -140,12 +144,15 @@ function wireForm() {
 
 async function loadPosts(options = {}) {
   const { showSuccessMessage = false, resetView = true } = options;
-  const statusBanner = document.getElementById("status-banner");
-  setStatus(statusBanner, "", "info");
   setPostsLoading(true);
 
   try {
-    const loadedPosts = await fetchPostsFromEndpoint();
+    const [loadedPosts] = await Promise.all([
+      fetchPostsFromEndpoint(),
+      typeof ensureManageUsersCache === "function"
+        ? ensureManageUsersCache(session)
+        : Promise.resolve(),
+    ]);
     if (resetView) {
       resetBlogListViewState();
       renderTableHead();
@@ -153,10 +160,10 @@ async function loadPosts(options = {}) {
     applyLoadedPosts(loadedPosts);
 
     if (showSuccessMessage) {
-      setStatus(statusBanner, "Blog posts refreshed.", "success");
+      setStatus("Blog posts refreshed.", "success");
     }
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to load blog posts.", "error");
+    setStatus(error.message || "Unable to load blog posts.", "error");
   } finally {
     setPostsLoading(false);
   }
@@ -546,7 +553,6 @@ function renderTableBody(tbody, filteredPosts) {
           <td>${escapeHtml(post.title)}</td>
           <td>${escapeHtml(post.status || "—")}</td>
           <td class="cell-muted">${escapeHtml(post.tags || "—")}</td>
-          <td class="cell-muted">${formatDate(post.created_at)}</td>
           <td>${renderBlogModifiedMetaCell(post)}</td>
           <td class="row-actions">
             ${renderManageActionButton("edit", "Edit blog post")}
@@ -688,10 +694,6 @@ function matchesBlogFilters(post) {
       return normalizeFilterValue(post && post.status) === filterValue;
     }
 
-    if (column.key === "created_at") {
-      return getBlogFilterDateValue(post && post.created_at) === rawFilterValue;
-    }
-
     const values = [];
     if (post && post[column.key] != null) {
       values.push(String(post[column.key]));
@@ -699,20 +701,6 @@ function matchesBlogFilters(post) {
 
     return values.some((value) => normalizeFilterValue(value).includes(filterValue));
   });
-}
-
-function getBlogFilterDateValue(value) {
-  if (value === undefined || value === null || value === "") return "";
-
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "UTC",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(date);
 }
 
 function hasActiveBlogFilters() {
@@ -731,7 +719,6 @@ function openForm(post) {
     if (input) input.value = post ? post[field.key] || "" : "";
   });
 
-  setStatus(document.getElementById("form-status-banner"), "", "info");
   showModal(modal);
   resetTurnstile("#post-form-turnstile");
 }
@@ -742,8 +729,6 @@ function closeForm() {
 
 async function handleSubmit(event) {
   event.preventDefault();
-  const statusBanner = document.getElementById("form-status-banner");
-  setStatus(statusBanner, "", "info");
 
   const record = {};
   BLOG_FIELDS.forEach((field) => {
@@ -752,7 +737,7 @@ async function handleSubmit(event) {
   });
 
   if (!record.title || !record.content) {
-    setStatus(statusBanner, "Title and content are required.", "error");
+    setStatus("Title and content are required.", "error");
     return;
   }
 
@@ -779,9 +764,9 @@ async function handleSubmit(event) {
     await manageApiPost(BLOG_LIST_PATH, body, session);
     closeForm();
     await loadPosts({ resetView: false });
-    setStatus(document.getElementById("status-banner"), "Blog post saved.", "success");
+    setStatus("Blog post saved.", "success");
   } catch (error) {
-    setStatus(statusBanner, error.message || "Unable to save blog post.", "error");
+    setStatus(error.message || "Unable to save blog post.", "error");
     resetTurnstile("#post-form-turnstile");
   } finally {
     if (submitButton) submitButton.disabled = false;
@@ -799,7 +784,6 @@ function handleDelete(post) {
     )}? This action cannot be undone.`;
   }
 
-  setStatus(document.getElementById("post-delete-status-banner"), "", "info");
   setDeletePendingState(false);
   showModal(modal);
   resetTurnstile("#post-delete-turnstile");
@@ -808,9 +792,6 @@ function handleDelete(post) {
 async function handleDeleteConfirm() {
   if (!deleteTargetPost || isDeletePending) return;
 
-  const statusBanner = document.getElementById("status-banner");
-  const modalStatusBanner = document.getElementById("post-delete-status-banner");
-  setStatus(modalStatusBanner, "", "info");
   setDeletePendingState(true);
 
   try {
@@ -826,10 +807,9 @@ async function handleDeleteConfirm() {
     setDeletePendingState(false);
     closeModal(document.getElementById("post-delete-modal"));
     await loadPosts({ resetView: false });
-    setStatus(statusBanner, "Blog post deleted.", "success");
+    setStatus("Blog post deleted.", "success");
   } catch (error) {
-    setStatus(modalStatusBanner, error.message || "Unable to delete blog post.", "error");
-    setStatus(statusBanner, error.message || "Unable to delete blog post.", "error");
+    setStatus(error.message || "Unable to delete blog post.", "error");
     resetTurnstile("#post-delete-turnstile");
   } finally {
     setDeletePendingState(false);
@@ -853,33 +833,14 @@ function closeModal(modal) {
   if (modal.id === "post-delete-modal") {
     deleteTargetPost = null;
     setDeletePendingState(false);
-    setStatus(document.getElementById("post-delete-status-banner"), "", "info");
   }
 }
 
-function setStatus(banner, message, state) {
-  if (!banner) return;
-  if (!message) {
-    banner.hidden = true;
-    banner.textContent = "";
-    return;
-  }
-  banner.hidden = false;
-  banner.textContent = message;
-  banner.dataset.state = state || "info";
+function setStatus(message, state) {
+  if (!message || typeof showToast !== "function") return;
+  showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
 }
 
-function formatDate(value) {
-  if (!value) return "—";
-  const date = new Date(value);
-  return Number.isNaN(date.getTime())
-    ? String(value)
-    : new Intl.DateTimeFormat("en-GB", {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }).format(date);
-}
 
 function capitalize(value) {
   return value.charAt(0).toUpperCase() + value.slice(1);

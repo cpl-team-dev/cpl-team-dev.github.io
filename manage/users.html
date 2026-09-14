@@ -159,15 +159,13 @@
 
         <main>
           <section class="section-pad manage-shell">
-            <div class="container">
+            <div class="container manage-users-wide">
               <div class="manage-page-header">
                 <h1 id="users-page-title">Users</h1>
                 <p id="users-page-intro">Manage user accounts for your organisation.</p>
               </div>
 
-              <div id="status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
-
-              <section id="member-profile-panel" class="manage-card" aria-labelledby="member-profile-title" hidden>
+              <section id="member-profile-panel" class="manage-panel-flush" aria-labelledby="member-profile-title" hidden>
                 <div class="manage-toolbar">
                   <div>
                     <div class="manage-toolbar-title">
@@ -181,7 +179,7 @@
                 <dl id="member-profile-details" class="manage-user-details"></dl>
               </section>
 
-              <section id="admin-users-panel" class="manage-card" aria-labelledby="admin-users-title" hidden>
+              <section id="admin-users-panel" class="manage-panel-flush" aria-labelledby="admin-users-title" hidden>
                 <div class="manage-toolbar">
                   <div>
                     <div class="manage-toolbar-title">
@@ -224,8 +222,6 @@
           </div>
           <button class="manage-modal-close" type="button" data-close-modal aria-label="Close">&times;</button>
         </div>
-
-        <div id="user-form-status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
 
         <form id="user-form" novalidate>
           <div class="form-grid manage-user-form-grid">
@@ -294,7 +290,6 @@
           <h2 id="user-delete-modal-title">Delete member account?</h2>
           <button class="manage-modal-close" type="button" data-close-modal aria-label="Close">&times;</button>
         </div>
-        <div id="user-delete-status-banner" class="status-banner" data-state="info" aria-live="polite" hidden></div>
         <p id="user-delete-modal-message" class="manage-modal-copy"></p>
         <p class="manage-delete-warning">This action cannot be undone. Admin accounts cannot be deleted.</p>
         <div id="user-delete-turnstile" class="cf-turnstile" data-sitekey="0x4AAAAAAEOzS56m0M5xjAFe"></div>
@@ -308,7 +303,9 @@
     <script src="../assets/js/config.js"></script>
     <script src="../assets/js/manage-api.js"></script>
     <script src="../assets/js/manage-session.js"></script>
+    <script src="../assets/js/manage-users-cache.js"></script>
     <script src="../assets/js/manage-nav.js"></script>
+    <script src="../assets/js/shared/toast.js"></script>
     <script src="../assets/js/manage-session-timer.js"></script>
     <script src="../assets/js/manage-audit-meta.js"></script>
     <script src="../assets/js/manage-users.js"></script>

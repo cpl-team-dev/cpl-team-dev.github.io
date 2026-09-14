@@ -66,6 +66,18 @@
   --dropdown-hover-bg: rgba(122, 87, 190, 0.1);
   --dropdown-title: var(--theme-text);
   --dropdown-subtitle: var(--theme-text-muted);
+
+  /* Toast tokens: light shade + dark text in light mode, dark shade + light
+     text in dark mode, for each semantic type. */
+  --toast-info-bg: #eaf1ff;
+  --toast-info-border: #c7dcff;
+  --toast-info-text: #1c3d6a;
+  --toast-warning-bg: #fff6dd;
+  --toast-warning-border: #ffe19a;
+  --toast-warning-text: #7a5900;
+  --toast-error-bg: #fff2f0;
+  --toast-error-border: #f0beb7;
+  --toast-error-text: #8a2e21;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -99,6 +111,15 @@
     --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
     --dropdown-title: rgba(255, 255, 255, 0.92);
     --dropdown-subtitle: rgba(255, 255, 255, 0.38);
+    --toast-info-bg: #15294d;
+    --toast-info-border: #2c4a7c;
+    --toast-info-text: #bcd6ff;
+    --toast-warning-bg: #4a3900;
+    --toast-warning-border: #6b5300;
+    --toast-warning-text: #ffd166;
+    --toast-error-bg: #4a170f;
+    --toast-error-border: #6e281c;
+    --toast-error-text: #ffb4a3;
   }
 }
 
@@ -132,6 +153,15 @@
   --dropdown-hover-bg: rgba(255, 255, 255, 0.1);
   --dropdown-title: rgba(255, 255, 255, 0.92);
   --dropdown-subtitle: rgba(255, 255, 255, 0.38);
+  --toast-info-bg: #15294d;
+  --toast-info-border: #2c4a7c;
+  --toast-info-text: #bcd6ff;
+  --toast-warning-bg: #4a3900;
+  --toast-warning-border: #6b5300;
+  --toast-warning-text: #ffd166;
+  --toast-error-bg: #4a170f;
+  --toast-error-border: #6e281c;
+  --toast-error-text: #ffb4a3;
 }
 
 * {

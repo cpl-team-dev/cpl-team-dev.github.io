@@ -42,7 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
   usersIsAdmin = getManageAccountType(usersSession) === "admin";
   wireUsersPage();
   applyUsersRoleView();
-  loadUsers();
+
+  const cachedUsers =
+    usersIsAdmin && typeof getCachedManageUsers === "function" ? getCachedManageUsers() : null;
+
+  if (cachedUsers) {
+    // Render straight from the shared cache instead of re-fetching - the
+    // "Refresh" button (loadUsers(true)) is the only thing that should hit
+    // the network again from here.
+    users = cachedUsers;
+    renderUsersTable();
+    const cachedAt =
+      typeof getCachedManageUsersRefreshedAt === "function" ? getCachedManageUsersRefreshedAt() : null;
+    if (cachedAt) renderUsersRefreshTimestamp(new Date(cachedAt));
+  } else {
+    loadUsers();
+  }
 });
 
 function wireUsersPage() {
@@ -99,8 +114,6 @@ function applyUsersRoleView() {
 }
 
 async function loadUsers(showSuccessMessage = false) {
-  const statusBanner = document.getElementById("status-banner");
-  setUsersStatus(statusBanner, "", "info");
   setUsersLoading(true);
 
   try {
@@ -108,6 +121,7 @@ async function loadUsers(showSuccessMessage = false) {
 
     if (usersIsAdmin) {
       users = extractApiList(result);
+      if (typeof setCachedManageUsers === "function") setCachedManageUsers(users);
       renderUsersTable();
     } else {
       ownUser = extractApiRecord(result);
@@ -118,13 +132,12 @@ async function loadUsers(showSuccessMessage = false) {
     renderUsersRefreshTimestamp(new Date());
     if (showSuccessMessage) {
       setUsersStatus(
-        statusBanner,
         usersIsAdmin ? "User accounts refreshed." : "Your profile was refreshed.",
         "success",
       );
     }
   } catch (error) {
-    setUsersStatus(statusBanner, getUsersErrorMessage(error, "Unable to load user details."), "error");
+    setUsersStatus(getUsersErrorMessage(error, "Unable to load user details."), "error");
     if (usersIsAdmin && users.length === 0) {
       renderUsersTableError();
     } else if (!usersIsAdmin && !ownUser) {
@@ -206,8 +219,10 @@ function renderUsersTable() {
             </div>
           </td>
           <td class="row-actions">
-            <button class="secondary-button manage-user-action" type="button" data-edit-user="${escapeUsersHtml(user.id || "")}">Edit</button>
-            ${canDelete ? `<button class="danger-button manage-user-action" type="button" data-delete-user="${escapeUsersHtml(user.id || "")}">Delete</button>` : ""}
+            <div class="row-actions-inner">
+              <button class="secondary-button manage-user-action" type="button" data-edit-user="${escapeUsersHtml(user.id || "")}">Edit</button>
+              ${canDelete ? `<button class="danger-button manage-user-action" type="button" data-delete-user="${escapeUsersHtml(user.id || "")}">Delete</button>` : ""}
+            </div>
           </td>
         </tr>
       `;
@@ -252,7 +267,6 @@ function openUserForm(user) {
   const customInput = document.getElementById("user-field-custom");
   if (customInput) customInput.value = formatUserCustomValue(user.custom);
 
-  setUsersStatus(document.getElementById("user-form-status-banner"), "", "info");
   setUserFormPending(false);
   showUserModal(modal);
   resetUsersTurnstile("#user-form-turnstile");
@@ -264,12 +278,10 @@ async function handleUserSubmit(event) {
   if (!editingUser || userFormPending) return;
 
   const form = event.currentTarget;
-  const statusBanner = document.getElementById("user-form-status-banner");
   const emailInput = document.getElementById("user-field-email");
-  setUsersStatus(statusBanner, "", "info");
 
   if (!emailInput?.value.trim() || !emailInput.checkValidity()) {
-    setUsersStatus(statusBanner, "Enter a valid email address.", "error");
+    setUsersStatus("Enter a valid email address.", "error");
     emailInput?.focus();
     return;
   }
@@ -295,7 +307,6 @@ async function handleUserSubmit(event) {
       record.custom = parsedCustom;
     } catch (error) {
       setUsersStatus(
-        statusBanner,
         error instanceof SyntaxError ? "Additional data is not valid JSON." : error.message,
         "error",
       );
@@ -336,9 +347,9 @@ async function handleUserSubmit(event) {
 
     await loadUsers();
     updateUsersAccountChrome(updatedUser);
-    setUsersStatus(document.getElementById("status-banner"), "User details saved.", "success");
+    setUsersStatus("User details saved.", "success");
   } catch (error) {
-    setUsersStatus(statusBanner, getUsersErrorMessage(error, "Unable to save user details."), "error");
+    setUsersStatus(getUsersErrorMessage(error, "Unable to save user details."), "error");
     resetUsersTurnstile("#user-form-turnstile");
   } finally {
     setUserFormPending(false);
@@ -353,7 +364,6 @@ function openUserDelete(user) {
   const message = document.getElementById("user-delete-modal-message");
   if (message) message.textContent = `Delete ${name} (${user.email || "no email address"})?`;
 
-  setUsersStatus(document.getElementById("user-delete-status-banner"), "", "info");
   setUserDeletePending(false);
   showUserModal(document.getElementById("user-delete-modal"));
   resetUsersTurnstile("#user-delete-turnstile");
@@ -363,8 +373,6 @@ function openUserDelete(user) {
 async function handleUserDeleteConfirm() {
   if (!deleteTargetUser || userDeletePending) return;
 
-  const modalStatus = document.getElementById("user-delete-status-banner");
-  setUsersStatus(modalStatus, "", "info");
   setUserDeletePending(true);
 
   try {
@@ -380,9 +388,9 @@ async function handleUserDeleteConfirm() {
 
     closeUserModal(document.getElementById("user-delete-modal"), true);
     await loadUsers();
-    setUsersStatus(document.getElementById("status-banner"), "Member account deleted.", "success");
+    setUsersStatus("Member account deleted.", "success");
   } catch (error) {
-    setUsersStatus(modalStatus, getUsersErrorMessage(error, "Unable to delete this member."), "error");
+    setUsersStatus(getUsersErrorMessage(error, "Unable to delete this member."), "error");
     resetUsersTurnstile("#user-delete-turnstile");
   } finally {
     setUserDeletePending(false);
@@ -407,10 +415,8 @@ function closeUserModal(modal, force = false) {
 
   if (modal.id === "user-modal") {
     editingUser = null;
-    setUsersStatus(document.getElementById("user-form-status-banner"), "", "info");
   } else if (modal.id === "user-delete-modal") {
     deleteTargetUser = null;
-    setUsersStatus(document.getElementById("user-delete-status-banner"), "", "info");
   }
 
   if (lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
@@ -495,11 +501,9 @@ function renderOwnUserError() {
     '<dt class="visually-hidden">Error</dt><dd class="field-hint">Unable to load your profile. Try refreshing.</dd>';
 }
 
-function setUsersStatus(banner, message, state) {
-  if (!banner) return;
-  banner.hidden = !message;
-  banner.textContent = message || "";
-  banner.dataset.state = state || "info";
+function setUsersStatus(message, state) {
+  if (!message || typeof showToast !== "function") return;
+  showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
 }
 
 function getUsersErrorMessage(error, fallback) {

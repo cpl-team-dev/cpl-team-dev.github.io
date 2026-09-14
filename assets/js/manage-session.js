@@ -51,6 +51,7 @@ function setManageSession(data) {
 
 function clearManageSession() {
   sessionStorage.removeItem(MANAGE_SESSION_KEY);
+  if (typeof clearCachedManageUsers === "function") clearCachedManageUsers();
 }
 
 function setManageLoginWarning(message) {

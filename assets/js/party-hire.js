@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactForm({
     formId: "party-hire-form",
     successId: "party-hire-success",
-    errorId: "party-hire-error",
     submitButtonText: "Submit request",
     successMessage:
       "Thank you-your party hire request has been noted! We'll be in touch to confirm details and availability.",

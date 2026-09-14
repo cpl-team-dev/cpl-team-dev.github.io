@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const resendCodeButton = document.getElementById("resend-code-button");
   const changeEmailButton = document.getElementById("change-email-button");
   const sentEmail = document.getElementById("sent-email");
-  const statusBanner = document.getElementById("status-banner");
   const codeInputs = Array.from(document.querySelectorAll(".code-digit"));
 
   if (
@@ -64,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
     !resendCodeButton ||
     !changeEmailButton ||
     !sentEmail ||
-    !statusBanner ||
     codeInputs.length === 0
   ) {
     return;
@@ -92,16 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let requestedUserRowNumber = null;
 
   function setStatus(message, state) {
-    if (!message) {
-      statusBanner.hidden = true;
-      statusBanner.textContent = "";
-      statusBanner.dataset.state = "info";
-      return;
-    }
-
-    statusBanner.hidden = false;
-    statusBanner.textContent = message;
-    statusBanner.dataset.state = state || "info";
+    if (!message || typeof showToast !== "function") return;
+    showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
   }
 
   const loginWarning =

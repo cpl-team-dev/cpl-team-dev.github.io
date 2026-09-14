@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactForm({
     formId: "group-form",
     successId: "group-form-success",
-    errorId: "group-form-error",
     submitButtonText: "Submit application",
     successMessage:
       "Thank you-your group membership application has been sent! We'll be in touch to confirm the next steps.",

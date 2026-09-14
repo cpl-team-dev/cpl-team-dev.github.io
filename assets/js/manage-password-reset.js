@@ -50,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const confirmPasswordInput = document.getElementById("confirm-password-input");
   const confirmPasswordToggle = document.getElementById("confirm-password-toggle");
   const resetButton = document.getElementById("reset-password-button");
-  const statusBanner = document.getElementById("status-banner");
   const codeInputs = Array.from(document.querySelectorAll(".code-digit"));
 
   if (
@@ -65,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     !newPasswordInput ||
     !confirmPasswordInput ||
     !resetButton ||
-    !statusBanner ||
     codeInputs.length === 0
   ) {
     return;
@@ -96,16 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
   let requestedEmail = "";
 
   function setStatus(message, state) {
-    if (!message) {
-      statusBanner.hidden = true;
-      statusBanner.textContent = "";
-      statusBanner.dataset.state = "info";
-      return;
-    }
-
-    statusBanner.hidden = false;
-    statusBanner.textContent = message;
-    statusBanner.dataset.state = state || "info";
+    if (!message || typeof showToast !== "function") return;
+    showToast(message, { type: state === "error" ? "error" : state === "warning" ? "warning" : "info" });
   }
 
   function setBusy(button, isBusy, idleLabel, busyLabel) {

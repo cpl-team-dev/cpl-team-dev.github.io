@@ -34,10 +34,24 @@ function formatManageAuditTimestamp(value) {
   }).format(date);
 }
 
+function resolveManageAuditModifiedBy(rawModifiedBy) {
+  if (!rawModifiedBy) return "";
+
+  if (typeof findManageUserById === "function") {
+    const user = findManageUserById(rawModifiedBy);
+    const name = user && typeof getManageUserDisplayName === "function" ? getManageUserDisplayName(user) : "";
+    if (name) return name;
+  }
+
+  // No cached match yet (or the user was since removed) - fall back to the
+  // raw id rather than hiding that a value is present at all.
+  return rawModifiedBy;
+}
+
 function getManageAuditMetaDisplay(rawValue) {
   const meta = parseManageAuditMeta(rawValue);
   return {
-    modifiedBy: meta.modifiedBy || "Not present",
+    modifiedBy: resolveManageAuditModifiedBy(meta.modifiedBy) || "Not present",
     modifiedAt: meta.modifiedAt ? formatManageAuditTimestamp(meta.modifiedAt) : "Not present",
   };
 }

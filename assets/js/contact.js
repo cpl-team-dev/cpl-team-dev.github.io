@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactForm({
     formId: "contact-form",
     successId: "contact-success",
-    errorId: "contact-error",
     submitButtonText: "Send message →",
     successMessage: "Message sent! Thank you for getting in touch.",
     buildPayload(form) {

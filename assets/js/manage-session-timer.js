@@ -11,19 +11,11 @@
   }
 
   function showExpiryToast() {
-    const toast = document.createElement("div");
-    toast.className = "manage-toast";
-    toast.setAttribute("role", "status");
-    toast.setAttribute("aria-live", "polite");
-    toast.textContent =
-      "You'll be logged out in under a minute due to session expiry.";
-    document.body.appendChild(toast);
-
-    window.requestAnimationFrame(() => toast.classList.add("is-visible"));
-    window.setTimeout(() => {
-      toast.classList.remove("is-visible");
-      window.setTimeout(() => toast.remove(), 300);
-    }, 8000);
+    if (typeof showToast !== "function") return;
+    showToast("You'll be logged out in under a minute due to session expiry.", {
+      type: "warning",
+      duration: 8000,
+    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {

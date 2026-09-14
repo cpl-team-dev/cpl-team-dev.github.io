@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   setupContactForm({
     formId: "volunteer-form",
     successId: "volunteer-success",
-    errorId: "volunteer-error",
     submitButtonText: "Submit application",
     successMessage: "Application submitted. Thank you for volunteering.",
     validate(form) {
