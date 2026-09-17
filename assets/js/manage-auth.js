@@ -8,20 +8,6 @@ function resetTurnstile(container) {
   }
 }
 
-let verifyTurnstileRendered = false;
-
-function showVerifyTurnstile() {
-  if (!window.turnstile) return;
-  if (verifyTurnstileRendered) {
-    window.turnstile.reset("#verify-code-turnstile");
-    return;
-  }
-  const container = document.getElementById("verify-code-turnstile");
-  if (!container) return;
-  window.turnstile.render(container, { sitekey: container.dataset.sitekey });
-  verifyTurnstileRendered = true;
-}
-
 async function postAuthJson(path, payload) {
   const response = await fetch(getApiEndpoint(path), {
     method: "POST",
@@ -137,9 +123,9 @@ document.addEventListener("DOMContentLoaded", () => {
       input.value = "";
     });
     codeInputs[0].focus();
-    // The verify-code widget only renders once this panel becomes visible,
-    // instead of auto-rendering (and burning a challenge) on every page load.
-    showVerifyTurnstile();
+    // The verify-code widget sits in a hidden panel at load, so it can only
+    // start its challenge once shown-reset kicks off a fresh render/token.
+    resetTurnstile("#verify-code-turnstile");
   }
 
   function resetVerification() {
