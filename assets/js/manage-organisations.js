@@ -26,6 +26,15 @@ const ORGANISATION_FIELDS = [
 let session = null;
 let organisationId = null;
 let retainedAuditMeta = {};
+let isSubmitPending = false;
+
+// The form stays on screen after a save, so the widget must be reset after
+// every request — otherwise a second save would resend a spent token.
+const organisationTurnstile = createTurnstileGate({
+  container: "#organisation-form-turnstile",
+  callbackName: "onOrganisationFormTurnstile",
+  onChange: renderSubmitButtonState,
+});
 
 const AUDIT_META_FIELD_KEY = "custom_1";
 const AUDIT_META_KEYS = ["modified_by", "modified_at"];
@@ -36,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderFormFields();
   wirePage();
+  renderSubmitButtonState();
   loadOrganisation();
 });
 
@@ -71,10 +81,19 @@ function renderFieldMarkup(field) {
     return `
       <div class="field manage-custom-fields" data-custom-fields="${field.key}">
         <label>${field.label}</label>
-        <table class="manage-custom-fields-table">
-          <thead><tr><th scope="col">Item</th><th scope="col">Value</th><th aria-label="Actions"></th></tr></thead>
-          <tbody id="organisation-field-${field.key}-rows"></tbody>
-        </table>
+        <div class="manage-table-scroll-shell">
+          <span class="manage-table-scroll-hint" aria-hidden="true">
+            <svg viewBox="0 0 24 24" focusable="false">
+              <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div class="manage-table-wrap">
+            <table class="manage-custom-fields-table">
+              <thead><tr><th scope="col">Item</th><th scope="col">Value</th><th aria-label="Actions"></th></tr></thead>
+              <tbody id="organisation-field-${field.key}-rows"></tbody>
+            </table>
+          </div>
+        </div>
         <button class="secondary-button manage-custom-fields-add" type="button" data-add-custom-field="${field.key}">Add item</button>
       </div>
     `;
@@ -133,6 +152,7 @@ function renderOrganisationModifiedMeta(rawAuditMetaValue) {
 
 async function handleSubmit(event) {
   event.preventDefault();
+  if (isSubmitPending) return;
 
   const record = {};
   for (const field of ORGANISATION_FIELDS) {
@@ -153,8 +173,12 @@ async function handleSubmit(event) {
     return;
   }
 
-  const submitButton = document.getElementById("organisation-submit-button");
-  if (submitButton) submitButton.disabled = true;
+  if (!organisationTurnstile.hasToken()) {
+    setStatus(TURNSTILE_PENDING_MESSAGE, "warning");
+    return;
+  }
+
+  setSubmitPendingState(true);
 
   try {
     const id = organisationId || generateOrganisationId();
@@ -163,18 +187,45 @@ async function handleSubmit(event) {
       {
         subMethodType: organisationId ? "PUT" : undefined,
         record: Object.assign({ id }, record),
-        cf_turnstile_response: getTurnstileToken(event.currentTarget),
+        cf_turnstile_response: organisationTurnstile.take(),
       },
       session,
     );
     organisationId = id;
     setStatus("Organisation details saved.", "success");
   } catch (error) {
-    setStatus(error.message || "Unable to save organisation details.", "error");
-    resetTurnstile("#organisation-form-turnstile");
+    if (error.status === 404) {
+      await loadOrganisation();
+      setStatus("This organisation could not be found. Its details have been reloaded.", "error");
+      return;
+    }
+
+    setStatus(
+      getManageWriteErrorMessage(error, "Unable to save organisation details. Please try again."),
+      "error",
+    );
   } finally {
-    if (submitButton) submitButton.disabled = false;
+    setSubmitPendingState(false);
+    organisationTurnstile.reset();
   }
+}
+
+function setSubmitPendingState(isPending) {
+  isSubmitPending = Boolean(isPending);
+  renderSubmitButtonState();
+}
+
+function renderSubmitButtonState() {
+  const submitButton = document.getElementById("organisation-submit-button");
+  if (!submitButton) return;
+
+  const hasToken = organisationTurnstile.hasToken();
+  submitButton.disabled = isSubmitPending || !hasToken;
+  setButtonBusyState(
+    submitButton,
+    isSubmitPending ? "Saving…" : hasToken ? "Save organisation details" : "Verifying…",
+    isSubmitPending,
+  );
 }
 
 function handleCustomFieldClick(event) {
@@ -271,14 +322,6 @@ function generateOrganisationId() {
   bytes[8] = (bytes[8] & 0x3f) | 0x80;
   const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
-}
-
-function getTurnstileToken(form) {
-  return new FormData(form).get("cf-turnstile-response")?.toString() || "";
-}
-
-function resetTurnstile(container) {
-  if (window.turnstile) window.turnstile.reset(container);
 }
 
 function setLoading(isLoading) {

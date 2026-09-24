@@ -56,6 +56,7 @@ let totalProductsKnown = false;
 let editingId = null;
 let deleteTargetProduct = null;
 let isDeletePending = false;
+let isSubmitPending = false;
 let productFields = DEFAULT_PRODUCT_FIELDS.slice();
 let productFilters = {};
 let productFilterDebounceTimer = null;
@@ -63,22 +64,17 @@ const PRODUCT_FILTER_DEBOUNCE_MS = 500;
 const PRODUCT_PAGE_SIZE = 50;
 let currentProductPage = 1;
 
-function getTurnstileToken(container) {
-  if (!container) return "";
+const productFormTurnstile = createTurnstileGate({
+  container: "#product-form-turnstile",
+  callbackName: "onProductFormTurnstile",
+  onChange: renderSubmitButtonState,
+});
 
-  if (container instanceof HTMLFormElement) {
-    return new FormData(container).get("cf-turnstile-response")?.toString() || "";
-  }
-
-  const input = container.querySelector('[name="cf-turnstile-response"]');
-  return input ? input.value?.toString() || "" : "";
-}
-
-function resetTurnstile(container) {
-  if (window.turnstile) {
-    window.turnstile.reset(container);
-  }
-}
+const productDeleteTurnstile = createTurnstileGate({
+  container: "#product-delete-turnstile",
+  callbackName: "onProductDeleteTurnstile",
+  onChange: renderDeleteButtonState,
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -993,7 +989,7 @@ function openForm(product) {
   });
 
   showModal(modal);
-  resetTurnstile("#product-form-turnstile");
+  productFormTurnstile.reset();
 }
 
 function closeForm() {
@@ -1002,6 +998,7 @@ function closeForm() {
 
 async function handleSubmit(event) {
   event.preventDefault();
+  if (isSubmitPending) return;
 
   const record = {};
   getEditableProductFields().forEach((field) => {
@@ -1023,19 +1020,24 @@ async function handleSubmit(event) {
     return;
   }
 
-  const submitButton = document.getElementById("product-submit-button");
-  if (submitButton) submitButton.disabled = true;
+  if (!productFormTurnstile.hasToken()) {
+    setStatus(TURNSTILE_PENDING_MESSAGE, "warning");
+    return;
+  }
+
+  setSubmitPendingState(true);
 
   try {
+    const token = productFormTurnstile.take();
     const body = editingId
       ? {
           subMethodType: "PUT",
           record: Object.assign({ id: editingId }, record),
-          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+          cf_turnstile_response: token,
         }
       : {
           record: record,
-          cf_turnstile_response: getTurnstileToken(event.currentTarget),
+          cf_turnstile_response: token,
         };
 
     await manageApiPost(PRODUCT_LIST_PATH, body, session);
@@ -1043,10 +1045,14 @@ async function handleSubmit(event) {
     await loadProducts();
     setStatus("Toy saved.", "success");
   } catch (error) {
-    setStatus(error.message || "Unable to save toy.", "error");
-    resetTurnstile("#product-form-turnstile");
+    if (error.status === 404) {
+      closeForm();
+      await loadProducts();
+    }
+    setStatus(getManageWriteErrorMessage(error, "Unable to save toy. Please try again."), "error");
   } finally {
-    if (submitButton) submitButton.disabled = false;
+    setSubmitPendingState(false);
+    productFormTurnstile.reset();
   }
 }
 
@@ -1063,36 +1069,64 @@ function handleDelete(product) {
 
   setDeletePendingState(false);
   showModal(modal);
-  resetTurnstile("#product-delete-turnstile");
+  productDeleteTurnstile.reset();
 }
 
+// Only ever called from the confirm button's click handler — deletes must
+// come from an explicit user action, never from page load or a re-render.
 async function handleDeleteConfirm() {
   if (!deleteTargetProduct || isDeletePending) return;
 
+  if (!productDeleteTurnstile.hasToken()) {
+    setStatus(TURNSTILE_PENDING_MESSAGE, "warning");
+    return;
+  }
+
+  const targetId = deleteTargetProduct.id;
   setDeletePendingState(true);
 
   try {
+    // A 200 with action "already_deleted" (record: null) means another tab
+    // or request got there first — the outcome the user wanted, so it's
+    // handled exactly like a normal delete.
     await manageApiPost(
       PRODUCT_LIST_PATH,
       {
         subMethodType: "DELETE",
-        id: deleteTargetProduct.id,
-        cf_turnstile_response: getTurnstileToken(
-          document.getElementById("product-delete-modal"),
-        ),
+        id: targetId,
+        cf_turnstile_response: productDeleteTurnstile.take(),
       },
       session,
     );
+    removeProductFromList(targetId);
     setDeletePendingState(false);
     closeModal(document.getElementById("product-delete-modal"));
     await loadProducts();
     setStatus("Toy deleted.", "success");
   } catch (error) {
-    setStatus(error.message || "Unable to delete toy.", "error");
-    resetTurnstile("#product-delete-turnstile");
+    if (error.status === 404) {
+      setDeletePendingState(false);
+      closeModal(document.getElementById("product-delete-modal"));
+      await loadProducts();
+    } else if (error.status === 409) {
+      setDeletePendingState(false);
+      closeModal(document.getElementById("product-delete-modal"));
+      await loadProducts();
+      setStatus("This toy changed while it was being deleted. The list has been refreshed.", "warning");
+      return;
+    }
+
+    setStatus(getManageWriteErrorMessage(error, "Unable to delete toy. Please try again."), "error");
   } finally {
     setDeletePendingState(false);
+    productDeleteTurnstile.reset();
   }
+}
+
+function removeProductFromList(id) {
+  products = products.filter((product) => product.id !== id);
+  totalProducts = products.length;
+  renderTable();
 }
 
 function getEditableProductFields() {
@@ -1198,16 +1232,42 @@ function normalizeFilterValue(value) {
   return String(value == null ? "" : value).trim().toLowerCase();
 }
 
+function setSubmitPendingState(isPending) {
+  isSubmitPending = Boolean(isPending);
+  renderSubmitButtonState();
+}
+
+function renderSubmitButtonState() {
+  const submitButton = document.getElementById("product-submit-button");
+  if (!submitButton) return;
+
+  const hasToken = productFormTurnstile.hasToken();
+  submitButton.disabled = isSubmitPending || !hasToken;
+  setButtonBusyState(
+    submitButton,
+    isSubmitPending ? (editingId ? "Saving..." : "Creating...") : hasToken ? "Save toy" : "Verifying...",
+    isSubmitPending,
+  );
+}
+
+function renderDeleteButtonState() {
+  const confirmButton = document.getElementById("product-delete-confirm-button");
+  if (!confirmButton) return;
+
+  const hasToken = productDeleteTurnstile.hasToken();
+  confirmButton.disabled = isDeletePending || !hasToken;
+  setButtonBusyState(
+    confirmButton,
+    isDeletePending ? "Deleting..." : hasToken ? "Delete toy" : "Verifying...",
+    isDeletePending,
+  );
+}
+
 function setDeletePendingState(isPending) {
   isDeletePending = Boolean(isPending);
+  renderDeleteButtonState();
 
   const modal = document.getElementById("product-delete-modal");
-  const confirmButton = document.getElementById("product-delete-confirm-button");
-  if (confirmButton) {
-    confirmButton.disabled = isDeletePending;
-    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete toy";
-  }
-
   if (!modal) return;
 
   modal.setAttribute("aria-busy", isDeletePending ? "true" : "false");

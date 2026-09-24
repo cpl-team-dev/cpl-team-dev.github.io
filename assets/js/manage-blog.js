@@ -32,26 +32,22 @@ let posts = [];
 let editingId = null;
 let deleteTargetPost = null;
 let isDeletePending = false;
+let isSubmitPending = false;
 let currentBlogPage = 1;
 let postFilters = getDefaultBlogFilters();
 let blogFilterDebounceTimer = null;
 
-function getTurnstileToken(container) {
-  if (!container) return "";
+const postFormTurnstile = createTurnstileGate({
+  container: "#post-form-turnstile",
+  callbackName: "onPostFormTurnstile",
+  onChange: renderSubmitButtonState,
+});
 
-  if (container instanceof HTMLFormElement) {
-    return new FormData(container).get("cf-turnstile-response")?.toString() || "";
-  }
-
-  const input = container.querySelector('[name="cf-turnstile-response"]');
-  return input ? input.value?.toString() || "" : "";
-}
-
-function resetTurnstile(container) {
-  if (window.turnstile) {
-    window.turnstile.reset(container);
-  }
-}
+const postDeleteTurnstile = createTurnstileGate({
+  container: "#post-delete-turnstile",
+  callbackName: "onPostDeleteTurnstile",
+  onChange: renderDeleteButtonState,
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   session = requireManageSession("./login.html");
@@ -720,7 +716,7 @@ function openForm(post) {
   });
 
   showModal(modal);
-  resetTurnstile("#post-form-turnstile");
+  postFormTurnstile.reset();
 }
 
 function closeForm() {
@@ -729,6 +725,7 @@ function closeForm() {
 
 async function handleSubmit(event) {
   event.preventDefault();
+  if (isSubmitPending) return;
 
   const record = {};
   BLOG_FIELDS.forEach((field) => {
@@ -741,22 +738,27 @@ async function handleSubmit(event) {
     return;
   }
 
-  const submitButton = document.getElementById("post-submit-button");
-  if (submitButton) submitButton.disabled = true;
+  if (!postFormTurnstile.hasToken()) {
+    setStatus(TURNSTILE_PENDING_MESSAGE, "warning");
+    return;
+  }
+
+  setSubmitPendingState(true);
 
   try {
+    const token = postFormTurnstile.take();
     const body = editingId
       ? Object.assign(
           {
             subMethodType: "PUT",
             id: editingId,
-            cf_turnstile_response: getTurnstileToken(event.currentTarget),
+            cf_turnstile_response: token,
           },
           record,
         )
       : Object.assign(
           {
-            cf_turnstile_response: getTurnstileToken(event.currentTarget),
+            cf_turnstile_response: token,
           },
           record,
         );
@@ -766,10 +768,17 @@ async function handleSubmit(event) {
     await loadPosts({ resetView: false });
     setStatus("Blog post saved.", "success");
   } catch (error) {
-    setStatus(error.message || "Unable to save blog post.", "error");
-    resetTurnstile("#post-form-turnstile");
+    if (error.status === 404) {
+      closeForm();
+      await loadPosts({ resetView: false });
+    }
+    setStatus(
+      getManageWriteErrorMessage(error, "Unable to save blog post. Please try again."),
+      "error",
+    );
   } finally {
-    if (submitButton) submitButton.disabled = false;
+    setSubmitPendingState(false);
+    postFormTurnstile.reset();
   }
 }
 
@@ -786,34 +795,69 @@ function handleDelete(post) {
 
   setDeletePendingState(false);
   showModal(modal);
-  resetTurnstile("#post-delete-turnstile");
+  postDeleteTurnstile.reset();
 }
 
+// Only ever called from the confirm button's click handler — deletes must
+// come from an explicit user action, never from page load or a re-render.
 async function handleDeleteConfirm() {
   if (!deleteTargetPost || isDeletePending) return;
 
+  if (!postDeleteTurnstile.hasToken()) {
+    setStatus(TURNSTILE_PENDING_MESSAGE, "warning");
+    return;
+  }
+
+  const targetId = deleteTargetPost.id;
   setDeletePendingState(true);
 
   try {
+    // A 200 with action "already_deleted" (record: null) means another tab
+    // or request got there first — the outcome the user wanted, so it's
+    // handled exactly like a normal delete.
     await manageApiPost(
       BLOG_LIST_PATH,
       {
         subMethodType: "DELETE",
-        id: deleteTargetPost.id,
-        cf_turnstile_response: getTurnstileToken(document.getElementById("post-delete-modal")),
+        id: targetId,
+        cf_turnstile_response: postDeleteTurnstile.take(),
       },
       session,
     );
+    removePostFromList(targetId);
     setDeletePendingState(false);
     closeModal(document.getElementById("post-delete-modal"));
     await loadPosts({ resetView: false });
     setStatus("Blog post deleted.", "success");
   } catch (error) {
-    setStatus(error.message || "Unable to delete blog post.", "error");
-    resetTurnstile("#post-delete-turnstile");
+    if (error.status === 404) {
+      setDeletePendingState(false);
+      closeModal(document.getElementById("post-delete-modal"));
+      await loadPosts({ resetView: false });
+    } else if (error.status === 409) {
+      setDeletePendingState(false);
+      closeModal(document.getElementById("post-delete-modal"));
+      await loadPosts({ resetView: false });
+      setStatus(
+        "This blog post changed while it was being deleted. The list has been refreshed.",
+        "warning",
+      );
+      return;
+    }
+
+    setStatus(
+      getManageWriteErrorMessage(error, "Unable to delete blog post. Please try again."),
+      "error",
+    );
   } finally {
     setDeletePendingState(false);
+    postDeleteTurnstile.reset();
   }
+}
+
+function removePostFromList(id) {
+  posts = posts.filter((post) => post.id !== id);
+  renderTable();
 }
 
 function showModal(modal) {
@@ -861,16 +905,42 @@ function escapeHtml(value) {
   );
 }
 
+function setSubmitPendingState(isPending) {
+  isSubmitPending = Boolean(isPending);
+  renderSubmitButtonState();
+}
+
+function renderSubmitButtonState() {
+  const submitButton = document.getElementById("post-submit-button");
+  if (!submitButton) return;
+
+  const hasToken = postFormTurnstile.hasToken();
+  submitButton.disabled = isSubmitPending || !hasToken;
+  setButtonBusyState(
+    submitButton,
+    isSubmitPending ? (editingId ? "Saving..." : "Creating...") : hasToken ? "Save post" : "Verifying...",
+    isSubmitPending,
+  );
+}
+
+function renderDeleteButtonState() {
+  const confirmButton = document.getElementById("post-delete-confirm-button");
+  if (!confirmButton) return;
+
+  const hasToken = postDeleteTurnstile.hasToken();
+  confirmButton.disabled = isDeletePending || !hasToken;
+  setButtonBusyState(
+    confirmButton,
+    isDeletePending ? "Deleting..." : hasToken ? "Delete post" : "Verifying...",
+    isDeletePending,
+  );
+}
+
 function setDeletePendingState(isPending) {
   isDeletePending = Boolean(isPending);
+  renderDeleteButtonState();
 
   const modal = document.getElementById("post-delete-modal");
-  const confirmButton = document.getElementById("post-delete-confirm-button");
-  if (confirmButton) {
-    confirmButton.disabled = isDeletePending;
-    confirmButton.textContent = isDeletePending ? "Deleting..." : "Delete post";
-  }
-
   if (!modal) return;
 
   modal.setAttribute("aria-busy", isDeletePending ? "true" : "false");

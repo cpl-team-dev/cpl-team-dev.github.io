@@ -428,7 +428,7 @@ function setUserFormPending(isPending) {
   const button = document.getElementById("user-submit-button");
   if (button) {
     button.disabled = isPending;
-    button.textContent = isPending ? "Saving…" : "Save changes";
+    setButtonBusyState(button, isPending ? "Saving…" : "Save changes", isPending);
   }
 }
 
@@ -437,7 +437,7 @@ function setUserDeletePending(isPending) {
   const button = document.getElementById("user-delete-confirm-button");
   if (button) {
     button.disabled = isPending;
-    button.textContent = isPending ? "Deleting…" : "Delete member";
+    setButtonBusyState(button, isPending ? "Deleting…" : "Delete member", isPending);
   }
 }
 

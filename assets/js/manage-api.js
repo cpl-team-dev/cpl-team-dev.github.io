@@ -86,7 +86,63 @@ async function manageApiGet(path, params, session) {
   return parseManageApiResponse(response);
 }
 
+const TURNSTILE_PENDING_MESSAGE =
+  "Please wait for the security check to finish, then try again.";
+
+// Turnstile failures are the only write errors with a specific message; they
+// come from the Cloudflare Worker and must match cloudflare-worker/src/index.js
+// in mjhub-backend exactly. Every other backend error says "Unable to process
+// request.", whatever its status.
+const WORKER_TURNSTILE_MISSING_ERROR = "Request body must include Cloudflare validation.";
+const WORKER_TURNSTILE_FAILED_ERROR = "Turnstile verification failed.";
+
+// The copy shown to staff is chosen from the HTTP status, except that the
+// security-check copy is only used when the Worker says Turnstile failed —
+// a 400 or 403 can also be a validation or permission error.
+function getManageWriteErrorMessage(error, fallback) {
+  const status = error && error.status;
+  const message = error && error.message;
+
+  if (error && error.code === "turnstile_missing") return TURNSTILE_PENDING_MESSAGE;
+  if (status === 401) return message;
+  if (status === 400 && message === WORKER_TURNSTILE_MISSING_ERROR) {
+    return "The security check didn't complete. Please wait for it to finish and try again.";
+  }
+  if (status === 403 && message === WORKER_TURNSTILE_FAILED_ERROR) {
+    return "The security check expired or was already used. Please wait for a new one and try again.";
+  }
+
+  switch (status) {
+    case 400:
+      return "Some details couldn't be saved. Please check the form and try again.";
+    case 403:
+      return "You don't have permission to make this change.";
+    case 404:
+      return "This item no longer exists. The list has been refreshed.";
+    case 409:
+      return "An item with these details already exists.";
+    case 503:
+      return "The server is busy right now. Please try again in a moment.";
+    default:
+      return fallback;
+  }
+}
+
+// Writes are never retried automatically — a duplicate write can succeed
+// on the first attempt and fail (or double-apply) on the second.
 async function manageApiPost(path, body, session) {
+  // Last line of defence: an empty Turnstile token is always rejected by
+  // the backend, so don't spend a request (or a write lock) on it.
+  if (
+    body &&
+    Object.prototype.hasOwnProperty.call(body, "cf_turnstile_response") &&
+    !String(body.cf_turnstile_response || "").trim()
+  ) {
+    const error = new Error(TURNSTILE_PENDING_MESSAGE);
+    error.code = "turnstile_missing";
+    throw error;
+  }
+
   const authorization =
     typeof getManageAuthorization === "function"
       ? getManageAuthorization(session)
