@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
   const chipRow = document.getElementById("toy-library-chip-row");
+  const activeChipRow = document.getElementById("toy-library-active-chips");
+  const chipScrollShell = chipRow?.closest(".toy-library-chip-scroll-shell");
+  const chipLimitNote = document.getElementById("toy-library-chip-limit");
+  const searchInput = document.getElementById("toy-library-search");
   const summary = document.getElementById("toy-library-results-summary");
   const grid = document.getElementById("toy-library-grid");
   const showMoreButton = document.getElementById("toy-library-show-more");
@@ -17,21 +21,30 @@ document.addEventListener("DOMContentLoaded", () => {
     "(min-width: 1101px) and (hover: hover) and (pointer: fine)",
   );
 
-  if (!chipRow || !summary || !grid || !showMoreButton) {
+  if (!chipRow || !activeChipRow || !summary || !grid || !showMoreButton) {
     return;
   }
 
   const endpoint = `${API_BASE_URL.replace(/\/$/, "")}/product?${new URLSearchParams({
     organisation_id: ORGANISATION_ID,
   }).toString()}`;
-  const initialCategoryParam =
-    new URLSearchParams(window.location.search).get("category")?.trim() || "";
+  const initialParams = new URLSearchParams(window.location.search);
+  const initialCategoryParams = initialParams
+    .getAll("category")
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const initialSearchParam = initialParams.get("q")?.trim() || "";
   const placeholderImage =
     "../../assets/images/no-image-available-icon.jpg";
   const pageSize = 48;
+  const maxActiveCategories = 3;
+  const searchDebounceMs = 300;
 
   let allProducts = [];
-  let activeCategory = "All";
+  // Empty means "All"; otherwise the categories in the order they were picked.
+  let activeCategories = [];
+  let searchTerm = initialSearchParam;
+  let searchDebounceTimer = 0;
   let visibleCount = pageSize;
   let lastActiveCard = null;
 
@@ -154,40 +167,39 @@ document.addEventListener("DOMContentLoaded", () => {
     return new Intl.NumberFormat("en-GB").format(value);
   }
 
-  function updateCategoryQueryParam(category) {
+  function updateQueryParams() {
     const url = new URL(window.location.href);
 
-    if (category && category !== "All") {
-      url.searchParams.set("category", category);
+    url.searchParams.delete("category");
+    activeCategories.forEach((category) => {
+      url.searchParams.append("category", category);
+    });
+
+    if (searchTerm) {
+      url.searchParams.set("q", searchTerm);
     } else {
-      url.searchParams.delete("category");
+      url.searchParams.delete("q");
     }
 
     window.history.replaceState({}, "", url);
   }
 
-  function resolveInitialCategory() {
-    if (!initialCategoryParam) {
-      return "All";
-    }
+  function resolveInitialCategories() {
+    const categories = getCategories();
+    const matched = [];
 
-    const matchedCategory = getCategories().find(
-      (category) => category.toLowerCase() === initialCategoryParam.toLowerCase(),
-    );
+    initialCategoryParams.forEach((param) => {
+      const category = categories.find(
+        (candidate) =>
+          candidate !== "All" && candidate.toLowerCase() === param.toLowerCase(),
+      );
 
-    return matchedCategory || "All";
-  }
-
-  function pinActiveChipToLeft(activeChip, smooth = true) {
-    if (!activeChip) {
-      return;
-    }
-
-    const targetLeft = activeChip.offsetLeft - chipRow.offsetLeft;
-    chipRow.scrollTo({
-      left: Math.max(0, targetLeft),
-      behavior: smooth ? "smooth" : "auto",
+      if (category && !matched.includes(category)) {
+        matched.push(category);
+      }
     });
+
+    return matched.slice(0, maxActiveCategories);
   }
 
   function getCategories() {
@@ -201,37 +213,123 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function renderCategories() {
-    clearElement(chipRow);
+  function applyFilters() {
+    visibleCount = pageSize;
+    updateQueryParams();
+    renderCategories();
+    renderProducts();
+  }
 
-    getCategories().forEach((category) => {
-      const chip = document.createElement("button");
-      chip.type = "button";
-      chip.className = `toy-library-chip${category === activeCategory ? " is-active" : ""}`;
-      chip.textContent = category;
-      chip.addEventListener("click", () => {
-        activeCategory = category;
-        visibleCount = pageSize;
-        updateCategoryQueryParam(activeCategory);
-        renderCategories();
-        renderProducts();
-      });
-      chipRow.appendChild(chip);
+  function toggleCategory(category) {
+    if (category === "All") {
+      activeCategories = [];
+    } else if (activeCategories.includes(category)) {
+      activeCategories = activeCategories.filter((item) => item !== category);
+    } else if (activeCategories.length < maxActiveCategories) {
+      activeCategories = [...activeCategories, category];
+    } else {
+      return;
+    }
 
-      if (category === activeCategory) {
-        requestAnimationFrame(() => {
-          pinActiveChipToLeft(chip);
-        });
+    applyFilters();
+  }
+
+  function createChip(category, { active, disabled }) {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "toy-library-chip";
+    chip.textContent = category;
+
+    if (active) {
+      chip.classList.add("is-active");
+      chip.setAttribute("aria-pressed", "true");
+
+      if (category !== "All") {
+        chip.classList.add("is-removable");
+        chip.setAttribute("aria-label", `Remove ${category} filter`);
+      }
+    } else {
+      chip.setAttribute("aria-pressed", "false");
+    }
+
+    if (disabled) {
+      chip.classList.add("is-disabled");
+      chip.setAttribute("aria-disabled", "true");
+      chip.title = `You can pick up to ${maxActiveCategories} categories`;
+    }
+
+    chip.addEventListener("click", () => {
+      if (!disabled) {
+        toggleCategory(category);
       }
     });
+
+    return chip;
+  }
+
+  // Active chips stay pinned on the left of the separator; everything else
+  // lives in the scrollable row to its right.
+  function renderCategories() {
+    clearElement(activeChipRow);
+    clearElement(chipRow);
+
+    const isAll = activeCategories.length === 0;
+    const atLimit = activeCategories.length >= maxActiveCategories;
+
+    if (isAll) {
+      activeChipRow.appendChild(createChip("All", { active: true }));
+    } else {
+      activeCategories.forEach((category) => {
+        activeChipRow.appendChild(createChip(category, { active: true }));
+      });
+    }
+
+    getCategories().forEach((category) => {
+      if (isAll && category === "All") return;
+      if (activeCategories.includes(category)) return;
+
+      chipRow.appendChild(
+        createChip(category, {
+          active: false,
+          disabled: atLimit && category !== "All",
+        }),
+      );
+    });
+
+    if (chipLimitNote) {
+      chipLimitNote.hidden = !atLimit;
+    }
+
+    chipRow.scrollLeft = 0;
+    updateChipScrollHints();
+  }
+
+  function updateChipScrollHints() {
+    if (!chipScrollShell) return;
+
+    const overflow = chipRow.scrollWidth - chipRow.clientWidth;
+    chipScrollShell.classList.toggle("is-scrollable", overflow > 4);
+    chipScrollShell.classList.toggle("is-at-start", chipRow.scrollLeft <= 4);
+    chipScrollShell.classList.toggle(
+      "is-at-end",
+      chipRow.scrollLeft >= overflow - 4,
+    );
   }
 
   function getFilteredProducts() {
-    if (activeCategory === "All") {
-      return allProducts;
-    }
+    const query = searchTerm.toLowerCase();
 
-    return allProducts.filter((product) => product.category === activeCategory);
+    return allProducts.filter(
+      (product) =>
+        (activeCategories.length === 0 ||
+          activeCategories.includes(product.category)) &&
+        (!query || product.name.toLowerCase().includes(query)),
+    );
+  }
+
+  function formatCategoryList(categories) {
+    if (categories.length <= 1) return categories.join("");
+    return `${categories.slice(0, -1).join(", ")} and ${categories.at(-1)}`;
   }
 
   function createProductCard(product) {
@@ -304,11 +402,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderSummary(filteredProducts) {
     const showing = Math.min(filteredProducts.length, visibleCount);
     const categoryLabel =
-      activeCategory === "All" ? "all categories" : activeCategory;
+      activeCategories.length === 0
+        ? "all categories"
+        : formatCategoryList(activeCategories);
+    const searchLabel = searchTerm ? ` matching \u201c${searchTerm}\u201d` : "";
 
     summary.textContent = `Showing ${formatNumber(showing)} of ${formatNumber(
       filteredProducts.length,
-    )} products in ${categoryLabel}.`;
+    )} products${searchLabel} in ${categoryLabel}.`;
   }
 
   function renderShowMore(filteredProducts) {
@@ -322,7 +423,11 @@ document.addEventListener("DOMContentLoaded", () => {
     clearElement(grid);
 
     if (filteredProducts.length === 0) {
-      renderStatus("No products are available in this category right now.");
+      renderStatus(
+        searchTerm
+          ? "No products match your search right now."
+          : "No products are available in this category right now.",
+      );
       renderShowMore(filteredProducts);
       return;
     }
@@ -404,27 +509,69 @@ document.addEventListener("DOMContentLoaded", () => {
       const payload = await fetchPayload(endpoint);
       const normalised = normalisePayload(payload);
       allProducts = normalised.products;
-      activeCategory = resolveInitialCategory();
+      activeCategories = resolveInitialCategories();
       visibleCount = pageSize;
 
       if (allProducts.length === 0) {
         clearElement(chipRow);
+        clearElement(activeChipRow);
         summary.textContent = "";
         renderStatus("No products are available right now.");
         showMoreButton.hidden = true;
         return;
       }
 
-      updateCategoryQueryParam(activeCategory);
+      updateQueryParams();
       renderCategories();
       renderProducts();
     } catch (error) {
       clearElement(chipRow);
+      clearElement(activeChipRow);
       summary.textContent = "";
       showMoreButton.hidden = true;
       renderStatus("We couldn't load the catalogue right now.");
       console.error("Failed to load toy library products:", error);
     }
+  }
+
+  chipRow.addEventListener("scroll", updateChipScrollHints, { passive: true });
+  window.addEventListener("resize", updateChipScrollHints);
+
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(updateChipScrollHints).observe(chipRow);
+  }
+
+  chipScrollShell
+    ?.querySelectorAll("[data-scroll-direction]")
+    .forEach((hint) => {
+      hint.addEventListener("click", () => {
+        const direction = Number(hint.dataset.scrollDirection) || 1;
+        chipRow.scrollBy({
+          left: direction * chipRow.clientWidth * 0.8,
+          behavior: "smooth",
+        });
+      });
+    });
+
+  if (searchInput) {
+    searchInput.value = searchTerm;
+
+    searchInput.addEventListener("input", () => {
+      window.clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = window.setTimeout(() => {
+        const nextTerm = searchInput.value.trim();
+        if (nextTerm === searchTerm) return;
+
+        searchTerm = nextTerm;
+        // Filters render once products have loaded; before then just remember
+        // the term so the first render picks it up.
+        if (allProducts.length > 0) {
+          visibleCount = pageSize;
+          updateQueryParams();
+          renderProducts();
+        }
+      }, searchDebounceMs);
+    });
   }
 
   showMoreButton.addEventListener("click", () => {

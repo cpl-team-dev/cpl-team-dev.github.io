@@ -537,11 +537,68 @@
               </p>
             </div>
 
+            <div class="toy-library-search">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="m20 20-3.5-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" />
+              </svg>
+              <input
+                id="toy-library-search"
+                type="search"
+                placeholder="Search toys by name"
+                aria-label="Search toys by name"
+                autocomplete="off"
+                spellcheck="false"
+              />
+            </div>
+
             <div
-              id="toy-library-chip-row"
-              class="toy-library-chip-row"
+              class="toy-library-category-picker"
+              role="group"
               aria-label="Categories in this catalogue"
-            ></div>
+            >
+              <div
+                id="toy-library-active-chips"
+                class="toy-library-active-chips"
+                aria-label="Active categories"
+              ></div>
+              <span
+                class="toy-library-chip-separator"
+                aria-hidden="true"
+              ></span>
+              <div class="toy-library-chip-scroll-shell">
+                <button
+                  class="toy-library-chip-scroll-hint toy-library-chip-scroll-hint--prev"
+                  type="button"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  data-scroll-direction="-1"
+                >
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <div
+                  id="toy-library-chip-row"
+                  class="toy-library-chip-row"
+                  aria-label="More categories"
+                ></div>
+                <button
+                  class="toy-library-chip-scroll-hint"
+                  type="button"
+                  tabindex="-1"
+                  aria-hidden="true"
+                  data-scroll-direction="1"
+                >
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <p id="toy-library-chip-limit" class="toy-library-chip-limit" hidden>
+              You can pick up to 3 categories. Remove one to choose another.
+            </p>
 
             <p
               id="toy-library-results-summary"

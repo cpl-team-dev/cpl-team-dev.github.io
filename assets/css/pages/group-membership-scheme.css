@@ -242,6 +242,10 @@
   margin: 14px 0 0;
 }
 
+.group-membership-benefit-card-wide {
+  grid-column: 1 / -1;
+}
+
 .group-membership-benefit-card-peach {
   background: var(--group-chip-peach-bg);
 }
